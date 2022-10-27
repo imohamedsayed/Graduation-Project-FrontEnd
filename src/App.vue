@@ -1,14 +1,18 @@
 <template>
   <Header />
   <main>
-    <router-view />
+    <AsideBar />
+    <div class="view">
+      <router-view />
+    </div>
   </main>
 </template>
 
 <script>
+import AsideBar from "./components/AsideBar.vue";
 import Header from "./components/Header.vue";
 
-export default { components: { Header } };
+export default { components: { Header, AsideBar } };
 </script>
 
 <style lang="scss">
@@ -24,6 +28,15 @@ export default { components: { Header } };
   //-moz-osx-font-smoothing: grayscale;
   //text-align: center;
   //color: #2c3e50;
+  main {
+    margin-top: 60px;
+    direction: rtl;
+    background: #f7f7f7;
+    display: flex;
+    .view {
+      min-height: calc(100vh - 60px);
+    }
+  }
 }
 /*
 nav {

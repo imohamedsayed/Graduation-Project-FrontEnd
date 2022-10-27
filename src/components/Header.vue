@@ -59,7 +59,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 40px;
+  position: fixed;
+  width: 100%;
+  top: 0;
   .left {
     flex: 0 0 1;
     max-width: 50%;
@@ -101,6 +104,11 @@ export default {
           }
         }
       }
+    }
+  }
+  .right {
+    @media (max-width: 991px) {
+      padding-right: 30px;
     }
   }
 }
