@@ -145,7 +145,7 @@
       </li>
       <div class="collapse" id="courses-sections">
         <ul class="list-unstyled">
-          <a href="#">
+          <router-link :to="{ name: 'new_course' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -154,7 +154,7 @@
                 <span> اضافة دورة جديدة</span>
               </div>
             </li>
-          </a>
+          </router-link>
           <a href="#">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
@@ -401,7 +401,6 @@ export default {
   transition: all 0.4s ease-out;
   ul {
     padding: 0;
-
     a {
       text-decoration: none;
       color: var(--text-black);
@@ -430,6 +429,14 @@ export default {
       i {
         margin-left: 10px;
       }
+    }
+  }
+  a {
+    &.router-link-exact-active li {
+      background: #8f94fb41 !important;
+    }
+    &.router-link-exact-active li {
+      border-right: 6px solid var(--darker-blue);
     }
   }
   &::-webkit-scrollbar {

@@ -17,6 +17,23 @@ export default { components: { Header, AsideBar, Footer } };
 </script>
 
 <style lang="scss">
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(#1abcff, #8f94fb);
+  border: 3px solid#fff;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--darker-blue);
+}
 :root {
   --text-black: #212529;
   --blue-color: #8f94fb;
