@@ -2,11 +2,8 @@
   <Header />
   <main>
     <AsideBar />
-    <div class="main">
-      <div class="view">
-        <router-view />
-      </div>
-      <Footer />
+    <div class="view">
+      <router-view />
     </div>
   </main>
 </template>
@@ -16,7 +13,7 @@ import AsideBar from "./components/AsideBar.vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 
-export default { components: { Header, AsideBar ,Footer} };
+export default { components: { Header, AsideBar, Footer } };
 </script>
 
 <style lang="scss">
@@ -24,9 +21,9 @@ export default { components: { Header, AsideBar ,Footer} };
   --text-black: #212529;
   --blue-color: #8f94fb;
   --darker-blue: #4e54c8;
-  --white-color:#f7f7f7;
-  --light-blue:#1abcff;
-  --border:1px solid #ced4da ;
+  --white-color: #f7f7f7;
+  --light-blue: #1abcff;
+  --border: 1px solid #ced4da;
 }
 
 #app {
@@ -39,19 +36,16 @@ export default { components: { Header, AsideBar ,Footer} };
     direction: rtl;
     background: #f7f7f7;
     display: flex;
-    flex-wrap: wrap;
-    .main{
     margin-top: 60px;
-      width: calc(100% - 240px);
-      @media (max-width: 991px) {
-        width: calc(100% - 0px);
-      }
-    }
     .view {
       min-height: calc(100vh - 60px);
-      width:100% ;
+      flex: 1;
+      padding-right: 14rem;
+      @media (max-width: 991px) {
+        padding-right: 0;
+      }
     }
-    ul{
+    ul {
       list-style: none;
     }
     a {

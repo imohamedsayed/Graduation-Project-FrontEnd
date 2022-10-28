@@ -392,6 +392,8 @@ export default {
 
 <style lang="scss">
 .vertical-nav {
+  z-index: 999;
+  position: fixed;
   height: calc(100vh - 60px);
   width: 240px;
   overflow-y: auto;
@@ -450,11 +452,11 @@ export default {
   }
 }
 .asideToggler {
-  position: absolute;
+  position: fixed;
   top: 5px;
   right: 10px;
   border-radius: 5px;
-  z-index: 5;
+  z-index: 1000;
   font-size: 1.5rem;
   padding: 6px 14px;
   color: #fff;
