@@ -66,7 +66,7 @@
             >
               <div class="section-name">
                 <i class="fa-solid fa-plus"></i>
-                <span> اضافة صف جديد</span>
+                <span><router-link :to="{name: 'CreateClass'}">اضافة صف جديد</router-link></span>
               </div>
             </li>
           </a>
