@@ -63,6 +63,7 @@ export default {
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 100;
   .left {
     flex: 0 0 1;
     max-width: 50%;

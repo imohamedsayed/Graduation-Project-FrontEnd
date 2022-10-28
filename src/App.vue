@@ -25,6 +25,8 @@ export default { components: { Header, AsideBar ,Footer} };
   --blue-color: #8f94fb;
   --darker-blue: #4e54c8;
   --white-color:#f7f7f7;
+  --light-blue:#1abcff;
+  --border:1px solid #ced4da ;
 }
 
 #app {
@@ -34,12 +36,12 @@ export default { components: { Header, AsideBar ,Footer} };
   //text-align: center;
   //color: #2c3e50;
   main {
-    margin-top: 60px;
     direction: rtl;
     background: #f7f7f7;
     display: flex;
     flex-wrap: wrap;
     .main{
+    margin-top: 60px;
       width: calc(100% - 240px);
       @media (max-width: 991px) {
         width: calc(100% - 0px);
@@ -47,7 +49,7 @@ export default { components: { Header, AsideBar ,Footer} };
     }
     .view {
       min-height: calc(100vh - 60px);
-      width: calc(100% - 240px);
+      width:100% ;
     }
     ul{
       list-style: none;
