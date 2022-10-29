@@ -256,12 +256,14 @@
       <!--End Exams -->
       <!--Notification-->
       <a href="#">
+        <router-link :to="{ name: 'CreateNotificationPage' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-regular fa-bell"></i>
-            <span> الاشعارات</span>
+            <span>الاشعارات</span>
           </div>
         </li>
+        </router-link>
       </a>
       <!--Notification-->
       <!--Vouchers-->
@@ -301,14 +303,16 @@
       <div class="collapse" id="pages-sections">
         <ul class="list-unstyled">
           <a href="#">
+           <router-link :to="{ name: 'CreateClass' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
               <div class="section-name">
                 <i class="fa-solid fa-plus"></i>
-                <span><router-link :to="{ name: 'CreateClass' }">اضافة صفحة</router-link></span>
+                <span>اضافة صفحة</span>
               </div>
             </li>
+            </router-link>
           </a>
           <a href="#">
             <li
