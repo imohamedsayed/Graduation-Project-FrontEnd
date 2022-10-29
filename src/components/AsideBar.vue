@@ -306,7 +306,7 @@
             >
               <div class="section-name">
                 <i class="fa-solid fa-plus"></i>
-                <span>اضافة صفحة</span>
+                <span><router-link :to="{ name: 'CreateClass' }">اضافة صفحة</router-link></span>
               </div>
             </li>
           </a>
