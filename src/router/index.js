@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CreateCourse from '../views/Create_new_course.vue'
 import CreateClass from '../views/CreateClass.vue'
+import CreateNotificationPage from '../views/CreateNotificationPage.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/new_class',
     name: 'CreateClass',
     component: CreateClass
+  },
+  {
+    path: '/notifications.html',
+    name: 'CreateNotificationPage',
+    component: CreateNotificationPage
   },
 ]
 
