@@ -1,7 +1,6 @@
 <template>
   <Header />
   <main>
-    <AsideBar />
     <div class="view">
       <router-view />
     </div>
@@ -52,16 +51,9 @@ body::-webkit-scrollbar-thumb:hover {
   main {
     direction: rtl;
     background: #f7f7f7;
-    display: flex;
     margin-top: 60px;
     .view {
-      min-height: calc(100vh - 60px);
-      flex: 1;
-      padding-right: 14rem;
-      @media (max-width: 991px) {
-        padding-right: 0;
-      }
-    }
+      min-height: calc(100vh - 60px); }
     ul {
       list-style: none;
     }

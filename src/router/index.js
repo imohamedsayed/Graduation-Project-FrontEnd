@@ -1,35 +1,35 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import CreateCourse from '../views/Create_new_course.vue'
-import CreateClass from '../views/CreateClass.vue'
-import CreateNotificationPage from '../views/CreateNotificationPage.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import CreateCourse from "../views/Dashboard/Create_new_course.vue";
+import CreateClass from "../views/Dashboard/CreateClass.vue";
+import CreateNotificationPage from "../views/Dashboard/CreateNotificationPage.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   {
-    path: '/new_course',
-    name: 'new_course',
-    component: CreateCourse
+    path: "/new_course",
+    name: "new_course",
+    component: CreateCourse,
   },
   {
-    path: '/new_class',
-    name: 'CreateClass',
-    component: CreateClass
+    path: "/new_class",
+    name: "CreateClass",
+    component: CreateClass,
   },
   {
-    path: '/notifications.html',
-    name: 'CreateNotificationPage',
-    component: CreateNotificationPage
+    path: "/notifications.html",
+    name: "CreateNotificationPage",
+    component: CreateNotificationPage,
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
