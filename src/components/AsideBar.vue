@@ -60,20 +60,16 @@
       </li>
       <div class="collapse" id="second-sections">
         <ul class="list-unstyled">
-          <a href="#">
+          <router-link :to="{ name: 'CreateClass' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
               <div class="section-name">
                 <i class="fa-solid fa-plus"></i>
-                <span
-                  ><router-link :to="{ name: 'CreateClass' }"
-                    >اضافة صف جديد</router-link
-                  ></span
-                >
+                <span>اضافة صف جديد</span>
               </div>
             </li>
-          </a>
+          </router-link>
           <router-link :to="{ name: 'viewClasses' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
@@ -445,9 +441,6 @@ export default {
     }
     &.router-link-exact-active li {
       border-right: 6px solid var(--darker-blue);
-    }
-    &.router-link-exact-active li:hover {
-      color: red;
     }
   }
   &::-webkit-scrollbar {
