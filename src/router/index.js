@@ -3,7 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import CreateCourse from "../views/Dashboard/Create_new_course.vue";
 import CreateClass from "../views/Dashboard/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/CreateNotificationPage.vue";
-
+import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
 const routes = [
   {
     path: "/",
@@ -21,9 +21,14 @@ const routes = [
     component: CreateClass,
   },
   {
-    path: "/notifications.html",
+    path: "/notifications",
     name: "CreateNotificationPage",
     component: CreateNotificationPage,
+  },
+  {
+    path: "/view_classes",
+    name: "viewClasses",
+    component: ViewClasses,
   },
 ];
 
