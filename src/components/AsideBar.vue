@@ -66,11 +66,15 @@
             >
               <div class="section-name">
                 <i class="fa-solid fa-plus"></i>
-                <span><router-link :to="{name: 'CreateClass'}">اضافة صف جديد</router-link></span>
+                <span
+                  ><router-link :to="{ name: 'CreateClass' }"
+                    >اضافة صف جديد</router-link
+                  ></span
+                >
               </div>
             </li>
           </a>
-          <a href="#">
+          <router-link :to="{ name: 'viewClasses' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -79,7 +83,7 @@
                 <span> عرض الصفوف الدراسية</span>
               </div>
             </li>
-          </a>
+          </router-link>
         </ul>
       </div>
       <!--Store -->
@@ -257,12 +261,12 @@
       <!--Notification-->
       <a href="#">
         <router-link :to="{ name: 'CreateNotificationPage' }">
-        <li class="d-flex justify-content-between align-items-center">
-          <div class="section-name">
-            <i class="fa-regular fa-bell"></i>
-            <span>الاشعارات</span>
-          </div>
-        </li>
+          <li class="d-flex justify-content-between align-items-center">
+            <div class="section-name">
+              <i class="fa-regular fa-bell"></i>
+              <span>الاشعارات</span>
+            </div>
+          </li>
         </router-link>
       </a>
       <!--Notification-->
@@ -303,15 +307,15 @@
       <div class="collapse" id="pages-sections">
         <ul class="list-unstyled">
           <a href="#">
-           <router-link :to="{ name: 'CreateClass' }">
-            <li
-              class="d-flex justify-content-between align-items-center second-li px-4"
-            >
-              <div class="section-name">
-                <i class="fa-solid fa-plus"></i>
-                <span>اضافة صفحة</span>
-              </div>
-            </li>
+            <router-link :to="{ name: 'CreateClass' }">
+              <li
+                class="d-flex justify-content-between align-items-center second-li px-4"
+              >
+                <div class="section-name">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>اضافة صفحة</span>
+                </div>
+              </li>
             </router-link>
           </a>
           <a href="#">
@@ -441,6 +445,9 @@ export default {
     }
     &.router-link-exact-active li {
       border-right: 6px solid var(--darker-blue);
+    }
+    &.router-link-exact-active li:hover {
+      color: red;
     }
   }
   &::-webkit-scrollbar {

@@ -16,6 +16,7 @@ export default { components: { Header, AsideBar, Footer } };
 </script>
 
 <style lang="scss">
+
 body::-webkit-scrollbar {
   width: 15px;
 }
