@@ -1,14 +1,16 @@
 <template>
-    <div class="profile_link">
+                <div class="channel_my item all__noti5">
+                    <div class="profile_link">
                     <img src="images/profile/01.jpg" alt="" />
                     <div class="pd_content">
-                      <h6>الاختبارات</h6>
-                      <p class="noti__text5">
+                        <h6>الاختبارات</h6>
+                        <p class="noti__text5">
                         قام <b>{{personName}}</b> بانهاء اختبار الوحدة الأولي
                       </p>
                       <span class="nm_time">منذ دقيقتين</span>
                     </div>
                   </div>
+                </div>
 </template>
 
 <script>
@@ -22,6 +24,13 @@ export default {
 </script>
 
 <style lang="scss">
+.channel_my {
+  padding: 15px !important;
+  border-bottom: 1px solid #efefef !important ;
+  min-width: 100%;
+  max-width: 100%;
+  white-space: normal;
+}
 .profile_link {
   display: flex;
 }

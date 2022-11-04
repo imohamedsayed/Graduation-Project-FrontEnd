@@ -11,18 +11,11 @@
           </div>
           <div class="row">
             <div class="col-12">
-              <div class="all_msg_bg">
-                <div class="channel_my item all__noti5">
+               <div class="all_msg_bg">
+                  <notification/>                
                   <notification/>
-                </div>
-                <div class="channel_my item all__noti5">
+                  <notification/>
                  <notification/>
-                </div>
-                <div class="channel_my item all__noti5">
-                 <notification/>
-                </div>
-                <div class="channel_my item all__noti5">
-                <notification/>
                 </div>
               </div>
             </div>
@@ -31,7 +24,6 @@
       </div>
       <Footer></Footer>
     </div>
-  </div>
 </template>
 
 <script>
@@ -74,11 +66,5 @@ export default {
   margin: 0 20px 20px 0;
   background: #fff;
 }
-.channel_my {
-  padding: 15px !important;
-  border-bottom: 1px solid #efefef !important ;
-  min-width: 100%;
-  max-width: 100%;
-  white-space: normal;
-}
+
 </style>
