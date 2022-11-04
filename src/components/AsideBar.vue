@@ -255,8 +255,7 @@
       </div>
       <!--End Exams -->
       <!--Notification-->
-      <a href="#">
-        <router-link :to="{ name: 'CreateNotificationPage' }">
+      <router-link :to="{ name: 'CreateNotificationPage' }">
           <li class="d-flex justify-content-between align-items-center">
             <div class="section-name">
               <i class="fa-regular fa-bell"></i>
@@ -264,7 +263,7 @@
             </div>
           </li>
         </router-link>
-      </a>
+      
       <!--Notification-->
       <!--Vouchers-->
       <a href="#">

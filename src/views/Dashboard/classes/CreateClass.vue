@@ -58,8 +58,8 @@
 
 <script>
 // @ is an alias to /src
-import Footer from "../../components/Footer.vue";
-import AsideBar from "../../components/AsideBar.vue";
+import Footer from "../../../components/Footer.vue";
+import AsideBar from "../../../components/AsideBar.vue";
 export default {
   name: "CreateClass",
   components: { Footer, AsideBar },
@@ -139,7 +139,6 @@ export default {
   font-weight: bold;
 }
 .course_tabs_1 .steps_btn:hover {
-  background-color: #1abaffac !important;
-  color: white !important;
+  color: black !important;
 }
 </style>
