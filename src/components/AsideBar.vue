@@ -1,14 +1,14 @@
 <template>
   <aside class="vertical-nav" ref="aside">
     <ul class="list-unstyled" dir="rtl">
-      <a href="#">
+      <router-link :to="{ name: 'home' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-home"></i>
             <span> الرئيسية</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <li
         class="d-flex justify-content-between align-items-center"
         data-bs-target="#primary-sections"
