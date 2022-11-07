@@ -54,6 +54,7 @@ export default {
 
 <style lang="scss">
 .main-header {
+  direction: ltr !important;
   height: 60px;
   z-index: 1000;
   background: linear-gradient(to right, #8f94fb, #4e54c8);

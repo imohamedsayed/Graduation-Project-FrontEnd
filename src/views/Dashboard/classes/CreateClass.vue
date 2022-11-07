@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div class="main-view">
     <AsideBar />
     <div class="new-class">
@@ -59,10 +60,12 @@
 <script>
 // @ is an alias to /src
 import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
+
 export default {
   name: "CreateClass",
-  components: { Footer, AsideBar },
+  components: { Footer, AsideBar, Header },
 };
 </script>
 <style lang="scss">

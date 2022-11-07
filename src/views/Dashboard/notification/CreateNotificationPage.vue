@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div class="main-view">
     <AsideBar />
     <div class="notifications">
@@ -11,29 +12,30 @@
           </div>
           <div class="row">
             <div class="col-12">
-               <div class="all_msg_bg">
-                  <notification/>                
-                  <notification/>
-                  <notification/>
-                 <notification/>
-                </div>
+              <div class="all_msg_bg">
+                <notification />
+                <notification />
+                <notification />
+                <notification />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Footer></Footer>
     </div>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import notification from "@/components/classes/notification.vue";
 export default {
   name: "CreateNotificationPage",
-  components: { Footer, AsideBar , notification },
+  components: { Footer, AsideBar, notification, Header },
 };
 </script>
 <style lang="scss">
@@ -66,5 +68,4 @@ export default {
   margin: 0 20px 20px 0;
   background: #fff;
 }
-
 </style>

@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div class="main-view">
     <AsideBar />
     <div class="show-classes">
@@ -27,10 +28,11 @@
 
 <script>
 import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import Class from "@/components/classes/Class.vue";
 export default {
-  components: { Footer, AsideBar, Class },
+  components: { Footer, AsideBar, Class, Header },
 };
 </script>
 

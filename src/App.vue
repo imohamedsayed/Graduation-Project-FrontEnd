@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <main>
     <div class="view">
       <router-view />
@@ -16,7 +15,6 @@ export default { components: { Header, AsideBar, Footer } };
 </script>
 
 <style lang="scss">
-
 body::-webkit-scrollbar {
   width: 15px;
 }
@@ -52,9 +50,9 @@ body::-webkit-scrollbar-thumb:hover {
   main {
     direction: rtl;
     background: #f7f7f7;
-    margin-top: 60px;
     .view {
-      min-height: calc(100vh - 60px); }
+      min-height: calc(100vh - 60px);
+    }
     ul {
       list-style: none;
     }
