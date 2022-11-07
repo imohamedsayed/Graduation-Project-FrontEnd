@@ -95,7 +95,7 @@ export default {
     top: 0;
     z-index: 100;
     background: transparent;
-    box-shadow: 0 1px 1px 1px rgba($color: #000000, $alpha: 0.2);
+    box-shadow: 0 1px 1px 1px rgba($color: #fff, $alpha: 0.2);
     backdrop-filter: blur(6px);
 
     .right {
@@ -253,12 +253,8 @@ export default {
               color: #ffff;
               transition: all 0.4s ease;
               &:hover {
-                background: linear-gradient(
-                  to left,
-                  var(--blue-color),
-                  var(--landing-blue)
-                );
-                color: #fff;
+                background: #fff;
+                color: #000;
               }
             }
             &.start {
