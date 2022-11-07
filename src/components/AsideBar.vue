@@ -1,14 +1,14 @@
 <template>
   <aside class="vertical-nav" ref="aside">
     <ul class="list-unstyled" dir="rtl">
-      <a href="#">
+      <router-link :to="{ name: 'home' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-home"></i>
             <span> الرئيسية</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <li
         class="d-flex justify-content-between align-items-center"
         data-bs-target="#primary-sections"
@@ -60,17 +60,17 @@
       </li>
       <div class="collapse" id="second-sections">
         <ul class="list-unstyled">
-          <a href="#">
+          <router-link :to="{ name: 'CreateClass' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
               <div class="section-name">
                 <i class="fa-solid fa-plus"></i>
-                <span> اضافة صف جديد</span>
+                <span>اضافة صف جديد</span>
               </div>
             </li>
-          </a>
-          <a href="#">
+          </router-link>
+          <router-link :to="{ name: 'viewClasses' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -79,7 +79,7 @@
                 <span> عرض الصفوف الدراسية</span>
               </div>
             </li>
-          </a>
+          </router-link>
         </ul>
       </div>
       <!--Store -->
@@ -145,7 +145,7 @@
       </li>
       <div class="collapse" id="courses-sections">
         <ul class="list-unstyled">
-          <a href="#">
+          <router-link :to="{ name: 'new_course' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -154,7 +154,7 @@
                 <span> اضافة دورة جديدة</span>
               </div>
             </li>
-          </a>
+          </router-link>
           <a href="#">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
@@ -255,14 +255,15 @@
       </div>
       <!--End Exams -->
       <!--Notification-->
-      <a href="#">
-        <li class="d-flex justify-content-between align-items-center">
-          <div class="section-name">
-            <i class="fa-regular fa-bell"></i>
-            <span> الاشعارات</span>
-          </div>
-        </li>
-      </a>
+      <router-link :to="{ name: 'CreateNotificationPage' }">
+          <li class="d-flex justify-content-between align-items-center">
+            <div class="section-name">
+              <i class="fa-regular fa-bell"></i>
+              <span>الاشعارات</span>
+            </div>
+          </li>
+        </router-link>
+      
       <!--Notification-->
       <!--Vouchers-->
       <a href="#">
@@ -301,14 +302,16 @@
       <div class="collapse" id="pages-sections">
         <ul class="list-unstyled">
           <a href="#">
-            <li
-              class="d-flex justify-content-between align-items-center second-li px-4"
-            >
-              <div class="section-name">
-                <i class="fa-solid fa-plus"></i>
-                <span>اضافة صفحة</span>
-              </div>
-            </li>
+            <router-link :to="{ name: 'CreateClass' }">
+              <li
+                class="d-flex justify-content-between align-items-center second-li px-4"
+              >
+                <div class="section-name">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>اضافة صفحة</span>
+                </div>
+              </li>
+            </router-link>
           </a>
           <a href="#">
             <li
@@ -392,6 +395,8 @@ export default {
 
 <style lang="scss">
 .vertical-nav {
+  z-index: 999;
+  position: fixed;
   height: calc(100vh - 60px);
   width: 240px;
   overflow-y: auto;
@@ -399,7 +404,6 @@ export default {
   transition: all 0.4s ease-out;
   ul {
     padding: 0;
-
     a {
       text-decoration: none;
       color: var(--text-black);
@@ -430,6 +434,14 @@ export default {
       }
     }
   }
+  a {
+    &.router-link-exact-active li {
+      background: #8f94fb41 !important;
+    }
+    &.router-link-exact-active li {
+      border-right: 6px solid var(--darker-blue);
+    }
+  }
   &::-webkit-scrollbar {
     width: 8px;
     height: 5px;
@@ -450,11 +462,11 @@ export default {
   }
 }
 .asideToggler {
-  position: absolute;
+  position: fixed;
   top: 5px;
   right: 10px;
   border-radius: 5px;
-  z-index: 5;
+  z-index: 1000;
   font-size: 1.5rem;
   padding: 6px 14px;
   color: #fff;
