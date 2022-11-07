@@ -1,16 +1,16 @@
 <template>
-                <div class="channel_my item all__noti5">
-                    <div class="profile_link">
-                    <img src="images/profile/01.jpg" alt="" />
-                    <div class="pd_content">
-                        <h6>الاختبارات</h6>
-                        <p class="noti__text5">
-                        قام <b>{{personName}}</b> بانهاء اختبار الوحدة الأولي
-                      </p>
-                      <span class="nm_time">منذ دقيقتين</span>
-                    </div>
-                  </div>
-                </div>
+  <div class="channel_my item all__noti5">
+    <div class="profile_link">
+      <img src="images/profile/01.jpg" alt="" />
+      <div class="pd_content">
+        <h6>الاختبارات</h6>
+        <p class="noti__text5">
+          قام <b>{{ personName }}</b> بانهاء اختبار الوحدة الأولي
+        </p>
+        <span class="nm_time">منذ دقيقتين</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

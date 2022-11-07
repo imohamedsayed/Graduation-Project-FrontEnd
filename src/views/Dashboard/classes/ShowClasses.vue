@@ -6,7 +6,10 @@
       <div class="container">
         <div class="classes">
           <h3 class="header" dir="rtl">
-            <i class="fa-solid fa-bars ms-2 text-info"></i>
+            <i
+              class="fa-solid fa-bars ms-2"
+              style="color: var(--blue-color)"
+            ></i>
             الصفوف الدراسية
           </h3>
           <table class="class-list">
