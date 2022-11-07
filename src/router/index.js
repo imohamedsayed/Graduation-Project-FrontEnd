@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CreateCourse from "../views/Dashboard/Courses/Create_new_course.vue";
+
+
 import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";

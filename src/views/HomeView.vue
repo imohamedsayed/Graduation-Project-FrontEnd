@@ -101,6 +101,8 @@
           </div>
         </div>
       </div>
+
+
       <Footer></Footer>
     </div>
   </div>
@@ -111,10 +113,12 @@
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 import AsideBar from "@/components/AsideBar.vue";
+
 import Course from "@/components/Courses/Course.vue"
 export default {
   name: "HomeView",
   components: { Footer, AsideBar, Header,Course },
+
 };
 </script>
 
@@ -124,10 +128,13 @@ export default {
   margin-top: 60px;
 }
 .home {
+
+
   margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
   }
+
   .cover {
     padding: 40px;
     width: 100%;
@@ -142,6 +149,7 @@ export default {
     i {
     color: var(--darker-blue);
     margin-left: 10px;
+
 }
     }
     .card_dash ,.card_dash1{

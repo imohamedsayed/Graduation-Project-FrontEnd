@@ -1,4 +1,4 @@
-# grad-admindashboard
+# Graduation project front end implementation
 
 ## Project setup
 ```
