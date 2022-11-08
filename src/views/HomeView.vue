@@ -128,8 +128,6 @@ export default {
   margin-top: 60px;
 }
 .home {
-
-
   margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
@@ -173,7 +171,7 @@ export default {
           font-weight: bold;
           padding: 4px 20px;
           border-radius: 5px;
-          color: #fff;
+          color: #ffffff;
         }
       }
       .crdbg_3 {
