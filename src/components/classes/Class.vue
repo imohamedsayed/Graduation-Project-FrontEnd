@@ -4,13 +4,13 @@
     <td class="class-name">{{ className }}</td>
     <td class="class-actions">
       <div class="d-flex align-items-center gap-4">
-        <button class="btn btn-info" @click="showEditForm = true">
-            <i class="fa-regular fa-pen-to-square ms-1"></i>
-            تعديل
+        <button class="btn" @click="showEditForm = true">
+          <i class="fa-regular fa-pen-to-square ms-1"></i>
+          تعديل
         </button>
-        <button class="btn btn-info">
-            <i class="fa-solid fa-trash ms-1"></i>
-            حذف
+        <button class="btn">
+          <i class="fa-solid fa-trash ms-1"></i>
+          حذف
         </button>
       </div>
     </td>
@@ -47,6 +47,11 @@ export default {
   .btn {
     padding: 10px 20px;
     color: white;
+    background: var(--blue-color);
+    &:hover {
+      background: var(--darker-blue);
+      color: #fff;
+    }
   }
 }
 .edit-class-form {
