@@ -3,11 +3,11 @@
     <div class="profile_link">
       <img src="images/profile/01.jpg" alt="" />
       <div class="pd_content">
-        <h6>الاختبارات</h6>
+        <h6>{{title}}</h6>
         <p class="noti__text5">
-          قام <b>{{ personName }}</b> بانهاء اختبار الوحدة الأولي
+          قام <b>{{ personName }}</b>{{description}}
         </p>
-        <span class="nm_time">منذ دقيقتين</span>
+        <span class="nm_time">منذ {{time}}</span>
       </div>
     </div>
   </div>
@@ -17,7 +17,10 @@
 export default {
   data() {
     return {
+      title :"الاختبارات" ,
       personName: "يوسف رجب",
+      description: "بانهاء اختبار الوحدة الأولي",
+      time : "دقيقتين" 
     };
   },
 };
