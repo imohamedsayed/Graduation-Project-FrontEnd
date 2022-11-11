@@ -32,7 +32,7 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import notification from "@/components/classes/notification.vue";
+import notification from "@/components/notification.vue";
 export default {
   name: "CreateNotificationPage",
   components: { Footer, AsideBar, notification, Header },

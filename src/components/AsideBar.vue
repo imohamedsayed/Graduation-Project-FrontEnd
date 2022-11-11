@@ -23,7 +23,7 @@
       </li>
       <div class="collapse" id="primary-sections">
         <ul class="list-unstyled">
-          <a href="#">
+          <router-link :to="{ name: 'new_Section' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -32,7 +32,7 @@
                 <span> اضافة قسم رئيسي</span>
               </div>
             </li>
-          </a>
+          </router-link>
           <a href="#">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
@@ -231,7 +231,7 @@
       </li>
       <div class="collapse" id="exam-sections">
         <ul class="list-unstyled">
-          <a href="#">
+          <router-link :to="{ name: 'new_Exam' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -240,7 +240,7 @@
                 <span> اضافة اختبار</span>
               </div>
             </li>
-          </a>
+          </router-link>
           <a href="#">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
