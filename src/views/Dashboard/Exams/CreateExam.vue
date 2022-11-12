@@ -23,23 +23,23 @@
 														<div class="col-lg-12 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i> الاسم</label>
-																<input type="text" />
+																<input type="text" v-model="examName"/>
 															</div>									
 														</div>
                             <div class="col-lg-6 col-md-12">
 															<div class="mt-30 lbel25">
 																<label><i class="fas fa-list"></i> الدورة</label>
-																<select class="ui hj145 cntry152">
+																<select class="ui hj145 cntry152" v-model="listValue">
 																	<option selected disabled value="">اختيار من القائمة</option>
-																	<option value="1">مجاني</option>
-																	<option value="1">مدفوع</option>
+																	<option value="مجاني">مجاني</option>
+																	<option value="مدفوع">مدفوع</option>
 																</select>
 															</div>
 														</div>
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i> مدة الاختبار</label>
-																<input type="number" />
+																<input type="number" v-model="ExamTime"/>
 															</div>									
 														</div>
 													</div>
@@ -68,6 +68,13 @@
   export default {
     name: "new_Exam",
     components: { Footer, AsideBar, Header },
+     data(){
+    return {
+      examName: '',
+      listValue:'',
+      ExamTime : '',
+    }
+  },
   };
   </script>  
   <style lang="scss">

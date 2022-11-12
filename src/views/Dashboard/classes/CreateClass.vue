@@ -31,7 +31,7 @@
                                     ><i class="fas fa-pencil-alt"></i> اسم الصف
                                     الدراسي</label
                                   >
-                                  <input type="text" />
+                                  <input type="text" v-model="className" />
                                 </div>
                               </div>
                             </div>
@@ -66,6 +66,11 @@ import AsideBar from "../../../components/AsideBar.vue";
 export default {
   name: "CreateClass",
   components: { Footer, AsideBar, Header },
+  data(){
+    return {
+      className: '',
+    }
+  },
 };
 </script>
 <style lang="scss">
