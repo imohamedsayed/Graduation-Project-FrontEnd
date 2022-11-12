@@ -302,7 +302,7 @@
       <div class="collapse" id="pages-sections">
         <ul class="list-unstyled">
           <a href="#">
-            <router-link :to="{ name: 'CreateClass' }">
+            <a href="#">
               <li
                 class="d-flex justify-content-between align-items-center second-li px-4"
               >
@@ -311,7 +311,7 @@
                   <span>اضافة صفحة</span>
                 </div>
               </li>
-            </router-link>
+            </a>
           </a>
           <a href="#">
             <li

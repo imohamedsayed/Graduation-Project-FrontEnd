@@ -5,7 +5,7 @@
       <div class="pd_content">
         <h6>{{title}}</h6>
         <p class="noti__text5">
-          قام <b>{{ personName }}</b>{{description}}
+          قام <b>{{ personName }}</b> {{description}}
         </p>
         <span class="nm_time">منذ {{time}}</span>
       </div>

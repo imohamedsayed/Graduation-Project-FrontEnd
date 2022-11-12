@@ -23,13 +23,13 @@
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i> اسم القسم</label>
-																<input type="text" />
+																<input type="text" v-model="sectionName" />
 															</div>									
 														</div>
                                                         <div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-image"></i> صورة القسم</label>
-																<input type="file" />
+																<input type="file"/>
 															</div>									
 														</div>
 													</div>
@@ -59,6 +59,11 @@ import AsideBar from "../../../components/AsideBar.vue";
 export default {
   name: "new_Section",
   components: { Footer, AsideBar, Header },
+  data(){
+    return {
+      sectionName : '',
+    }
+  },
 };
 </script>
 <style lang="scss">
