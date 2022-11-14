@@ -189,7 +189,6 @@
       <div class="section-title text-center mt-5 mb-5">
           <h1>
             أراء الآخرين
-            <i class="fa-regular fa-scroll-old"></i>
           </h1>
         </div>
       <Testimony></Testimony>
@@ -248,7 +247,7 @@
       </div>
     </section>
 
-       
+
     <Footer />
   </div>
 </template>
@@ -262,10 +261,6 @@ import { onMounted } from "@vue/runtime-core";
 export default {
   components: { Service, Footer ,Testimony },
 
-import { onMounted } from "@vue/runtime-core";
-
-export default {
-  components: { Service, Footer },
 
   setup() {
     window.addEventListener("scroll", () => {
