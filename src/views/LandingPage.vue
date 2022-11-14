@@ -40,6 +40,10 @@
           <i class="fa-solid fa-briefcase"></i>
         </li>
         <li><i class="fa-solid fa-comments"></i></li>
+
+        <li @click="navTo($refs.Testimonials)" data-index="section4">
+          <i class="fa-solid fa-message-smile"></i>
+        </li>
         <li @click="navTo($refs.contact)" data-index="section5">
           <i class="fa-solid fa-address-card"></i>
         </li>
@@ -180,58 +184,71 @@
         </div>
       </div>
     </div>
-        <section class="contact" ref="contact" id="section5">
-            <div class="box-wrapper" dir="rtl">
+
+    <section class="Testimonials" ref="Testimonials" id="section4">
+      <div class="section-title text-center mt-5 mb-5">
+          <h1>
+            أراء الآخرين
+            <i class="fa-regular fa-scroll-old"></i>
+          </h1>
+        </div>
+      <Testimony></Testimony>
+    </section>
+
+    <section class="contact" ref="contact" id="section5">
+      <div class="box-wrapper" dir="rtl">
         <div class="info-wrap">
-            <h2 class="info-title">معلومات الاتصال</h2>
-            <ul class="info-details">
-                <li>
-                    <i class="fas fa-phone-alt"></i>
-                    <span>التليفون :</span> <a href="tel:+20 101 336 5784">{{phone}}</a>
-                </li>
-                <li>
-                    <i class="fas fa-paper-plane"></i>
-                    <span>الايميل :</span> <a href="mailto:as6864886@gmail.com">{{email}}</a>
-                </li>
-                <li>
-                  <i class="fa-solid fa-location-dot"></i>
-                    <span class="map"> الموقع : {{location}} <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.7371231226443!2d31.208026647012897!3d27.16456005617934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14450b0577df445f%3A0xcdee7206311e70dc!2z2YbYstmE2Kkg2LnYqNiv2KfZhNmE2KfZhw!5e0!3m2!1sar!2seg!4v1666608245143!5m2!1sar!2seg" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></span> 
-                </li>
-            </ul>
-            <ul class="social-icons">
-                <li><a href=""><i class="fab fa-facebook"></i></a></li>
-                <li> <a href="" style="color: white;">
-                  <i class="fa-brands fa-github"></i>
-                  </a></li>
-               
-                <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
-            </ul>
-        </div>
-        <div class="form-wrap">
-            <form action="#" method="POST">
-                <h2 class="form-title">ارسل لنا رساله</h2>
-                <div class="form-fields">
-                    <div class="form-group">
-                        <input type="text" class="fname" placeholder="الاسم الاخير" v-model="firstName">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="lname" placeholder="الاسم الاول" v-model="lastName">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="email" placeholder="الايميل" v-model="useremail">
-                    </div>
-                    <div class="form-group">
-                        <input type="number" class="phone" placeholder="التليفون" v-model="userphone">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" id="" placeholder="الرساله" v-model="message"></textarea>
-                    </div>
-                </div>
-                <input type="submit" value="ارسل الرساله" class="submit-button">
-            </form>
-        </div>
+          <h2 class="info-title">معلومات الاتصال</h2>
+          <ul class="info-details">
+              <li>
+                  <i class="fas fa-phone-alt"></i>
+                  <span>التليفون :</span> <a href="tel:+20 101 336 5784">{{phone}}</a>
+              </li>
+              <li>
+                  <i class="fas fa-paper-plane"></i>
+                  <span>الايميل :</span> <a href="mailto:as6864886@gmail.com">{{email}}</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot"></i>
+                  <span class="map"> الموقع : {{location}} <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.7371231226443!2d31.208026647012897!3d27.16456005617934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14450b0577df445f%3A0xcdee7206311e70dc!2z2YbYstmE2Kkg2LnYqNiv2KfZhNmE2KfZhw!5e0!3m2!1sar!2seg!4v1666608245143!5m2!1sar!2seg" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></span> 
+              </li>
+          </ul>
+          <ul class="social-icons">
+              <li><a href=""><i class="fab fa-facebook"></i></a></li>
+              <li> <a href="" style="color: white;">
+                <i class="fa-brands fa-github"></i>
+                </a></li>
+            
+              <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
+          </ul>
     </div>
-        </section>
+    <div class="form-wrap">
+        <form action="#" method="POST">
+            <h2 class="form-title">ارسل لنا رساله</h2>
+            <div class="form-fields">
+                <div class="form-group">
+                    <input type="text" class="fname" placeholder="الاسم الاخير" v-model="firstName">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="lname" placeholder="الاسم الاول" v-model="lastName">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="email" placeholder="الايميل" v-model="useremail">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="phone" placeholder="التليفون" v-model="userphone">
+                </div>
+                <div class="form-group">
+                    <textarea name="message" id="" placeholder="الرساله" v-model="message"></textarea>
+                </div>
+            </div>
+            <input type="submit" value="ارسل الرساله" class="submit-button">
+        </form>
+    </div>
+      </div>
+    </section>
+
+       
     <Footer />
   </div>
 </template>
@@ -239,10 +256,17 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import Service from "@/components/landing/Service.vue";
+import Testimony from "../components/Testimony.vue"
+import { onMounted } from "@vue/runtime-core";
+
+export default {
+  components: { Service, Footer ,Testimony },
+
 import { onMounted } from "@vue/runtime-core";
 
 export default {
   components: { Service, Footer },
+
   setup() {
     window.addEventListener("scroll", () => {
       if (scrollY >= 207) {

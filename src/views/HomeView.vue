@@ -190,6 +190,7 @@ export default {
           width: 70px;
       }
     }
+    
     .card_dash_left1 h1 {
         font-size: 22px;
         display: flex;
@@ -226,6 +227,13 @@ export default {
     font-weight: 700;
 }
     }
+    }
+    .card_dash1
+    {
+      @media screen and (max-width:767px) {
+        flex-direction: column;
+        gap: 20px;
+        }
     }
     .dash1 {
         flex-direction: column;
