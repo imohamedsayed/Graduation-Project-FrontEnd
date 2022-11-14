@@ -24,7 +24,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: linear-gradient(#1abcff, #8f94fb);
+  background: linear-gradient(#312776d2, #363062);
   border: 3px solid#fff;
   border-radius: 10px;
 }
@@ -34,8 +34,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 :root {
   --text-black: #212529;
-  --blue-color: #8f94fb;
-  --darker-blue: #4e54c8;
+  --blue-color: #312776d2;
+  --darker-blue: #363062;
+  --landing-blue: #3a3276d8;
   --white-color: #f7f7f7;
   --light-blue: #1abcff;
   --border: 1px solid #ced4da;

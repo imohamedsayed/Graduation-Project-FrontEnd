@@ -40,6 +40,7 @@
           <i class="fa-solid fa-briefcase"></i>
         </li>
         <li><i class="fa-solid fa-comments"></i></li>
+
         <li @click="navTo($refs.Testimonials)" data-index="section4">
           <i class="fa-solid fa-message-smile"></i>
         </li>
@@ -183,6 +184,7 @@
         </div>
       </div>
     </div>
+
     <section class="Testimonials" ref="Testimonials" id="section4">
       <div class="section-title text-center mt-5 mb-5">
           <h1>
@@ -246,6 +248,7 @@
       </div>
     </section>
 
+       
     <Footer />
   </div>
 </template>
@@ -258,6 +261,12 @@ import { onMounted } from "@vue/runtime-core";
 
 export default {
   components: { Service, Footer ,Testimony },
+
+import { onMounted } from "@vue/runtime-core";
+
+export default {
+  components: { Service, Footer },
+
   setup() {
     window.addEventListener("scroll", () => {
       if (scrollY >= 207) {
