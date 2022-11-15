@@ -24,6 +24,10 @@ export default {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgba($color: #000000, $alpha: 0.3);
+  transition: all 0.3s ease;
+  &:hover {
+    background: #6062d799;
+  }
   .service-title {
     text-align: center;
     i {
