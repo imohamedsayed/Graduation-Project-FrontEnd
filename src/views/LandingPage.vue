@@ -39,10 +39,10 @@
         <li @click="navTo($refs.services)" data-index="section3">
           <i class="fa-solid fa-briefcase"></i>
         </li>
-        <li><i class="fa-solid fa-comments"></i></li>
+        
 
         <li @click="navTo($refs.Testimonials)" data-index="section4">
-          <i class="fa-solid fa-message-smile"></i>
+          <i class="fa-solid fa-comments"></i>
         </li>
         <li @click="navTo($refs.contact)" data-index="section5">
           <i class="fa-solid fa-address-card"></i>
