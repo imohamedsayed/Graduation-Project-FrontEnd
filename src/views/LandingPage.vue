@@ -291,7 +291,7 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import Service from "@/components/landing/Service.vue";
-import Testimony from "../components/Testimony.vue";
+import Testimony from "../components/landing/Testimony.vue"
 import { onMounted } from "@vue/runtime-core";
 
 export default {

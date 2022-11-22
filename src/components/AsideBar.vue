@@ -155,7 +155,7 @@
               </div>
             </li>
           </router-link>
-          <a href="#">
+          <router-link :to="{name:'ShowCources'}" >
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -164,7 +164,7 @@
                 <span> عرض الدورات </span>
               </div>
             </li>
-          </a>
+          </router-link>
         </ul>
       </div>
       <!--End Courses-->

@@ -87,9 +87,9 @@
 									</tr>
 								</thead>
 								<tbody>
-                  <Course />
-                  <Course />
-                  <Course />
+                  <Show_Course />
+                  <Show_Course />
+                  <Show_Course />
                 </tbody>
               </table>
             </div>
@@ -114,10 +114,10 @@ import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 import AsideBar from "@/components/AsideBar.vue";
 
-import Course from "@/components/Courses/Course.vue"
+import Show_Course from "@/components/Courses/Show_Course.vue"
 export default {
   name: "HomeView",
-  components: { Footer, AsideBar, Header,Course },
+  components: { Footer, AsideBar, Header,Show_Course },
 
 };
 </script>
@@ -240,7 +240,26 @@ export default {
         justify-content: center;
         gap: 15px;
     }
-    .table-responsive
+    
+  .no_results
+    {
+      width: 100%;
+      text-align: center;
+      padding: 150px 0px;
+      background: white;
+      border-radius: 10px;
+      margin: 25px 0px;
+      margin-bottom: 0;
+      p {
+      font-weight: 400;
+      font-size: 19px;
+      color: lightslategray;
+    }
+
+    }
+  }
+  }
+  .table-responsive
     {
       display: block;
       width: 100%;
@@ -266,25 +285,5 @@ export default {
           font-weight: bold;
       }
     }
-    
-    
-  }
-  .no_results
-    {
-      width: 100%;
-      text-align: center;
-      padding: 150px 0px;
-      background: white;
-      border-radius: 10px;
-      margin: 25px 0px;
-      margin-bottom: 0;
-      p {
-      font-weight: 400;
-      font-size: 19px;
-      color: lightslategray;
-    }
-
-    }
-  }
   }
 </style>
