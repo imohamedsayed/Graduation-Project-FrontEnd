@@ -50,6 +50,7 @@ body::-webkit-scrollbar-thumb:hover {
   //color: #2c3e50;
   main {
     direction: rtl;
+    
     background: #f7f7f7;
     .view {
       min-height: calc(100vh - 60px);
