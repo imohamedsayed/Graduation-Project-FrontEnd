@@ -24,8 +24,35 @@
         </div>
       </div>
       <div class="action">
-        <button class="btn btn ms-3 login">تسجيل الدخول</button>
-        <button class="btn btn sign">انشاء حساب</button>
+        <button class="btn btn ms-3 login d-md-inline-block d-none">
+          تسجيل الدخول
+        </button>
+        <button class="btn btn sign d-md-inline-block d-none">
+          انشاء حساب
+        </button>
+        <div
+          class="responsive-action d-md-none d-block"
+          @click="resLog = !resLog"
+        >
+          <i class="fa-solid fa-angle-down"></i>
+          <i class="fa-solid fa-user"></i>
+          <div class="log-menu" v-if="resLog">
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">
+                  <i class="fa-regular fa-user"></i>
+                  تسجيل الدخول</a
+                >
+              </li>
+              <li>
+                <a href="#">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  انشاء حساب
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
     <div class="sideBar closed" ref="side">
@@ -291,12 +318,11 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import Service from "@/components/landing/Service.vue";
-import Testimony from "../components/landing/Testimony.vue"
+import Testimony from "../components/landing/Testimony.vue";
 import { onMounted } from "@vue/runtime-core";
 
 export default {
   components: { Service, Footer, Testimony },
-
   setup() {
     window.addEventListener("scroll", () => {
       if (scrollY >= 207) {
@@ -338,6 +364,7 @@ export default {
       phone: "+20 101 336 5784",
       email: "as6864886@gmail.com",
       location: "مصر - اسيوط",
+      resLog: false,
       firstName: "",
       lastName: "",
       userphone: "",
@@ -418,7 +445,7 @@ export default {
         .nav-toggler {
           background: linear-gradient(to right, #6b5fbbd2, var(--landing-blue));
           color: #fff;
-          width: 100px;
+          width: 82px;
           height: 80px;
           font-size: 2rem;
           display: grid;
@@ -473,15 +500,52 @@ export default {
           background: #242043;
         }
       }
+      .responsive-action {
+        color: #fff;
+        padding: 10px;
+        font-size: 1.6rem;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        .log-menu {
+          animation: fade-in 0.6s 0s 1 ease-out;
+          position: absolute;
+          width: 200px;
+          font-size: 1.3rem;
+          padding: 10px;
+          background: rgba(255, 255, 255, 0.941);
+          left: 0;
+          top: 69px;
+          border-bottom-right-radius: 25px;
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+          ul {
+            padding: 0;
+            li {
+              background: rgba($color: #777, $alpha: 0.1);
+              padding: 5px 10px;
+              &:not(:last-of-type) {
+                margin-bottom: 10px;
+              }
+              a {
+                i {
+                  margin-left: 5px;
+                }
+                color: var(--text-black);
+              }
+            }
+          }
+        }
+      }
     }
   }
   .sideBar {
     position: fixed;
     z-index: 100;
     height: calc(100vh - 80px);
-    width: 100px;
+    width: 80px;
     top: 80px;
-    box-shadow: -3px 3px 4px 1px rgba($color: #fff, $alpha: 0.2);
+    box-shadow: -3px 1px 4px 1px rgba($color: #fff, $alpha: 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -798,7 +862,6 @@ export default {
   background: #fff;
   color: #3a3276d8;
 }
-
 .contact .box-wrapper .info-wrap li span iframe {
   display: block;
   width: 250px;
@@ -812,7 +875,6 @@ export default {
   background: #ecf0f3;
   height: 590px;
 }
-
 .contact .box-wrapper .form-wrap .form-title {
   text-align: center;
   margin-left: 23px;
@@ -900,6 +962,14 @@ export default {
 }
 
 /* Responsive css */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 @media (max-width: 1200px) {
   .contact .box-wrapper {
