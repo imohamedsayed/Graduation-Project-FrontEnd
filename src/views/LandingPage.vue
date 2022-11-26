@@ -24,7 +24,10 @@
         </div>
       </div>
       <div class="action">
-        <button class="btn btn ms-3 login d-md-inline-block d-none">
+        <button
+          class="btn btn ms-3 login d-md-inline-block d-none"
+          @click="$router.push({ name: 'login' })"
+        >
           تسجيل الدخول
         </button>
         <button class="btn btn sign d-md-inline-block d-none">
@@ -38,7 +41,7 @@
           <i class="fa-solid fa-user"></i>
           <div class="log-menu" v-if="resLog">
             <ul class="list-unstyled">
-              <li>
+              <li @click="$router.push({ name: 'login' })">
                 <a href="#">
                   <i class="fa-regular fa-user"></i>
                   تسجيل الدخول</a

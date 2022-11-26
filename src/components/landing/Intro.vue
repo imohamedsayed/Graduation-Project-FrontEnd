@@ -14,7 +14,9 @@
         </div>
         <div class="actions">
           <button class="read">قراءة المزيد</button>
-          <button class="start">ابدأ الان</button>
+          <button class="start" @click="$router.push({ name: 'login' })">
+            ابدأ الان
+          </button>
         </div>
       </div>
       <div class="img-container d-lg-block d-none">
