@@ -8,11 +8,17 @@ import CreateNotificationPage from "../views/Dashboard/notification/CreateNotifi
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
 import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
 import LandingPage from "../views/LandingPage.vue";
+import Login from "../views/Login.vue";
 const routes = [
   {
     path: "/",
     name: "landingPage",
     component: LandingPage,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
   },
   {
     path: "/dashboard/",
