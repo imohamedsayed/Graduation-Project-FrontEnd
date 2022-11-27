@@ -79,7 +79,7 @@ export default {
   padding: 30px 20px;
   width: 100%;
 }
-.new-class {
+.new-class{
   margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
@@ -88,11 +88,10 @@ export default {
 
 .sa4d25 .st_title {
   margin-bottom: 8px;
-  color: var(--text-black);
   font-size: 20px;
 }
 .sa4d25 .st_title i {
-  color: var(--light-blue);
+  color:var(--darker-blue);
   margin-left: 10px;
   font-size: 22px;
 }
@@ -113,7 +112,6 @@ export default {
   display: block;
 }
 .course_tabs_1 label i {
-  color: var(--light-blue);
   margin-left: 10px;
 }
 .course_tabs_1 input {
@@ -139,14 +137,15 @@ export default {
   margin-top: 50px;
   font-size: 20px !important;
   height: auto !important;
-  background: #1abcff !important;
-  color: white;
+  background: var(--blue-color) !important;
+  color: white !important;
   font-family: "Cairo", sans-serif !important;
   font-weight: 700 !important;
   border-radius: 50px;
   font-weight: bold;
 }
 .course_tabs_1 .steps_btn:hover {
-  color: black !important;
+  color: white !important;
+  background: var(--darker-blue) !important;
 }
 </style>

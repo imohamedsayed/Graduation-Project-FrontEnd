@@ -93,11 +93,10 @@
   
   .sa4d25 .st_title {
     margin-bottom: 8px;
-    color: var(--text-black);
     font-size: 20px;
   }
   .sa4d25 .st_title i {
-    color: var(--light-blue);
+    color: var(--darker-blue);
     margin-left: 10px;
     font-size: 22px;
   }
@@ -130,12 +129,11 @@
     font-size: 16px;
     margin-bottom: 10px !important;
     margin-top: 25px !important;
-    color: var(--text-black);
     text-align: right;
     display: block;
   }
   .course_tabs_1 label i {
-    color: var(--light-blue);
+    color: var(--darker-blue);
     margin-left: 10px;
   }
   .course_tabs_1 input {
@@ -161,15 +159,16 @@
     margin-top: 50px;
     font-size: 20px !important;
     height: auto !important;
-    background: #1abcff !important;
-    color: white;
+    background: var(--blue-color) !important;
+    color: white !important;
     font-family: "Cairo", sans-serif !important;
     font-weight: 700 !important;
     border-radius: 50px;
     font-weight: bold;
   }
   .course_tabs_1 .steps_btn:hover {
-    color: black !important;
+    color: white !important;
+    background: var(--darker-blue) !important;
   }
   </style>
   

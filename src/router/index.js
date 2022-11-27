@@ -7,6 +7,9 @@ import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
 import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
+import CreateBranch from "../views/Dashboard/Branches/Create-Branch.vue";
+import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
+import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
 import LandingPage from "../views/LandingPage.vue";
 const routes = [
   {
@@ -33,6 +36,21 @@ const routes = [
     path: "/dashboard/new_class",
     name: "CreateClass",
     component: CreateClass,
+  },
+  {
+    path: "/dashboard/CreateBranch",
+    name: "CreateBranch",
+    component: CreateBranch,
+  },
+  {
+    path: "/dashboard/UpdateBranch",
+    name: "UpdateBranch",
+    component: UpdateBranch,
+  },
+  {
+    path: "/dashboard/ShowBranches",
+    name: "ShowBranches",
+    component: ShowBranches,
   },
   {
     path: "/dashboard/notifications",

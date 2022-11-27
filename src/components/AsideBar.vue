@@ -60,7 +60,7 @@
       </li>
       <div class="collapse" id="branch-sections">
         <ul class="list-unstyled">
-          <a href="#">
+          <router-link :to="{ name: 'CreateBranch' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -69,8 +69,8 @@
                 <span>اضافة فرع جديد</span>
               </div>
             </li>
-          </a>
-          <a href="#">
+          </router-link>
+          <router-link :to="{ name: 'ShowBranches' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -79,7 +79,7 @@
                 <span> عرض الفروع</span>
               </div>
             </li>
-          </a>
+          </router-link>
         </ul>
       </div>
       <!--ENdBrach-->

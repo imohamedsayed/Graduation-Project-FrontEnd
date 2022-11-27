@@ -132,7 +132,7 @@ export default {
   margin-top: 50px;
   font-size: 20px !important;
   height: auto !important;
-  background: #1abcff !important;
+  background: var(--blue-color) !important;
   color: white;
   font-family: "Cairo", sans-serif !important;
   font-weight: 700 !important;
@@ -140,6 +140,6 @@ export default {
   font-weight: bold;
 }
 .course_tabs_1 .steps_btn:hover {
-  color: black !important;
+  color: white !important;
 }
 </style>

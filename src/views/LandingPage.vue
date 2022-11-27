@@ -129,7 +129,7 @@ export default {
       } else {
         document.querySelector(".sideBar").classList.remove("colored");
       }
-      if (scrollY >= 746) {
+      if (scrollY >= 500) {
         document.querySelector(".header").classList.add("colored");
       } else {
         document.querySelector(".header").classList.remove("colored");
