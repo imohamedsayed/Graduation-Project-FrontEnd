@@ -10,7 +10,7 @@
               <div class="col-lg-12 col-md-12">
                 <div class=" mt-30  ">
                   <label class="head">
-                    <i class="fas fa-list"></i>  منتجات المتجر</label
+                    <i class="fa-solid fa-people-roof"></i>   المديرين</label
                   >
                 </div>
               </div>
@@ -42,19 +42,17 @@
                     <table class="table ucp-table">
                       <thead class="thead-s">
                         <tr>
-                          <th class=" text-center" scope="col">#</th>
+                          <th class=" text-center" scope="col" >#</th>
                           <th class=" cell-ta" scope="col">الاسم</th>
-                          <th class="open cell-ta" scope="col">الصورة</th>
-                          <th class="open cell-ta" scope="col">القسم</th>
-                          <th class="open text-center" scope="col">الصف</th>
-                          <th class="open text-center" scope="col">السعر</th>
-                          <th class="open text-center" scope="col">المبيعات</th>
+                          <th class=" cell-ta" scope="col-2">الايميل</th>
+                          <th class=" cell-ta" scope="col-2">مدير لفرع </th>
+                          <th class=" cell-ta" scope="col-6" >الخصائص</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <Course/>
-                        <Course/>
-                        <Course/>
+                        <Manger />
+                        <Manger />
+                        <Manger />
                       </tbody>
                     </table>
                   </div>
@@ -72,14 +70,12 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import Course  from '../../../components/Courses/Course'
+import Manger from "../../../components/Mangers/Manger.vue"
 export default {
-  name: "ShowCources",
-  components: { Footer, AsideBar, Header ,Course },
+  name: "Show_mangers",
+  components: { Footer, AsideBar, Header  ,Manger},
   data(){
     return{
-      search:'',
-      select:10,
     }
   }
 };
@@ -118,6 +114,7 @@ export default {
     }
   }
   }
+
   .left{
     select{
       width: 110px;

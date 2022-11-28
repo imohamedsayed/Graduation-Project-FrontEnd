@@ -379,7 +379,7 @@
       </li>
       <div class="collapse" id="managers-sections">
         <ul class="list-unstyled">
-          <a href="#">
+          <router-link :to="{ name: 'Add_Manger' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -388,8 +388,8 @@
                 <span>اضافة مدير</span>
               </div>
             </li>
-          </a>
-          <a href="#">
+          </router-link>
+          <router-link  :to="{ name: 'Show_mangers' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -398,7 +398,7 @@
                 <span> عرض المديرين </span>
               </div>
             </li>
-          </a>
+          </router-link>
         </ul>
       </div>
       <!--End managers-->

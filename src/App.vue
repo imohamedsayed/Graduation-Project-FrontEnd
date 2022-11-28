@@ -38,7 +38,7 @@ body::-webkit-scrollbar-thumb:hover {
   --darker-blue: #363062;
   --landing-blue: #3a3276d8;
   --white-color: #f7f7f7;
-  --light-blue: #1abcff;
+  --light-blue: #363062;
   --border: 1px solid #ced4da;
 }
 
