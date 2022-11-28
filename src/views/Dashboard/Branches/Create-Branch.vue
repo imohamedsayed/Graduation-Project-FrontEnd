@@ -2,12 +2,12 @@
   <Header />
   <div class="main-view">
     <AsideBar />
-    <div class="new-section">
-		<div class="sa4d25">
+    <div class="new-branch">
+     <div class="sa4d25">
 			<div class="container">			
 				<div class="row">
 					<div class="col-lg-12">	
-						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> اضافة قسم رئيسي</h2>
+						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> اضافة فرع جديد</h2>
 					</div>					
 				</div>				
 				<div class="row">
@@ -22,26 +22,44 @@
 													<div class="row">
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i> اسم القسم</label>
-																<input type="text" v-model="sectionName" />
+																<label><i class="fas fa-pencil-alt"></i> اسم الفرع</label>
+																<input type="text" v-model="name"/>
 															</div>									
 														</div>
-                                                        <div class="col-lg-6 col-md-12">															
+														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-image"></i> صورة القسم</label>
-																<input type="file"/>
+																<label><i class="fas fa-pencil-alt"></i> العنوان بالتفصيل</label>
+																<input type="text" v-model="address"/>
+															</div>									
+														</div>
+                              <div class="col-lg-6 col-md-12">															
+															<div class="ui search focus mt-30 lbel25">
+																<label><i class="fas fa-pencil-alt"></i> رقم التلفون</label>
+																<input type="number" v-model="phone"/>
+															</div>									
+														</div>
+                              <div class="col-lg-6 col-md-12">															
+															<div class="ui search focus mt-30 lbel25">
+																<label><i class="fas fa-pencil-alt"></i> الخط الساخن</label>
+																<input type="number" v-model="hotline"/>
+															</div>									
+														</div>
+                            <div class="col-lg-12 col-md-12">															
+															<div class="ui search focus mt-30 lbel25">
+																<label><i class="fas fa-pencil-alt"></i>الخريطه</label>
+																<input type="text" v-model="map"/>
 															</div>									
 														</div>
 													</div>
-												</div>
+												</div>												
 												<button data-direction="finish" class="btn btn-default steps_btn">حفظ</button>
 											</div>
 										</div>
-									</div>
+									</div>	   
 								</div>
 							</div>
-                        </div>
-                    </div>
+              </div>
+          </div>
 				</div>
 			</div>
 		</div>
@@ -57,11 +75,15 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
-  name: "new_Section",
+  name: "CreateClass",
   components: { Footer, AsideBar, Header },
   data(){
     return {
-      sectionName : '',
+      name:"",
+      address:"",
+      phone:"",
+      hotline:"",
+      map:"",
     }
   },
 };
@@ -72,7 +94,7 @@ export default {
   padding: 30px 20px;
   width: 100%;
 }
-.new-section {
+.new-branch{
   margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
@@ -81,11 +103,10 @@ export default {
 
 .sa4d25 .st_title {
   margin-bottom: 8px;
-  color: var(--text-black);
   font-size: 20px;
 }
 .sa4d25 .st_title i {
-  color: var(--light-blue);
+  color:var(--darker-blue);
   margin-left: 10px;
   font-size: 22px;
 }
@@ -106,7 +127,6 @@ export default {
   display: block;
 }
 .course_tabs_1 label i {
-  color: var(--light-blue);
   margin-left: 10px;
 }
 .course_tabs_1 input {
@@ -133,7 +153,7 @@ export default {
   font-size: 20px !important;
   height: auto !important;
   background: var(--blue-color) !important;
-  color: white;
+  color: white !important;
   font-family: "Cairo", sans-serif !important;
   font-weight: 700 !important;
   border-radius: 50px;
@@ -141,5 +161,6 @@ export default {
 }
 .course_tabs_1 .steps_btn:hover {
   color: white !important;
+  background: var(--darker-blue) !important;
 }
 </style>

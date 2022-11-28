@@ -45,6 +45,44 @@
           </a>
         </ul>
       </div>
+      <!--Add Brach-->
+      <li
+        class="d-flex justify-content-between align-items-center"
+        data-bs-target="#branch-sections"
+        aria-expanded="false"
+        data-bs-toggle="collapse"
+      >
+        <div class="section-name">
+          <i class="fa-regular fa-folder-closed"></i>
+          <span>الفروع</span>
+        </div>
+        <i class="fa-solid fa-sort-down"></i>
+      </li>
+      <div class="collapse" id="branch-sections">
+        <ul class="list-unstyled">
+          <router-link :to="{ name: 'CreateBranch' }">
+            <li
+              class="d-flex justify-content-between align-items-center second-li px-4"
+            >
+              <div class="section-name">
+                <i class="fa-solid fa-plus"></i>
+                <span>اضافة فرع جديد</span>
+              </div>
+            </li>
+          </router-link>
+          <router-link :to="{ name: 'ShowBranches' }">
+            <li
+              class="d-flex justify-content-between align-items-center second-li px-4"
+            >
+              <div class="section-name">
+                <i class="fa-regular fa-eye"></i>
+                <span> عرض الفروع</span>
+              </div>
+            </li>
+          </router-link>
+        </ul>
+      </div>
+      <!--ENdBrach-->
       <!--Studying classes-->
       <li
         class="d-flex justify-content-between align-items-center"
@@ -155,7 +193,7 @@
               </div>
             </li>
           </router-link>
-          <router-link :to="{name:'ShowCources'}" >
+          <router-link :to="{ name: 'ShowCources' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -256,14 +294,14 @@
       <!--End Exams -->
       <!--Notification-->
       <router-link :to="{ name: 'CreateNotificationPage' }">
-          <li class="d-flex justify-content-between align-items-center">
-            <div class="section-name">
-              <i class="fa-regular fa-bell"></i>
-              <span>الاشعارات</span>
-            </div>
-          </li>
-        </router-link>
-      
+        <li class="d-flex justify-content-between align-items-center">
+          <div class="section-name">
+            <i class="fa-regular fa-bell"></i>
+            <span>الاشعارات</span>
+          </div>
+        </li>
+      </router-link>
+
       <!--Notification-->
       <!--Vouchers-->
       <a href="#">

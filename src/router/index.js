@@ -2,14 +2,20 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CreateSection from "../views/Dashboard/sections/CreateSection.vue";
 import CreateCourse from "../views/Dashboard/Courses/Create_new_course.vue";
-import ShowCources from "../views/Dashboard/Courses/Show_cources.vue"
 import EditeCourse from "../views/Dashboard/Courses/EditCourse.vue"
+
+
+import ShowCources from "../views/Dashboard/Courses/Show_cources.vue";
 
 import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
 import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
+import CreateBranch from "../views/Dashboard/Branches/Create-Branch.vue";
+import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
+import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
 import LandingPage from "../views/LandingPage.vue";
+import Login from "../views/Login.vue";
 const routes = [
   {
     path: "/",
@@ -17,7 +23,12 @@ const routes = [
     component: LandingPage,
   },
   {
-    path: "/home",
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/dashboard/",
     name: "home",
     component: HomeView,
   },
@@ -35,6 +46,21 @@ const routes = [
     path: "/dashboard/new_class",
     name: "CreateClass",
     component: CreateClass,
+  },
+  {
+    path: "/dashboard/CreateBranch",
+    name: "CreateBranch",
+    component: CreateBranch,
+  },
+  {
+    path: "/dashboard/UpdateBranch",
+    name: "UpdateBranch",
+    component: UpdateBranch,
+  },
+  {
+    path: "/dashboard/ShowBranches",
+    name: "ShowBranches",
+    component: ShowBranches,
   },
   {
     path: "/dashboard/notifications",

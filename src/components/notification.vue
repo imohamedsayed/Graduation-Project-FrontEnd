@@ -65,7 +65,7 @@ export default {
   margin-top: 8px;
 }
 .pd_content p b {
-  color: #1abcff;
+  color: var(--darker-blue);
   font-weight: bolder;
 }
 .pd_content span.nm_time {
