@@ -7,7 +7,7 @@
 			<div class="container">			
 				<div class="row">
 					<div class="col-lg-12">	
-						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> تعديل الفرع</h2>
+						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i>  تعديل الفرع</h2>
 					</div>					
 				</div>				
 				<div class="row">
@@ -76,15 +76,14 @@ import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
   name: "CreateClass",
-  components: { Footer, AsideBar, Header  },
+  components: { Footer, AsideBar, Header ,   },
   data(){
     return {
-      items:[
-       'name' ,
-      'address',
-      'phone',
-      'hotline',
-      'map']
+    name:'',
+    address:'',
+    phone:'',
+    hotline:'',
+    map:'',
     }
   },
 };
