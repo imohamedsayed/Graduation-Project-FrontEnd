@@ -37,40 +37,18 @@
       <div class="close"  >
           <ul>
             <div>الخصائص</div>
-            <li><a href=""></a>  <i class="fas fa-list"></i>   المحتوى</li>
-            <li><a href=""></a>  <i class="fas fa-list"></i>   الاختبارات</li>
-            <li><a href=""></a>  <i class="fas fa-list"></i>   ورشة العمل</li>
-            <li><a href=""></a>  <i class="fas fa-list"></i>   الاسئلة</li>
-            <li><a href=""></a>  <i class="fas fa-list"></i>   التفريغات</li>
-            <li><a href=""></a>  <i class="fas fa-list"></i>   الاعلامات</li>
-            <li @click="showEditForm = true"><a href=""></a>  <i class="fa fa-pen-to-square"></i>   تعديل </li>
-            <li><a href=""></a>  <i class="fa fa-trash"></i>   حذف</li>
+            <li><a href="">  <i class="fas fa-list"></i>   المحتوى</a> </li>
+            <li><a href="">  <i class="fas fa-list"></i>   الاختبارات</a> </li>
+            <li><a href="">  <i class="fas fa-list"></i>   ورشة العمل</a> </li>
+            <li><a href="">  <i class="fas fa-list"></i>   الاسئلة</a> </li>
+            <li><a href="">  <i class="fas fa-list"></i>   التفريغات</a> </li>
+            <li><a href="">  <i class="fas fa-list"></i>   الاعلامات</a> </li>
+            <li><router-link :to="{name: 'EditeCourse'}"><i class="fa fa-trash"></i>   تعديل</router-link>  </li>
+            <li><a href=""> <i class="fa fa-pen-to-square"></i>   حذف </a> </li>
           </ul>
       </div>
     </td>
   </tr>
-  <teleport to="body">
-    <div class="edit-class-form" v-if="showEditForm">
-      <form dir="rtl">
-        <label>تغير اسم الدورة</label>
-        <input type="text" v-model="name" />
-        <label>تغير صورة الدورة </label>
-        <input type="text" v-model="img" />
-        <label>تغير قسم الدورة</label>
-        <input type="text" v-model="part" />
-        <label>تغير صف الدورة</label>
-        <input type="text" v-model="class_num" />
-        <label>تغير سعر الدورة</label>
-        <input type="text" v-model="price" />
-        <div class="actions text-center mt-5" dir="rtl">
-          <button class="btn btn-success m-2">حفظ التغييرات</button>
-          <button class="btn btn-danger m-2" @click="showEditForm = false">
-            الغاء
-          </button>
-        </div>
-      </form>
-    </div>
-  </teleport>
 </template>
 
 <script>
@@ -112,46 +90,38 @@ tr{
   {
     width: 100px;
     border-radius: 5px;
-  }
-  li
-  {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-    padding: 10px;
-    border-bottom:1px solid #efefef;
-    width: 100% !important;
-    
-  }
-  
+  }  
   div.close
   {
     display: flex;
     ul
     {
-      display: flex;
+      display: flex !important;
       flex-wrap: wrap;
       gap: 8px;
       @media (min-width:767px) {
         flex-direction: row;
       }
-      li 
+      a
       {
+        display: block;
+        padding: 10px 15px;
         width: fit-content !important;
         border: none !important;
-        background-color: var(--light-blue);
+        background-color: var(--light-blue) !important;
         border-radius: 5px;
         color: #efefef;
         display: flex;
         justify-content: start;
-        gap: 5px !important;
+        gap: 8px !important;
         align-items: center;
         cursor: pointer;
         
       }
-      li:hover{
-          background-color: #1abaff9c ;
+      a:hover{
+          background-color: #1abaff9c !important;
         }
+      
     }
   }
 }

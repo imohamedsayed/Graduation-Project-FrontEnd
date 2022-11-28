@@ -2,7 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CreateSection from "../views/Dashboard/sections/CreateSection.vue";
 import CreateCourse from "../views/Dashboard/Courses/Create_new_course.vue";
+import EditeCourse from "../views/Dashboard/Courses/EditCourse.vue"
+
+
 import ShowCources from "../views/Dashboard/Courses/Show_cources.vue";
+
 import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
@@ -77,6 +81,11 @@ const routes = [
     path: "/dashboard/ShowCources",
     name: "ShowCources",
     component: ShowCources,
+  },
+  {
+    path: "/dashboard/EditeCourse",
+    name: "EditeCourse",
+    component: EditeCourse,
   },
 ];
 
