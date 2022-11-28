@@ -76,15 +76,14 @@ import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
   name: "CreateClass",
-  components: { Footer, AsideBar, Header  },
+  components: { Footer, AsideBar, Header ,   },
   data(){
     return {
-      items:[
-       'name' ,
-      'address',
-      'phone',
-      'hotline',
-      'map']
+    name:'',
+    address:'',
+    phone:'',
+    hotline:'',
+    map:'',
     }
   },
 };

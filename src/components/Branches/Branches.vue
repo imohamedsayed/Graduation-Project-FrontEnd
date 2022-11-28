@@ -1,5 +1,5 @@
 <template>
-  <tr >
+  <tr>
     <td class="check" @click="openProparties()" >{{id}}  
       <i v-if="opened"  class="fa fa-circle-plus plus "></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
