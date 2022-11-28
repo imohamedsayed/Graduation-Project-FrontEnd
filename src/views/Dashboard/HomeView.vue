@@ -15,7 +15,7 @@
 								<span class="crdbg_3">0</span>
 							</div>
 							<div class="card_dash_right">
-								<img src="../../public/images/dashboard/online-course.svg" alt="">
+								<img src="../../../public/images/dashboard/online-course.svg" alt="">
 							</div>
 						</div>
 					</div>
@@ -28,7 +28,7 @@
 								<span class="crdbg_4">0</span>
 							</div>
 							<div class="card_dash_right">
-								<img src="../../public/images/dashboard/knowledge.svg" alt="">
+								<img src="../../../public/images/dashboard/knowledge.svg" alt="">
 							</div>
 						</div>
 					</div>
@@ -41,7 +41,7 @@
 								<span class="crdbg_4">0</span>
 							</div>
 							<div class="card_dash_right">
-								<img src="../../public/images/dashboard/graduation-cap.svg" alt="">
+								<img src="../../../public/images/dashboard/graduation-cap.svg" alt="">
 							</div>
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 								<span class="crdbg_1">0 جنيه</span>
 							</div>
 							<div class="card_dash_right">
-								<img src="../../public/images/dashboard/achievement.svg" alt="">
+								<img src="../../../public/images/dashboard/achievement.svg" alt="">
 							</div>
 						</div>
 					</div>
@@ -265,23 +265,20 @@ export default {
       width: 100%;
       overflow-x: auto;
       margin-top: 30px;
-      border: 1px solid #efefef;
       border-radius: 5px;
       margin-bottom: 12px;
       thead {
         font-weight: 500;
-        padding: 17px !important;
+        padding: 12px !important;
         border-radius: 4px;
-        font-family: "Roboto", sans-serif;
+        background-color: var(--darker-blue);
         color: #333 !important;
         th {
           border-bottom-left-radius: 0;
-          border-top: 1px solid #efefef !important;
-          font-size: 17px;
-          background-color: var(--darker-blue);
+          border: 1px solid rgba(119, 119, 119, 0.239);
+          font-size: 14px;
           color: white;
-          padding: 20px;
-          text-align: center;
+          padding: 12px;
           font-weight: bold;
       }
     }

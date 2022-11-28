@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomeView from "../views/Dashboard/HomeView.vue";
 import CreateSection from "../views/Dashboard/sections/CreateSection.vue";
 import CreateCourse from "../views/Dashboard/Courses/Create_new_course.vue";
 import EditeCourse from "../views/Dashboard/Courses/EditCourse.vue"
-
-
+import Add_Manger from "../views/Dashboard/Mangers/AddManger.vue";
+import Show_mangers from "../views/Dashboard/Mangers/Show_mangers.vue"
 import ShowCources from "../views/Dashboard/Courses/Show_cources.vue";
 
 import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
@@ -28,7 +28,7 @@ const routes = [
     component: Login,
   },
   {
-    path: "/dashboard/",
+    path: "/dashboard/HomeView",
     name: "home",
     component: HomeView,
   },
@@ -86,6 +86,16 @@ const routes = [
     path: "/dashboard/EditeCourse",
     name: "EditeCourse",
     component: EditeCourse,
+  },
+  {
+    path: "/dashboard/Add_Manger",
+    name: "Add_Manger",
+    component: Add_Manger,
+  },
+  {
+    path: "/dashboard/Show_mangers",
+    name: "Show_mangers",
+    component: Show_mangers,
   },
 ];
 

@@ -1,6 +1,6 @@
 <template>
   <tr >
-    <td class="check" @click="openProparties()" >{{id}}  
+    <td class="check" @click="opened=!opened" >{{id}}  
       <i v-if="opened"  class="fa fa-circle-plus plus "></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
@@ -43,8 +43,8 @@
             <li><a href="">  <i class="fas fa-list"></i>   الاسئلة</a> </li>
             <li><a href="">  <i class="fas fa-list"></i>   التفريغات</a> </li>
             <li><a href="">  <i class="fas fa-list"></i>   الاعلامات</a> </li>
-            <li><router-link :to="{name: 'EditeCourse'}"><i class="fa fa-trash"></i>   تعديل</router-link>  </li>
-            <li><a href=""> <i class="fa fa-pen-to-square"></i>   حذف </a> </li>
+            <li class="btn"><router-link :to="{name: 'EditeCourse'}"><i class="fa fa-trash"></i>   تعديل</router-link>  </li>
+            <li class="btn"  @click="Delete()">  <i class="fa fa-trash"></i>   حذف</li>
           </ul>
       </div>
     </td>
@@ -69,16 +69,26 @@ export default {
   },
   methods:
   {
-    openProparties()
+    Delete(){
+      Swal.fire({
+        title: 'هل انت متاكد',
+        text: "لن تتمكن من التراجع عن هذا!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#363062',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'نعم ، احذفها!',
+        cancelButtonText: 'لا ، إلغاء!',
+    }).then((result) =>
     {
-      if(this.opened)
-      {
-        this.opened=false
+      if (result.isConfirmed) {
+        Swal.fire(
+          'تم الحذف!',
+          'تم حذف الفرع',
+          'نجاح'
+        )
       }
-      else
-      {
-        this.opened=true
-      }
+    })
     }
   }
 }
@@ -102,25 +112,21 @@ tr{
       @media (min-width:767px) {
         flex-direction: row;
       }
-      a
-      {
-        display: block;
-        padding: 10px 15px;
+      li {
+        width: -moz-fit-content !important;
         width: fit-content !important;
         border: none !important;
-        background-color: var(--light-blue) !important;
+        // background-color: var(--light-blue) !important;
         border-radius: 5px;
-        color: #efefef;
         display: flex;
         justify-content: start;
-        gap: 8px !important;
+        gap: 5px !important;
         align-items: center;
         cursor: pointer;
-        
-      }
-      a:hover{
-          background-color: #1abaff9c !important;
+        a{
+        color: white !important;
         }
+      }
       
     }
   }
@@ -143,7 +149,7 @@ td {
   font-weight: 500;
   .plus ,.minus{
     margin-right: 5px;
-      color: var(--light-blue);
+      color: var(--darker-blue) !important;
       padding: 2px;
       background-color: #f7f7f7;
       border: var(--border);
@@ -151,7 +157,7 @@ td {
     }
   .minus
   {
-    color: red;
+    // color: red  !important;
     // display: none;
   }
 }

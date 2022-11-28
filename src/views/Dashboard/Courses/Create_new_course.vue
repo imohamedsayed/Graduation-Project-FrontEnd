@@ -58,7 +58,7 @@
                           <label>
                             <i class="fas fa-list"></i>المرحلة الدراسية
                           </label>
-                          <select class="ui hj145 cntry152">
+                          <select class="">
                             <option selected disabled value="">
                               اختيار من القائمة
                             </option>
@@ -152,7 +152,7 @@ export default {
     color: var(--text-black);
     font-size: 20px;
     i {
-      color: var(--light-blue);
+      color: var(--darker-blue) !important;
       margin-left: 10px;
     }
   }
@@ -166,13 +166,13 @@ export default {
   }
   label {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px !important;
     margin-bottom: 10px !important;
     color: var(--text-black);
     text-align: right;
     display: block;
     i {
-      color: var(--light-blue);
+      color: var(--darker-blue) !important;
       margin-left: 10px;
     }
   }

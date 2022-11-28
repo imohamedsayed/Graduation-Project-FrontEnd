@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td >{{id}}</td>
-    <td ><div class="thumb_img"><img src="images/courses/img-2.jpg" alt=""></div></td>
+    <td ><div class="thumb_img"><img src="../../../public/images/courses/img-2.jpg" alt=""></div></td>
     <td >{{name}}</td>
     <td >{{status}}</td>
     <td >{{views}}</td>
