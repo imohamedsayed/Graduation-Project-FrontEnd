@@ -30,9 +30,11 @@
         >
           تسجيل الدخول
         </button>
+        <router-link :to="{ name: 'signup' }">
         <button class="btn btn sign d-md-inline-block d-none">
           انشاء حساب
         </button>
+        </router-link>
         <div
           class="responsive-action d-md-none d-block"
           @click="resLog = !resLog"
@@ -48,10 +50,10 @@
                 >
               </li>
               <li>
-                <a href="#">
+                <router-link :to="{ name: 'signup'}">
                   <i class="fa-solid fa-right-to-bracket"></i>
                   انشاء حساب
-                </a>
+                </router-link>
               </li>
             </ul>
           </div>
