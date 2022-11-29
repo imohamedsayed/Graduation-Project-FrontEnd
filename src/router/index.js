@@ -16,6 +16,7 @@ import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
 import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
+import signup from "../views/Signup.vue";
 const routes = [
   {
     path: "/",
@@ -26,6 +27,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: signup,
   },
   {
     path: "/dashboard/HomeView",
