@@ -7,12 +7,20 @@
         <div class="container">
           <div class="bg">
             <div class="row">
-              <div class="col-lg-12 col-md-12">
+              <div class="col-lg-6 col-md-6">
                 <div class=" mt-30  ">
                   <label class="head">
                     <i class="fa-solid fa-people-roof"></i>   المديرين</label
                   >
                 </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="content-action-btns newManger ">
+                  <router-link :to="{ name: 'Add_Manger' }"
+                    class="btn"  >
+                    <i class="fa fa-plus-circle"></i> اضافه مدير  
+                </router-link>
+							</div>
               </div>
               </div>
               <div class="row">
@@ -139,6 +147,17 @@ export default {
     @media (max-width: 767px) {
       display: none !important;
       }
+  }
+  .newManger
+  {
+
+    width: 25%;
+    float: left;
+    height: 45px !important;
+    @media screen and (max-width:767px) {
+        width: 90%;
+        margin: 10px auto;
+        }
   }
 }
 </style>

@@ -231,7 +231,7 @@ export default {
         margin-bottom: 20px;
       }
       .upload_input {
-        width: 100%;
+        width: 100% !important;
         padding: 10px;
       }
       @media (max-width: 991px) {
@@ -253,7 +253,7 @@ export default {
       display: block;
       text-align: center;
       padding: 10px;
-      background: #1abcff;
+      background: var(--darker-blue) ; 
       color: white;
       border-radius: 10px;
       font-size: 12pt;
