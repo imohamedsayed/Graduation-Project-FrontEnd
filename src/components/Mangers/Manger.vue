@@ -7,7 +7,7 @@
     <td >{{branch}}</td>
     <td ><ul>
       <li class="btn">
-        <router-link :to="{name: 'EditeCourse'}">
+        <router-link :to="{name: 'Update_Manger'}">
           <i class="fa fa-trash"></i>   تعديل
         </router-link> 
       </li>
@@ -67,7 +67,7 @@ tr{
     justify-content: center;
     gap: 8px;
     @media (min-width:767px) {
-      flex-direction: row;
+      // flex-direction: row;
     }
     li {
       width: -moz-fit-content !important;
@@ -81,29 +81,17 @@ tr{
       align-items: center;
       cursor: pointer;
       color: white !important;
+      @media (min-width:767px) {
+        font-size: 10px !important;
+      }
       a{
       color: white !important;
-      }
+      
+    }
     }
     
   } 
 }
-td {
-  width: fit-content !important;
-  border-left: 1px solid #efefef !important;
-  font-weight: 500;
-  .plus ,.minus{
-    margin-right: 5px;
-      color: var(--light-blue) !important;
-      padding: 2px;
-      background-color: #f7f7f7;
-      border: var(--border);
-      border-radius: 50%;
-    }
-  .minus
-  {
-    color: red  !important;
-  }
-}
+
 
 </style>
