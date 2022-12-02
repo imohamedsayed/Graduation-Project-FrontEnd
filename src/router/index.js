@@ -6,6 +6,7 @@ import EditeCourse from "../views/Dashboard/Courses/EditCourse.vue"
 import Add_Manger from "../views/Dashboard/Mangers/AddManger.vue";
 import Show_mangers from "../views/Dashboard/Mangers/Show_mangers.vue"
 import ShowCources from "../views/Dashboard/Courses/Show_cources.vue";
+import Update_Manger from "../views/Dashboard/Mangers/update_manger.vue"
 
 import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
@@ -102,6 +103,11 @@ const routes = [
     path: "/dashboard/Show_mangers",
     name: "Show_mangers",
     component: Show_mangers,
+  },
+  {
+    path: "/dashboard/Update_Manger",
+    name: "Update_Manger",
+    component: Update_Manger,
   },
 ];
 
