@@ -2,12 +2,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/Dashboard/HomeView.vue";
 import CreateSection from "../views/Dashboard/sections/CreateSection.vue";
 import CreateCourse from "../views/Dashboard/Courses/Create_new_course.vue";
-import EditeCourse from "../views/Dashboard/Courses/EditCourse.vue"
+import EditeCourse from "../views/Dashboard/Courses/EditCourse.vue";
 import Add_Manger from "../views/Dashboard/Mangers/AddManger.vue";
-import Show_mangers from "../views/Dashboard/Mangers/Show_mangers.vue"
+import Show_mangers from "../views/Dashboard/Mangers/Show_mangers.vue";
 import ShowCources from "../views/Dashboard/Courses/Show_cources.vue";
 import Update_Manger from "../views/Dashboard/Mangers/update_manger.vue"
-
 import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
@@ -15,6 +14,7 @@ import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
 import CreateBranch from "../views/Dashboard/Branches/Create-Branch.vue";
 import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
 import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
+import PlatformSettings from "../views/Dashboard/platform_settings/Platform_Settings.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
@@ -35,7 +35,7 @@ const routes = [
     component: signup,
   },
   {
-    path: "/dashboard/HomeView",
+    path: "/dashboard/",
     name: "home",
     component: HomeView,
   },
@@ -109,6 +109,11 @@ const routes = [
     name: "Update_Manger",
     component: Update_Manger,
   },
+  {
+    path: "/dashboard/settings",
+    name: "plat_settings",
+    component: PlatformSettings,
+  }
 ];
 
 const router = createRouter({

@@ -389,7 +389,7 @@
               </div>
             </li>
           </router-link>
-          <router-link  :to="{ name: 'Show_mangers' }">
+          <router-link :to="{ name: 'Show_mangers' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -403,14 +403,14 @@
       </div>
       <!--End managers-->
       <!--Settings-->
-      <a href="#">
+      <router-link :to="{ name: 'plat_settings' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-gear"></i>
             <span> اعدادات المنصة</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <!--End Settings-->
     </ul>
   </aside>
