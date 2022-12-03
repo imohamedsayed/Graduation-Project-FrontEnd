@@ -14,14 +14,6 @@
                   >
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="content-action-btns newManger ">
-                  <router-link :to="{ name: 'Add_Manger' }"
-                    class="btn"  >
-                    <i class="fa fa-plus-circle"></i> اضافه مدير  
-                </router-link>
-							</div>
-              </div>
               </div>
               <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -39,9 +31,10 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                   <div class="right">
-                    <span>بحث : </span>
-                    <input v-model="search" class="form-control form-control-sm" type="text">
-                  </div>
+                    <router-link :to="{ name: 'Add_Manger' }" class="link">
+                      اضافه مدير جديد
+                    </router-link>
+                </div>
                 </div>
               </div>
               <div class="row">
@@ -117,10 +110,12 @@ export default {
   }
   .right{
     float: left;
-    input{
-      display: inline-block;
-      width: 200px;
-      margin: 0 10px;
+    .link{
+      display: block;
+      color: #fff !important;
+      padding: 10px 15px;
+      border-radius: 25px;
+      background-color: var(--darker-blue) !important;
     }
     @media (max-width: 767px) {
       float: right;

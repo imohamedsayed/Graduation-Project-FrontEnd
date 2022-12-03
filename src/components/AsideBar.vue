@@ -16,8 +16,8 @@
         data-bs-toggle="collapse"
       >
         <div class="section-name">
-          <i class="fa-regular fa-folder-closed"></i>
-          <span>الاقسام الرئيسية</span>
+          <i class="fa-solid fa-users"></i>
+          <span> الفصول </span>
         </div>
         <i class="fa-solid fa-sort-down"></i>
       </li>
@@ -29,7 +29,7 @@
             >
               <div class="section-name">
                 <i class="fa-solid fa-plus"></i>
-                <span> اضافة قسم رئيسي</span>
+                <span> اضافة فصل</span>
               </div>
             </li>
           </router-link>
@@ -39,7 +39,7 @@
             >
               <div class="section-name">
                 <i class="fa-regular fa-eye"></i>
-                <span> عرض الاقسام</span>
+                <span> عرض الفصول</span>
               </div>
             </li>
           </a>
