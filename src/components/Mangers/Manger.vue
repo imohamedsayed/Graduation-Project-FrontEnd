@@ -1,28 +1,33 @@
 <template>
-  <tr >
-    <td>{{id}}  
-    </td>
-    <td >{{name}}</td>
-    <td >{{eamil}}</td>
-    <td >{{branch}}</td>
-    <td ><ul>
-      <li class="btn">
-        <router-link :to="{name: 'Update_Manger'}">
-          <i class="fa fa-trash"></i>   تعديل
-        </router-link> 
-      </li>
-      <li class="btn"  @click="Delete()"> 
-          <i class="fa fa-trash"></i>  
-          حذف</li>
-    </ul></td>
-  </tr>
-
-
+  <!-- <button @click="deselectRows">deselect rows</button> -->
+  <div class="main">
+    <ag-grid-vue
+    class="ag-theme-alpine"
+    style="height: 260px"
+    :columnDefs="columnDefs.value"
+    :rowData="rowData.value"
+    :defaultColDef="defaultColDef"
+    rowSelection="multiple"
+    animateRows="true"
+    
+  >
+  </ag-grid-vue>
+  </div>
 </template>
 
 <script>
+  import { AgGridVue } from "ag-grid-vue3"; 
+  import { reactive  } from "vue";
+  import 'ag-grid-enterprise';
+  import "ag-grid-community/styles/ag-grid.css";
+  import "ag-grid-community/styles/ag-theme-alpine.css"; 
+  import edit_delete from "../Etit_and_delete.vue"
 export default {
   name: "Manger",
+  components: {
+    AgGridVue,
+    edit_delete
+  },
   data(){
     return{
       id: 1,
@@ -31,67 +36,88 @@ export default {
       branch:"اسيوط",
       }
   },
-  methods:
-  {
-    Delete(){
-      Swal.fire({
-        title: 'هل انت متاكد',
-        text: "لن تتمكن من التراجع عن هذا!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#363062',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفها!',
-        cancelButtonText: 'لا ، إلغاء!',
-    }).then((result) =>
-    {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'تم الحذف!',
-          'تم حذف الفرع',
-          'نجاح'
-        )
-      }
-    })
+  setup() {
+    const rowData = reactive({
+      value:[
+      {
+        ID:"1",
+        Name:"اسم المدير",
+        Email:"abc@gmail.com",
+        Manage:"اسيوط",
+      },
+      {
+        ID:"2",
+        Name:"اسم المدير",
+        Email:"abc@gmail.com",
+        Manage:"القاهرة",
+      },
+      {
+        ID:"3",
+        Name:"اسم المدير",
+        Email:"abc@gmail.com",
+        Manage:"اسيوط",
+      },
+      {
+        ID:"4",
+        Name:"اسم المدير",
+        Email:"abc@gmail.com",
+        Manage:"القاهرة",
+      },
+      {
+        ID:"5",
+        Name:"اسم المدير",
+        Email:"abc@gmail.com",
+        Manage:"الاسكندرية",
+      },
+      ]
+    });
+    const columnDefs = reactive({
+      value: [
+          { field: "Propirtis" ,cellRenderer:"edit_delete"},
+          { field: "Manage" },
+          { field: "Email" },
+          { field: "Name" },
+          { field: "ID" }
+      ],
+    });
+    const defaultColDef = {
+      sortable: true,
+      filter: true,
+      flex: 1,
+      lemit:2,
+      
+    };
+    return{
+      
+      columnDefs,
+      rowData,
+      defaultColDef
     }
-  }
+  },
+  
 }
 </script>
 
 <style lang="scss">
-tr{
-  ul
+
+  .main{
+    width: 100%;
+  }
+  .ag-theme-alpine
   {
-    display: flex !important;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    @media (min-width:767px) {
-      // flex-direction: row;
-    }
-    li {
-      width: -moz-fit-content !important;
-      width: fit-content !important;
-      border: none !important;
-      background-color: var(--darker-blue) !important;
-      border-radius: 5px;
-      display: flex;
-      justify-content: start;
-      gap: 5px !important;
-      align-items: center;
-      cursor: pointer;
-      color: white !important;
-      @media (min-width:767px) {
-        font-size: 10px !important;
-      }
-      a{
-      color: white !important;
-      
-    }
-    }
-    
-  } 
+    width: 100% !important;
+    direction: rtl !important;
+  }
+    .ag-header {
+    background-color: #363062;
+  }
+  .ag-header-cell-label {
+  color: white !important;
+  }
+  .ag-header-cell-menu-button:not(.ag-header-menu-always-show) {
+    color: white !important;
 }
-
-
+  .ag-root-wrapper {
+    border: none  !important;; 
+}
 </style>
