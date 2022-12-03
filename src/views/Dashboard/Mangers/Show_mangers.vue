@@ -46,24 +46,9 @@
               </div>
               <div class="row">
                 <div class="co-md-12">
-                  <div class="table-responsive ">
-                    <table class="table ucp-table">
-                      <thead class="thead-s">
-                        <tr>
-                          <th class=" text-center" scope="col" >#</th>
-                          <th class=" cell-ta" scope="col">الاسم</th>
-                          <th class=" cell-ta" scope="col-2">الايميل</th>
-                          <th class=" cell-ta" scope="col-2">مدير لفرع </th>
-                          <th class=" cell-ta" scope="col-6" >الخصائص</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <Manger />
-                        <Manger />
-                        <Manger />
-                      </tbody>
-                    </table>
-                  </div>
+                  <div class="table-responsive ">                    
+                        <Manger />               
+                        </div>       
                 </div>
               </div>
             </div>
