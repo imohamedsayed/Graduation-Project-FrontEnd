@@ -76,7 +76,7 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import branch  from '../../../components/Branches/Branches.vue'
 export default {
-  name: "ShowCources",
+  name: "ShowBranches",
   components: { Footer, AsideBar, Header ,branch },
   data(){
     return{

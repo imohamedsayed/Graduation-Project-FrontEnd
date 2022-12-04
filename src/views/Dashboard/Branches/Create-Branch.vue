@@ -75,7 +75,7 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
-  name: "CreateClass",
+  name: "Create-Branch",
   components: { Footer, AsideBar, Header },
   data(){
     return {
