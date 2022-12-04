@@ -41,7 +41,7 @@
                       <div class="col-lg-12 col-md-12">
                         <div class="mt-30 box">
                           <label>
-                            <i class="fas fa-list"></i> القسم الرئيسي
+                            <i class="fas fa-list"></i> السنه الدراسيه
                           </label>
                           <select class="ui hj145 cntry152">
                             <option selected disabled value="">
@@ -56,15 +56,14 @@
                       <div class="col-lg-12 col-md-12">
                         <div class="box">
                           <label>
-                            <i class="fas fa-list"></i>المرحلة الدراسية
+                            <i class="fas fa-list"></i>الترم الدراسي
                           </label>
                           <select class="">
                             <option selected disabled value="">
                               اختيار من القائمة
                             </option>
-                            <option value="1">فيزياء</option>
-                            <option value="1">كيمياء</option>
-                            <option value="1">عربي</option>
+                            <option value="1">الاول</option>
+                            <option value="1">الثاني</option>
                           </select>
                         </div>
                       </div>
@@ -93,23 +92,6 @@
                     </div>
                   </div>
                   <br />
-                  <div class="course_price">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="box">
-                          <label><i class="fas fa-dollar-sign"></i>السعر</label>
-                        </div>
-                      </div>
-                      <div class="col-lg-9 col-md-4 col-sm-6 col-xs-6 col-6">
-                        <input type="number" name="" id="" />
-                      </div>
-                      <div
-                        class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-6 price"
-                      >
-                        <span>EGP</span>
-                      </div>
-                    </div>
-                  </div>
                   <button
                     data-direction="finish"
                     class="btn btn-default steps_btn"

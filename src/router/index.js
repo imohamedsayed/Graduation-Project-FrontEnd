@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/Dashboard/HomeView.vue";
 import CreateSection from "../views/Dashboard/sections/CreateSection.vue";
 import CreateCourse from "../views/Dashboard/Courses/Create_new_course.vue";
+import CreateTerm from "../views/Dashboard/term/CreateTerm.vue";
+import UpdateTerm from "../views/Dashboard/term/UpdateTerm.vue";
+import ShowTerm from "../views/Dashboard/term/ShowTerm.vue";
 import EditeCourse from "../views/Dashboard/Courses/EditCourse.vue";
 import Add_Manger from "../views/Dashboard/Mangers/AddManger.vue";
 import Show_mangers from "../views/Dashboard/Mangers/Show_mangers.vue";
@@ -14,6 +17,12 @@ import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
 import CreateBranch from "../views/Dashboard/Branches/Create-Branch.vue";
 import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
 import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
+import CreateAssistant from "../views/Dashboard/assistant/Create-assistant.vue";
+import UpdateAssistant from "../views/Dashboard/assistant/Update-assistant.vue";
+import ShowAssistants from "../views/Dashboard/assistant/Show-assistants.vue";
+import CreateTeacher from "../views/Dashboard/Teacher/CreateTeacher.vue";
+import UpdateTeacher from "../views/Dashboard/Teacher/UpdateTeacher.vue";
+import ShowTeachers from "../views/Dashboard/Teacher/ShowTeachers.vue";
 import PlatformSettings from "../views/Dashboard/platform_settings/Platform_Settings.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
@@ -50,6 +59,21 @@ const routes = [
     component: CreateCourse,
   },
   {
+    path: "/dashboard/CreateTerm",
+    name: "CreateTerm",
+    component: CreateTerm,
+  },
+  {
+    path: "/dashboard/UpdateTerm",
+    name: "UpdateTerm",
+    component: UpdateTerm,
+  },
+  {
+    path: "/dashboard/ShowTerm",
+    name: "ShowTerm",
+    component: ShowTerm,
+  },
+  {
     path: "/dashboard/new_class",
     name: "CreateClass",
     component: CreateClass,
@@ -68,6 +92,36 @@ const routes = [
     path: "/dashboard/ShowBranches",
     name: "ShowBranches",
     component: ShowBranches,
+  },
+  {
+    path: "/dashboard/CreateAssistant",
+    name: "CreateAssistant",
+    component: CreateAssistant,
+  },
+  {
+    path: "/dashboard/UpdateAssistant",
+    name: "UpdateAssistant",
+    component: UpdateAssistant,
+  },
+  {
+    path: "/dashboard/ShowAssistants",
+    name: "ShowAssistants",
+    component: ShowAssistants,
+  },
+  {
+    path: "/dashboard/CreateTeacher",
+    name: "CreateTeacher",
+    component: CreateTeacher,
+  },
+  {
+    path: "/dashboard/UpdateTeacher",
+    name: "UpdateTeacher",
+    component: UpdateTeacher,
+  },
+  {
+    path: "/dashboard/ShowTeachers",
+    name: "ShowTeachers",
+    component: ShowTeachers,
   },
   {
     path: "/dashboard/notifications",

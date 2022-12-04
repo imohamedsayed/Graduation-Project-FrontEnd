@@ -7,7 +7,7 @@
 			<div class="container">			
 				<div class="row">
 					<div class="col-lg-12">	
-						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> اضافة فرع جديد</h2>
+						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> اضافه استاذ جديد</h2>
 					</div>					
 				</div>				
 				<div class="row">
@@ -22,32 +22,26 @@
 													<div class="row">
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i> اسم الفرع</label>
+																<label><i class="fas fa-pencil-alt"></i> الاسم</label>
 																<input type="text" v-model="name"/>
 															</div>									
 														</div>
-														<div class="col-lg-6 col-md-12">															
+                              <div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i> العنوان بالتفصيل</label>
-																<input type="text" v-model="address"/>
+																<label><i class="fas fa-pencil-alt"></i>اللقب</label>
+																<input type="text" v-model="nickname"/>
+															</div>									
+														</div>
+                            	<div class="col-lg-6 col-md-12">															
+															<div class="ui search focus mt-30 lbel25">
+																<label><i class="fas fa-pencil-alt"></i> الايميل</label>
+																<input type="email" v-model="email"/>
 															</div>									
 														</div>
                               <div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i> رقم التلفون</label>
+																<label><i class="fas fa-pencil-alt"></i> رقم الهاتف</label>
 																<input type="number" v-model="phone"/>
-															</div>									
-														</div>
-                              <div class="col-lg-6 col-md-12">															
-															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i> الخط الساخن</label>
-																<input type="number" v-model="hotline"/>
-															</div>									
-														</div>
-                            <div class="col-lg-12 col-md-12">															
-															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i>الخريطه</label>
-																<input type="text" v-model="map"/>
 															</div>									
 														</div>
 													</div>
@@ -75,15 +69,14 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
-  name: "Create-Branch",
+  name: "CreateTeachers",
   components: { Footer, AsideBar, Header },
   data(){
     return {
       name:"",
-      address:"",
+      nickname:'',
+      email:"",
       phone:"",
-      hotline:"",
-      map:"",
     }
   },
 };

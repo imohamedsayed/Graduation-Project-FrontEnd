@@ -10,11 +10,11 @@
               <div style="display:flex; justify-content:space-between" class="col-lg-12 col-md-12">
                 <div class=" mt-30  ">
                   <label>
-                    <i class="fas fa-list"></i>  الفروع</label
+                    <i class="fas fa-list"></i>  المساعدين</label
                   >
                 </div>
                 <div class="content-action-btns">
-											<router-link :to="{ name: 'CreateBranch' }"><i class="fas fa-plus-circle"></i> اضافة فرع جديد</router-link>
+											<router-link :to="{ name: 'CreateAssistant' }"><i class="fas fa-plus-circle"></i> اضافة مساعد جديد</router-link>
 										</div>
               </div>
               </div>
@@ -47,16 +47,16 @@
                         <tr>
                           <th class=" text-center" scope="col">#</th>
                           <th class=" cell-ta" scope="col">الاسم</th>
-                          <th class="open cell-ta" scope="col">العنوان</th>
-                          <th class="open cell-ta" scope="col">التلفون</th>
-                          <th class="open text-center" scope="col">الخط الساخن</th>
-                          <th class="open text-center" scope="col">الخريطه</th>
+                          <th class="open cell-ta" scope="col">الايميل</th>
+                          <th class="open cell-ta" scope="col">الباسورد</th>
+                          <th class="open text-center" scope="col">الراتب</th>
+                          <th class="open text-center" scope="col">مواعيد العمل</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <branch/>
-                        <branch/>
-                        <branch/>
+                        <assistant/>
+                        <assistant/>
+                        <assistant/>
                       </tbody>
                     </table>
                   </div>
@@ -74,10 +74,10 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import branch  from '../../../components/Branches/Branches.vue'
+import assistant  from '../../../components/assistants/assistants.vue'
 export default {
-  name: "ShowBranches",
-  components: { Footer, AsideBar, Header ,branch },
+  name: "Show-assistant",
+  components: { Footer, AsideBar, Header ,assistant },
   data(){
     return{
       search:'',
@@ -105,7 +105,7 @@ export default {
     border: 1px solid #efefef;
     label {
     font-weight: 500;
-    font-size: 22px;
+    font-size: 22px !important;
     margin-bottom: 10px !important;
     color: #333;
     text-align: right;
@@ -116,12 +116,13 @@ export default {
     }
   }
   }
-  .content-action-btns{
+  .ShowCources .cover .content-action-btns{
   padding:5px 15px;
   background: var(--darker-blue);
   color: white !important;
   margin: 5px 0;
   border-radius: 15px;
+  font-size: 20px;
   }
   .content-action-btns a{
   color: white !important;

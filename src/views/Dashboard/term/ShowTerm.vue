@@ -10,11 +10,11 @@
               <div style="display:flex; justify-content:space-between" class="col-lg-12 col-md-12">
                 <div class=" mt-30  ">
                   <label>
-                    <i class="fas fa-list"></i>  الفروع</label
+                    <i class="fas fa-list"></i>الترم</label
                   >
                 </div>
                 <div class="content-action-btns">
-											<router-link :to="{ name: 'CreateBranch' }"><i class="fas fa-plus-circle"></i> اضافة فرع جديد</router-link>
+											<router-link :to="{ name: 'CreateTerm' }"><i class="fas fa-plus-circle"></i> اضافة ترم جديد</router-link>
 										</div>
               </div>
               </div>
@@ -46,17 +46,14 @@
                       <thead class="thead-s">
                         <tr>
                           <th class=" text-center" scope="col">#</th>
-                          <th class=" cell-ta" scope="col">الاسم</th>
-                          <th class="open cell-ta" scope="col">العنوان</th>
-                          <th class="open cell-ta" scope="col">التلفون</th>
-                          <th class="open text-center" scope="col">الخط الساخن</th>
-                          <th class="open text-center" scope="col">الخريطه</th>
+                          <th class=" cell-ta" scope="col">السنه الدراسيه</th>
+                          <th class="open cell-ta" scope="col">الترم الدراسي</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <branch/>
-                        <branch/>
-                        <branch/>
+                        <term/>
+                        <term/>
+                        <term/>
                       </tbody>
                     </table>
                   </div>
@@ -74,10 +71,10 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import branch  from '../../../components/Branches/Branches.vue'
+import term  from '../../../components/Terms/Terms.vue'
 export default {
   name: "ShowBranches",
-  components: { Footer, AsideBar, Header ,branch },
+  components: { Footer, AsideBar, Header ,term },
   data(){
     return{
       search:'',
@@ -169,5 +166,6 @@ export default {
 .row th{
     border-right: 1px solid white;
     border-left: 1px solid white;
+    text-align: center;
 }
 </style>
