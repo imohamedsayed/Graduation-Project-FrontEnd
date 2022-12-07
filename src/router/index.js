@@ -9,7 +9,7 @@ import EditeCourse from "../views/Dashboard/Courses/EditCourse.vue";
 import Add_Manger from "../views/Dashboard/Mangers/AddManger.vue";
 import Show_mangers from "../views/Dashboard/Mangers/Show_mangers.vue";
 import ShowCources from "../views/Dashboard/Courses/Show_cources.vue";
-import Update_Manger from "../views/Dashboard/Mangers/update_manger.vue"
+import Update_Manger from "../views/Dashboard/Mangers/update_manger.vue";
 import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
@@ -24,6 +24,10 @@ import CreateTeacher from "../views/Dashboard/Teacher/CreateTeacher.vue";
 import UpdateTeacher from "../views/Dashboard/Teacher/UpdateTeacher.vue";
 import ShowTeachers from "../views/Dashboard/Teacher/ShowTeachers.vue";
 import PlatformSettings from "../views/Dashboard/platform_settings/Platform_Settings.vue";
+import AppStudents from "../views/Dashboard/sections/ShowAppStudents.vue";
+import AddAppointment from "../views/Dashboard/sections/Appointments/AddApointment.vue";
+import EditAppointment from "../views/Dashboard/sections/Appointments/EditAppointment.vue";
+import ShowAppointments from "../views/Dashboard/sections/Appointments/ShowAppointments.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
@@ -167,7 +171,28 @@ const routes = [
     path: "/dashboard/settings",
     name: "plat_settings",
     component: PlatformSettings,
-  }
+  },
+  {
+    path: "/dashboard/app_students",
+    name: "applicant_students",
+    component: AppStudents,
+  },
+  {
+    path: "/dashboard/add_appointment",
+    name: "add_appointment",
+    component: AddAppointment,
+  },
+  {
+    path: "/dashboard/edit_appointment/:id",
+    name: "edit_appointment",
+    component: EditAppointment,
+    props: true,
+  },
+  {
+    path: "/dashboard/all_appointments",
+    name: "appointments",
+    component: ShowAppointments,
+  },
 ];
 
 const router = createRouter({
