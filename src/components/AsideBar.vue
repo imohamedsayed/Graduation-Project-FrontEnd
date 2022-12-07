@@ -16,7 +16,7 @@
         data-bs-toggle="collapse"
       >
         <div class="section-name">
-          <i class="fa-solid fa-users"></i>
+          <i class="fa-solid fa-landmark"></i>
           <span> الفصول </span>
         </div>
         <i class="fa-solid fa-sort-down"></i>
@@ -90,7 +90,7 @@
         data-bs-toggle="collapse"
       >
         <div class="section-name">
-          <i class="fa-regular fa-folder-closed"></i>
+          <i class="fa-solid fa-school"></i>
           <span>الفروع</span>
         </div>
         <i class="fa-solid fa-sort-down"></i>
@@ -165,7 +165,7 @@
         data-bs-toggle="collapse"
       >
         <div class="section-name">
-          <i class="fa-solid fa-users"></i>
+         <i class="fa-solid fa-user-ninja"></i>
           <span>المساعدين</span>
         </div>
         <i class="fa-solid fa-sort-down"></i>
@@ -202,7 +202,7 @@
         data-bs-toggle="collapse"
       >
         <div class="section-name">
-          <i class="fa-solid fa-users"></i>
+          <i class="fa-solid fa-chalkboard-user"></i>
           <span>الاساتذه</span>
         </div>
         <i class="fa-solid fa-sort-down"></i>

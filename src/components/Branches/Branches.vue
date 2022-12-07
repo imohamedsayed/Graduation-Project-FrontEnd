@@ -1,41 +1,54 @@
 <template>
   <tr>
-    <td class="check" @click="openProparties()" >{{id}}  
-      <i v-if="opened"  class="fa fa-circle-plus plus "></i>
+    <td class="check" @click="openProparties()">
+      {{ id }}
+      <i v-if="opened" class="fa fa-circle-plus plus"></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
-    <td >{{name}}</td>
-    <td class="open">{{address}}</td>
-    <td class="open">{{phone}}</td>
-    <td class="open">{{hotline}}</td>
-    <td class="open"><div class="thumb_img"><img src="../../../public/images/about/career-1.jpg" alt=""></div></td>
+    <td>{{ name }}</td>
+    <td class="open">{{ address }}</td>
+    <td class="open">{{ phone }}</td>
+    <td class="open">{{ hotline }}</td>
+    <td class="open">
+      <div class="thumb_img">
+        <img src="../../../public/images/about/career-1.jpg" alt="" />
+      </div>
+    </td>
   </tr>
-  <tr class="close" v-if="!opened" >
+  <tr class="close" v-if="!opened">
     <td colspan="7">
       <ul>
-      <li>العنوان 
-        <div>{{address}}</div>  
-      </li>
-      <li>رقم التلفون 
-        <div>{{phone}}</div>
-      </li>
-      <li>الخط الساخن
-        <div>{{hotline}}</div>
-      </li>
-      <li>الخريطه
-        <div class="thumb_img"><img src="../../../public/images/about/career-1.jpg" alt=""></div>
-      </li>
-    </ul>
+        <li>
+          العنوان
+          <div>{{ address }}</div>
+        </li>
+        <li>
+          رقم التلفون
+          <div>{{ phone }}</div>
+        </li>
+        <li>
+          الخط الساخن
+          <div>{{ hotline }}</div>
+        </li>
+        <li>
+          الخريطه
+          <div class="thumb_img">
+            <img src="../../../public/images/about/career-1.jpg" alt="" />
+          </div>
+        </li>
+      </ul>
     </td>
   </tr>
   <tr v-if="!opened">
-    <td colspan="7" >
-      <div class="close"  >
-          <ul>
-            <div>الخصائص</div>
-            <router-link  :to="{ name: 'UpdateBranch' }"> <li>  <i  class="fa fa-pen-to-square"></i>   تعديل </li></router-link>
-            <li  @click="Delete()">  <i class="fa fa-trash"></i>   حذف</li>
-          </ul>
+    <td colspan="7">
+      <div class="close">
+        <ul>
+          <div>الخصائص</div>
+          <router-link :to="{ name: 'UpdateBranch' }">
+            <li><i class="fa fa-pen-to-square"></i> تعديل</li></router-link
+          >
+          <li @click="Delete()"><i class="fa fa-trash"></i> حذف</li>
+        </ul>
       </div>
     </td>
   </tr>
@@ -44,82 +57,66 @@
 <script>
 export default {
   name: "branch",
-  data(){
-    return{
+  data() {
+    return {
       id: 1,
-      name:"اسم الفرع",
-      address:"القاهره مدينه الزمالك شارع 15 بجوار مطعم كنتاكي",
-      phone:"01013367584",
-      hotline:"564564546",
-      map:"../../../public/images/about/career-1.jpg",
-      opened:true,
-      }
+      name: "اسم الفرع",
+      address: "القاهره مدينه الزمالك شارع 15 بجوار مطعم كنتاكي",
+      phone: "01013367584",
+      hotline: "564564546",
+      map: "../../../public/images/about/career-1.jpg",
+      opened: true,
+    };
   },
-  methods:
-  {
-    openProparties()
-    {
-      if(this.opened)
-      {
-        this.opened=false
-      }
-      else
-      {
-        this.opened=true
+  methods: {
+    openProparties() {
+      if (this.opened) {
+        this.opened = false;
+      } else {
+        this.opened = true;
       }
     },
-    Delete(){
-  Swal.fire({
-  title: 'هل انت متاكد',
-  text: "لن تتمكن من التراجع عن هذا!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#363062',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'نعم ، احذفها!',
-  cancelButtonText: 'لا ، إلغاء!',
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'تم الحذف!',
-      'تم حذف الفرع',
-      'نجاح'
-    )
-  }
-})
-    }
-  }
-  
-}
+    Delete() {
+      Swal.fire({
+        title: "هل انت متاكد",
+        text: "لن تتمكن من التراجع عن هذا!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#363062",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "نعم ، احذفها!",
+        cancelButtonText: "لا ، إلغاء!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("تم الحذف!", "تم حذف الفرع", "نجاح");
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-tr{
-
-  li
-  {
+tr {
+  li {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
     padding: 10px;
-    border-bottom:1px solid #efefef;
+    border-bottom: 1px solid #efefef;
     width: 100% !important;
-    
   }
-  
-  div.close
-  {
+
+  div.close {
     display: flex;
-    ul
-    {
+    ul {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      @media (min-width:767px) {
+      @media (min-width: 767px) {
         flex-direction: row;
       }
-      li 
-      {
+      li {
         width: fit-content !important;
         border: none !important;
         background-color: var(--blue-color);
@@ -131,45 +128,41 @@ tr{
         align-items: center;
         cursor: pointer;
       }
-      li:hover{
-          background-color: var(--darker-blue) ;
-        }
+      li:hover {
+        background-color: var(--darker-blue);
+      }
     }
   }
 }
-tr.close
-{
-  @media (min-width:767px) {
-    display: none!important;
+tr.close {
+  @media (min-width: 767px) {
+    display: none !important;
   }
 }
-.thumb_img
-  {
-    width: 100px;
-    margin: 0 auto;
-    
-  }
+.thumb_img {
+  width: 100px;
+  margin: 0 auto;
+}
 td {
   width: fit-content !important;
   border-left: 1px solid #efefef !important;
   font-weight: 500;
-  vertical-align : middle;
-  .plus ,.minus{
+  vertical-align: middle;
+  .plus,
+  .minus {
     margin-right: 5px;
-      color: var(--darker-blue);
-      padding: 2px;
-      background-color: #f7f7f7;
-      border: var(--border);
-      border-radius: 50%;
-    }
-  .minus
-  {
+    color: var(--darker-blue);
+    padding: 2px;
+    background-color: #f7f7f7;
+    border: var(--border);
+    border-radius: 50%;
+  }
+  .minus {
     color: red;
     // display: none;
   }
 }
-td.check
-{
+td.check {
   cursor: pointer;
 }
 .edit-class-form {
