@@ -6,7 +6,6 @@
     </td>
     <td >{{name}}</td>
     <td class="open">{{email}}</td>
-    <td class="open">{{password}}</td>
     <td class="open">{{salary}}</td>
     <td class="open">{{worktime}}</td>
   </tr>
@@ -15,9 +14,6 @@
       <ul>
       <li>الايميل
         <div>{{email}}</div>  
-      </li>
-      <li>الباسورد
-        <div>{{password}}</div>
       </li>
       <li>الراتب
         <div>{{salary}}</div>
@@ -49,7 +45,6 @@ export default {
       id: 1,
       name:"ahmed",
       email:"a@test",
-      password:"313131",
       salary:"2000$",
       worktime:"8 - 2",
       opened:true,
