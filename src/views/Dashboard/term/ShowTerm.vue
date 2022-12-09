@@ -25,8 +25,6 @@ export default {
   components: { Footer, AsideBar, Header, Termlist },
   data() {
     return {
-      search: "",
-      select: 10,
     };
   },
 };
@@ -77,7 +75,7 @@ export default {
   .left {
     float: right;
     span{
-            font-weight: 500;
+      font-weight: 500;
       font-size: 22px;
       color: var(--darker-blue);      
     }

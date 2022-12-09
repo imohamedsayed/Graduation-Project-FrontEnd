@@ -89,9 +89,10 @@ const routes = [
     component: CreateBranch,
   },
   {
-    path: "/dashboard/UpdateBranch",
+    path: "/dashboard/UpdateBranch/:id",
     name: "UpdateBranch",
     component: UpdateBranch,
+    props: true,
   },
   {
     path: "/dashboard/ShowBranches",

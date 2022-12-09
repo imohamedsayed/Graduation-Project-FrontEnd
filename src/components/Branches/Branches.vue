@@ -1,34 +1,34 @@
 <template>
-  <tr>
+  <tr v-if="exists">
     <td class="check" @click="openProparties()">
-      {{ id }}
+      {{ branch.id }}
       <i v-if="opened" class="fa fa-circle-plus plus"></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
-    <td>{{ name }}</td>
-    <td class="open">{{ address }}</td>
-    <td class="open">{{ phone }}</td>
-    <td class="open">{{ hotline }}</td>
+    <td>{{ branch.name }}</td>
+    <td class="open">{{ branch.address }}</td>
+    <td class="open">{{ branch.phone }}</td>
+    <td class="open">{{ branch.hotline }}</td>
     <td class="open">
       <div class="thumb_img">
-        <img src="../../../public/images/about/career-1.jpg" alt="" />
+        <img :src="require(`../../../public/images/about/${branch.src}`)" />
       </div>
     </td>
   </tr>
-  <tr class="close" v-if="!opened">
+  <tr class="close" v-if="!opened & exists">
     <td colspan="7">
       <ul>
         <li>
           العنوان
-          <div>{{ address }}</div>
+          <div>{{ branch.address }}</div>
         </li>
         <li>
           رقم التلفون
-          <div>{{ phone }}</div>
+          <div>{{ branch.phone }}</div>
         </li>
         <li>
           الخط الساخن
-          <div>{{ hotline }}</div>
+          <div>{{ branch.hotline }}</div>
         </li>
         <li>
           الخريطه
@@ -39,14 +39,21 @@
       </ul>
     </td>
   </tr>
-  <tr v-if="!opened">
+  <tr v-if="!opened & exists">
     <td colspan="7">
       <div class="close">
         <ul>
           <div>الخصائص</div>
-          <router-link :to="{ name: 'UpdateBranch' }">
-            <li><i class="fa fa-pen-to-square"></i> تعديل</li></router-link
+          <li
+            @click="
+              $router.push({
+                name: 'UpdateBranch',
+                params: { id: branch.id },
+              })
+            "
           >
+            <i class="fa fa-pen-to-square"></i> تعديل
+          </li>
           <li @click="Delete()"><i class="fa fa-trash"></i> حذف</li>
         </ul>
       </div>
@@ -56,16 +63,11 @@
 
 <script>
 export default {
-  name: "branch",
+  props: ["branch"],
   data() {
     return {
-      id: 1,
-      name: "اسم الفرع",
-      address: "القاهره مدينه الزمالك شارع 15 بجوار مطعم كنتاكي",
-      phone: "01013367584",
-      hotline: "564564546",
-      map: "../../../public/images/about/career-1.jpg",
       opened: true,
+      exists: true,
     };
   },
   methods: {
@@ -79,16 +81,16 @@ export default {
     Delete() {
       Swal.fire({
         title: "هل انت متاكد",
-        text: "لن تتمكن من التراجع عن هذا!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#363062",
         cancelButtonColor: "#d33",
-        confirmButtonText: "نعم ، احذفها!",
+        confirmButtonText: "حذف",
         cancelButtonText: "لا ، إلغاء!",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire("تم الحذف!", "تم حذف الفرع", "نجاح");
+          Swal.fire("تم !", "تم حذف الموعد ", "نجاح");
+          this.exists = false;
         }
       });
     },
