@@ -7,7 +7,7 @@
 			<div class="container">			
 				<div class="row">
 					<div class="col-lg-12">	
-						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> اضافه بيانات المدرس</h2>
+						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> تعديل الترم رقم :  {{id}}</h2>
 					</div>					
 				</div>				
 				<div class="row">
@@ -22,31 +22,19 @@
 													<div class="row">
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i>تعديل الاسم</label>
+																<label><i class="fas fa-pencil-alt"></i>تعديل السنه الدراسيه :</label>
 																<input type="text" v-model="name"/>
 															</div>									
 														</div>
                               <div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i>تعديل اللقب</label>
+																<label><i class="fas fa-pencil-alt"></i>تعديل الترم الدراسي</label>
 																<input type="text" v-model="nickname"/>
-															</div>									
-														</div>
-                            	<div class="col-lg-6 col-md-12">															
-															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i>تعديل الايميل</label>
-																<input type="email" v-model="email"/>
-															</div>									
-														</div>
-                              <div class="col-lg-6 col-md-12">															
-															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i>تعديل رقم الهاتف</label>
-																<input type="number" v-model="phone"/>
 															</div>									
 														</div>
 													</div>
 												</div>												
-												<button data-direction="finish" class="btn btn-default steps_btn">حفظ</button>
+												<button data-direction="finish" class="btn btn-default steps_btn">حفظ التعديل</button>
 											</div>
 										</div>
 									</div>	   
@@ -69,6 +57,7 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
+  props: ["id"],
   name: "UpdateTeachers",
   components: { Footer, AsideBar, Header },
   data(){
