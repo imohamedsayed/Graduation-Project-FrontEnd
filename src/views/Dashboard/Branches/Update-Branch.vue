@@ -7,7 +7,7 @@
 			<div class="container">			
 				<div class="row">
 					<div class="col-lg-12">	
-						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i>  تعديل الفرع</h2>
+						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i>  تعديل الفرع رقم : {{id}}</h2>
 					</div>					
 				</div>				
 				<div class="row">
@@ -77,6 +77,7 @@ import AsideBar from "../../../components/AsideBar.vue";
 export default {
   name: "Update-branch",
   components: { Footer, AsideBar, Header ,   },
+  props: ["id"],
   data(){
     return {
     name:'',

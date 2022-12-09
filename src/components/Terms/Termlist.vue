@@ -20,7 +20,7 @@
         <span >بحث : </span>
         <input
           type="text"
-          placeholder="ابحث عن موعد معين"
+          placeholder="ابحث عن ترم معين"
           v-model="search"
           @keyup="searchTerm(search)"
         />
@@ -78,44 +78,5 @@ export default {
 </script>
 
 <style lang="scss">
-.students-list {
-  h4 {
-    color: var(--landing-blue);
-  }
-  input {
-    margin-top: 40px;
-    width: 25%;
-    height: 30px;
-    border-radius: 10px;
-    padding: 10px 20px;
-    border: 1px solid var(--landing-blue);
-    transition: all 0.3s ease;
-    &:focus {
-      outline: none;
-      transform: scale(1.01);
-    }
-  }
-  .ap-list {
-    width: 100%;
-    margin-top: 30px;
-    td,
-    th {
-      &:first-of-type {
-        width: 15%;
-      }
-      &:nth-of-type(2) {
-        width: 40%;
-      }
-      &:last-of-type {
-        width: 10%;
-      }
-      padding: 10px 8px;
-      border: 1px solid rgba(119, 119, 119, 0.239);
-    }
-    th {
-      background: var(--darker-blue);
-      color: white;
-    }
-  }
-}
+
 </style>

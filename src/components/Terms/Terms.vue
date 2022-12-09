@@ -1,6 +1,6 @@
 <template>
   <tr v-if="exists">
-    <td class="check" @click="openProparties()" v-if="exists">
+    <td class="check" @click="openProparties()" >
       {{ term.id }}
       <i v-if="opened" class="fa fa-circle-plus plus"></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
