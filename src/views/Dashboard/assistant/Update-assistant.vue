@@ -7,7 +7,7 @@
 			<div class="container">			
 				<div class="row">
 					<div class="col-lg-12">	
-						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> تعديل بيانات المساعد</h2>
+						<h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> تعديل بيانات المساعد رقم : {{id}}</h2>
 					</div>					
 				</div>				
 				<div class="row">
@@ -75,6 +75,7 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
+  props: ["id"],
   name: "Update-assistant",
   components: { Footer, AsideBar, Header },
   data(){

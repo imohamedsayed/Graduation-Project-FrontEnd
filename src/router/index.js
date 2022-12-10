@@ -105,9 +105,10 @@ const routes = [
     component: CreateAssistant,
   },
   {
-    path: "/dashboard/UpdateAssistant",
+    path: "/dashboard/UpdateAssistant/:id",
     name: "UpdateAssistant",
     component: UpdateAssistant,
+    props: true,
   },
   {
     path: "/dashboard/ShowAssistants",

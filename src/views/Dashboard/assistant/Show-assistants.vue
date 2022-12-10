@@ -6,61 +6,7 @@
       <div class="cover">
         <div class="container">
           <div class="bg">
-            <div class="row">
-              <div style="display:flex; justify-content:space-between" class="col-lg-12 col-md-12">
-                <div class=" mt-30  ">
-                  <label>
-                    <i class="fas fa-list"></i>  المساعدين</label
-                  >
-                </div>
-                <div class="content-action-btns">
-											<router-link :to="{ name: 'CreateAssistant' }"><i class="fas fa-plus-circle"></i> اضافة مساعد جديد</router-link>
-										</div>
-              </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <div class="left">
-                    <div > عرض 
-                      <select v-model="select" style="direction: ltr;" class="form-select" aria-label="Default select example">
-                        <option value="10" selected>10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                      </select>
-                      عناصر    
-                  </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <div class="right">
-                    <span>بحث : </span>
-                    <input v-model="search" class="form-control form-control-sm" type="text">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="co-md-12">
-                  <div class="table-responsive ">
-                    <table class="table ucp-table">
-                      <thead class="thead-s">
-                        <tr>
-                          <th class=" text-center" scope="col">#</th>
-                          <th class=" cell-ta" scope="col">الاسم</th>
-                          <th class="open cell-ta" scope="col">الايميل</th>
-                          <th class="open text-center" scope="col">الراتب</th>
-                          <th class="open text-center" scope="col">مواعيد العمل</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <assistant/>
-                        <assistant/>
-                        <assistant/>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+          <assistantlist />
             </div>
           </div>
         </div>
@@ -73,10 +19,10 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import assistant  from '../../../components/assistants/assistants.vue'
+import assistantlist  from '../../../components/assistants/assistantlist.vue'
 export default {
   name: "Show-assistant",
-  components: { Footer, AsideBar, Header ,assistant },
+  components: { Footer, AsideBar, Header ,assistantlist },
   data(){
     return{
       search:'',

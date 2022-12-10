@@ -22,7 +22,7 @@
           type="text"
           placeholder="ابحث عن فرع معين"
           v-model="search"
-          @keyup="searchTerm(search)"
+          @keyup="searchBranch(search)"
         />
       </div>
     </div>
@@ -98,7 +98,7 @@ export default {
     this.displayItems = this.items;
   },
   methods: {
-    searchTerm(key) {
+    searchBranch(key) {
       this.displayItems = this.items.filter((item) => item.name.includes(key));
     },
   },

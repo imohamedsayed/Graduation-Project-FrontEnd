@@ -64,7 +64,7 @@ export default {
         cancelButtonText: "لا ، إلغاء!",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire("تم !", "تم حذف الموعد ", "نجاح");
+          Swal.fire("تم !", "تم حذف الترم", "نجاح");
           this.exists = false;
         }
       });
