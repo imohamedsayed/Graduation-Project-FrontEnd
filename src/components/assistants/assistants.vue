@@ -1,36 +1,44 @@
 <template>
-  <tr>
-    <td class="check" @click="openProparties()" >{{id}}  
+  <tr v-if="exists">
+    <td class="check" @click="openProparties()" >{{assistant.id}}  
       <i v-if="opened"  class="fa fa-circle-plus plus "></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
-    <td >{{name}}</td>
-    <td class="open">{{email}}</td>
-    <td class="open">{{salary}}</td>
-    <td class="open">{{worktime}}</td>
+    <td >{{assistant.name}}</td>
+    <td class="open">{{assistant.email}}</td>
+    <td class="open">{{assistant.salary}}</td>
+    <td class="open">{{assistant.worktime}}</td>
   </tr>
-  <tr class="close" v-if="!opened" >
+  <tr class="close" v-if="!opened  & exists" >
     <td colspan="7">
       <ul>
       <li>الايميل
-        <div>{{email}}</div>  
+        <div>{{assistant.email}}</div>  
       </li>
       <li>الراتب
-        <div>{{salary}}</div>
+        <div>{{assistant.salary}}</div>
       </li>
       <li>مواعيد العمل
-        <div>{{worktime}}</div>
+        <div>{{assistant.worktime}}</div>
       </li>
     </ul>
     </td>
   </tr>
-  <tr v-if="!opened">
+  <tr v-if="!opened  & exists">
     <td colspan="7" >
       <div class="close"  >
           <ul>
             <div>الخصائص</div>
-            <router-link  :to="{ name: 'UpdateAssistant' }"> <li>  <i  class="fa fa-pen-to-square"></i>   تعديل </li></router-link>
-            <li  @click="Delete()">  <i class="fa fa-trash"></i>   حذف</li>
+          <li
+            @click="
+              $router.push({
+                name: 'UpdateAssistant',
+                params: { id: assistant.id },
+              })
+            "
+          >
+            <i class="fa fa-pen-to-square"></i> تعديل
+          </li>            <li  @click="Delete()">  <i class="fa fa-trash"></i>   حذف</li>
           </ul>
       </div>
     </td>
@@ -38,16 +46,14 @@
 </template>
 
 <script>
+
 export default {
+  props: ["assistant"],
   name: "assistant",
   data(){
     return{
-      id: 1,
-      name:"ahmed",
-      email:"a@test",
-      salary:"2000$",
-      worktime:"8 - 2",
       opened:true,
+      exists: true,
       }
   },
   methods:
@@ -63,26 +69,22 @@ export default {
         this.opened=true
       }
     },
-    Delete(){
-  Swal.fire({
-  title: 'هل انت متاكد',
-  text: "لن تتمكن من التراجع عن هذا!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#363062',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'نعم ، احذفها!',
-  cancelButtonText: 'لا ، إلغاء!',
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'تم الحذف!',
-      'تم حذف الفرع',
-      'نجاح'
-    )
-  }
-})
-    }
+    Delete() {
+      Swal.fire({
+        title: "هل انت متاكد",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#363062",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "حذف",
+        cancelButtonText: "لا ، إلغاء!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("تم !", "تم حذف المساعد", "نجاح");
+          this.exists = false;
+        }
+      });
+    },
   }
   
 }
