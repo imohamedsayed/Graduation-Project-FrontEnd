@@ -1,36 +1,44 @@
 <template>
-  <tr>
-    <td class="check" @click="openProparties()" >{{id}}  
+  <tr v-if="exists">
+    <td class="check" @click="openProparties()" >{{teacher.id}}  
       <i v-if="opened"  class="fa fa-circle-plus plus "></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
-    <td >{{name}}</td>
-    <td class="open">{{nickname}}</td>
-    <td class="open">{{email}}</td>
-    <td class="open">{{phone}}</td>
+    <td >{{teacher.name}}</td>
+    <td class="open">{{teacher.nickname}}</td>
+    <td class="open">{{teacher.email}}</td>
+    <td class="open">{{teacher.phone}}</td>
   </tr>
-  <tr class="close" v-if="!opened" >
+  <tr class="close" v-if="!opened  & exists" >
     <td colspan="7">
       <ul>
       <li>العنوان 
-        <div>{{nickname}}</div>  
+        <div>{{teacher.nickname}}</div>  
       </li>
-      <li>رقم التلفون 
-        <div>{{email}}</div>
+      <li>الايميل
+        <div>{{teacher.email}}</div>
       </li>
-      <li>الخط الساخن
-        <div>{{phone}}</div>
+      <li>رقم التلفون
+        <div>{{teacher.phone}}</div>
       </li>
     </ul>
     </td>
   </tr>
-  <tr v-if="!opened">
+  <tr v-if="!opened  & exists">
     <td colspan="7" >
       <div class="close"  >
           <ul>
             <div>الخصائص</div>
-            <router-link  :to="{ name: 'UpdateTeacher' }"> <li>  <i  class="fa fa-pen-to-square"></i>   تعديل </li></router-link>
-            <li  @click="Delete()">  <i class="fa fa-trash"></i>   حذف</li>
+          <li
+            @click="
+              $router.push({
+                name: 'UpdateTeacher',
+                params: { id: teacher.id },
+              })
+            "
+          >
+            <i class="fa fa-pen-to-square"></i> تعديل
+          </li>            <li  @click="Delete()">  <i class="fa fa-trash"></i>   حذف</li>
           </ul>
       </div>
     </td>
@@ -39,15 +47,12 @@
 
 <script>
 export default {
-  name: "branch",
+  props:["teacher"],
+  name: "teacher",
   data(){
     return{
-      id: 1,
-      name:"ahmed",
-      nickname:"وحش الفيزياء",
-      email:"0104@test",
-      phone:"564564546",
       opened:true,
+      exists: true,
       }
   },
   methods:
@@ -63,26 +68,22 @@ export default {
         this.opened=true
       }
     },
-    Delete(){
-  Swal.fire({
-  title: 'هل انت متاكد',
-  text: "لن تتمكن من التراجع عن هذا!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#363062',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'نعم ، احذفها!',
-  cancelButtonText: 'لا ، إلغاء!',
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire(
-      'تم الحذف!',
-      'تم حذف الفرع',
-      'نجاح'
-    )
-  }
-})
-    }
+    Delete() {
+      Swal.fire({
+        title: "هل انت متاكد",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#363062",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "حذف",
+        cancelButtonText: "لا ، إلغاء!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("تم !", "تم حذف المدرس", "نجاح");
+          this.exists = false;
+        }
+      });
+    },
   }
   
 }
