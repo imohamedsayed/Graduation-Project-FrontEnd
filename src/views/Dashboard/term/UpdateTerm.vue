@@ -23,13 +23,13 @@
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i>تعديل السنه الدراسيه :</label>
-																<input type="text" v-model="name"/>
+																<input type="text" v-model="nameacademicYear"/>
 															</div>									
 														</div>
                               <div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i>تعديل الترم الدراسي</label>
-																<input type="text" v-model="nickname"/>
+																<input type="text" v-model="term"/>
 															</div>									
 														</div>
 													</div>
@@ -57,15 +57,13 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
-  props: ["id"],
+  props: ["id","academicYear" , "term" ],
   name: "UpdateTeachers",
   components: { Footer, AsideBar, Header },
   data(){
     return {
-      name:"",
-      nickname:'',
-      email:"",
-      phone:"",
+      nameacademicYear:`${this.academicYear}`,
+      term:`${this.term}`,
     }
   },
 };

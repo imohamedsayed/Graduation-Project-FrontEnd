@@ -20,7 +20,7 @@
         <span>بحث : </span>
         <input
           type="text"
-          placeholder="ابحث عن مساعد معين"
+          placeholder="البحث عن مساعد"
           v-model="search"
           @keyup="searchAssistant(search)"
         />
@@ -73,6 +73,7 @@ export default {
       id: 1,
       name:"احمد سامح",
       email:"a@test",
+      password:"56464564",
       salary:"2000$",
       worktime:"8 - 2",
       },
@@ -80,6 +81,7 @@ export default {
       id: 2,
       name:"محمد مختار",
       email:"a@test",
+      password:"56464564",
       salary:"2000$",
       worktime:"8 - 2",
       },
@@ -87,6 +89,7 @@ export default {
       id: 3,
       name:"محمد محي",
       email:"a@test",
+      password:"56464564",
       salary:"2000$",
       worktime:"8 - 2",
       },

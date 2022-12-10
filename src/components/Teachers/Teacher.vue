@@ -33,7 +33,12 @@
             @click="
               $router.push({
                 name: 'UpdateTeacher',
-                params: { id: teacher.id },
+                params: { id: teacher.id,
+                 name: teacher.name,
+                          nickname:teacher.nickname,
+                          email:teacher.email,
+                          phone:teacher.phone
+                 },
               })
             "
           >

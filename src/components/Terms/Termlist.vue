@@ -20,7 +20,7 @@
         <span >بحث : </span>
         <input
           type="text"
-          placeholder="ابحث عن ترم معين"
+          placeholder="البحث عن ترم"
           v-model="search"
           @keyup="searchTerm(search)"
         />

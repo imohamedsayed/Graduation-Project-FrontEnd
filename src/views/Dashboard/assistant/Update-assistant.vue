@@ -34,14 +34,14 @@
 														</div>
                               <div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i>تعديل كلمه السر</label>
-																<input type="password" v-model="password"/>
+																<label><i class="fas fa-pencil-alt"></i> تعديل الراتب</label>
+																<input type="text" v-model="salary"/>
 															</div>									
 														</div>
                               <div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i> تعديل الراتب</label>
-																<input type="number" v-model="salary"/>
+																<label><i class="fas fa-pencil-alt"></i> تعديل رقم السر</label>
+																<input type="password" v-model="password"/>
 															</div>									
 														</div>
                             <div class="col-lg-12 col-md-12">															
@@ -75,16 +75,16 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 
 export default {
-  props: ["id"],
+  props:["id" ,"name", "email", "password"  , "salary" , "worktime"],
   name: "Update-assistant",
   components: { Footer, AsideBar, Header },
   data(){
     return {
-      name:"",
-      email:"",
-      password:"",
-      salary:"",
-      worktime:"",
+      name:`${this.name}`,
+      email:`${this.email}`,
+      password:`${this.password}`,
+      salary:`${this.salary}`,
+      worktime:`${this.worktime}`,
     }
   },
 };
