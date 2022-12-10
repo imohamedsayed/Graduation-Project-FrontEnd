@@ -77,14 +77,14 @@ import AsideBar from "../../../components/AsideBar.vue";
 export default {
   name: "Update-branch",
   components: { Footer, AsideBar, Header ,   },
-  props: ["id"],
+  props: ["id" , "name" , "address" , "phone" , "hotline" , "src"],
   data(){
     return {
-    name:'',
-    address:'',
-    phone:'',
-    hotline:'',
-    map:'',
+    name:`${this.name}`,
+    address:`${this.address}`,
+    phone:`${this.phone}`,
+    hotline:`${this.hotline}`,
+    map:`${this.src}`,
     }
   },
 };

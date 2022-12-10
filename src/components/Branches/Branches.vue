@@ -48,7 +48,13 @@
             @click="
               $router.push({
                 name: 'UpdateBranch',
-                params: { id: branch.id },
+                params: { id: branch.id,
+                name: branch.name,
+                address:branch.address,
+                phone:branch.phone,
+                hotline:branch.hotline,
+                src:branch.src
+                },
               })
             "
           >

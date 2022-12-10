@@ -68,7 +68,7 @@ const routes = [
     component: CreateTerm,
   },
   {
-    path: "/dashboard/UpdateTerm/:id",
+    path: "/dashboard/UpdateTerm/:id/:academicYear/:term",
     name: "UpdateTerm",
     component: UpdateTerm,
     props: true,
@@ -89,7 +89,7 @@ const routes = [
     component: CreateBranch,
   },
   {
-    path: "/dashboard/UpdateBranch/:id",
+    path: "/dashboard/UpdateBranch/:id/:name/:address/:phone/:hotline/:src",
     name: "UpdateBranch",
     component: UpdateBranch,
     props: true,
@@ -105,7 +105,7 @@ const routes = [
     component: CreateAssistant,
   },
   {
-    path: "/dashboard/UpdateAssistant/:id",
+    path: "/dashboard/UpdateAssistant/:id/:name/:email/:salary/:password/:worktime",
     name: "UpdateAssistant",
     component: UpdateAssistant,
     props: true,
@@ -121,7 +121,7 @@ const routes = [
     component: CreateTeacher,
   },
   {
-    path: "/dashboard/UpdateTeacher/:id",
+    path: "/dashboard/UpdateTeacher/:id/:name/:nickname/:email/:phone",
     name: "UpdateTeacher",
     component: UpdateTeacher,
     props: true,

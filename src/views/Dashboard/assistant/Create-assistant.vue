@@ -41,7 +41,7 @@
                               <div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i> الراتب</label>
-																<input type="number" v-model="salary"/>
+																<input type="text" v-model="salary"/>
 															</div>									
 														</div>
                             <div class="col-lg-12 col-md-12">															

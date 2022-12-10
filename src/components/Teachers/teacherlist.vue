@@ -8,7 +8,7 @@
         <label> <i class="fas fa-list"></i>الاساتذه</label>
       </div>
       <div class="content-action-btns">
-        <router-link :to="{ name: 'CreateBranch' }"
+        <router-link :to="{ name: 'CreateTeacher' }"
           ><i class="fas fa-plus-circle"></i> اضافة استاذ جديد</router-link
         >
       </div>
@@ -20,7 +20,7 @@
         <span>بحث : </span>
         <input
           type="text"
-          placeholder="ابحث عن استاذ جديد"
+          placeholder="البحث عن استاذ"
           v-model="search"
           @keyup="searchBranch(search)"
         />

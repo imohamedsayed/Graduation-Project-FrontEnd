@@ -1,6 +1,6 @@
 <template>
   <tr v-if="exists">
-    <td class="check" @click="openProparties()" >
+    <td class="check" @click="openProparties()">
       {{ term.id }}
       <i v-if="opened" class="fa fa-circle-plus plus"></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
@@ -8,7 +8,7 @@
     <td>{{ term.academicYear }}</td>
     <td class="open">{{ term.term }}</td>
   </tr>
-  <tr class="close" v-if="!opened & exists "  >
+  <tr class="close" v-if="!opened & exists">
     <td colspan="7">
       <ul>
         <li>
@@ -23,12 +23,19 @@
       <div class="close">
         <ul>
           <div>الخصائص</div>
-            <li         @click="
+          <li
+            @click="
           $router.push({
             name: 'UpdateTerm',
-            params: { id: term.id },
+            params: { id: term.id,
+            academicYear: term.academicYear,
+            term:term.term,
+             },
           })
-        "><i class="fa fa-pen-to-square"></i> تعديل</li>
+        "
+          >
+            <i class="fa fa-pen-to-square"></i> تعديل
+          </li>
           <li @click="Delete()"><i class="fa fa-trash"></i> حذف</li>
         </ul>
       </div>
@@ -38,10 +45,10 @@
 
 <script>
 export default {
-    props: ["term"],
+  props: ["term"],
   data() {
     return {
-       exists: true,
+      exists: true,
       opened: true,
     };
   },

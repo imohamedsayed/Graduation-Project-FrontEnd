@@ -20,7 +20,7 @@
         <span>بحث : </span>
         <input
           type="text"
-          placeholder="ابحث عن فرع معين"
+          placeholder="البحث عن فرع"
           v-model="search"
           @keyup="searchBranch(search)"
         />
