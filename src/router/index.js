@@ -121,9 +121,10 @@ const routes = [
     component: CreateTeacher,
   },
   {
-    path: "/dashboard/UpdateTeacher",
+    path: "/dashboard/UpdateTeacher/:id",
     name: "UpdateTeacher",
     component: UpdateTeacher,
+    props: true,
   },
   {
     path: "/dashboard/ShowTeachers",
