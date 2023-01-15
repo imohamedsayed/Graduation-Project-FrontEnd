@@ -152,9 +152,10 @@ const routes = [
     component: ShowCources,
   },
   {
-    path: "/dashboard/EditeCourse",
+    path: "/dashboard/EditeCourse:id/:name",
     name: "EditeCourse",
     component: EditeCourse,
+    props: true,
   },
   {
     path: "/dashboard/Add_Manger",
@@ -167,9 +168,36 @@ const routes = [
     component: Show_mangers,
   },
   {
-    path: "/dashboard/Update_Manger",
+    path: "/dashboard/Update_Manger:id/:name",
     name: "Update_Manger",
     component: Update_Manger,
+    props: true,
+  },
+  {
+    path: "/dashboard/settings",
+    name: "plat_settings",
+    component: PlatformSettings,
+  },
+  {
+    path: "/dashboard/app_students",
+    name: "applicant_students",
+    component: AppStudents,
+  },
+  {
+    path: "/dashboard/add_appointment",
+    name: "add_appointment",
+    component: AddAppointment,
+  },
+  {
+    path: "/dashboard/edit_appointment/:id",
+    name: "edit_appointment",
+    component: EditAppointment,
+    props: true,
+  },
+  {
+    path: "/dashboard/all_appointments",
+    name: "appointments",
+    component: ShowAppointments,
   },
   {
     path: "/dashboard/settings",

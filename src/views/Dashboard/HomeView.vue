@@ -6,7 +6,7 @@
       <div class="cover">
         <div class="row">
 					<div class="col-lg-12">	
-						<h2 class="st_title"><i class="fa fa-list"></i> مرحبا, <span class="tag-name">محمد ايمن</span></h2>
+						<h2 class="st_title"><i class="fa fa-list"></i> مرحبا, <span class="tag-name">{{ user_name }} </span></h2>
 					</div>
 					<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="card_dash">
@@ -58,41 +58,25 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="col-md-12">
 						<div class="card_dash1">
 							<div class="card_dash_left1">
 								
 								<h1><i class="fa fa-comment"></i> محمد, هل انت مستعد للانطلاق ؟</h1>
 							</div>
+
 							<div class="card_dash_right1">
 								<router-link :to="{ name: 'new_course' }"
                 class="create_btn_dash"  >
                 <i class="fa fa-plus-circle"></i> انشاء اول دورة</router-link>
 							</div>
-						</div>
-					</div>					
+						</div>            	
+					</div>	
 				</div>
         <div class="row">
           <div class="co-md-12">
-            <div class="table-responsive ">
-							<table class="table ucp-table">
-								<thead class="thead-s">
-									<tr>
-										<th class="text-center" scope="col">#</th>
-										<th class="cell-ta" scope="col">صورة</th>
-										<th class="cell-ta" scope="col">عنوان</th>
-										<th class="cell-ta" scope="col">الحالة</th>
-										<th class="text-center" scope="col">مشاهدات</th>
-										<th class="text-center" scope="col">المشتركين</th>
-									</tr>
-								</thead>
-								<tbody>
-                  <Show_Course />
-                  <Show_Course />
-                  <Show_Course />
-                </tbody>
-              </table>
-            </div>
+            <Show_Course />                
           </div>
           <div class="col-md-12">
             <div class="no_results">
@@ -118,6 +102,12 @@ import Show_Course from "@/components/Courses/Show_Course.vue"
 export default {
   name: "HomeView",
   components: { Footer, AsideBar, Header,Show_Course },
+  data(){
+    return{
+    user_name:"محمد ايمن"
+    }
+  },
+  
 
 };
 </script>
@@ -141,14 +131,17 @@ export default {
     margin-left: 10px;
 }
     .st_title {
-    margin-bottom: 8px;
-    color: var(--text-black);
-    font-size: 20px;
-    i {
-    color: var(--darker-blue);
-    margin-left: 10px;
-
-}
+      margin-bottom: 8px;
+      // color: var(--text-black);
+      font-size: 20px;
+      i {
+        color: var(--darker-blue);
+        margin-left: 10px;
+      }
+      span{
+          display: inline-block;
+          color: var(--darker-blue) !important;
+        }
     }
     .card_dash ,.card_dash1{
     background: #fff;
@@ -259,28 +252,5 @@ export default {
     }
   }
   }
-  .table-responsive
-    {
-      display: block;
-      width: 100%;
-      overflow-x: auto;
-      margin-top: 30px;
-      border-radius: 5px;
-      margin-bottom: 12px;
-      thead {
-        font-weight: 500;
-        padding: 12px !important;
-        border-radius: 4px;
-        background-color: var(--darker-blue);
-        color: #333 !important;
-        th {
-          border-bottom-left-radius: 0;
-          border: 1px solid rgba(119, 119, 119, 0.239);
-          font-size: 14px;
-          color: white;
-          padding: 12px;
-          font-weight: bold;
-      }
-    }
-  }
+  
 </style>

@@ -1,22 +1,28 @@
 <template>
-  <!-- <button @click="deselectRows">deselect rows</button> -->
   <div class="main">
     <ag-grid-vue
       class="ag-theme-alpine"
-      style="height: 260px"
+
+      style="height: 820px;"
       :columnDefs="columnDefs.value"
       :rowData="rowData.value"
       :defaultColDef="defaultColDef"
       rowSelection="multiple"
       animateRows="true"
+      :pagination="pagination"
+      :paginationPageSize="paginationPageSize"
     >
+    
     </ag-grid-vue>
+    
+
   </div>
 </template>
 
 <script>
 import { AgGridVue } from "ag-grid-vue3";
-import { reactive } from "vue";
+import { reactive, onMounted, ref } from "vue";
+
 import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -27,12 +33,11 @@ export default {
     AgGridVue,
     edit_delete,
   },
+
   data() {
     return {
-      id: 1,
-      name: "",
-      eamil: "abc@gmail.com",
-      branch: "اسيوط",
+      pagination : true,
+      paginationPageSize : 25,
     };
   },
   setup() {
@@ -68,17 +73,127 @@ export default {
           Email: "abc@gmail.com",
           Manage: "الاسكندرية",
         },
+        {
+          ID: "1",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "2",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "القاهرة",
+        },
+        {
+          ID: "3",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "4",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "القاهرة",
+        },
+        {
+          ID: "5",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "الاسكندرية",
+        },
+        {
+          ID: "1",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "2",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "القاهرة",
+        },
+        {
+          ID: "3",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "4",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "القاهرة",
+        },
+        {
+          ID: "5",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "الاسكندرية",
+        },
+        {
+          ID: "1",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "1",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "1",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "1",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "1",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+        {
+          ID: "1",
+          Name: "اسم المدير",
+          Email: "abc@gmail.com",
+          Manage: "اسيوط",
+        },
+
       ],
     });
     const columnDefs = reactive({
       value: [
-        { field: "Propirtis", cellRenderer: "edit_delete" },
+        { field: "Propirtis", cellRenderer: "edit_delete",
+          cellRendererParams:{edit:"Update_Manger",
+        },
+        },
         { field: "Manage" },
         { field: "Email" },
         { field: "Name" },
         { field: "ID" },
       ],
     });
+    
+
+
+    // onMounted(() => {
+    //   fetch("")
+    //     .then((result) => result.json())
+    //     .then((remoteRowData) => (rowData.value = remoteRowData));
+    // });
+    
+
     const defaultColDef = {
       sortable: true,
       filter: true,
@@ -102,6 +217,18 @@ export default {
   width: 100% !important;
   direction: rtl !important;
 }
+.ag-ltr .ag-body-viewport{
+  &::-webkit-scrollbar {
+      width: 15px !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(#312776d2, #363062);
+      border: 5px solid#fff;
+      border-radius: 10px !important;
+    }
+}
+
 .ag-header {
   background-color: #363062;
 }
@@ -113,5 +240,16 @@ export default {
 }
 .ag-root-wrapper {
   border: none !important;
+
+}
+.ag-paging-panel {
+    border-top: 1px solid var(--darker-blue);
+    color: var(--darker-blue) !important;
+}
+.ag-paging-panel .ag-icon {
+    color: var(--darker-blue); 
+    font-size: 25px;
+    font-weight: bold;
+
 }
 </style>

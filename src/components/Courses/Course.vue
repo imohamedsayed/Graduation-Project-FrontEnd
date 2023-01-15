@@ -4,12 +4,12 @@
       <i v-if="opened"  class="fa fa-circle-plus plus "></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
-    <td >{{name}}</td>
+    <td >{{cours.name}}</td>
     <td class="open"><div class="thumb_img"><img src="../../../public/images/courses/img-2.jpg" alt=""></div></td>
-    <td class="open">{{part}}</td>
-    <td class="open">{{class_num}}</td>
-    <td class="open">{{price}} EGP</td>
-    <td class="open">{{pays}}</td>
+    <td class="open">{{cours.part}}</td>
+    <td class="open">{{cours.class_num}}</td>
+    <td class="open">{{cours.price}} EGP</td>
+    <td class="open">{{cours.pays}}</td>
   </tr>
   <tr class="close" v-if="!opened" >
     <td colspan="7">
@@ -18,16 +18,16 @@
         <div ><img src="../../../public/images/courses/img-2.jpg" alt=""></div>  
       </li>
       <li >القسم 
-        <div>{{part}}</div>
+        <div>{{cours.part}}</div>
       </li>
       <li >الصف
-        <div>{{class_num}}</div>
+        <div>{{cours.class_num}}</div>
       </li>
       <li >السعر
-        <div>{{price}}</div>
+        <div>{{cours.price}}</div>
       </li>
       <li >المبيعات
-        <div>{{pays}}</div>
+        <div>{{cours.pays}}</div>
       </li>
     </ul>
     </td>
@@ -35,15 +35,27 @@
   <tr v-if="!opened">
     <td colspan="7" >
       <div class="close"  >
+        <div>الخصائص</div>
           <ul>
-            <div>الخصائص</div>
             <li><a href="">  <i class="fas fa-list"></i>   المحتوى</a> </li>
             <li><a href="">  <i class="fas fa-list"></i>   الاختبارات</a> </li>
             <li><a href="">  <i class="fas fa-list"></i>   ورشة العمل</a> </li>
             <li><a href="">  <i class="fas fa-list"></i>   الاسئلة</a> </li>
             <li><a href="">  <i class="fas fa-list"></i>   التفريغات</a> </li>
             <li><a href="">  <i class="fas fa-list"></i>   الاعلامات</a> </li>
-            <li class="btn"><router-link :to="{name: 'EditeCourse'}"><i class="fa fa-trash"></i>   تعديل</router-link>  </li>
+            <li class="btn" 
+            @click="
+              $router.push({
+                name: 'EditeCourse',
+                params: { 
+                  id: cours.id,
+                  name: cours.name,
+                  },
+              })
+            " >             
+            <i class="fa fa-trash"></i>   تعديل
+          
+            </li>
             <li class="btn"  @click="Delete()">  <i class="fa fa-trash"></i>   حذف</li>
           </ul>
       </div>
@@ -54,15 +66,9 @@
 <script>
 export default {
   name: "Course",
+  props: ["cours"],
   data(){
     return{
-      id: 1,
-      name:"منهج الفيزياء الثانوية العامة",
-      img:"../../../public/images/courses/img-2.jpg",
-      part:"فيزياء",
-      class_num:"الثالث الثانوي	",
-      price:350,
-      pays:234,
       opened:true,
       showEditForm:false,
       }
@@ -108,7 +114,7 @@ tr{
     {
       display: flex !important;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 5px;
       @media (min-width:767px) {
         flex-direction: row;
       }
@@ -116,7 +122,6 @@ tr{
         width: -moz-fit-content !important;
         width: fit-content !important;
         border: none !important;
-        // background-color: var(--light-blue) !important;
         border-radius: 5px;
         display: flex;
         justify-content: start;
@@ -160,6 +165,9 @@ td {
     // color: red  !important;
     // display: none;
   }
+}
+tr div.close ul > div{
+  margin: 0 auto;
 }
 td.check
 {

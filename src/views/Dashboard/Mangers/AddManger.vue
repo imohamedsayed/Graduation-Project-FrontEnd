@@ -57,8 +57,8 @@
                               اختيار من القائمة
                             </option>
                             <option value="1">فرع اسيوط </option>
-                            <option value="1">فرع القاهرة</option>
-                            <option value="1">فرع الاسكندريه </option>
+                            <option value="2">فرع القاهرة</option>
+                            <option value="3">فرع الاسكندريه </option>
                           </select>
                         </div>
                       </div>
@@ -159,18 +159,18 @@ export default {
     }
   }
   
-  .steps_btn {
-    color: var(--white-color);
-    margin: 25px 25px;
-    float: right;
-    padding: 10px 50px !important;
-    margin-bottom: 0;
-    margin-top: 50px;
-    font-size: 12pt !important;
-    height: auto !important;
-    background: var(--darker-blue) !important;
-    font-family: "Cairo", sans-serif !important;
-    font-weight: 700 !important;
-  }
+  // .steps_btn {
+  //   color: var(--white-color);
+  //   margin: 25px 25px;
+  //   float: right;
+  //   padding: 10px 50px !important;
+  //   margin-bottom: 0;
+  //   margin-top: 50px;
+  //   font-size: 12pt !important;
+  //   height: auto !important;
+  //   background: var(--darker-blue) !important;
+  //   font-family: "Cairo", sans-serif !important;
+  //   font-weight: 700 !important;
+  // }
 }
 </style>
