@@ -32,7 +32,11 @@
                 <div class="col-sm-12 col-md-6">
                   <div class="right">
                     <span>بحث : </span>
-                    <input v-model="search" class="form-control form-control-sm" type="text">
+                    <input v-model="search"
+                      @keyup="searchcours(search)"
+                      class="form-control form-control-sm" 
+                      type="text"
+                    >
                   </div>
                 </div>
               </div>
@@ -52,9 +56,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <Course/>
-                        <Course/>
-                        <Course/>
+                        <Course
+                          v-for="cours in courses"
+                          :key="cours.id"
+                          :cours="cours"
+                        />
                       </tbody>
                     </table>
                   </div>
@@ -80,8 +86,41 @@ export default {
     return{
       search:'',
       select:10,
+      courses:[],
     }
-  }
+  },
+  mounted() {
+    this.items = [
+    {
+        id: 1,  name:"منهج الفيزياء الثانوية العامة",  img:"../../../public/images/courses/img-2.jpg",
+        part:"فيزياء",  class_num:"الثالث الثانوي	",  price:350,
+        pays:234,  opened:true,  showEditForm:false,
+      },
+      {
+        id: 2,  name:"منهج الكيمياء الثانوية العامة",  img:"../../../public/images/courses/img-2.jpg",
+        part:"فيزياء",  class_num:"الثالث الثانوي	",  price:350,
+        pays:234,  opened:true,  showEditForm:false,
+      },
+      {
+        id: 3,  name:"منهج الاحياء الثانوية العامة",  img:"../../../public/images/courses/img-2.jpg",
+        part:"فيزياء",  class_num:"الثالث الثانوي	",  price:350,
+        pays:234,  opened:true,  showEditForm:false,
+      },
+    ];
+    this.courses = this.items;
+  },
+  methods: {
+    searchcours(key) {
+      this.courses = this.items.filter((item) => item.name.includes(key));
+    },
+  },
+  
+  // mounted() {
+  //   fetch("")
+  //   .then(res=>res.json())
+  //   .then(data=>this.courses=data)
+  //   .catch(err=> console.log(err.message))
+  // },
 };
 </script>
 
@@ -92,56 +131,5 @@ export default {
     margin-right: 0;
   }
 }
-.cover {
-  padding: 30px 20px;
-  width: 100%;
 
-  .bg {
-    background: #fff;
-    padding: 30px 30px;
-    border-radius: 10px;
-    border: 1px solid #efefef;
-    .head{
-      font-size: 20px !important;
-      margin: 10px 0;
-    }
-    label {
-    font-weight: 500;
-    font-size: 22px;
-    margin-bottom: 10px !important;
-    color: #333;
-    text-align: right;
-    display: block;
-    i {
-      color: var(--light-blue) !important;
-      margin-left: 5px;
-    }
-  }
-  }
-  .left{
-    select{
-      width: 110px;
-      margin: 0 10px;
-      display: inline-block;
-    }
-  }
-  .right{
-    float: left;
-    input{
-      display: inline-block;
-      width: 200px;
-      margin: 0 10px;
-    }
-    @media (max-width: 767px) {
-      float: right;
-      margin: 20px 0 0 0;
-      }
-  }
-  .open
-  {
-    @media (max-width: 767px) {
-      display: none !important;
-      }
-  }
-}
 </style>

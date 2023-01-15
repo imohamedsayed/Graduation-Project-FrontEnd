@@ -1,6 +1,16 @@
 <template>
-  <div class="btnDI">
-    <router-link :to="{name: 'Update_Manger'}" class="btn">تعديل</router-link>
+  <div class="btnDI" >
+    <a 
+    @click="
+    $router.push({
+                name: edit,
+                params: { 
+                  id: id,
+                  name:name,
+                  },
+              })"
+    class="btn">
+    تعديل</a>
     <a  class="btn" @click="Delete()"> حذف</a>
   </div>
   
@@ -9,11 +19,18 @@
 
 export default{
   data(){
-    return open
+    return {open,
+    }
+  },
+  methods: {
+
   },
   setup(props)
     {
       const {value}=props.params;
+      const {edit}=props.params;
+      const id=props.params.data.ID;
+      const name=props.params.data.Name;
       function Delete(){
         Swal.fire({
           title: 'هل انت متاكد',
@@ -31,11 +48,12 @@ export default{
             'تم الحذف!',
             'تم حذف الفرع',
             'نجاح'
-          )
+          );
+
         }
       })
     }
-      return {value,Delete };
+      return {value,Delete ,edit,id,name};
     }
 
 }

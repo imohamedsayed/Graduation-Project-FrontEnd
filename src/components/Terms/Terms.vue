@@ -1,40 +1,19 @@
 <template>
   <tr v-if="exists">
     <td class="check" @click="openProparties()">
-      {{ branch.id }}
+      {{ term.id }}
       <i v-if="opened" class="fa fa-circle-plus plus"></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
-    <td>{{ branch.name }}</td>
-    <td class="open">{{ branch.address }}</td>
-    <td class="open">{{ branch.phone }}</td>
-    <td class="open">{{ branch.hotline }}</td>
-    <td class="open">
-      <div class="thumb_img">
-        <img :src="require(`../../../public/images/about/${branch.src}`)" />
-      </div>
-    </td>
+    <td>{{ term.academicYear }}</td>
+    <td class="open">{{ term.term }}</td>
   </tr>
   <tr class="close" v-if="!opened & exists">
     <td colspan="7">
       <ul>
         <li>
-          العنوان
-          <div>{{ branch.address }}</div>
-        </li>
-        <li>
-          رقم التلفون
-          <div>{{ branch.phone }}</div>
-        </li>
-        <li>
-          الخط الساخن
-          <div>{{ branch.hotline }}</div>
-        </li>
-        <li>
-          الخريطه
-          <div class="thumb_img">
-            <img src="../../../public/images/about/career-1.jpg" alt="" />
-          </div>
+          الترم الدراسي
+          <div>{{ term.term }}</div>
         </li>
       </ul>
     </td>
@@ -46,17 +25,14 @@
           <div>الخصائص</div>
           <li
             @click="
-              $router.push({
-                name: 'UpdateBranch',
-                params: { id: branch.id,
-                name: branch.name,
-                address:branch.address,
-                phone:branch.phone,
-                hotline:branch.hotline,
-                src:branch.src
-                },
-              })
-            "
+          $router.push({
+            name: 'UpdateTerm',
+            params: { id: term.id,
+            academicYear: term.academicYear,
+            term:term.term,
+             },
+          })
+        "
           >
             <i class="fa fa-pen-to-square"></i> تعديل
           </li>
@@ -69,11 +45,11 @@
 
 <script>
 export default {
-  props: ["branch"],
+  props: ["term"],
   data() {
     return {
-      opened: true,
       exists: true,
+      opened: true,
     };
   },
   methods: {
@@ -95,7 +71,7 @@ export default {
         cancelButtonText: "لا ، إلغاء!",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire("تم !", "تم حذف الفرع", "نجاح");
+          Swal.fire("تم !", "تم حذف الترم", "نجاح");
           this.exists = false;
         }
       });
@@ -147,10 +123,7 @@ tr.close {
     display: none !important;
   }
 }
-.thumb_img {
-  width: 100px;
-  margin: 0 auto;
-}
+
 td {
   width: fit-content !important;
   border-left: 1px solid #efefef !important;

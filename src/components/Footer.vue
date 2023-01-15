@@ -20,7 +20,7 @@
         <div class="col-lg-3 col-md-3 col-sm-6">
           <ul>
             <li><a href="">تسجيل الدخول</a></li>
-            <li><a href="">تسجيل الحساب</a></li>
+            <li><router-link :to="{ name: 'signup'}">تسجيل الحساب</router-link></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">

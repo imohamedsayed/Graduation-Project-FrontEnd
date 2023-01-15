@@ -6,7 +6,7 @@
       <div class="cover">
         <div class="container">
           <div class="bg">
-          <branchlist />
+          <teacherlist />
             </div>
           </div>
         </div>
@@ -19,12 +19,13 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import Branchlist  from '../../../components/Branches/Branchlist.vue'
+import teacherlist  from "../../../components/Teachers/teacherlist.vue";
 export default {
-  name: "ShowBranches",
-  components: { Footer, AsideBar, Header ,Branchlist },
+  name: "ShowTeachers",
+  components: { Footer, AsideBar, Header ,teacherlist },
   data(){
     return{
+      search:'',
     }
   }
 };
@@ -48,7 +49,7 @@ export default {
     border: 1px solid #efefef;
     label {
     font-weight: 500;
-    font-size: 22px;
+    font-size: 22px !important;
     margin-bottom: 10px !important;
     color: #333;
     text-align: right;
@@ -59,12 +60,13 @@ export default {
     }
   }
   }
-  .content-action-btns{
+  .ShowCources .cover .content-action-btns{
   padding:5px 15px;
   background: var(--darker-blue);
   color: white !important;
   margin: 5px 0;
   border-radius: 15px;
+  font-size: 20px;
   }
   .content-action-btns a{
   color: white !important;

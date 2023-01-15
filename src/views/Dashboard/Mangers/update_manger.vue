@@ -9,7 +9,7 @@
             <div class="col-lg-12">
               <h2 class="st_title">
                 <i class="fas fa-plus-circle"></i>
-              اضافه مدير جديد  
+                تعديل مدير : {{ name }}
               </h2>
             </div>
           </div>
@@ -90,12 +90,10 @@ import AsideBar from "../../../components/AsideBar.vue";
 export default {
   name: "Update_Manger",
   components: { Footer, AsideBar, Header },
+  props: ["id",'name'],
   data(){
     return{
-      name:"",
-      email:"",
-      password:"",
-      position:""
+
       }
   },
 };

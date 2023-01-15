@@ -16,7 +16,7 @@
         data-bs-toggle="collapse"
       >
         <div class="section-name">
-          <i class="fa-solid fa-users"></i>
+          <i class="fa-solid fa-landmark"></i>
           <span> الفصول </span>
         </div>
         <i class="fa-solid fa-sort-down"></i>
@@ -45,6 +45,43 @@
           </a>
         </ul>
       </div>
+      <!-- term -->
+            <li
+        class="d-flex justify-content-between align-items-center"
+        data-bs-target="#term-sections"
+        aria-expanded="false"
+        data-bs-toggle="collapse"
+      >
+        <div class="section-name">
+          <i class="fa-solid fa-folder-tree"></i>
+          <span> الترم </span>
+        </div>
+        <i class="fa-solid fa-sort-down"></i>
+      </li>
+      <div class="collapse" id="term-sections">
+        <ul class="list-unstyled">
+          <router-link :to="{ name: 'CreateTerm' }">
+            <li
+              class="d-flex justify-content-between align-items-center second-li px-4"
+            >
+              <div class="section-name">
+                <i class="fa-solid fa-plus"></i>
+                <span> اضافة ترم جديد</span>
+              </div>
+            </li>
+          </router-link>
+          <router-link :to="{ name: 'ShowTerm' }">
+            <li
+              class="d-flex justify-content-between align-items-center second-li px-4"
+            >
+              <div class="section-name">
+                <i class="fa-regular fa-eye"></i>
+                <span> عرض الترم</span>
+              </div>
+            </li>
+          </router-link>
+        </ul>
+      </div>
       <!--Add Brach-->
       <li
         class="d-flex justify-content-between align-items-center"
@@ -53,7 +90,7 @@
         data-bs-toggle="collapse"
       >
         <div class="section-name">
-          <i class="fa-regular fa-folder-closed"></i>
+          <i class="fa-solid fa-school"></i>
           <span>الفروع</span>
         </div>
         <i class="fa-solid fa-sort-down"></i>
@@ -115,6 +152,80 @@
               <div class="section-name">
                 <i class="fa-regular fa-eye"></i>
                 <span> عرض الصفوف الدراسية</span>
+              </div>
+            </li>
+          </router-link>
+        </ul>
+      </div>
+      <!-- assistant -->
+            <li
+        class="d-flex justify-content-between align-items-center"
+        data-bs-target="#assistant-sections"
+        aria-expanded="false"
+        data-bs-toggle="collapse"
+      >
+        <div class="section-name">
+         <i class="fa-solid fa-user-ninja"></i>
+          <span>المساعدين</span>
+        </div>
+        <i class="fa-solid fa-sort-down"></i>
+      </li>
+      <div class="collapse" id="assistant-sections">
+        <ul class="list-unstyled">
+          <router-link :to="{ name: 'CreateAssistant' }">
+            <li
+              class="d-flex justify-content-between align-items-center second-li px-4"
+            >
+              <div class="section-name">
+                <i class="fa-solid fa-plus"></i>
+                <span>اضافة مساعد جديد</span>
+              </div>
+            </li>
+          </router-link>
+          <router-link :to="{ name: 'ShowAssistants' }">
+            <li
+              class="d-flex justify-content-between align-items-center second-li px-4"
+            >
+              <div class="section-name">
+                <i class="fa-regular fa-eye"></i>
+                <span> عرض المساعدين</span>
+              </div>
+            </li>
+          </router-link>
+        </ul>
+      </div>
+      <!-- teachers -->
+      <li
+        class="d-flex justify-content-between align-items-center"
+        data-bs-target="#teachers-sections"
+        aria-expanded="false"
+        data-bs-toggle="collapse"
+      >
+        <div class="section-name">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <span>الاساتذه</span>
+        </div>
+        <i class="fa-solid fa-sort-down"></i>
+      </li>
+      <div class="collapse" id="teachers-sections">
+        <ul class="list-unstyled">
+          <router-link :to="{ name: 'CreateTeacher' }">
+            <li
+              class="d-flex justify-content-between align-items-center second-li px-4"
+            >
+              <div class="section-name">
+                <i class="fa-solid fa-plus"></i>
+                <span>اضافة استاذ جديد</span>
+              </div>
+            </li>
+          </router-link>
+          <router-link :to="{ name: 'ShowTeachers' }">
+            <li
+              class="d-flex justify-content-between align-items-center second-li px-4"
+            >
+              <div class="section-name">
+                <i class="fa-regular fa-eye"></i>
+                <span> عرض الاساتذه</span>
               </div>
             </li>
           </router-link>
@@ -389,7 +500,7 @@
               </div>
             </li>
           </router-link>
-          <router-link  :to="{ name: 'Show_mangers' }">
+          <router-link :to="{ name: 'Show_mangers' }">
             <li
               class="d-flex justify-content-between align-items-center second-li px-4"
             >
@@ -403,14 +514,14 @@
       </div>
       <!--End managers-->
       <!--Settings-->
-      <a href="#">
+      <router-link :to="{ name: 'plat_settings' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-gear"></i>
             <span> اعدادات المنصة</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <!--End Settings-->
     </ul>
   </aside>

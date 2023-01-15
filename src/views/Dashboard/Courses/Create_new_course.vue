@@ -24,7 +24,7 @@
                           <label>
                             <i class="fas fa-pencil-alt"></i>عنوان الدورة</label
                           >
-                          <input type="text" name="" id="" />
+                          <input type="text" v-model="course_title" name="" id="" />
                         </div>
                       </div>
                       <div class="col-lg-12 col-md-12">
@@ -35,36 +35,36 @@
                           <textarea
                             id=""
                             placeholder="اكتب وصف المحتوي..."
+                            v-model="course_desc"
                           ></textarea>
                         </div>
                       </div>
                       <div class="col-lg-12 col-md-12">
                         <div class="mt-30 box">
                           <label>
-                            <i class="fas fa-list"></i> القسم الرئيسي
+                            <i class="fas fa-list"></i> السنه الدراسيه
                           </label>
-                          <select class="ui hj145 cntry152">
+                          <select class="ui hj145 cntry152" v-model="course_class">
                             <option selected disabled value="">
                               اختيار من القائمة
                             </option>
                             <option value="1">الاول الثانوي</option>
-                            <option value="1">الثاني الثانوي</option>
-                            <option value="1">الثالث الثانوي</option>
+                            <option value="2">الثاني الثانوي</option>
+                            <option value="3">الثالث الثانوي</option>
                           </select>
                         </div>
                       </div>
                       <div class="col-lg-12 col-md-12">
                         <div class="box">
                           <label>
-                            <i class="fas fa-list"></i>المرحلة الدراسية
+                            <i class="fas fa-list"></i>الترم الدراسي
                           </label>
-                          <select class="">
+                          <select class="" v-model="course_term">
                             <option selected disabled value="">
                               اختيار من القائمة
                             </option>
-                            <option value="1">فيزياء</option>
-                            <option value="1">كيمياء</option>
-                            <option value="1">عربي</option>
+                            <option value="1">الاول</option>
+                            <option value="2">الثاني</option>
                           </select>
                         </div>
                       </div>
@@ -88,28 +88,11 @@
                         gif أو png.
                       </p>
                       <div class="upload_input">
-                        <input type="file" name="" id="" />
+                        <input type="file" name="" id=""  />
                       </div>
                     </div>
                   </div>
                   <br />
-                  <div class="course_price">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="box">
-                          <label><i class="fas fa-dollar-sign"></i>السعر</label>
-                        </div>
-                      </div>
-                      <div class="col-lg-9 col-md-4 col-sm-6 col-xs-6 col-6">
-                        <input type="number" name="" id="" />
-                      </div>
-                      <div
-                        class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-6 price"
-                      >
-                        <span>EGP</span>
-                      </div>
-                    </div>
-                  </div>
                   <button
                     data-direction="finish"
                     class="btn btn-default steps_btn"
@@ -134,6 +117,18 @@ import AsideBar from "../../../components/AsideBar.vue";
 export default {
   name: "CreateCourse",
   components: { Footer, AsideBar, Header },
+  data() {
+    return {
+      course_title:'',
+      course_desc:'',
+      course_class:'',
+      course_term:'',
+      course_photo:'',
+    };    
+  },
+  mounted() {
+    
+  },
 };
 </script>
 
@@ -269,9 +264,20 @@ export default {
     margin-top: 50px;
     font-size: 12pt !important;
     height: auto !important;
-    background: #1abcff !important;
+    background: var(--light-blue) !important;
     font-family: "Cairo", sans-serif !important;
     font-weight: 700 !important;
+    &:hover
+    {
+      background: var(--light-blue) !important;
+      color: var(--white-color);
+    }
+  }
+  .upload_input
+  {
+    input{
+    margin: 0 -50px !important;
+    }
   }
 }
 </style>
