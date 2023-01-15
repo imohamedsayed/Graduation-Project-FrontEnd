@@ -199,6 +199,32 @@ const routes = [
     name: "appointments",
     component: ShowAppointments,
   },
+  {
+    path: "/dashboard/settings",
+    name: "plat_settings",
+    component: PlatformSettings,
+  },
+  {
+    path: "/dashboard/app_students",
+    name: "applicant_students",
+    component: AppStudents,
+  },
+  {
+    path: "/dashboard/add_appointment",
+    name: "add_appointment",
+    component: AddAppointment,
+  },
+  {
+    path: "/dashboard/edit_appointment/:id",
+    name: "edit_appointment",
+    component: EditAppointment,
+    props: true,
+  },
+  {
+    path: "/dashboard/all_appointments",
+    name: "appointments",
+    component: ShowAppointments,
+  },
 ];
 
 const router = createRouter({

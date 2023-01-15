@@ -2,6 +2,7 @@
   <div class="main">
     <ag-grid-vue
       class="ag-theme-alpine"
+
       style="height: 820px;"
       :columnDefs="columnDefs.value"
       :rowData="rowData.value"
@@ -14,12 +15,14 @@
     
     </ag-grid-vue>
     
+
   </div>
 </template>
 
 <script>
 import { AgGridVue } from "ag-grid-vue3";
 import { reactive, onMounted, ref } from "vue";
+
 import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -30,12 +33,11 @@ export default {
     AgGridVue,
     edit_delete,
   },
-  props:["select"],
+
   data() {
     return {
       pagination : true,
-      paginationPageSize : this.select,
-      // paginationPageSize : 10,
+      paginationPageSize : 25,
     };
   },
   setup() {
@@ -167,6 +169,7 @@ export default {
           Email: "abc@gmail.com",
           Manage: "اسيوط",
         },
+
       ],
     });
     const columnDefs = reactive({
@@ -196,7 +199,6 @@ export default {
       filter: true,
       flex: 1,
       lemit: 2,
-      
     };
     return {
       columnDefs,
@@ -226,6 +228,7 @@ export default {
       border-radius: 10px !important;
     }
 }
+
 .ag-header {
   background-color: #363062;
 }
@@ -237,6 +240,7 @@ export default {
 }
 .ag-root-wrapper {
   border: none !important;
+
 }
 .ag-paging-panel {
     border-top: 1px solid var(--darker-blue);
@@ -246,5 +250,6 @@ export default {
     color: var(--darker-blue); 
     font-size: 25px;
     font-weight: bold;
+
 }
 </style>

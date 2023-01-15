@@ -15,7 +15,6 @@
                   >
                 </div>
               </div>
-
               <div class="col-sm-12 col-md-6">
                 <div class="right">
                   <router-link :to="{ name: 'Add_Manger' }" class="link">
@@ -25,10 +24,11 @@
               </div>
             </div>
 
+
             <div class="row">
               <div class="co-md-12">
                 <div class="table-responsive">
-                  <Manger  v-if="selected" :select="select" />               
+                  <Manger />
                 </div>
               </div>
             </div>
@@ -50,15 +50,9 @@ export default {
   name: "Show_mangers",
   components: { Footer, AsideBar, Header, Manger },
   data() {
-    return {
-      select:"25",
-      selected:true,
-    };
-    
-  },
-  methods: {
 
-    },
+    return {};
+  },
 };
 </script>
 
@@ -71,10 +65,12 @@ export default {
 }
 
 .link {
+
       display: block;
       color: #fff !important;
       padding: 10px 15px;
       border-radius: 25px;
       background-color: var(--darker-blue) !important;
     }
+
 </style>
