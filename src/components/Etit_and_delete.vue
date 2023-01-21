@@ -1,14 +1,7 @@
 <template>
   <div class="btnDI" >
     <a 
-    @click="
-    $router.push({
-                name: edit,
-                params: { 
-                  id: id,
-                  name:name,
-                  },
-              })"
+    @click="updated" 
     class="btn">
     تعديل</a>
     <a  class="btn" @click="Delete()"> حذف</a>
@@ -16,6 +9,7 @@
   
 </template>
 <script>
+import { mapActions } from 'vuex';
 
 export default{
   data(){
@@ -23,7 +17,17 @@ export default{
     }
   },
   methods: {
-
+    ...mapActions(['redirectTo']),
+    updated() {
+      this.redirectTo({
+        name: this.edit,params: {
+          id: this.id,
+          name: this.name,
+        }
+      })
+      console.log('cleced')
+    }
+    
   },
   setup(props)
     {
@@ -52,8 +56,9 @@ export default{
 
         }
       })
-    }
-      return {value,Delete ,edit,id,name};
+    };
+    // function 
+    return { value,Delete,edit,id,name };
     }
 
 }

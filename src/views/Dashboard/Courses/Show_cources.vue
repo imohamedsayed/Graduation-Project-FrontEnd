@@ -84,8 +84,6 @@ export default {
   components: { Footer, AsideBar, Header ,Course },
   data(){
     return{
-      search:'',
-      select:10,
       courses:[],
     }
   },

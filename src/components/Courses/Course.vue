@@ -45,13 +45,11 @@
             <li><a href="">  <i class="fas fa-list"></i>   الاعلامات</a> </li>
             <li class="btn" 
             @click="
-              $router.push({
-                name: 'EditeCourse',
-                params: { 
+              this.redirectTo({
+                name: 'EditeCourse', params: {
                   id: cours.id,
-                  name: cours.name,
-                  },
-              })
+                  name: cours.name, } })
+              
             " >             
             <i class="fa fa-trash"></i>   تعديل
           
@@ -64,6 +62,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: "Course",
   props: ["cours"],
@@ -75,7 +74,8 @@ export default {
   },
   methods:
   {
-    Delete(){
+    ...mapActions(['redirectTo']),
+    Delete() {
       Swal.fire({
         title: 'هل انت متاكد',
         text: "لن تتمكن من التراجع عن هذا!",
