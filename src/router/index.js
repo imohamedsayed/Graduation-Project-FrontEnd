@@ -28,6 +28,8 @@ import AppStudents from "../views/Dashboard/sections/ShowAppStudents.vue";
 import AddAppointment from "../views/Dashboard/sections/Appointments/AddApointment.vue";
 import EditAppointment from "../views/Dashboard/sections/Appointments/EditAppointment.vue";
 import ShowAppointments from "../views/Dashboard/sections/Appointments/ShowAppointments.vue";
+import Showsections from "../views/Dashboard/sections/ShowSections.vue"
+import Editesection from "../views/Dashboard/sections/Editesection.vue"
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
@@ -56,6 +58,17 @@ const routes = [
     path: "/dashboard/new_section",
     name: "new_Section",
     component: CreateSection,
+  },
+  {
+    path: "/dashboard/showsections",
+    name: "showsections",
+    component: Showsections,
+  },
+  {
+    path: "/dashboard/Editesection:id/:course",
+    name: "Editesection",
+    component: Editesection,
+    props: true,
   },
   {
     path: "/dashboard/new_course",
@@ -177,11 +190,6 @@ const routes = [
     path: "/dashboard/settings",
     name: "plat_settings",
     component: PlatformSettings,
-  },
-  {
-    path: "/dashboard/app_students",
-    name: "applicant_students",
-    component: AppStudents,
   },
   {
     path: "/dashboard/add_appointment",

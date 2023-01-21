@@ -176,12 +176,13 @@ export default {
       value: [
         { field: "Propirtis", cellRenderer: "edit_delete",
           cellRendererParams:{edit:"Update_Manger",
-        },
+          },
+          width: 120,maxWidth: 150,resizable: false
         },
         { field: "Manage" },
         { field: "Email" },
         { field: "Name" },
-        { field: "ID" },
+        { field: "ID",width: 70,maxWidth: 70,resizable: false },
       ],
     });
     
@@ -199,6 +200,7 @@ export default {
       filter: true,
       flex: 1,
       lemit: 2,
+      resizable: true,
     };
     return {
       columnDefs,
