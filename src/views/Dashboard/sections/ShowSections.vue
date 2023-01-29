@@ -48,7 +48,8 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <Section v-for="section in sections" :key="section.id" :section="section" />
+                        <Section v-for="section in sections " :key="section.id" :section="section" 
+                         />
                         
                       </tbody>
                       
@@ -73,15 +74,17 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import Section from "../../../components/sections/Section.vue";
+import axios from 'axios';
 export default {
   components: { Footer,AsideBar,Section,Header },
   data() {
     return {
-      search:'',
+      search: '',
+      id:0,
       sections: [],
     }
   },
-  mounted() {
+  async mounted() {
     this.items = [
       {
         id: 1,
@@ -94,7 +97,7 @@ export default {
         end: "1-9-2023 12:00",        
       },
       {
-        id: 1,
+        id: 2,
         course: "منهج الكيمياء الثانوية العامة",
         tech: "",
         max: 150,
@@ -106,10 +109,19 @@ export default {
       
     ];
     this.sections = this.items;
+
+    // let sections = await axios.get('http://localhost:3000/sections/');
+    // if(sections.status===200)
+    // {
+    //   this.sections = sections.data;
+    //   let len = this.sections.length;
+    //   this.id =len
+    // }
   },
   methods: {
     searchcours(key) {
       this.sections = this.items.filter((item) => item.course.includes(key));
+      // this.sections = this.sections.filter((item) => item.course.includes(key));
     },
   },
 

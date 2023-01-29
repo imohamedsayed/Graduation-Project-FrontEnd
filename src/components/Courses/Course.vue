@@ -1,5 +1,5 @@
 <template>
-  <tr >
+  <tr v-if="dell">
     <td class="check" @click="opened=!opened" >{{id}}  
       <i v-if="opened"  class="fa fa-circle-plus plus "></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
@@ -32,7 +32,7 @@
     </ul>
     </td>
   </tr>
-  <tr v-if="!opened">
+  <tr v-if="!opened && dell">
     <td colspan="7" >
       <div class="close"  >
         <div>الخصائص</div>
@@ -48,7 +48,7 @@
               this.redirectTo({
                 name: 'EditeCourse', params: {
                   id: cours.id,
-                  name: cours.name, } })
+                  } })
               
             " >             
             <i class="fa fa-trash"></i>   تعديل
@@ -62,20 +62,22 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'vuex';
+import axios from 'axios';
 export default {
   name: "Course",
   props: ["cours"],
   data(){
     return{
       opened:true,
-      showEditForm:false,
+      dell: true,
+      showEditForm: false,
       }
   },
   methods:
   {
     ...mapActions(['redirectTo']),
-    Delete() {
+    async Delete() {
       Swal.fire({
         title: 'هل انت متاكد',
         text: "لن تتمكن من التراجع عن هذا!",
@@ -85,14 +87,18 @@ export default {
         cancelButtonColor: '#d33',
         confirmButtonText: 'نعم ، احذفها!',
         cancelButtonText: 'لا ، إلغاء!',
-    }).then((result) =>
+    }).then(async (result) =>
     {
       if (result.isConfirmed) {
         Swal.fire(
           'تم الحذف!',
-          'تم حذف الفرع',
+          'تم حذف الدورة',
           'نجاح'
         )
+        this.dell = false;
+
+        // let delet = await axios.delete(''+this.cours.id)
+        
       }
     })
     }
@@ -160,11 +166,6 @@ td {
       border: var(--border);
       border-radius: 50%;
     }
-  .minus
-  {
-    // color: red  !important;
-    // display: none;
-  }
 }
 tr div.close ul > div{
   margin: 0 auto;
