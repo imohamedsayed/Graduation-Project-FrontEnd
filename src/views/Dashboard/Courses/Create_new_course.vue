@@ -6,11 +6,24 @@
       <div class="cover">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
               <h2 class="st_title">
                 <i class="fas fa-plus-circle"></i>
                 انشاء دورة جديدة
               </h2>
+            </div>
+            <div class="col-lg-6">
+              <div v-if="save" class="alert alert-success" role="alert"> تم اضافه فصل بنجاح . <span style="{
+                font-size:18px;
+                cursor: pointer;
+                display: inline-block;
+                transition: .5s a,}
+                " @click="
+                this.redirectTo({
+                  name: 'showsections', 
+                  params: {}
+                })"> عرض جميع الدورات </span>
+              </div>
             </div>
           </div>
           <div class="bg">
@@ -93,8 +106,24 @@
                       </div>
                     </div>
                   </div>
+                  <div class="course_price">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="box">
+                          <label><i class="fas fa-dollar-sign"></i> السعر</label>
+                        </div>
+                      </div>
+                      <div class="col-lg-9 col-md-4 col-sm-6 col-xs-6 col-6">
+                        <input type="number" v-model="course_price" name="" id="" />
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-6 price">
+                        <span>EGP</span>
+                      </div>
+                    </div>
+                  </div>
                   <br />
                   <button
+                  @click="addCourse()"
                     data-direction="finish"
                     class="btn btn-default steps_btn"
                   >
@@ -115,6 +144,7 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
+import axios from 'axios';
 export default {
   name: "CreateCourse",
   components: { Footer, AsideBar, Header },
@@ -124,12 +154,30 @@ export default {
       course_desc:'',
       course_class:'',
       course_term:'',
-      course_photo:'',
+      course_photo: '',
+      course_price:null
     };    
   },
   mounted() {
     
   },
+  // methods: {
+  //   async addCourse() {
+  //     let cours = await axios.post('',
+  //       {
+  //         name: this.course_title,
+  //         desc: this.course_desc,
+  //         class_num: this.course_term,
+  //         price: this.course_title,
+  //         img: this.course_photo,
+  //         class_year: this.course_class,
+  //       })
+  //    if(section.status==201)
+  //     {
+  //       this.save = true;
+  //     }
+  //   }
+  // },
 };
 </script>
 

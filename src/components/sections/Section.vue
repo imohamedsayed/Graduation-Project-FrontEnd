@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr v-if="dell">
     <td class="check" @click="opened = !opened">{{ section.id }} 
       <i v-if="opened" class="fa fa-circle-plus plus "></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
@@ -51,7 +51,7 @@
       </ul>
     </td>
   </tr>
-  <tr v-if="!opened">
+  <tr v-if="!opened && dell">
     <td colspan="9">
       <div class="close">
         <div>الخصائص</div>
@@ -60,7 +60,6 @@
             this.redirectTo({
               name: 'Editesection', params: {
                 id: section.id,
-                course: section.course,
               }
             })
           
@@ -75,6 +74,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions } from 'vuex'
 export default {
   name: "Manger",
@@ -83,6 +83,8 @@ export default {
     return {
       opened: true,
       showEditForm: false,
+      dell: true,
+      id:0
     }
   },
   methods:
@@ -98,13 +100,15 @@ export default {
         cancelButtonColor: '#d33',
         confirmButtonText: 'نعم ، احذفها!',
         cancelButtonText: 'لا ، إلغاء!',
-      }).then((result) => {
+      }).then(async (result) => {
         if(result.isConfirmed) {
           Swal.fire(
             'تم الحذف!',
-            'تم حذف الفرع',
+            'تم حذف الفصل',
             'نجاح'
           )
+          this.dell = false;
+          // await axios.delete('http://localhost:3000/sections/' + this.section.id)
         }
       })
     }

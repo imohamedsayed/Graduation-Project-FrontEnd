@@ -1,73 +1,30 @@
 <template>
-  <div class="table-responsive ">
-							<table class="table ucp-table">
-								<thead class="thead-s">
-									<tr>
-										<th class="text-center" scope="col">#</th>
-										<th class="cell-ta" scope="col">صورة</th>
-										<th class="cell-ta" scope="col">عنوان</th>
-										<th class="cell-ta" scope="col">الحالة</th>
-										<th class="text-center" scope="col">مشاهدات</th>
-										<th class="text-center" scope="col">المشتركين</th>
-									</tr>
-								</thead>
-                
-								<tbody>
-                  <tr v-for="course in courses" :key="course.id">
-                    <td >{{course.id}}</td>
+
+                  <tr >
+                    <td >{{cours.id}}</td>
                     <td ><div class="thumb_img"><img src="../../../public/images/courses/img-2.jpg" alt=""></div></td>
-                    <td >{{course.name}}</td>
-                    <td >{{course.status}}</td>
-                    <td >{{course.views}}</td>
-                    <td >{{course.subscribes}}</td>
+                    <td >{{cours.name}}</td>
+                    <td >{{cours.status}}</td>
+                    <td >{{cours.views}}</td>
+                    <td >{{cours.subscribes}}</td>
                   </tr>
-                </tbody>
-              </table>
-            </div>
+
   
 </template>
 
 <script>
 export default {
   name: "Show_Course",
+  props: ["cours"],
   data(){
     return{
-      courses:[],
     }
   },
-  mounted() {
-    this.items = [
-      {
-        id: 1,
-        name:"منهج الفيزياء",
-        status:"قيد الانشاء",
-        views:70,
-        subscribes:1150,
-      },
-      {
-        id: 2,
-        name:"منهج الكيمياء",
-        status:"قيد الانشاء",
-        views:70,
-        subscribes:1150,
-      },
-      {
-        id: 3,
-        name:"منهج الاحياء",
-        status:"قيد الانشاء",
-        views:70,
-        subscribes:1150,
-      },      
-    ];
-    this.courses = this.items;
-  },
+
+
+
   
-   // mounted() {
-  //   fetch("")
-  //   .then(res=>res.json())
-  //   .then(data=>this.courses=data)
-  //   .catch(err=> console.log(err.message))
-  // },
+
 }
 </script>
 

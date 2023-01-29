@@ -13,7 +13,7 @@
     "ag-grid-community": "^28.2.1",
     "ag-grid-enterprise": "^28.2.1",
     "ag-grid-vue3": "^28.2.1",
-    "axios": "^1.1.3",
+    "axios": "^1.2.6",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
@@ -24,6 +24,7 @@
     "sweetalert2": "^11.6.14",
     "swiper": "^8.4.4",
     "vue": "^3.2.45",
+    "vue-axios": "^3.5.2",
     "vue-owl-carousel": "^2.0.3",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"

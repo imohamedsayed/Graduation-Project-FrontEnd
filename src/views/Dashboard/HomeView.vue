@@ -69,18 +69,43 @@
 							<div class="card_dash_right1">
 								<router-link :to="{ name: 'new_course' }"
                 class="create_btn_dash"  >
-                <i class="fa fa-plus-circle"></i> انشاء اول دورة</router-link>
+                <i class="fa fa-plus-circle"></i> انشاء دورة جديدة</router-link>
 							</div>
 						</div>            	
 					</div>	
 				</div>
         <div class="row">
-          <div class="co-md-12">
-            <Show_Course />                
+          <div class="co-md-12"  v-if="courses.length>0">
+              <div class="table-responsive ">
+                <table class="table ucp-table">
+                  <thead class="thead-s">
+                    <tr>
+                      <th class="text-center" scope="col">#</th>
+                      <th class="cell-ta" scope="col">صورة</th>
+                      <th class="cell-ta" scope="col">عنوان</th>
+                      <th class="cell-ta" scope="col">الحالة</th>
+                      <th class="text-center" scope="col">مشاهدات</th>
+                      <th class="text-center" scope="col">المشتركين</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+            <Show_Course 
+              v-for="cours in courses"
+                :key="cours.id"
+                :cours="cours"
+            />  
+            </tbody>
+            </table>
+            </div>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-12" v-else>
             <div class="no_results">
-							<p><i class="fas fa-info-circle"></i> لم تقم بانشاء دورات بعد.</p>
+							<p><i class="fas fa-info-circle"></i> 
+                لم تقم بانشاء دورات بعد.
+                <br>
+                <router-link :to="{ name: 'new_course' }" class="create_btn_dash">
+                  <i class="fa fa-plus-circle"></i> انشاء اول دورة</router-link>
+              </p>
 						</div>
           </div>
         </div>
@@ -93,7 +118,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import axios from 'axios';
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 import AsideBar from "@/components/AsideBar.vue";
@@ -104,9 +129,44 @@ export default {
   components: { Footer, AsideBar, Header,Show_Course },
   data(){
     return{
-    user_name:"محمد ايمن"
-    }
+    user_name:"محمد ايمن",
+        courses: [],
+      }
   },
+    mounted() {
+    this.items = [
+      {
+        id: 1,
+        name:"منهج الفيزياء",
+        status:"قيد الانشاء",
+        views:70,
+        subscribes:1150,
+      },
+      {
+        id: 2,
+        name:"منهج الكيمياء",
+        status:"قيد الانشاء",
+        views:70,
+        subscribes:1150,
+      },
+      {
+        id: 3,
+        name:"منهج الاحياء",
+        status:"قيد الانشاء",
+        views:70,
+        subscribes:1150,
+      },      
+    ];
+    this.courses = this.items;
+  },
+
+    // async mounted() {
+    //   let result = await axios.get('');
+    //   if(result.status == 200 && result.data.length > 0) {
+    //     this.courses = result.data;
+    //   }
+    // },
+
   
 
 };

@@ -78,7 +78,8 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import Course  from '../../../components/Courses/Course'
+import Course from '../../../components/Courses/Course'
+import axios from "axios"
 export default {
   name: "ShowCources",
   components: { Footer, AsideBar, Header ,Course },
@@ -87,7 +88,13 @@ export default {
       courses:[],
     }
   },
-  mounted() {
+  // async mounted() {
+  //   let result = await axios.get(' ');
+  //   if(result.status == 200 && result.data.length > 0) {
+  //     this.courses = result.data;
+  //   }
+  // },
+    mounted() {
     this.items = [
     {
         id: 1,  name:"منهج الفيزياء الثانوية العامة",  img:"../../../public/images/courses/img-2.jpg",
@@ -105,6 +112,7 @@ export default {
         pays:234,  opened:true,  showEditForm:false,
       },
     ];
+
     this.courses = this.items;
   },
   methods: {
@@ -113,12 +121,7 @@ export default {
     },
   },
   
-  // mounted() {
-  //   fetch("")
-  //   .then(res=>res.json())
-  //   .then(data=>this.courses=data)
-  //   .catch(err=> console.log(err.message))
-  // },
+
 };
 </script>
 

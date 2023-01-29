@@ -6,11 +6,26 @@
       <div class="cover">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
               <h2 class="st_title">
                 <i class="fas fa-plus-circle"></i>
-                تعديل دورة : {{ name }}
+                تعديل دورة : {{ course.name }}
               </h2>
+            </div>
+            <div class="col-lg-6">
+              <div v-if="save" class="alert alert-success" role="alert"> 
+              تم اضافه فصل بنجاح .
+              <span style="{
+                font-size:18px;
+                cursor: pointer;
+                display: inline-block;
+                transition: .5s a,}
+                " @click="
+                this.redirectTo({
+                  name: 'showsections', 
+                  params: {}
+                })"> عرض جميع الدورات </span>
+              </div>
             </div>
           </div>
           <div class="bg">
@@ -24,36 +39,43 @@
                           <label>
                             <i class="fas fa-pencil-alt"></i>تغير عنوان الدورة</label
                           >
-                          <input type="text" name="" id="" />
+                          <input type="text" v-model="course.name" name="" id="" />
                         </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12">
+                        <div class="course_des mt-30 box">
+                          <label>
+                          <i class="far fa-sticky-note"></i> تغير وصف الدورة </label>
+                          <textarea id="" v-model="course.desc" placeholder="اكتب وصف المحتوي..."></textarea>
+                        </div>
+                        
                       </div>
                       <div class="col-lg-12 col-md-12">
                         <div class="mt-30 box">
                           <label>
-                            <i class="fas fa-list"></i>تغير القسم الرئيسي
+                            <i class="fas fa-list"></i>تغير السنه الدراسيه
                           </label>
-                          <select class="ui hj145 cntry152">
+                          <select v-model="course.class_year" class="ui hj145 cntry152">
                             <option selected disabled value="">
                               اختيار من القائمة
                             </option>
                             <option value="1">الاول الثانوي</option>
-                            <option value="1">الثاني الثانوي</option>
-                            <option value="1">الثالث الثانوي</option>
+                            <option value="2">الثاني الثانوي</option>
+                            <option value="3">الثالث الثانوي</option>
                           </select>
                         </div>
                       </div>
                       <div class="col-lg-12 col-md-12">
                         <div class="box">
                           <label>
-                            <i class="fas fa-list"></i>تغير المرحلة الدراسية
+                            <i class="fas fa-list"></i>تغير الترم الدراسي
                           </label>
-                          <select class="ui hj145 cntry152">
+                          <select v-model="course.class_num" class="ui hj145 cntry152">
                             <option selected disabled value="">
                               اختيار من القائمة
                             </option>
-                            <option value="1">فيزياء</option>
-                            <option value="1">كيمياء</option>
-                            <option value="1">عربي</option>
+                            <option value="1">الاول</option>
+                            <option value="2">الثانى</option>
                           </select>
                         </div>
                       </div>
@@ -90,7 +112,7 @@
                         </div>
                       </div>
                       <div class="col-lg-9 col-md-4 col-sm-6 col-xs-6 col-6">
-                        <input type="number" name="" id="" />
+                        <input type="number" v-model="course.price" name="" id="" />
                       </div>
                       <div
                         class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-6 price"
@@ -100,6 +122,7 @@
                     </div>
                   </div>
                   <button
+                  @click="SaveChanged()"
                     data-direction="finish"
                     class="btn btn-default steps_btn"
                   >
@@ -120,10 +143,42 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
+import axios from "axios"
+
+
 export default {
   name: "EditeCourse",
   components: { Footer, AsideBar, Header },
-  props: ["id",'name'],
+  props: ["id"],
+  data() {
+    return {
+      save: false,
+      course: {},
+    }
+  },
+  // async mounted() {
+  //     let result = await axios.get('' + this.id);
+  //   if(result.status == 200) {
+  //     this.course = result.data;
+  //     }
+  // },
+  methods: {
+    // async SaveChanged()
+    // {
+    //   let result = await axios.put('' + this.id,
+    //     {
+    //       id: 1,
+    //       name: this.course.name,
+    //       class_num: this.course.class_num,
+    //       class_year: this.course.class_year,
+    //       price:this.course.price,
+    //       desc: this.course.desc
+    //     })
+    //   if(result.status == 200) {
+    //     this.save = true;
+    //   }
+    // }
+  },
 
 };
 </script>
@@ -137,3 +192,4 @@ export default {
 }
 
 </style>
+

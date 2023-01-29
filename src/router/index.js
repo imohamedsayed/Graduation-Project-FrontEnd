@@ -65,7 +65,7 @@ const routes = [
     component: Showsections,
   },
   {
-    path: "/dashboard/Editesection:id/:course",
+    path: "/dashboard/Editesection:id",
     name: "Editesection",
     component: Editesection,
     props: true,
@@ -165,7 +165,7 @@ const routes = [
     component: ShowCources,
   },
   {
-    path: "/dashboard/EditeCourse:id/:name",
+    path: "/dashboard/EditeCourse/:id",
     name: "EditeCourse",
     component: EditeCourse,
     props: true,
