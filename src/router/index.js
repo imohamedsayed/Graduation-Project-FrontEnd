@@ -28,11 +28,12 @@ import AppStudents from "../views/Dashboard/sections/ShowAppStudents.vue";
 import AddAppointment from "../views/Dashboard/sections/Appointments/AddApointment.vue";
 import EditAppointment from "../views/Dashboard/sections/Appointments/EditAppointment.vue";
 import ShowAppointments from "../views/Dashboard/sections/Appointments/ShowAppointments.vue";
-import Showsections from "../views/Dashboard/sections/ShowSections.vue"
-import Editesection from "../views/Dashboard/sections/Editesection.vue"
+import Showsections from "../views/Dashboard/sections/ShowSections.vue";
+import Editesection from "../views/Dashboard/sections/Editesection.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
+import stuProfile from "../views/website/student/Profile.vue";
 const routes = [
   {
     path: "/",
@@ -232,6 +233,18 @@ const routes = [
     path: "/dashboard/all_appointments",
     name: "appointments",
     component: ShowAppointments,
+  },
+
+  /*
+  
+    ----- > STUDENT PAGES
+  
+  */
+  {
+    path: "/profile/:id",
+    name: "profile",
+    component: stuProfile,
+    props: true,
   },
 ];
 
