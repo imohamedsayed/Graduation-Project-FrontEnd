@@ -30,7 +30,8 @@
         </div>
       </div>
     </div>
-    <div class="right">
+    <div class="right d-flex">
+      <input type="search" placeholder="ماذا تريد أن تتعلم" />
       <div class="logo" style="width: 140px">
         <img
           src="../../public/images/logo/logo_01.png"
@@ -112,6 +113,32 @@ export default {
   .right {
     @media (max-width: 991px) {
       padding-right: 30px;
+    }
+
+    input {
+      direction: rtl;
+      width: 400px;
+      border-radius: 15px;
+      padding: 5px 10px;
+      margin-right: 150px;
+      transition: all 0.3s ease;
+      &:focus {
+        outline: 2px solid var(--landing-blue);
+        transform: scale(1.05);
+      }
+      @media (max-width: 832px) {
+        margin-right: 10px;
+      }
+      @media (max-width: 720px) {
+        margin-right: 10px;
+        width: 160px;
+        background: transparent;
+        border: none;
+        border-bottom: 5px solid var(--landing-blue);
+      }
+      @media (max-width: 520px) {
+        display: none;
+      }
     }
   }
 }

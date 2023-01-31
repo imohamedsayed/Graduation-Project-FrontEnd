@@ -39,6 +39,7 @@ body::-webkit-scrollbar-thumb:hover {
   --landing-blue: #3a3276d8;
   --white-color: #f7f7f7;
   --light-blue: #363062;
+  --gray-blue: #3e376e4d;
   --border: 1px solid #ced4da;
 }
 
@@ -50,7 +51,7 @@ body::-webkit-scrollbar-thumb:hover {
   //color: #2c3e50;
   main {
     direction: rtl;
-    
+
     background: #f7f7f7;
     .view {
       min-height: calc(100vh - 60px);
