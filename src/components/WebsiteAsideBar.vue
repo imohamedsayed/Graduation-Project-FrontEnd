@@ -11,14 +11,14 @@
       </router-link>
 
       <!--Start Notifications-->
-      <a href="#">
+      <router-link :to="{ name: 'WebsiteNotificationPage' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-regular fa-bell"></i>
             <span>الاشعارات</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <!--End Notifications-->
       <!--Start cart-->
       <a href="#">
@@ -110,14 +110,14 @@
       </a>
       <!--End Favorites-->
       <!--Start store-->
-      <a href="#">
+      <router-link :to="{ name: 'websiteStore' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-store"></i>
             <span>المتجر</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <!--End store-->
       <!--Start genuses-->
       <a href="#">

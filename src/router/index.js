@@ -34,9 +34,9 @@ import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
 import stuProfile from "../views/website/student/Profile.vue";
-
 import studentcourse from '../views/website/Course/studentcourse.vue';
-
+import websiteStore from '../views/website/store/websiteStore.vue';
+import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 const routes = [
   {
     path: "/",
@@ -256,7 +256,16 @@ const routes = [
     component: studentcourse,
     props: true,
   },
-
+  {
+    path: "/Website/notifications",
+    name: "WebsiteNotificationPage",
+    component: WebsiteNotificationPage,
+  },
+  {
+    path: "/Website/Store",
+    name: "websiteStore",
+    component: websiteStore,
+  },
 ];
 
 const router = createRouter({
