@@ -100,14 +100,14 @@
       </a>
       <!--End My Courses-->
       <!--Start Favorites-->
-      <a href="#">
+      <router-link :to="{name : 'Favourite'}">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-regular fa-heart"></i>
             <span>المفضلة</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <!--End Favorites-->
       <!--Start store-->
       <router-link :to="{ name: 'websiteStore' }">

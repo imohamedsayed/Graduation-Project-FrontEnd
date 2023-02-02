@@ -36,6 +36,7 @@ import signup from "../views/Signup.vue";
 import stuProfile from "../views/website/student/Profile.vue";
 import studentcourse from '../views/website/Course/studentcourse.vue';
 import websiteStore from '../views/website/store/websiteStore.vue';
+import Favourite from '../views/website/Favourite/FavoritePage.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 const routes = [
   {
@@ -265,6 +266,11 @@ const routes = [
     path: "/Website/Store",
     name: "websiteStore",
     component: websiteStore,
+  },
+  {
+    path: "/Website/Favourite",
+    name: "Favourite",
+    component: Favourite,
   },
 ];
 
