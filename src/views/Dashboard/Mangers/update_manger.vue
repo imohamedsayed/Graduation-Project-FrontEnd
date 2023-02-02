@@ -20,49 +20,57 @@
                   <div class="form_content">
                     <div class="row">
                       <div class="col-lg-5 col-md-12">
-                        <div class="ui mt-30  focus box search">
+                        <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fas fa-pencil-alt"></i> تغير اسم المدير </label
-                          >
-                          <input type="text" v-model="name" name="" id=""  />
+                            <i class="fas fa-pencil-alt"></i> تغير اسم المدير
+                          </label>
+                          <input
+                            type="text"
+                            v-model="mangerName"
+                            name=""
+                            id=""
+                          />
                         </div>
                       </div>
                       <div class="col-1"></div>
                       <div class="col-lg-5 col-md-12">
-                        <div class="mt-30  box">
+                        <div class="mt-30 box">
                           <label>
-                            <i class="fa-regular fa-envelope"></i> تغير الايميل 
+                            <i class="fa-regular fa-envelope"></i> تغير الايميل
                           </label>
-                          <input type="email" v-model="email" name="" id="">
+                          <input type="email" v-model="email" name="" id="" />
                         </div>
                       </div>
                       <div class="col-1"></div>
                       <div class="col-lg-5 col-md-12">
-                        <div class="mt-30   box">
+                        <div class="mt-30 box">
                           <label>
-                            <i class="fa-sharp fa-solid fa-eye"></i> تغير كلمة المرور 
+                            <i class="fa-sharp fa-solid fa-eye"></i> تغير كلمة
+                            المرور
                           </label>
-                          <input type="password" v-model="password" name="" id="">
+                          <input
+                            type="password"
+                            v-model="password"
+                            name=""
+                            id=""
+                          />
                         </div>
                       </div>
                       <div class="col-1"></div>
 
                       <div class="col-lg-5 col-md-12">
-                        <div class="mt-30 box ">
-                          <label>
-                            <i class="fas fa-list"></i> مدير ل 
-                          </label>
+                        <div class="mt-30 box">
+                          <label> <i class="fas fa-list"></i> مدير ل </label>
                           <select class="">
                             <option selected disabled value="">
                               اختيار من القائمة
                             </option>
-                            <option value="1">فرع اسيوط </option>
+                            <option value="1">فرع اسيوط</option>
                             <option value="1">فرع القاهرة</option>
-                            <option value="1">فرع الاسكندريه </option>
+                            <option value="1">فرع الاسكندريه</option>
                           </select>
                         </div>
                       </div>
-
                     </div>
                   </div>
                   <br />
@@ -90,11 +98,11 @@ import AsideBar from "../../../components/AsideBar.vue";
 export default {
   name: "Update_Manger",
   components: { Footer, AsideBar, Header },
-  props: ["id",'name'],
-  data(){
-    return{
-
-      }
+  props: ["id", "name"],
+  data() {
+    return {
+      mangerName: this.name,
+    };
   },
 };
 </script>
@@ -137,7 +145,7 @@ export default {
       margin-left: 10px;
     }
   }
-  input{
+  input {
     padding: 15px 15px;
     height: auto;
     border-radius: 8px;
@@ -156,7 +164,7 @@ export default {
       position: relative;
     }
   }
-  
+
   .steps_btn {
     color: var(--white-color);
     margin: 25px 25px;
