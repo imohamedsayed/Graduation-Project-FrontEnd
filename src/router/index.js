@@ -34,7 +34,9 @@ import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
 import stuProfile from "../views/website/student/Profile.vue";
+
 import studentcourse from '../views/website/Course/studentcourse.vue';
+
 const routes = [
   {
     path: "/",
@@ -247,12 +249,14 @@ const routes = [
     component: stuProfile,
     props: true,
   },
+
   {
     path: "/course/:id",
     name: "course",
     component: studentcourse,
     props: true,
   },
+
 ];
 
 const router = createRouter({
