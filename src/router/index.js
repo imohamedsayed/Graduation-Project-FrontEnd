@@ -35,9 +35,12 @@ import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
 import stuProfile from "../views/website/student/Profile.vue";
 import studentcourse from '../views/website/Course/studentcourse.vue';
+import StdMatrial from"../views/website/Course/StdMatrial/StdMatrial.vue"
+import TeacherProfile from '../views/website/Profile teacher/TeacherProfile.vue'
 import websiteStore from '../views/website/store/websiteStore.vue';
 import Favourite from '../views/website/Favourite/FavoritePage.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
+
 const routes = [
   {
     path: "/",
@@ -250,7 +253,12 @@ const routes = [
     component: stuProfile,
     props: true,
   },
-
+  {
+    path: "/matrial/:id",
+    name: "matrial",
+    component: StdMatrial,
+    props: true,
+  },
   {
     path: "/course/:id",
     name: "course",
@@ -258,6 +266,14 @@ const routes = [
     props: true,
   },
   {
+
+    path: "/teacherProfile/:id",
+    name: "teacherProfile",
+    component: TeacherProfile,
+    props: true,
+  },
+
+
     path: "/Website/notifications",
     name: "WebsiteNotificationPage",
     component: WebsiteNotificationPage,
@@ -272,6 +288,7 @@ const routes = [
     name: "Favourite",
     component: Favourite,
   },
+
 ];
 
 const router = createRouter({

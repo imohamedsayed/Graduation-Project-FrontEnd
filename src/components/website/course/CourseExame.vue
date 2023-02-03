@@ -103,6 +103,10 @@ data() {
         margin: 15px;
         border-radius: 8px;
         box-shadow: 4px 2px 8px #00000052;
+        transition: .5s;
+        &:hover {
+            scale: 1.1;
+          }
         i
         {
           color: var(--darker-blue);

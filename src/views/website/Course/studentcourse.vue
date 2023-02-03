@@ -7,9 +7,9 @@
         <div class="backgrund">
           <div class="back"></div>
           <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 h_150" >
               <div class="image">
-                <img src="../../../assets/course/Rectangle_94.png" alt="">
+                <img src="../../../assets/course/8.png" alt="">
               </div>              
             </div>
             <div class="col-lg-7">
@@ -65,7 +65,7 @@
             <div class="col-6">
               <h3>أ / محمد خليفة</h3>
               <div class="std_btn">
-                <router-link :to="{name:'profile'}">
+                <router-link :to="{ name:'teacherProfile'}">
                   <i class="fa-sharp fa-solid fa-eye"></i>
                   الملف الشخصى
                 </router-link>
@@ -190,11 +190,14 @@ export default {
   }
   .sec1
   {    
+    // height: 320px ;
       .backgrund {
         padding: 30px;
-        background-image:url(../../../assets/course/Rectangle_94.png);
+        background:url(../../../assets/course/Rectangle_94.png) no-repeat;
+        background-size: cover;
+        
         position: relative;
-    
+          height: 100%;
         .back {
           position: absolute;
           top: 0;
@@ -203,17 +206,25 @@ export default {
           height: 100%;
           background-color: #776fb4b7;
         }
-    
+        .h_150{
+          height: 200px;
+        }
         .image {
           position: relative;
           border-radius: 12px;
           height: 100%;
           border: 5px solid #fff;
-          
+          @media (max-width:991px) {
+            height: 100%;
+            }
           img {
             border-radius: 12px;
             height: 100%;
             width: 100%;
+            @media (max-width:991px) {
+              height: 100%;
+              
+            }
           }
         }
     
@@ -245,6 +256,7 @@ export default {
           margin: auto;
         }
       img{
+            border-radius: 50%;
         width: 70%;
         margin: 0 auto;
       }
