@@ -1,7 +1,7 @@
 <template>
   <div class="channel_my item all__noti5">
     <div class="profile_link">
-      <img src="images/profile/01.jpg" alt="" />
+      <img src="../../public/images/profile/01.jpg" alt="" />
       <div class="pd_content">
         <h6>{{title}}</h6>
         <p class="noti__text5">
