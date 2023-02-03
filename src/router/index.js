@@ -273,7 +273,7 @@ const routes = [
     props: true,
   },
 
-
+  {
     path: "/Website/notifications",
     name: "WebsiteNotificationPage",
     component: WebsiteNotificationPage,
