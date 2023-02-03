@@ -21,14 +21,14 @@
       </router-link>
       <!--End Notifications-->
       <!--Start cart-->
-      <a href="#">
+      <router-link :to="{ name: 'cart' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-cart-shopping"></i>
             <span>عربة التسوق</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <!--End cart-->
 
       <!--Start Sections-->
