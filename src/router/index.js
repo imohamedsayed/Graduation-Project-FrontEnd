@@ -274,19 +274,22 @@ const routes = [
   },
 
   {
-    path: "/Website/notifications",
+    path: "/Website/notifications/:id",
     name: "WebsiteNotificationPage",
     component: WebsiteNotificationPage,
+    props: true,
   },
   {
-    path: "/Website/Store",
+    path: "/Website/Store/:id",
     name: "websiteStore",
     component: websiteStore,
+    props: true,
   },
   {
-    path: "/Website/Favourite",
+    path: "/Website/Favourite/:id",
     name: "Favourite",
     component: Favourite,
+    props: true,
   },
 
 ];

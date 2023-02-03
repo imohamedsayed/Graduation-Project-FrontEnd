@@ -6,8 +6,8 @@
     <div class="prod_content">
       <a href="#!" class="box-title">{{Note_name}}</a>
       <a href="#" class="crse-cate">{{Details}}</a>
-      <div class="row">
-        <p class="teacher col-6"><a href="#">{{TeacherName}}</a></p>
+      <div class=" row">
+        <p class="teacher1 col-6"><a href="#">{{TeacherName}}</a></p>
         <div class="price col-6">السعر :  {{price}}</div>
       </div>
       <div class="row">
@@ -60,7 +60,6 @@ export default {
 .prod_content {
   padding: 10px 5px;
   width: 100%;
-  position: relative;
   .box-title {
     display: block;
     font-size: 16px;
@@ -79,7 +78,7 @@ export default {
     padding-top: 2px;
     margin-bottom: 15px;
   }
-  .teacher a {
+  .teacher1 a {
     font-size: 16px;
     font-weight: 600;
     color: black !important;
@@ -87,7 +86,6 @@ export default {
     margin-bottom: 7px;
   }
   .price {
-    float: left !important;
     font-size: 16px;
     font-weight: 400;
     color: #333;
