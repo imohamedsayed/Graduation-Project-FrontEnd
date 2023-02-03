@@ -14,7 +14,7 @@
                 <div class="col-9">
                   <div class="title">
                     <i class="fa fa-video "></i>
-                    <span>{{ lec.name }}</span>
+                    <router-link :to="{}">{{ lec.name }}</router-link>
                   </div>
                 </div>
                 <div class="col-3">
@@ -115,15 +115,19 @@ export default {
       margin: 15px;
       border-radius: 8px;
       box-shadow: 4px 2px 8px #00000052;
-
+      transition: .5s;
+      &:hover {
+          scale: 1.1;
+        }
       i {
         color: var(--darker-blue);
         margin-left: 10px;
       }
 
-      .title span {
+      .title a {
         font-size: 19px;
-      }
+        color: var(--darker-blue);
+        }
       .quist_num
       {
         width: 100%;

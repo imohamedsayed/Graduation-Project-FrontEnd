@@ -90,14 +90,14 @@
       </div>
       <!--End Sections-->
       <!--Start My Courses-->
-      <a href="#">
+      <router-link :to="{ name:'matrial'}">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-clipboard"></i>
             <span>دوراتي</span>
           </div>
         </li>
-      </a>
+      </router-link>
       <!--End My Courses-->
       <!--Start Favorites-->
       <a href="#">

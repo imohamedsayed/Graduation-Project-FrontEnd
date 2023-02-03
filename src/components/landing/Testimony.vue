@@ -2,7 +2,10 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-10  ">
-          <swiper :modules="modules" :slides-per-view="1" :space-between="100" :pagination="{ clickable: true }"
+          <swiper :modules="modules"
+            :slides-per-view="1" 
+            :autoplay="autoplay"             
+            :space-between="100" :pagination="{ clickable: true }"
             @swiper="onSwiper" @slideChange="onSlideChange">
             <swiper-slide v-for="testy in testimonis" :key="testy">
               <div class="person">
@@ -22,7 +25,7 @@
 </template>
 <script>
 // import Swiper core and required modules
-import { Navigation,Pagination,Scrollbar,A11y } from 'swiper';
+import { Navigation,Pagination,Scrollbar,A11y,Autoplay } from 'swiper';
 
 // Import Swiper Vue.js components
 import { Swiper,SwiperSlide } from 'swiper/vue';
@@ -93,10 +96,16 @@ export default {
     const onSlideChange = () => {
       console.log('slide change');
     };
+    let autoplay = {
+      delay: 2500,
+      disableOnInteraction: false,
+    };
+    
     return {
       onSwiper,
       onSlideChange,
-      modules: [Navigation,Pagination,Scrollbar,A11y],
+      autoplay,
+      modules: [Navigation,Pagination,Scrollbar,A11y,Autoplay],
     };
   },
 };

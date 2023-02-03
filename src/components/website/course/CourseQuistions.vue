@@ -107,6 +107,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+li{
+  &:hover
+  {
+    scale: 1 !important;
+  }
+}
+  img{
+            border-radius: 50%;
+  }
 </style>

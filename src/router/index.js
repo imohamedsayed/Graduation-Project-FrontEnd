@@ -34,9 +34,9 @@ import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
 import stuProfile from "../views/website/student/Profile.vue";
-
 import studentcourse from '../views/website/Course/studentcourse.vue';
-
+import StdMatrial from"../views/website/Course/StdMatrial/StdMatrial.vue"
+import TeacherProfile from '../views/website/Profile teacher/TeacherProfile.vue'
 const routes = [
   {
     path: "/",
@@ -249,11 +249,22 @@ const routes = [
     component: stuProfile,
     props: true,
   },
-
+  {
+    path: "/matrial/:id",
+    name: "matrial",
+    component: StdMatrial,
+    props: true,
+  },
   {
     path: "/course/:id",
     name: "course",
     component: studentcourse,
+    props: true,
+  },
+  {
+    path: "/teacherProfile/:id",
+    name: "teacherProfile",
+    component: TeacherProfile,
     props: true,
   },
 
