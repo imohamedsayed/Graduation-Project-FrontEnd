@@ -39,6 +39,7 @@ import StdMatrial from"../views/website/Course/StdMatrial/StdMatrial.vue"
 import TeacherProfile from '../views/website/Profile teacher/TeacherProfile.vue'
 import websiteStore from '../views/website/store/websiteStore.vue';
 import Favourite from '../views/website/Favourite/FavoritePage.vue';
+import cart from '../views/website/Cart/cart.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 
 const routes = [
@@ -291,6 +292,12 @@ const routes = [
     component: Favourite,
     props: true,
   },
+  {
+    path: "/Website/cart/:id",
+    name: "cart",
+    component: cart,
+    props: true,
+  },
 
 ];
 
@@ -300,3 +307,4 @@ const router = createRouter({
 });
 
 export default router;
+
