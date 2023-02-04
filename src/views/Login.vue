@@ -65,6 +65,7 @@ export default {
     position: fixed;
     top: 15%;
     left: 50%;
+    width: 320px;
     transform: translate(-50%, -50%);
     @media (max-width: 375px) {
       top: 4%;
@@ -153,13 +154,13 @@ export default {
   }
   .copyrights {
     position: fixed;
-    bottom: 5%;
+    bottom: 3%;
     width: 100%;
     justify-content: center;
     gap: 10px;
     align-items: center;
     @media (max-width: 375px) {
-      bottom: 1%;
+      bottom: 0%;
       p {
         font-size: 14px !important;
       }
@@ -175,7 +176,7 @@ export default {
     }
 
     img {
-      width: 120px;
+      width: 60px;
     }
   }
 }
