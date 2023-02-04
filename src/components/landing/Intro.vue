@@ -63,6 +63,7 @@ export default {};
     display: flex;
     align-items: center;
     position: relative;
+    background: none;
     .txt {
       width: 520px;
       border-radius: 10px;
