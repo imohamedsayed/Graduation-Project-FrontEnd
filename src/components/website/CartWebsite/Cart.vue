@@ -152,15 +152,22 @@ p:first-child {
   color: #333;
   font-weight: 500;
 }
-.prce142 {
-  font-size: 16px;
-}
+
 .prce142 {
   float: left;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
-  color: black;
+  color: #333;
   text-align: left;
+}
+@media (max-width: 768px) {
+  .auth1lnkprce{
+  display: flex !important;
+  flex-direction: column !important;
+  }
+  .prce142{
+    text-align: right;
+  }
 }
 </style>
