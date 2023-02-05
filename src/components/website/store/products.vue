@@ -122,4 +122,15 @@ export default {
   color: white !important;
   background: var(--darker-blue) !important;
 }
+@media (max-width: 768px) {
+  .prod_content .row .add-to-cart1 {
+    font-size: 5px !important;
+  }
+  .prod_content .fav{
+        font-size: 5px !important;
+  }
+  .prod_content .price{
+      font-size: 15px !important;
+  }
+}
 </style>
