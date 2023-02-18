@@ -34,16 +34,22 @@ import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
 import signup from "../views/Signup.vue";
 import stuProfile from "../views/website/student/Profile.vue";
-import studentcourse from '../views/website/Course/studentcourse.vue';
-import StdMatrial from"../views/website/Course/StdMatrial/StdMatrial.vue"
-import TeacherProfile from '../views/website/Profile teacher/TeacherProfile.vue'
-import websiteStore from '../views/website/store/websiteStore.vue';
-import Favourite from '../views/website/Favourite/FavoritePage.vue';
-import superior from '../views/website/superiorStudent/superior.vue';
-import cart from '../views/website/Cart/cart.vue';
+import studentcourse from "../views/website/Course/studentcourse.vue";
+import StdMatrial from "../views/website/Course/StdMatrial/StdMatrial.vue";
+import TeacherProfile from "../views/website/Profile teacher/TeacherProfile.vue";
+import websiteStore from "../views/website/store/websiteStore.vue";
+import Favourite from "../views/website/Favourite/FavoritePage.vue";
+import superior from "../views/website/superiorStudent/superior.vue";
+import cart from "../views/website/Cart/cart.vue";
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
+import DashLogin from "../views/Dashboard/DashLogin.vue";
 
 const routes = [
+  {
+    path: "/dashboard/login",
+    name: "dash-login",
+    component: DashLogin,
+  },
   {
     path: "/",
     name: "landingPage",
@@ -268,7 +274,6 @@ const routes = [
     props: true,
   },
   {
-
     path: "/teacherProfile/:id",
     name: "teacherProfile",
     component: TeacherProfile,
@@ -305,7 +310,6 @@ const routes = [
     component: superior,
     props: true,
   },
-
 ];
 
 const router = createRouter({
@@ -314,4 +318,3 @@ const router = createRouter({
 });
 
 export default router;
-
