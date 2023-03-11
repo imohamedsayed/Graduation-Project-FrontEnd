@@ -6,11 +6,22 @@
       <div class="cover">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
               <h2 class="st_title">
-                <i class="fas fa-plus-circle"></i>
-              اضافه مدير جديد  
+                <i class="fas fa-plus-circle"></i> اضافه مدير جديد
               </h2>
+            </div>
+            <div class="col-lg-6">
+              <div v-if="save" class="alert alert-success" role="alert"> تم اضافة المدير بنجاح . <span style="{
+                    font-size:25px;
+                    cursor: pointer;
+                    display: inline-block;
+                    transition: .5s a,}" @click="
+                      this.redirectTo({
+                        name: 'Show_mangers',
+                        params: {}
+                      })"> عرض جميع المديرين </span>
+              </div>
             </div>
           </div>
           <div class="bg">
@@ -22,17 +33,15 @@
                       <div class="col-lg-5 col-md-12">
                         <div class="ui mt-30  focus box search">
                           <label>
-                            <i class="fas fa-pencil-alt"></i> اسم المدير </label
-                          >
-                          <input type="text" v-model="name" name="" id=""  />
+                            <i class="fas fa-pencil-alt"></i> اسم المدير </label>
+                          <input type="text" v-model="name" name="" id="" />
                         </div>
                       </div>
                       <div class="col-1"></div>
                       <div class="col-lg-5 col-md-12">
                         <div class="mt-30  box">
                           <label>
-                            <i class="fa-regular fa-envelope"></i> الايميل 
-                          </label>
+                            <i class="fa-regular fa-envelope"></i> الايميل </label>
                           <input type="email" v-model="email" name="" id="">
                         </div>
                       </div>
@@ -40,12 +49,19 @@
                       <div class="col-lg-5 col-md-12">
                         <div class="mt-30   box">
                           <label>
-                            <i class="fa-sharp fa-solid fa-eye"></i> كلمة المرور 
-                          </label>
+                            <i class="fa-sharp fa-solid fa-eye"></i> كلمة المرور </label>
                           <input type="password" v-model="password" name="" id="">
                         </div>
                       </div>
                       <div class="col-1"></div>
+                      <div class="col-lg-5 col-md-12">
+                        <div class="mt-30   box">
+                          <label>
+                            <i class="fa-sharp fa-solid fa-eye"></i> تأكيد كلمة المرور </label>
+                          <input type="password" v-model="confirm_password" name="" id="">
+                        </div>
+                      </div>
+                      <!-- 
 
                       <div class="col-lg-5 col-md-12">
                         <div class="mt-30 box ">
@@ -62,16 +78,11 @@
                           </select>
                         </div>
                       </div>
-
+                      -->
                     </div>
                   </div>
                   <br />
-                  <button
-                    data-direction="finish"
-                    class="btn btn-default steps_btn"
-                  >
-                    حفظ
-                  </button>
+                  <button data-direction="finish" class="btn btn-default steps_btn" @click="add_Maneger"> حفظ </button>
                 </div>
               </div>
             </div>
@@ -87,16 +98,44 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
+import axios from "axios";
+import { mapActions } from 'vuex';
 export default {
   name: "Add_Manger",
-  components: { Footer, AsideBar, Header },
-  data(){
-    return{
-      name:"",
-      email:"",
-      password:"",
-      position:""
-      }
+  components: { Footer,AsideBar,Header },
+  data() {
+    return {
+      name: "",
+      email: "",
+      password: "",
+      confirm_password: "",
+      save: false
+    }
+  },
+  methods: {
+    ...mapActions(['redirectTo']),
+    async add_Maneger() {
+      console.log(this.name);
+      let data = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.confirm_password
+      };
+      let maneger = await axios.post(
+        'api_dashboard/head-branch'
+        ,
+        data,
+      )
+        .then((res) => {
+          console.log(res.data)
+          this.save = true
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data.errors);
+        });
+    }
   },
 };
 </script>
@@ -104,22 +143,27 @@ export default {
 <style lang="scss">
 .new-course {
   margin-right: 14rem;
+
   @media (max-width: 991px) {
     margin-right: 0;
   }
 }
+
 .cover {
   padding: 30px 20px;
   width: 100%;
+
   .st_title {
     margin-bottom: 8px;
     color: var(--text-black);
     font-size: 20px;
+
     i {
       color: var(--darker-blue);
       margin-left: 10px;
     }
   }
+
   .bg {
     background: #fff;
     margin-top: 30px;
@@ -128,18 +172,21 @@ export default {
     border-radius: 10px;
     border: 1px solid #efefef;
   }
+
   label {
     font-weight: 500;
     margin-bottom: 10px !important;
     color: var(--text-black);
     text-align: right;
     display: block;
+
     i {
       color: var(--darker-blue) !important;
       margin-left: 10px;
     }
   }
-  input{
+
+  input {
     padding: 15px 15px;
     height: auto;
     border-radius: 8px;
@@ -148,17 +195,19 @@ export default {
     border: var(--border);
     width: 100%;
     margin-top: 10px;
+
     &:focus {
       outline: none;
     }
   }
+
   .form_content {
     .box {
       margin-top: 30px;
       position: relative;
     }
   }
-  
+
   // .steps_btn {
   //   color: var(--white-color);
   //   margin: 25px 25px;

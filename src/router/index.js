@@ -40,8 +40,13 @@ import TeacherProfile from '../views/website/Profile teacher/TeacherProfile.vue'
 import websiteStore from '../views/website/store/websiteStore.vue';
 import Favourite from '../views/website/Favourite/FavoritePage.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
-
+import Admin_Login from '../views/Admin_Login.vue'
 const routes = [
+  {
+    path: "/dashboard/login",
+    name: "Admin_Login",
+    component: Admin_Login,
+  },
   {
     path: "/",
     name: "landingPage",
@@ -110,7 +115,7 @@ const routes = [
     component: CreateBranch,
   },
   {
-    path: "/dashboard/UpdateBranch/:id/:name/:address/:phone/:hotline/:src",
+    path: "/dashboard/UpdateBranch/:id",
     name: "UpdateBranch",
     component: UpdateBranch,
     props: true,
@@ -126,7 +131,7 @@ const routes = [
     component: CreateAssistant,
   },
   {
-    path: "/dashboard/UpdateAssistant/:id/:name/:email/:salary/:password/:worktime",
+    path: "/dashboard/UpdateAssistant/:id",
     name: "UpdateAssistant",
     component: UpdateAssistant,
     props: true,
@@ -189,7 +194,7 @@ const routes = [
     component: Show_mangers,
   },
   {
-    path: "/dashboard/Update_Manger:id/:name",
+    path: "/dashboard/Update_Manger/:id",
     name: "Update_Manger",
     component: Update_Manger,
     props: true,
