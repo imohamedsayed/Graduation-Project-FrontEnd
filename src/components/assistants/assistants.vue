@@ -38,11 +38,6 @@
               $router.push({
                 name: 'UpdateAssistant',
                 params: { id: assistant.id ,
-                name: assistant.name,
-                          email:assistant.email,
-                          password:assistant.password,
-                          salary:assistant.salary,
-                          worktime:assistant.worktime
                 },
               })
             "
@@ -57,6 +52,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   props: ["assistant"],
   name: "assistant",
@@ -83,10 +79,20 @@ export default {
         cancelButtonColor: "#d33",
         confirmButtonText: "حذف",
         cancelButtonText: "لا ، إلغاء!",
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
           Swal.fire("تم !", "تم حذف المساعد", "نجاح");
           this.exists = false;
+            await axios.delete(
+            'api_dashboard/assistants/' + this.assistant.id)
+            .then((res) => {
+              console.log(res.data)
+            })
+            .catch(error => {
+              console.log(error)
+              console.log(error.response.data.errors);
+              console.log(error.response.data.message);
+            });
         }
       });
     },

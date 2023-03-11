@@ -27,6 +27,7 @@ import "ag-grid-enterprise";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import edit_delete from "../Etit_and_delete.vue";
+import axios from "axios";
 export default {
   name: "Manger",
   components: {
@@ -40,159 +41,46 @@ export default {
       paginationPageSize : 25,
     };
   },
+  mounted() {
+    let token = "Bearer " + localStorage.getItem('manger');
+    let maneger = axios.get(
+      'http://127.0.0.1:8000/api_dashboard/head-branch'
+      ,
+      {
+        headers:
+        {
+          'Authorization': `token ${ token }`
+        }
+      }
+    )
+      .then((res) => {
+        this.rowData.value = res.data.data
+        // console.log(res.data.data)
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.errors);
+      });
+  },
   setup() {
-    const rowData = reactive({
-      value: [
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "2",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "القاهرة",
-        },
-        {
-          ID: "3",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "4",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "القاهرة",
-        },
-        {
-          ID: "5",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "الاسكندرية",
-        },
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "2",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "القاهرة",
-        },
-        {
-          ID: "3",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "4",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "القاهرة",
-        },
-        {
-          ID: "5",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "الاسكندرية",
-        },
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "2",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "القاهرة",
-        },
-        {
-          ID: "3",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "4",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "القاهرة",
-        },
-        {
-          ID: "5",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "الاسكندرية",
-        },
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-        {
-          ID: "1",
-          Name: "اسم المدير",
-          Email: "abc@gmail.com",
-          Manage: "اسيوط",
-        },
-
-      ],
-    });
+    const rowData = reactive({}
+    );
     const columnDefs = reactive({
       value: [
-        { field: "Propirtis", cellRenderer: "edit_delete",
-          cellRendererParams:{edit:"Update_Manger",
-          },
+        {
+          field: "Propirtis",cellRenderer: "edit_delete",
           width: 120,maxWidth: 150,resizable: false
         },
-        { field: "Manage" },
-        { field: "Email" },
-        { field: "Name" },
-        { field: "ID",width: 70,maxWidth: 70,resizable: false },
+        // { field: "manage" },
+        { field: "email" },
+        { field: "name" },
+        { field: "id",width: 70,maxWidth: 70,resizable: false },
       ],
     });
     
 
 
-    // onMounted(() => {
-    //   fetch("")
-    //     .then((result) => result.json())
-    //     .then((remoteRowData) => (rowData.value = remoteRowData));
-    // });
+    
     
 
     const defaultColDef = {

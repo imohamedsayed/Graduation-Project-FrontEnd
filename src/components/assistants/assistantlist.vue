@@ -33,11 +33,11 @@
         <table class="table ucp-table">
           <thead class="thead-s">
             <tr>
-                          <th class=" text-center" scope="col">#</th>
-                          <th class=" cell-ta" scope="col">الاسم</th>
-                          <th class="open cell-ta" scope="col">الايميل</th>
-                          <th class="open text-center" scope="col">الراتب</th>
-                          <th class="open text-center" scope="col">مواعيد العمل</th>
+                <th class=" text-center" scope="col">#</th>
+                <th class=" cell-ta" scope="col">الاسم</th>
+                <th class="open cell-ta" scope="col">الايميل</th>
+                <th class="open text-center" scope="col">الراتب</th>
+                <th class="open text-center" scope="col">مواعيد العمل</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import assistants from "./assistants.vue";
 export default {
   components: { assistants },
@@ -67,38 +68,23 @@ export default {
       displayItems: [],
     };
   },
-  mounted() {
-    this.items = [
-      {
-      id: 1,
-      name:"احمد سامح",
-      email:"a@test",
-      password:"56464564",
-      salary:"2000$",
-      worktime:"8 - 2",
-      },
-      {
-      id: 2,
-      name:"محمد مختار",
-      email:"a@test",
-      password:"56464564",
-      salary:"2000$",
-      worktime:"8 - 2",
-      },
-      {
-      id: 3,
-      name:"محمد محي",
-      email:"a@test",
-      password:"56464564",
-      salary:"2000$",
-      worktime:"8 - 2",
-      },
-    ];
-    this.displayItems = this.items;
+  async mounted() {
+    let Branchs = await axios.get(
+      'api_dashboard/assistants')
+      .then((res) => {
+        this.displayItems = res.data.data;
+        this.items = res.data.data;
+        // console.log(res.data.data);
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.errors);
+      });
+    // this.displayItems = this.items;
   },
   methods: {
     searchAssistant(key) {
-      this.displayItems = this.items.filter((item) => item.name.includes(key));
+      this.displayItems = this.items.filter((item) => item.name.toLowerCase().includes(key.toLowerCase()));
     },
   },
 };

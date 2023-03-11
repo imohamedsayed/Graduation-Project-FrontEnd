@@ -1,16 +1,11 @@
 <template>
   <div class="row">
-    <div
-      style="display: flex; justify-content: space-between"
-      class="col-lg-12 col-md-12"
-    >
+    <div style="display: flex; justify-content: space-between" class="col-lg-12 col-md-12">
       <div class="mt-30">
         <label> <i class="fas fa-list"></i>الفروع</label>
       </div>
       <div class="content-action-btns">
-        <router-link :to="{ name: 'CreateBranch' }"
-          ><i class="fas fa-plus-circle"></i> اضافة فرع جديد</router-link
-        >
+        <router-link :to="{ name: 'CreateBranch' }"><i class="fas fa-plus-circle"></i> اضافة فرع جديد</router-link>
       </div>
     </div>
   </div>
@@ -18,12 +13,7 @@
     <div class="col-sm-12 col-md-6">
       <div class="left">
         <span>بحث : </span>
-        <input
-          type="text"
-          placeholder="البحث عن فرع"
-          v-model="search"
-          @keyup="searchBranch(search)"
-        />
+        <input type="text" placeholder="البحث عن فرع" v-model="search" @keyup="searchBranch(search)" />
       </div>
     </div>
   </div>
@@ -42,22 +32,17 @@
             </tr>
           </thead>
           <tbody>
-            <Branches
-              v-for="branch in displayItems"
-              :key="branch.id"
-              :branch="branch"
-            />
+            <Branches v-for="branch in displayItems" :key="branch.id" :branch="branch" />
           </tbody>
         </table>
-        <div class="alert alert-info mt-2" v-if="!displayItems.length">
-          لا توجد نتائج لعرضها !
-        </div>
+        <div class="alert alert-info mt-2" v-if="!displayItems.length"> لا توجد نتائج لعرضها ! </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import Branches from "./Branches.vue";
 export default {
   components: { Branches },
@@ -68,38 +53,31 @@ export default {
       displayItems: [],
     };
   },
-  mounted() {
-    this.items = [
+  async mounted() {
+    let token = "Bearer " + localStorage.getItem('manger');
+    let Branchs = await axios.get(
+      'http://127.0.0.1:8000/api_dashboard/branches',
       {
-        id: 1,
-        name: "القاهره",
-        address: "القاهره مدينه الزمالك شارع 15 بجوار مطعم كنتاكي",
-        phone: "01013367584",
-        hotline: "4544545",
-        src: "career-1.jpg",
-      },
-      {
-        id: 2,
-        name: "اسيوط",
-        address: "القاهره مدينه الزمالك شارع 15 بجوار مطعم كنتاكي",
-        phone: "01013367584",
-        hotline: "4544545",
-        src: "career-1.jpg",
-      },
-      {
-        id: 3,
-        name: "اسوان",
-        address: "القاهره مدينه الزمالك شارع 15 بجوار مطعم كنتاكي",
-        phone: "01013367584",
-        hotline: "4544545",
-        src: "career-1.jpg",
-      },
-    ];
-    this.displayItems = this.items;
+        headers:
+        {
+          'Authorization': `token ${ token }`
+        }
+      }
+    )
+      .then((res) => {
+        // this.save = true;
+        this.displayItems = res.data.data;
+        this.items = res.data.data;
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.errors);
+      });
+    // this.displayItems = this.items;
   },
   methods: {
     searchBranch(key) {
-      this.displayItems = this.items.filter((item) => item.name.includes(key));
+      this.displayItems = this.items.filter((item) => item.name.toLowerCase().includes(key.toLowerCase()));
     },
   },
 };
