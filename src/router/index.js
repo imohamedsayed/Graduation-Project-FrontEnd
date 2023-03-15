@@ -97,7 +97,7 @@ const routes = [
     component: CreateTerm,
   },
   {
-    path: "/dashboard/UpdateTerm/:id/:academicYear/:term",
+    path: "/dashboard/UpdateTerm/:id",
     name: "UpdateTerm",
     component: UpdateTerm,
     props: true,

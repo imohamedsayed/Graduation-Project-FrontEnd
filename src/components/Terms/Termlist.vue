@@ -34,9 +34,10 @@
           <thead class="thead-s">
             <tr>
               <th class="text-center" scope="col">#</th>
-              <th class="cell-ta" scope="col">السنه الدراسيه</th>
               <th class="open cell-ta" scope="col">الترم الدراسي</th>
-            </tr>
+                <th class="cell-ta" scope="col">السنه الدراسيه</th>
+                <th class="cell-ta" scope="col"> متاح </th>
+              </tr>
           </thead>
           <tbody>
             <Terms v-for="term in displayItems" :key="term.id" :term="term" />
@@ -51,6 +52,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Terms from "./Terms.vue";
 export default {
   components: { Terms },
@@ -61,17 +63,21 @@ export default {
       displayItems: [],
     };
   },
-  mounted() {
-    this.items = [
-      { id: 1, academicYear: "الاول الثانوي", term: "الترم الدراسي الثاني" },
-      { id: 2, academicYear: "الثاني الثانوي", term: "الترم الدراسي الثاني" },
-      { id: 3, academicYear: "الثالث الثانوي", term: "الترم الدراسي الثاني" },
-    ];
-    this.displayItems = this.items;
+  async mounted() {
+    await axios.get(
+      'api_dashboard/semesters',)
+      .then((res) => {
+        this.displayItems = res.data.data;
+        this.items = res.data.data;
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.errors);
+      });
   },
   methods: {
-    searchTerm(key) {
-      this.displayItems = this.items.filter((item) => item.academicYear.includes(key));
+    searchBranch(key) {
+      this.displayItems = this.items.filter((item) => item.name.toLowerCase().includes(key.toLowerCase()));
     },
   },
 };

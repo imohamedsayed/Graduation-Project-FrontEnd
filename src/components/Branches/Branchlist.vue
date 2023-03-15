@@ -54,18 +54,9 @@ export default {
     };
   },
   async mounted() {
-    let token = "Bearer " + localStorage.getItem('manger');
-    let Branchs = await axios.get(
-      'http://127.0.0.1:8000/api_dashboard/branches',
-      {
-        headers:
-        {
-          'Authorization': `token ${ token }`
-        }
-      }
-    )
+      await axios.get(
+      'api_dashboard/branches',)
       .then((res) => {
-        // this.save = true;
         this.displayItems = res.data.data;
         this.items = res.data.data;
       })
@@ -73,7 +64,6 @@ export default {
         console.log(error)
         console.log(error.response.data.errors);
       });
-    // this.displayItems = this.items;
   },
   methods: {
     searchBranch(key) {

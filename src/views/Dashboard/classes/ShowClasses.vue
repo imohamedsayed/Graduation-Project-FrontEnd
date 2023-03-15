@@ -16,11 +16,11 @@
             <tr dir="rtl">
               <th>#</th>
               <th>الاسم</th>
+              <th>السنة الدراسيه</th>
               <th>خصائص</th>
             </tr>
-            <Class />
-            <Class />
-            <Class />
+            <Class v-for="year in displayItems" :key="year.id" :year="year" />
+            
           </table>
         </div>
       </div>
@@ -34,8 +34,27 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import Class from "@/components/classes/Class.vue";
+import axios from 'axios';
 export default {
-  components: { Footer, AsideBar, Class, Header },
+  components: { Footer,AsideBar,Class,Header },
+  data() {
+    return {
+      items: [],
+      displayItems: [],
+    };
+  },
+  async mounted() {
+    let Branchs = await axios.get(
+      'api_dashboard/academicYears',)
+      .then((res) => {
+        this.displayItems = res.data.data;
+        this.items = res.data.data;
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.errors);
+      });
+  },
 };
 </script>
 

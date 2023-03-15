@@ -44,7 +44,7 @@ export default {
         }
       )
       .then((res) => {
-          console.log(res.data.user);
+          console.log(res.data.access_token);
           localStorage.setItem('manger',res.data.access_token);
           this.redirectTo(({
             name: 'home',

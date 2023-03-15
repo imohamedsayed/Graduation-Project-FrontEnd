@@ -116,16 +116,8 @@ export default {
     }
   },
   async mounted() {
-    let token = "Bearer " + localStorage.getItem('manger');
     let manegers = await axios.get(
-      'http://127.0.0.1:8000/api_dashboard/head-branch',
-      {
-        headers:
-        {
-          'Authorization': `token ${ token }`
-        }
-      }
-    )
+      'api_dashboard/head-branch')
       .then((res) => {
         this.manegers_list = res.data.data;
       })
@@ -146,18 +138,8 @@ export default {
         user_id: this.maneger,
         status: 1,
       }
-    let token = "Bearer " + localStorage.getItem('manger');
       let Branch = await axios.post(
-        'http://127.0.0.1:8000/api_dashboard/branches'
-        ,
-        data,
-        {
-          headers:
-          {
-            'Authorization': `token ${ token }`
-          }
-        }
-      )
+        'api_dashboard/branches' , data)
         .then((res) => {
           this.save = true;
           console.log(res.data)
