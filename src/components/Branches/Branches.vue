@@ -61,7 +61,7 @@ export default {
     return {
       opened: true,
       exists: true,
-      displayItems: [],
+      // displayItems: [],
     };
   },
   methods: {

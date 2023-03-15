@@ -119,7 +119,6 @@ export default {
     }
   },
   async mounted() {
-    let token = "Bearer " + localStorage.getItem('manger');
     await axios.get(
       'api_dashboard/assistants/' + this.id)
       .then((res) => {
@@ -145,7 +144,6 @@ export default {
         from: this.from,
         to: this.to,
       };
-      let token = "Bearer " + localStorage.getItem('manger');
       let assistant = await axios.post(
         'api_dashboard/assistants' + this.id  , data )
         .then((res) => {

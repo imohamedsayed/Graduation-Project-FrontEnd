@@ -1,14 +1,15 @@
-<template>
+<template v-if="exists">
   <tr class="class-item" dir="rtl">
-    <td class="class-id">1</td>
-    <td class="class-name">{{ className }}</td>
+    <td class="class-id">{{ year.id }}</td>
+    <td class="class-name">{{ year.name }}</td>
+    <td class="class-name">{{ year.year }}</td>
     <td class="class-actions">
       <div class="d-flex align-items-center gap-4">
         <button class="btn" @click="showEditForm = true">
           <i class="fa-regular fa-pen-to-square ms-1"></i>
           تعديل
         </button>
-        <button class="btn">
+        <button class="btn" @click="Delete">
           <i class="fa-solid fa-trash ms-1"></i>
           حذف
         </button>
@@ -17,11 +18,13 @@
   </tr>
   <teleport to="body">
     <div class="edit-class-form" v-if="showEditForm">
-      <form dir="rtl">
+      <form dir="rtl" @submit.prevent="upadte_class">
         <label>تغير اسم الصف</label>
         <input type="text" v-model="className" />
-        <div class="actions text-center mt-5" dir="rtl">
-          <button class="btn btn-success m-2">حفظ التغييرات</button>
+        <label>تغير  السنة الدراسية</label>
+        <input type="text" v-model="classyear" />
+          <div class="actions text-center mt-5" dir="rtl">
+          <button class="btn btn-success m-2"  >حفظ التغييرات</button>
           <button class="btn btn-danger m-2" @click="showEditForm = false">
             الغاء
           </button>
@@ -32,12 +35,67 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+  props: ["year"],
   data() {
     return {
-      className: "الأول الثانوي",
+      className: this.year.name,
+      classyear: this.year.year,
+      exists: true,
       showEditForm: false,
     };
+  },
+  methods: {
+    async upadte_class() {
+      let data = {
+        name: this.className,
+        year: this.classyear,
+        branch_id: 3
+      }
+      await axios.post('api_dashboard/academicYears/' + this.year.id ,data)
+        .then((res) => {
+          console.log(res.data)
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.message);
+        });
+    },
+      Delete() {
+      Swal.fire({
+        title: 'هل انت متاكد',
+        text: "لن تتمكن من التراجع عن هذا!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#363062',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'نعم ، احذفها!',
+        cancelButtonText: 'لا ، إلغاء!',
+      }).then(async (result) => {
+        if(result.isConfirmed) {
+          Swal.fire(
+            'تم الحذف!',
+            'تم حذف الصف',
+            'نجاح'
+          );
+          this.exists = false;
+          await axios.delete(
+            'api_dashboard/academicYears/' + this.year.id )
+            .then((res) => {
+              console.log(res.data)
+              setTimeout(() => {
+                location.reload();
+              },1500)
+            })
+            .catch(error => {
+              console.log(error)
+              console.log(error.response.data.errors);
+              console.log(error.response.data.message);
+            });
+        }
+      })
+    }
   },
 };
 </script>
