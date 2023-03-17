@@ -1,39 +1,29 @@
 <template>
-  <div class="login-user-page">
+  <div class="Forget-pass-page">
     <img src="../../public/images/logo/logo_01.png" class="img-logo" alt="" />
-    <div class="login-form">
-      <h1 class="text-center">مرحبا بعودتك</h1>
-      <p class="text-center">تابع رحلة التعلم من خلال تسجيل الدخول الي حسابك</p>
+    <div class="Forget-pass-form">
+      <h1 class="text-center">نسيت كلمه السر ؟</h1>
+      <p class="text-center">
+        أدخل بريدك الالكتروني للحصول علي رابط لاعداد كلمه مرور جديده
+      </p>
       <form dir="rtl" class="mt-5 mb-5">
         <div class="input-container d-flex align-items-center">
           <span class="form-icon"><i class="fa-solid fa-envelope"></i></span>
-          <input type="text" placeholder="رقم الهاتف أو البريد الالكتروني" />
-        </div>
-        <div class="input-container d-flex align-items-center">
-          <span
-            class="form-icon"
-            @click="passwordVisibility = !passwordVisibility"
-            ><i class="fa-solid fa-lock" v-if="!passwordVisibility"> </i
-            ><i class="fa-solid fa-lock-open" v-if="passwordVisibility"></i
-          ></span>
           <input
-            :type="passwordVisibility ? 'text' : 'password'"
-            placeholder="كلمة المرور"
+            type="email"
+            placeholder="رقم الهاتف أو البريد الالكتروني"
+            v-model="ConEmail"
+            name="Con-email"
           />
         </div>
-        <router-link :to="{ name: 'ForgetPassword' }">
-          <span class="Forget d-md-block d-none">
-             نسيت كلمه السر ?
-          </span>
+        <router-link :to="{ name: 'Verification' }">
+          <button class="btn">ارسل لي الرابط</button>
         </router-link>
-        <button class="btn">الدخول</button>
-        <div class="remember-me d-flex align-items-center gap-2 px-1 mt-3">
-          <input type="checkbox" name="rememberMe" />
-          <label>تذكرني المرة القادمة</label>
-        </div>
       </form>
       <div class="already-have-account mt-3">
-        <p>ليس لديك حساب ؟ <a href="#">انشاء حساب</a></p>
+        <router-link :to="{ name: 'login' }">
+          <p>الرجوع الي <a href="#">تسجيل الدخول</a></p>
+        </router-link>
       </div>
     </div>
     <div class="copyrights d-flex align-items-center">
@@ -51,14 +41,14 @@
 export default {
   data() {
     return {
-      passwordVisibility: false,
+      ConEmail: "",
     };
   },
 };
 </script>
 
 <style lang="scss">
-.login-user-page {
+.Forget-pass-page {
   height: 100vh;
   position: fixed;
   width: 100%;
@@ -77,7 +67,7 @@ export default {
       width: 120px;
     }
   }
-  .login-form {
+  .Forget-pass-form {
     position: absolute;
     top: 45%;
     left: 50%;
@@ -102,13 +92,13 @@ export default {
     form {
       width: 100%;
       box-sizing: border-box;
-      .Forget{
-      color: var(--bs-link-color);
-      font-size: 1.2rem;
-      font-weight: 600;
-      &:hover{
-        opacity: 0.7;
-      }
+      .Forget {
+        color: var(--bs-link-color);
+        font-size: 1.2rem;
+        font-weight: 600;
+        &:hover {
+          opacity: 0.7;
+        }
       }
       .form-icon {
         display: grid;
@@ -120,8 +110,7 @@ export default {
         font-size: 1.3rem;
         cursor: pointer;
       }
-      input[type="text"],
-      input[type="password"] {
+      input[type="email"] {
         width: 100%;
         margin: 10px 0;
         height: 45px;
@@ -152,16 +141,6 @@ export default {
         transition: all 0.3s ease;
         &:hover {
           opacity: 0.9;
-        }
-      }
-      .remember-me {
-        input {
-          height: 30px;
-          width: 30px;
-        }
-        label {
-          font-weight: 500;
-          font-size: 18px;
         }
       }
     }

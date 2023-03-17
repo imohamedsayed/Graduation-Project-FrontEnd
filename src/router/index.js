@@ -32,6 +32,9 @@ import Showsections from "../views/Dashboard/sections/ShowSections.vue";
 import Editesection from "../views/Dashboard/sections/Editesection.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
+import ForgetPassword from "../views/ForgetPassword.vue";
+import Verification from "../views/accountVerification.vue";
+import newPassword from "../views/newPassword.vue";
 import signup from "../views/Signup.vue";
 import stuProfile from "../views/website/student/Profile.vue";
 import studentcourse from '../views/website/Course/studentcourse.vue';
@@ -59,6 +62,21 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+  },
+  {
+    path: "/ForgetPassword",
+    name: "ForgetPassword",
+    component: ForgetPassword,
+  },
+  {
+    path: "/Verification",
+    name: "Verification",
+    component: Verification,
+  },
+  {
+    path: "/newPassword",
+    name: "newPassword",
+    component: newPassword,
   },
   {
     path: "/signup",
