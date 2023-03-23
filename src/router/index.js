@@ -41,6 +41,7 @@ import websiteStore from '../views/website/store/websiteStore.vue';
 import Favourite from '../views/website/Favourite/FavoritePage.vue';
 import superior from '../views/website/superiorStudent/superior.vue';
 import cart from '../views/website/Cart/cart.vue';
+import payment from '../views/website/payment/Payment.vue';
 import  testResult from '../views/website/test-result/result.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 import Admin_Login from '../views/Admin_Login.vue'
@@ -309,6 +310,12 @@ const routes = [
     path: "/Website/superior/:id",
     name: "superior",
     component: superior,
+    props: true,
+  },
+  {
+    path: "/Website/payment/:id",
+    name: "payment",
+    component: payment,
     props: true,
   },
   {
