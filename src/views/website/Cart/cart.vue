@@ -2,7 +2,7 @@
   <Header />
   <div class="main-view">
     <AsideBar />
-    <div class="cart">
+    <div class="cartShopping">
       <div class="content">
         <div class="container">
           <div class="row">
@@ -71,7 +71,7 @@
                     <h2>الاجمالي</h2>
                     <div class="order_price5">145 جنيه</div>
                   </div>
-                  <a href="#" class="chck-btn22">المتابعة الي الشراء</a>
+                  <router-link :to="{name : 'payment'}" class="chck-btn22">المتابعة الي الشراء</router-link>
                 </div>
               </div>
             </div>
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style lang="scss">
-.cart {
+.cartShopping {
   margin-right: 13rem;
   @media (max-width: 991px) {
     margin-right: 0;
