@@ -10,65 +10,42 @@
               <div class="col-lg-12 col-md-12">
                 <div class=" mt-30  ">
                   <label class="head">
-                    <i class="fas fa-list"></i>  منتجات المتجر</label
-                  >
+                    <i class="fas fa-list"></i> منتجات المتجر</label>
                 </div>
               </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <div class="left">
-                    <div > عرض 
-                      <select v-model="select" style="direction: ltr;" class="form-select" aria-label="Default select example">
-                        <option value="10" selected>10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                      </select>
-                      عناصر    
-                  </div>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                  <div class="right">
-                    <span>بحث : </span>
-                    <input v-model="search"
-                      @keyup="searchcours(search)"
-                      class="form-control form-control-sm" 
-                      type="text"
-                    >
-                  </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="left">
+                  <span>بحث : </span>
+                  <input v-model="search" @keyup="searchcourse(search)" class="form-control form-control-sm" type="text">
                 </div>
               </div>
-              <div class="row">
-                <div class="co-md-12">
-                  <div class="table-responsive ">
-                    <table class="table ucp-table">
-                      <thead class="thead-s">
-                        <tr>
-                          <th class=" text-center" scope="col">#</th>
-                          <th class=" cell-ta" scope="col">الاسم</th>
-                          <th class="open cell-ta" scope="col">الصورة</th>
-                          <th class="open cell-ta" scope="col">القسم</th>
-                          <th class="open text-center" scope="col">الصف</th>
-                          <th class="open text-center" scope="col">السعر</th>
-                          <th class="open text-center" scope="col">المبيعات</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <Course
-                          v-for="cours in courses"
-                          :key="cours.id"
-                          :cours="cours"
-                        />
-                      </tbody>
-                    </table>
-                  </div>
+            </div>
+            <div class="row">
+              <div class="co-md-12">
+                <div class="table-responsive ">
+                  <table class="table ucp-table">
+                    <thead class="thead-s">
+                      <tr>
+                        <th class=" text-center" scope="col">#</th>
+                        <th class=" cell-ta" scope="col">الاسم</th>
+                        <th class="open cell-ta" scope="col">متاح</th>
+                        <th class="open text-center" scope="col">السنة الدراسية</th>
+                        <th class="open text-center" scope="col">الترم الدراسى</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <Course v-for="cours in displayItems" :key="cours.id" :cours="cours" />
+                    </tbody>
+                  </table>
+                  <div class="alert alert-info mt-2" v-if="!displayItems.length"> لا توجد نتائج لعرضها ! </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
       <Footer></Footer>
     </div>
   </div>
@@ -82,45 +59,32 @@ import Course from '../../../components/Courses/Course'
 import axios from "axios"
 export default {
   name: "ShowCources",
-  components: { Footer, AsideBar, Header ,Course },
-  data(){
-    return{
-      courses:[],
-    }
+  components: { Footer,AsideBar,Header,Course },
+  data() {
+    return {
+      search: "",
+      items: [],
+      displayItems: [],
+    };
   },
-  // async mounted() {
-  //   let result = await axios.get(' ');
-  //   if(result.status == 200 && result.data.length > 0) {
-  //     this.courses = result.data;
-  //   }
-  // },
-    mounted() {
-    this.items = [
-    {
-        id: 1,  name:"منهج الفيزياء الثانوية العامة",  img:"../../../public/images/courses/img-2.jpg",
-        part:"فيزياء",  class_num:"الثالث الثانوي	",  price:350,
-        pays:234,  opened:true,  showEditForm:false,
-      },
-      {
-        id: 2,  name:"منهج الكيمياء الثانوية العامة",  img:"../../../public/images/courses/img-2.jpg",
-        part:"فيزياء",  class_num:"الثالث الثانوي	",  price:350,
-        pays:234,  opened:true,  showEditForm:false,
-      },
-      {
-        id: 3,  name:"منهج الاحياء الثانوية العامة",  img:"../../../public/images/courses/img-2.jpg",
-        part:"فيزياء",  class_num:"الثالث الثانوي	",  price:350,
-        pays:234,  opened:true,  showEditForm:false,
-      },
-    ];
-
-    this.courses = this.items;
+  async mounted() {
+    await axios.get(
+      'api_dashboard/subjects')
+      .then((res) => {
+        this.displayItems = res.data.data;
+        this.items = res.data.data;
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.errors);
+      });
   },
   methods: {
-    searchcours(key) {
-      this.courses = this.items.filter((item) => item.name.includes(key));
+    searchcourse(key) {
+      this.displayItems = this.items.filter((item) => item.name.toLowerCase().includes(key.toLowerCase()));
     },
   },
-  
+
 
 };
 </script>
@@ -128,9 +92,9 @@ export default {
 <style lang="scss">
 .ShowCources {
   margin-right: 14rem;
+
   @media (max-width: 991px) {
     margin-right: 0;
   }
 }
-
 </style>

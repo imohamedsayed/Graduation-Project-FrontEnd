@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import router from '@/router';
 const state = {};
+
 const getters = {
   user: (state)=>{
     return state.user;

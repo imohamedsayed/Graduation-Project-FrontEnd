@@ -5,21 +5,21 @@
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
     <td >{{teacher.name}}</td>
-    <td class="open">{{teacher.nickname}}</td>
-    <td class="open">{{teacher.email}}</td>
-    <td class="open">{{teacher.phone}}</td>
+    <td class="open">{{teacher.nick_name }}</td>
+    <!-- <td class="open">{{teacher.email}}</td> -->
+    <td class="open">{{teacher.phone_number }}</td>
   </tr>
   <tr class="close" v-if="!opened  & exists" >
     <td colspan="7">
       <ul>
       <li>العنوان 
-        <div>{{teacher.nickname}}</div>  
+        <div>{{teacher.nick_name }}</div>  
       </li>
-      <li>الايميل
+      <!-- <li>الايميل
         <div>{{teacher.email}}</div>
-      </li>
+      </li> -->
       <li>رقم التلفون
-        <div>{{teacher.phone}}</div>
+        <div>{{teacher.phone_number }}</div>
       </li>
     </ul>
     </td>
@@ -33,12 +33,7 @@
             @click="
               $router.push({
                 name: 'UpdateTeacher',
-                params: { id: teacher.id,
-                 name: teacher.name,
-                          nickname:teacher.nickname,
-                          email:teacher.email,
-                          phone:teacher.phone
-                 },
+                params: { id: teacher.id,       },
               })
             "
           >
@@ -51,6 +46,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   props:["teacher"],
   name: "teacher",
@@ -82,10 +78,20 @@ export default {
         cancelButtonColor: "#d33",
         confirmButtonText: "حذف",
         cancelButtonText: "لا ، إلغاء!",
-      }).then((result) => {
+      }).then(async(result) => {
         if (result.isConfirmed) {
           Swal.fire("تم !", "تم حذف المدرس", "نجاح");
           this.exists = false;
+          await axios.delete(
+            'api_dashboard/teachers/' + this.teacher.id)
+            .then((res) => {
+              console.log(res.data)
+            })
+            .catch(error => {
+              console.log(error)
+              console.log(error.response.data.errors);
+              console.log(error.response.data.message);
+            });
         }
       });
     },

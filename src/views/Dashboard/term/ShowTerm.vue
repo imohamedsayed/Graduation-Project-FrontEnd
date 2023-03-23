@@ -48,7 +48,7 @@ export default {
     border: 1px solid #efefef;
     label {
       font-weight: 500;
-      font-size: 22px;
+      // font-size: 22px;
       margin-bottom: 10px !important;
       color: #333;
       text-align: right;
