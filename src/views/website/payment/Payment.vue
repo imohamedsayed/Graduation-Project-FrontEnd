@@ -59,53 +59,79 @@
                 <div class="checkout-tabs">
                   <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-            <button class="nav-link active" id="credit-tab" data-bs-toggle="tab" data-bs-target="#credit" type="button" role="tab"
-              aria-controls="credit" aria-selected="true">
-              
-              بطاقه ائتمانيه
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link " id="bank-tab" data-bs-toggle="tab" data-bs-target="#bank" type="button" role="tab"
-              aria-controls="bank" aria-selected="true">
-            الدفع عند الاستلام
-            </button>
-          </li>
+                      <button
+                        class="nav-link active"
+                        id="credit-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#credit"
+                        type="button"
+                        role="tab"
+                        aria-controls="credit"
+                        aria-selected="true"
+                      >
+                        بطاقه ائتمانيه
+                      </button>
+                    </li>
+                    <li class="nav-item">
+                      <button
+                        class="nav-link"
+                        id="bank-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#bank"
+                        type="button"
+                        role="tab"
+                        aria-controls="bank"
+                        aria-selected="true"
+                      >
+                        الدفع عند الاستلام
+                      </button>
+                    </li>
                   </ul>
                 </div>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="credit" role="tabpanel" aria-labelledby="credit-tab">
+                  <div
+                    class="tab-pane fade show active"
+                    id="credit"
+                    role="tabpanel"
+                    aria-labelledby="credit-tab"
+                  >
                     <keep-alive>
-                        <bank/>
+                      <bank />
                     </keep-alive>
-					</div>
-                    </div>
+                  </div>
+                </div>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show" id="bank" role="tabpanel" aria-labelledby="credit-tab">
-                    
-                        <keep-alive>    <Fawry /> </keep-alive>
-					</div>
+                  <div
+                    class="tab-pane fade show"
+                    id="bank"
+                    role="tabpanel"
+                    aria-labelledby="credit-tab"
+                  >
+                    <keep-alive> <Fawry /> </keep-alive>
+                  </div>
+                </div>
+                <div class="chckout_order_dt1">
+                  <div class="checkout_title">
+                    <h4>عناصر الطلب</h4>
+                  </div>
+                  <div class="order_dt_section1">
+                    <div class="order_title">
+                      <h6>منهج الفيزياء | الثالث الثانوي</h6>
+                      <div class="order_price">150 ج.م</div>
                     </div>
-                    <div class="chckout_order_dt1">
-								<div class="checkout_title">
-									<h4>عناصر الطلب</h4>
-								</div>
-								<div class="order_dt_section1">
-									<div class="order_title">
-										<h6>منهج الفيزياء | الثالث الثانوي</h6>
-										<div class="order_price">150 ج.م</div>
-									</div>
-									<div class="order_title">
-										<h6>خصم</h6>
-										<div class="order_price">50 ج.م</div>
-									</div>
-									<div class="order_title">
-										<h6>اجمالي</h6>
-										<div class="order_price">100 ج.م</div>
-									</div>
-									<button class="chckot_btn" type="submit">تأكيد الدفع</button>
-								</div>
-							</div>
+                    <div class="order_title">
+                      <h6>خصم</h6>
+                      <div class="order_price">50 ج.م</div>
+                    </div>
+                    <div class="order_title">
+                      <h6>اجمالي</h6>
+                      <div class="order_price">100 ج.م</div>
+                    </div>
+                    <button class="chckot_btn" type="submit">
+                      تأكيد الدفع
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-lg-4">
@@ -145,7 +171,7 @@ import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import bank from "../../../components/website/payment/bank.vue";
 import Fawry from "../../../components/website/payment/Fawry.vue";
 export default {
-  components: { Footer, AsideBar, Header, bank  ,Fawry },
+  components: { Footer, AsideBar, Header, bank, Fawry },
   data() {
     return {};
   },
@@ -160,12 +186,12 @@ export default {
   }
 }
 .content {
-  background-color: #d9d9d9;
   direction: rtl;
   padding: 30px 20px;
   width: 100%;
 }
 .content2 {
+  background-color: #d9d9d9;
   direction: rtl;
   padding: 30px 10px;
   width: 100%;
@@ -293,19 +319,19 @@ export default {
   line-height: 35px;
   margin-top: 10px;
 }
-.payment{
-    background-image: url(../../../../src/assets/course/Rectangle\ 155.png);
-    background-size: cover;
-	width: 100%;
-	float: right;
-	padding: 30px;
-	border-radius: 10px;
-	border: 1px solid #efefef;
-	transition: all .2s ease-in-out;
-	margin-bottom: 30px;
+.payment {
+  background-image: url(../../../../src/assets/course/Rectangle\ 155.png);
+  background-size: cover;
+  width: 100%;
+  float: right;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #efefef;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 30px;
 }
-.payment h4{
-    font-size: 30px;
+.payment h4 {
+  font-size: 30px;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
   margin-bottom: 20px !important;
@@ -317,57 +343,56 @@ export default {
   border-bottom: 3px solid #f22424;
 }
 .checkout-tabs {
-    width: 100%;
-	margin-top: 42px;
-	margin-bottom: 20px;
-	direction: rtl;
+  width: 100%;
+  margin-top: 42px;
+  margin-bottom: 20px;
+  direction: rtl;
 }
-.checkout-tabs .nav-tabs{
-	border-top: 1px solid #efefef;
-	border-left: 1px solid #efefef;
-	border-right: 1px solid #efefef;
-	margin: 0;
-	border-bottom: 0;
-	background: #f7f7f7;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+.checkout-tabs .nav-tabs {
+  border-top: 1px solid #efefef;
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  margin: 0;
+  border-bottom: 0;
+  background: #f7f7f7;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .checkout-tabs .nav-tabs .nav-item {
-	width:50%;
-	text-align: center;
-	border-right: 1px solid #efefef;
+  width: 50%;
+  text-align: center;
+  border-right: 1px solid #efefef;
 }
 .checkout-tabs .nav-tabs .nav-item .nav-link {
-    width: 100%;
-
+  width: 100%;
 }
 .checkout-tabs .nav-tabs .nav-item .nav-link {
-	background:transparent;
-	color:#686f7a;
-	font-size: 19px;
-    font-weight: 500;
-    font-family: 'Roboto', sans-serif;
-    line-height:24px;
-	padding: 15px 10px !important;
-	margin-right: 0;
-	border:0;
-	text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  background: transparent;
+  color: #686f7a;
+  font-size: 19px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  line-height: 24px;
+  padding: 15px 10px !important;
+  margin-right: 0;
+  border: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.checkout-tabs .nav-tabs .nav-item.show .nav-link, .checkout-tabs .nav-tabs .nav-link.active {
-    color: #ed2a26 !important;
-    background-color: none !important;
-	border-bottom: 2px solid #ed2a26 !important;
+.checkout-tabs .nav-tabs .nav-item.show .nav-link,
+.checkout-tabs .nav-tabs .nav-link.active {
+  color: #ed2a26 !important;
+  background-color: none !important;
+  border-bottom: 2px solid #ed2a26 !important;
 }
 
 .checkout-tabs .nav-tabs .nav-item .nav-link:hover {
-    color: #333 !important;
-	background: none !important;
-	border-bottom: 2px solid #efefef;
-	text-decoration: none !important;
+  color: #333 !important;
+  background: none !important;
+  border-bottom: 2px solid #efefef;
+  text-decoration: none !important;
 }
-
 
 .checkout_title h4 {
   font-size: 18px;
@@ -460,70 +485,69 @@ export default {
   background: var(--darker-blue) !important;
 }
 .chckout_order_dt1 {
-    margin-top: 34px;
-    width: 100%;
-    border-top: 1px solid #efefef;
-    padding-top: 30px;
-    .checkout_title h4 {
-	font-size: 30px;
+  margin-top: 34px;
+  width: 100%;
+  border-top: 1px solid #efefef;
+  padding-top: 30px;
+  .checkout_title h4 {
+    font-size: 30px;
     font-weight: 500;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     margin-bottom: 10px !important;
     color: #333;
     text-align: right;
     line-height: 26px;
-}
+  }
 }
 .order_dt_section1 {
-	float: right;
-	width: 100%;
-    margin-top: 7px;
-    .order_title {
-	float: right;
-	width: 100%;
-	padding: 20px 0;
+  float: right;
+  width: 100%;
+  margin-top: 7px;
+  .order_title {
+    float: right;
+    width: 100%;
+    padding: 20px 0;
     border-bottom: 1px solid #efefef;
     .order_title h6 {
-	font-size: 16px;
-	font-weight: 600;
-	font-family: 'Roboto', sans-serif;
-	color: #333;
-	float: right;
-	margin-bottom: 0;
-	line-height: 24px;
-	width: 70%;
-	text-align: right;
-}
-.order_title .order_price {
-	font-size: 16px;
-	font-weight: 500;
-	font-family: 'Roboto', sans-serif;
-	color: #686f7a;
-	text-align: left;
-	float: left;
-	width: 30%;
-	margin-bottom: 0;
-}
-}
+      font-size: 16px;
+      font-weight: 600;
+      font-family: "Roboto", sans-serif;
+      color: #333;
+      float: right;
+      margin-bottom: 0;
+      line-height: 24px;
+      width: 70%;
+      text-align: right;
+    }
+    .order_title .order_price {
+      font-size: 16px;
+      font-weight: 500;
+      font-family: "Roboto", sans-serif;
+      color: #686f7a;
+      text-align: left;
+      float: left;
+      width: 30%;
+      margin-bottom: 0;
+    }
+  }
 }
 .chckot_btn {
-    height: 50px;
-    padding: 15px 40px;
-    border: 0;
-    margin-top: 30px;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    border-radius: 20px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    background: #4e54c8;
-	display: block;
+  height: 50px;
+  padding: 15px 40px;
+  border: 0;
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  background: #4e54c8;
+  display: block;
 }
 
 .chckot_btn:hover {
-    color: #fff !important;
-    background: #333;
+  color: #fff !important;
+  background: #333;
 }
-
 </style>
