@@ -12,7 +12,7 @@
         @slideChange="onSlideChange"
         >
           <swiper-slide v-for="cours in courses" :key="cours.id">
-            <div class="cart">
+            <div class="cartYear1">
               <div class="row">
                 <div class="col-12">
                   <div class="img">
@@ -132,8 +132,8 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.cart{
+<style lang="scss" scoped>
+.cartYear1{
   border: 2px solid #D9D9D9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.144);
   border-radius: 8px;

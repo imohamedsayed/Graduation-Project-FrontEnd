@@ -7,7 +7,7 @@
       <a href="#!" class="box-title">{{Note_name}}</a>
       <a href="#" class="crse-cate">{{Details}}</a>
       <div class="row">
-        <p class="teacher col-6"><a href="#">{{TeacherName}}</a></p>
+        <p class="teacher1 col-6"><a href="#">{{TeacherName}}</a></p>
         <div class="price col-6">السعر :  {{price}}</div>
       </div>
       <div class="row">
@@ -79,7 +79,7 @@ export default {
     padding-top: 2px;
     margin-bottom: 15px;
   }
-  .teacher a {
+  .teacher1 a {
     font-size: 16px;
     font-weight: 600;
     color: black !important;
@@ -121,5 +121,16 @@ export default {
 .prod_content .fav:hover {
   color: white !important;
   background: var(--darker-blue) !important;
+}
+@media (max-width: 768px) {
+  .prod_content .row .add-to-cart1 {
+    font-size: 5px !important;
+  }
+  .prod_content .fav{
+        font-size: 5px !important;
+  }
+  .prod_content .price{
+      font-size: 15px !important;
+  }
 }
 </style>

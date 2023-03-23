@@ -32,6 +32,7 @@
     </div>
     <div class="right d-flex">
       <input type="search" placeholder="ماذا تريد أن تتعلم" />
+
       <div class="logo" style="width: 140px">
         <img
           src="../../public/images/logo/logo_01.png"
@@ -111,10 +112,14 @@ export default {
     }
   }
   .right {
+    align-items: center;
     @media (max-width: 991px) {
-      padding-right: 30px;
     }
-
+    .logo {
+      img {
+        width: 70%;
+      }
+    }
     input {
       direction: rtl;
       width: 400px;
@@ -122,6 +127,7 @@ export default {
       padding: 5px 10px;
       margin-right: 150px;
       transition: all 0.3s ease;
+      height: 50px;
       &:focus {
         outline: 2px solid var(--landing-blue);
         transform: scale(1.05);

@@ -31,9 +31,9 @@
           تسجيل الدخول
         </button>
         <router-link :to="{ name: 'signup' }">
-        <button class="btn btn sign d-md-inline-block d-none">
-          انشاء حساب
-        </button>
+          <button class="btn btn sign d-md-inline-block d-none">
+            انشاء حساب
+          </button>
         </router-link>
         <div
           class="responsive-action d-md-none d-block"
@@ -50,7 +50,7 @@
                 >
               </li>
               <li>
-                <router-link :to="{ name: 'signup'}">
+                <router-link :to="{ name: 'signup' }">
                   <i class="fa-solid fa-right-to-bracket"></i>
                   انشاء حساب
                 </router-link>
@@ -209,6 +209,9 @@ export default {
       .logo {
         .img {
           width: 140px;
+          img {
+            width: 90% !important ;
+          }
         }
         .nav-toggler {
           background: linear-gradient(to right, #6b5fbbd2, var(--landing-blue));

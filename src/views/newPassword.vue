@@ -1,40 +1,35 @@
 <template>
-  <div class="login-user-page">
+  <div class="new-pass-page">
     <img src="../../public/images/logo/logo_01.png" class="img-logo" alt="" />
-    <div class="login-form">
-      <h1 class="text-center">مرحبا بعودتك</h1>
-      <p class="text-center">تابع رحلة التعلم من خلال تسجيل الدخول الي حسابك</p>
+    <div class="new-pass-form">
+      <h1 class="text-center">تعيين كلمه مرور جديده</h1>
       <form dir="rtl" class="mt-5 mb-5">
         <div class="input-container d-flex align-items-center">
-          <span class="form-icon"><i class="fa-solid fa-envelope"></i></span>
-          <input type="text" placeholder="رقم الهاتف أو البريد الالكتروني" />
+          <span
+            class="form-icon"
+            @click="passwordVisibility0 = !passwordVisibility0"
+            ><i class="fa-solid fa-lock" v-if="!passwordVisibility0"> </i
+            ><i class="fa-solid fa-lock-open" v-if="passwordVisibility0"></i
+          ></span>
+          <input
+            :type="passwordVisibility0 ? 'text' : 'password'"
+            placeholder="كلمه سر جديده"
+          />
         </div>
         <div class="input-container d-flex align-items-center">
           <span
             class="form-icon"
-            @click="passwordVisibility = !passwordVisibility"
-            ><i class="fa-solid fa-lock" v-if="!passwordVisibility"> </i
-            ><i class="fa-solid fa-lock-open" v-if="passwordVisibility"></i
+            @click="passwordVisibility1 = !passwordVisibility1"
+            ><i class="fa-solid fa-lock" v-if="!passwordVisibility1"> </i
+            ><i class="fa-solid fa-lock-open" v-if="passwordVisibility1"></i
           ></span>
           <input
-            :type="passwordVisibility ? 'text' : 'password'"
-            placeholder="كلمة المرور"
+            :type="passwordVisibility1 ? 'text' : 'password'"
+            placeholder="تاكيد كلمه السر الجديده"
           />
         </div>
-        <router-link :to="{ name: 'ForgetPassword' }">
-          <span class="Forget d-md-block d-none">
-             نسيت كلمه السر ?
-          </span>
-        </router-link>
-        <button class="btn">الدخول</button>
-        <div class="remember-me d-flex align-items-center gap-2 px-1 mt-3">
-          <input type="checkbox" name="rememberMe" />
-          <label>تذكرني المرة القادمة</label>
-        </div>
+        <button class="btn">تعيين</button>
       </form>
-      <div class="already-have-account mt-3">
-        <p>ليس لديك حساب ؟ <a href="#">انشاء حساب</a></p>
-      </div>
     </div>
     <div class="copyrights d-flex align-items-center">
       <img
@@ -51,14 +46,15 @@
 export default {
   data() {
     return {
-      passwordVisibility: false,
+      passwordVisibility0: false,
+      passwordVisibility1: false,
     };
   },
 };
 </script>
 
 <style lang="scss">
-.login-user-page {
+.new-pass-page {
   height: 100vh;
   position: fixed;
   width: 100%;
@@ -77,7 +73,7 @@ export default {
       width: 120px;
     }
   }
-  .login-form {
+  .new-pass-form {
     position: absolute;
     top: 45%;
     left: 50%;
@@ -94,21 +90,17 @@ export default {
     @media (max-width: 724px) {
       width: 100%;
     }
-    p {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #333;
-    }
+
     form {
       width: 100%;
       box-sizing: border-box;
-      .Forget{
-      color: var(--bs-link-color);
-      font-size: 1.2rem;
-      font-weight: 600;
-      &:hover{
-        opacity: 0.7;
-      }
+      .Forget {
+        color: var(--bs-link-color);
+        font-size: 1.2rem;
+        font-weight: 600;
+        &:hover {
+          opacity: 0.7;
+        }
       }
       .form-icon {
         display: grid;

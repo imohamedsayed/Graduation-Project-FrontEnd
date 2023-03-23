@@ -32,6 +32,9 @@ import Showsections from "../views/Dashboard/sections/ShowSections.vue";
 import Editesection from "../views/Dashboard/sections/Editesection.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
+import ForgetPassword from "../views/ForgetPassword.vue";
+import Verification from "../views/accountVerification.vue";
+import newPassword from "../views/newPassword.vue";
 import signup from "../views/Signup.vue";
 import stuProfile from "../views/website/student/Profile.vue";
 import studentcourse from '../views/website/Course/studentcourse.vue';
@@ -39,6 +42,11 @@ import StdMatrial from"../views/website/Course/StdMatrial/StdMatrial.vue"
 import TeacherProfile from '../views/website/Profile teacher/TeacherProfile.vue'
 import websiteStore from '../views/website/store/websiteStore.vue';
 import Favourite from '../views/website/Favourite/FavoritePage.vue';
+import superior from '../views/website/superiorStudent/superior.vue';
+import cart from '../views/website/Cart/cart.vue';
+import test from '../views/website/test/test.vue'
+import payment from '../views/website/payment/Payment.vue';
+import  testResult from '../views/website/test-result/result.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 import Admin_Login from '../views/Admin_Login.vue'
 const routes = [
@@ -56,6 +64,21 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+  },
+  {
+    path: "/ForgetPassword",
+    name: "ForgetPassword",
+    component: ForgetPassword,
+  },
+  {
+    path: "/Verification",
+    name: "Verification",
+    component: Verification,
+  },
+  {
+    path: "/newPassword",
+    name: "newPassword",
+    component: newPassword,
   },
   {
     path: "/signup",
@@ -279,19 +302,52 @@ const routes = [
   },
 
   {
-    path: "/Website/notifications",
+    path: "/Website/notifications/:id",
     name: "WebsiteNotificationPage",
     component: WebsiteNotificationPage,
+    props: true,
   },
   {
-    path: "/Website/Store",
+    path: "/Website/Store/:id",
     name: "websiteStore",
     component: websiteStore,
+    props: true,
   },
   {
-    path: "/Website/Favourite",
+    path: "/Website/Favourite/:id",
     name: "Favourite",
     component: Favourite,
+    props: true,
+  },
+  {
+    path: "/Website/cart/:id",
+    name: "cart",
+    component: cart,
+    props: true,
+  },
+  {
+    path: "/Website/test/:id",
+    name: "test",
+    component: test,
+    props: true,
+  },
+  {
+    path: "/Website/superior/:id",
+    name: "superior",
+    component: superior,
+    props: true,
+  },
+  {
+    path: "/Website/payment/:id",
+    name: "payment",
+    component: payment,
+    props: true,
+  },
+  {
+    path: "/Website/testResult/:id",
+    name: "testResult",
+    component: testResult,
+    props: true,
   },
 
 ];
@@ -302,3 +358,4 @@ const router = createRouter({
 });
 
 export default router;
+
