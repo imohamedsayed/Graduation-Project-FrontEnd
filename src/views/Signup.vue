@@ -3,7 +3,7 @@
     <img src="../../public/images/logo/logo_01.png" class="signup-logo" />
     <div class="signup-form">
       <p class="text-center">مرحبا بك في موقع (اسم الموقع)</p>
-      <form dir="rtl" class="col-lg-12 col-md-12">
+      <form dir="rtl" @submit.prevent="register" class="col-lg-12 col-md-12">
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
@@ -48,15 +48,27 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
-            <div class="ui search focus mt-30 lbel25">
+            <div class="    ">
               <label>الصف الدراسي</label>
-              <input type="text" v-model="Class" />
+              <select class=" " v-model="Class">
+                <option selected disabled value=""> اختيار من القائمة </option>
+                <option value="1"> الصف الاول الثانوى </option>
+                <option value="2"> الصف الثاني الثانوى </option>
+                <option value="3"> الصف الثالث الثانوى </option>
+              </select>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
-            <div class="ui search focus mt-30 lbel25">
+            <div class="    ">
               <label>الشعبه</label>
-              <input type="text" v-model="section" />
+              <select class=" " v-model="section">
+                <option selected disabled value=""> اختيار من القائمة </option>
+                <option value="1"> عام </option>
+                <option value="2"> علمى </option>
+                <option value="3"> ادبى </option>
+                <option value="4"> علمى رياضة </option>
+                <option value="5"> علمى علوم </option>
+              </select>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -91,11 +103,11 @@
           </div>
           <div class="col-lg-12 col-md-12">
             <div class="ui search focus mt-30 lbel25">
-              <input type="file" class="file" />
-              <label id="file" for="file"
-                >صوره البطاقه او شهاده الميلاد
-                <i class="fa-solid fa-cloud-arrow-down"></i
-              ></label>
+              <input type="file" class="file" @change="(e) => {
+                this.avatar = e.target.files[0];
+              }" />
+              <label id="file" for="file">صوره البطاقه او شهاده الميلاد <i
+                  class="fa-solid fa-cloud-arrow-down"></i></label>
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
@@ -105,7 +117,7 @@
             </div>
           </div>
         </div>
-        <button class="button">تسجيل</button>
+        <button class="button" type="submit">تسجيل</button>
       </form>
       <div class="text" style="text-align: center">
         <router-link :to="{ name: 'login' }">
@@ -117,6 +129,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -134,10 +147,71 @@ export default {
       year: "",
       month: "",
       day: "",
+      avatar:'',
+      years_list: []
     };
+  },
+  methods: {
+    async register() {
+      // let data = {
+      //   f_name: this.f_name,
+      //   m_name: this.SecondName,
+      //   l_name: this.lastName,
+      //   email: this.email,
+      //   password: this.pass,
+      //   password_confirmation: this.pass2,
+      //   phone_number: this.phone,
+      //   guardian_number: this.DadNumber,
+      //   year: this.year,
+      //   month: this.month,
+      //   day: this.day,
+      //   acedemic_year: this.class,
+      //   division: this.section,
+      //   governorate_id: 6,
+      //   national_id_card: this.photo,
+      // }
+      let data = new FormData;
+      data.append('f_name',this.f_name);
+      data.append('m_name',this.SecondName);
+      data.append('l_name',this.lastName);
+      data.append('email',this.email);
+      data.append('password',this.pass);
+      data.append('password_confirmation',this.pass2);
+      data.append('guardian_number',this.DadNumber);
+      data.append('year',this.year);
+      data.append('month',this.month);
+      data.append('day',this.day);
+      data.append('acedemic_year',this.class);
+      data.append('division',this.section);
+      data.append('governorate_id',6);
+      await axios.post('api/register',data
+      )
+        .then((res) => {
+          console.log(res.data)
+          this.save = true
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data.errors);
+        });
+    }
   },
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style lang="scss">
 .signup {
@@ -149,16 +223,19 @@ export default {
   background: url("../../public/images/landing/1.png");
   background-size: cover;
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .signup {
     height: 115vh;
   }
 }
+
 @media (max-width: 768px) {
   .signup {
     height: 195vh;
   }
 }
+
 .signup .signup-logo {
   margin: 40px 50% 10px;
   width: 100px;
@@ -177,29 +254,35 @@ export default {
   border-style: solid;
   border-image: linear-gradient(to bottom, #aeabc7, white, #aeabc7) 1;
 }
+
 @media (max-width: 375px) {
   .signup .signup-form {
     top: 35%;
     width: 120px;
   }
 }
+
 @media (max-width: 724px) {
   .signup .signup-form {
     width: 100%;
   }
 }
+
 .signup .signup-form p {
   font-size: 1.2rem;
   font-weight: bold;
   color: white;
 }
+
 .signup .signup-form form {
   width: 100%;
 }
+
 .signup .signup-form form input[type="text"],
 .signup .signup-form form input[type="email"],
 .signup .signup-form form input[type="phone"],
 .signup .signup-form form input[type="password"],
+.signup .signup-form form select,
 .signup .signup-form form input[type="date"] {
   width: 100%;
   margin: 5px 0;
@@ -213,14 +296,17 @@ export default {
   border: 2px solid transparent;
   background: #eee;
 }
+
 .signup .signup-form form input[type="text"],
 .signup .signup-form form input[type="email"],
 .signup .signup-form form input[type="phone"],
 .signup .signup-form form input[type="password"],
+.signup .signup-form form select,
 .signup .signup-form form input[type="date"]:focus {
   outline: none;
   border: 2px solid var(--landing-blue);
 }
+
 .signup .signup-form form input[type="text"],
 .signup .signup-form form input[type="email"],
 .signup .signup-form form input[type="phone"],
@@ -233,9 +319,11 @@ export default {
   margin: 15px 5px;
   padding: 80px;
 }
+
 .signup .signup-form form label {
   color: #eee;
 }
+
 .signup .signup-form form .file {
   opacity: 0;
   z-index: 1;
@@ -245,6 +333,7 @@ export default {
   left: 10px;
   cursor: pointer;
 }
+
 .signup .signup-form form #file {
   margin: 10px 0;
   display: block;
@@ -263,9 +352,11 @@ export default {
   color: rgba(0, 0, 0, 0.47);
   transition: transform 0.2s ease-out;
 }
+
 .signup .signup-form form #file i {
   margin: 0 7px;
 }
+
 .signup .signup-form form .button {
   padding: 8px 70px;
   margin: 0px 50%;
@@ -275,14 +366,17 @@ export default {
   background-image: linear-gradient(to right, #6061d7, #9296f0);
   color: #eee;
 }
+
 .signup .signup-form form .button:hover {
   background: var(--blue-color);
 }
+
 .signup .signup-form small {
   text-align: center !important;
   font-weight: bold;
   color: #eee;
 }
+
 .signup .signup-form .text small {
   cursor: pointer;
   margin: 10px 0 0;

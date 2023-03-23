@@ -147,7 +147,7 @@ const routes = [
     component: CreateTeacher,
   },
   {
-    path: "/dashboard/UpdateTeacher/:id/:name/:nickname/:email/:phone",
+    path: "/dashboard/UpdateTeacher/:id",
     name: "UpdateTeacher",
     component: UpdateTeacher,
     props: true,

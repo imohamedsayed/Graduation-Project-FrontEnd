@@ -36,7 +36,7 @@
               <th class="text-center" scope="col">#</th>
               <th class="cell-ta" scope="col">الاسم</th>
               <th class="open cell-ta" scope="col">اللقب</th>
-              <th class="open cell-ta" scope="col">الايميل</th>
+              <!-- <th class="open cell-ta" scope="col">الايميل</th> -->
               <th class="open text-center" scope="col">رقم التلفون</th>
             </tr>
           </thead>
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Teacher from "./Teacher.vue";
 export default {
   components: { Teacher },
@@ -67,31 +68,17 @@ export default {
       displayItems: [],
     };
   },
-  mounted() {
-    this.items = [
-      {
-      id: 1,
-      name:"احمد سامح ",
-      nickname:"وحش الفيزياء",
-      email:"0104@test",
-      phone:"564564546",
-      },
-      {
-      id: 2,
-      name:"خيري",
-      nickname:"عنتيل الكيمياء",
-      email:"0104@test",
-      phone:"564564546",
-      },
-      {
-      id: 3,
-      name:"محمود",
-      nickname:"برنس الرياضيات",
-      email:"0104@test",
-      phone:"564564546",
-      },
-    ];
-    this.displayItems = this.items;
+  async mounted() {
+    await axios.get(
+      'api_dashboard/teachers')
+      .then((res) => {
+        this.displayItems = res.data.data;
+        this.items = res.data.data;
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.errors);
+      });
   },
   methods: {
     searchBranch(key) {

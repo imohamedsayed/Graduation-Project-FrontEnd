@@ -7,8 +7,9 @@
     </td>
     <td>{{ assistant.name }}</td>
     <td class="open">{{ assistant.email }}</td>
-    <td class="open">{{ assistant.salary }}</td>
-    <td class="open">{{ assistant.worktime }}</td>
+    <td class="open">{{ info.salary }}</td>
+    <td class="open">{{ info.from }}</td>
+    <td class="open">{{ info.to }}</td>
   </tr>
   <tr class="close" v-if="!opened & exists">
     <td colspan="7">
@@ -19,7 +20,7 @@
         </li>
         <li>
           الراتب
-          <div>{{ assistant.salary }}</div>
+          <div>{{ info.salary }}</div>
         </li>
         <li>
           مواعيد العمل
@@ -60,6 +61,7 @@ export default {
     return {
       opened: true,
       exists: true,
+      info: this.assistant.exter_info
     };
   },
   methods: {

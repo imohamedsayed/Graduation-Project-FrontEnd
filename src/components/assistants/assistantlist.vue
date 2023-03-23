@@ -37,7 +37,8 @@
                 <th class=" cell-ta" scope="col">الاسم</th>
                 <th class="open cell-ta" scope="col">الايميل</th>
                 <th class="open text-center" scope="col">الراتب</th>
-                <th class="open text-center" scope="col">مواعيد العمل</th>
+                <th class="open text-center" scope="col"> من الساعة</th>
+                  <th class="open text-center" scope="col">الى الساعة </th>
             </tr>
           </thead>
           <tbody>

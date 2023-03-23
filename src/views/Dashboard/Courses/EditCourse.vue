@@ -8,23 +8,20 @@
           <div class="row">
             <div class="col-lg-6">
               <h2 class="st_title">
-                <i class="fas fa-plus-circle"></i>
-                تعديل دورة : {{ course.name }}
+                <i class="fas fa-plus-circle"></i> تعديل دورة : {{ course.name }}
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert"> 
-              تم اضافه فصل بنجاح .
-              <span style="{
-                font-size:18px;
-                cursor: pointer;
-                display: inline-block;
-                transition: .5s a,}
-                " @click="
-                this.redirectTo({
-                  name: 'showsections', 
-                  params: {}
-                })"> عرض جميع الدورات </span>
+              <div v-if="save" class="alert alert-success" role="alert"> تم اضافه فصل بنجاح . <span style="{
+                  font-size:18px;
+                  cursor: pointer;
+                  display: inline-block;
+                  transition: .5s a,}
+                  " @click="
+                    this.redirectTo({
+                      name: 'ShowCources',
+                      params: {}
+                    })"> عرض جميع الدورات </span>
               </div>
             </div>
           </div>
@@ -34,54 +31,56 @@
                 <div class="form">
                   <div class="form_content">
                     <div class="row">
-                      <div class="col-lg-12 col-md-12">
+                      <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fas fa-pencil-alt"></i>تغير عنوان الدورة</label
-                          >
+                            <i class="fas fa-pencil-alt"></i>تغير عنوان الدورة</label>
                           <input type="text" v-model="course.name" name="" id="" />
                         </div>
                       </div>
-                      <div class="col-lg-12 col-md-12">
+                      <!-- <div class="col-lg-6 col-md-6">
                         <div class="course_des mt-30 box">
                           <label>
                           <i class="far fa-sticky-note"></i> تغير وصف الدورة </label>
                           <textarea id="" v-model="course.desc" placeholder="اكتب وصف المحتوي..."></textarea>
                         </div>
                         
-                      </div>
-                      <div class="col-lg-12 col-md-12">
+                      </div> -->
+                      <div class="col-lg-6 col-md-12">
                         <div class="mt-30 box">
                           <label>
-                            <i class="fas fa-list"></i>تغير السنه الدراسيه
-                          </label>
-                          <select v-model="course.class_year" class="ui hj145 cntry152">
-                            <option selected disabled value="">
-                              اختيار من القائمة
-                            </option>
-                            <option value="1">الاول الثانوي</option>
-                            <option value="2">الثاني الثانوي</option>
-                            <option value="3">الثالث الثانوي</option>
+                            <i class="fas fa-list"></i>تغير السنه الدراسيه </label>
+                          <select v-model="course.academic_year_id">
+                            <option selected disabled value=""> اختيار من القائمة </option>
+                            <option v-for="year in years_list" :key="year.id" :value="year.id">{{ year.name }} -{{
+                              year.year }} </option>
                           </select>
                         </div>
                       </div>
-                      <div class="col-lg-12 col-md-12">
+                      <div class="col-lg-6 col-md-12">
                         <div class="box">
                           <label>
-                            <i class="fas fa-list"></i>تغير الترم الدراسي
-                          </label>
-                          <select v-model="course.class_num" class="ui hj145 cntry152">
-                            <option selected disabled value="">
-                              اختيار من القائمة
-                            </option>
+                            <i class="fas fa-list"></i>تغير الترم الدراسي </label>
+                          <select v-model="course.semester_id" class="ui hj145 cntry152">
+                            <option selected disabled value=""> اختيار من القائمة </option>
                             <option value="1">الاول</option>
                             <option value="2">الثانى</option>
                           </select>
                         </div>
                       </div>
+                      <div class="col-lg-6 col-md-6 ">
+                        <div class="box pt-2 ">
+                          <div class="status mt-30 focus box search ">
+                            <div class=" statusbg  d-flex align-items-center  gap-4 px-1 mt-4 ">
+                              <input type="checkbox" name="" v-model="status" />
+                              <label class="pt-4"> متاح </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="view_info">
+                  <!-- <div class="view_info">
                     <div class="left">
                       <div class="view_img">
                         <img
@@ -106,7 +105,7 @@
                   <br />
                   <div class="course_price">
                     <div class="row">
-                      <div class="col-lg-12">
+                      <div class="col-lg-6">
                         <div class="box">
                           <label><i class="fas fa-dollar-sign"></i>تغير السعر</label>
                         </div>
@@ -120,14 +119,8 @@
                         <span>EGP</span>
                       </div>
                     </div>
-                  </div>
-                  <button
-                  @click="SaveChanged()"
-                    data-direction="finish"
-                    class="btn btn-default steps_btn"
-                  >
-                    حفظ
-                  </button>
+                  </div> -->
+                  <button @click="SaveChanged()" data-direction="finish" class="btn btn-default steps_btn"> حفظ </button>
                 </div>
               </div>
             </div>
@@ -144,53 +137,78 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import axios from "axios"
+import { mapActions } from 'vuex';
 
 
 export default {
   name: "EditeCourse",
-  components: { Footer, AsideBar, Header },
+  components: { Footer,AsideBar,Header },
   props: ["id"],
   data() {
     return {
       save: false,
       course: {},
+      years_list: {},
+      status:false,
     }
   },
-  // async mounted() {
-  //     let result = await axios.get('' + this.id);
-  //   if(result.status == 200) {
-  //     this.course = result.data;
-  //     }
-  // },
-  
+  async mounted() {
+    await axios.get(
+      'api_dashboard/academicYears')
+      .then((res) => {
+        this.years_list = res.data.data;
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.message);
+      });
+    await axios.get(
+      'api_dashboard/subjects/' + this.id)
+      .then((res) => {
+        this.course = res.data.data;
+        this.status=this.course.status == "1" ? true : false
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.message);
+      });
+
+  },
   methods: {
-    // async SaveChanged()
-    // {
-    //   let result = await axios.put('' + this.id,
-    //     {
-    //       id: 1,
-    //       name: this.course.name,
-    //       class_num: this.course.class_num,
-    //       class_year: this.course.class_year,
-    //       price:this.course.price,
-    //       desc: this.course.desc
-    //     })
-    //   if(result.status == 200) {
-    //     this.save = true;
-    //   }
-    // }
+    ...mapActions(['redirectTo']),
+    async SaveChanged()
+    {
+      let data = {
+        name: this.course.name,
+        academic_year_id: this.course.academic_year_id,
+        semester_id: this.course.semester_id,
+        status: this.status ? '1' : '0',
+        // desc: this.course_desc,
+        // price: this.course_title,
+        // img: this.course_photo,
+      }
+      await axios.post('api_dashboard/subjects/'+this.id,data)
+        .then((res) => {
+          console.log(res.data)
+          this.save = true
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data.errors);
+        });
+    }
   },
 
 };
 </script>
 
 <style lang="scss">
-.EditeCourse{
+.EditeCourse {
   margin-right: 14rem;
+
   @media (max-width: 991px) {
     margin-right: 0;
   }
 }
-
 </style>
 

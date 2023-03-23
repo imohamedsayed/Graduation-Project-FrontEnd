@@ -124,6 +124,9 @@ export default {
       .then((res) => {
         this.name = res.data.data.name;
         this.email = res.data.data.email;
+        this.salary = res.data.data.exter_info.salary;
+        this.from = res.data.data.exter_info.from;
+        this.to = res.data.data.exter_info.to;
         console.log(res.data.data);
       })
       .catch(error => {
@@ -145,14 +148,14 @@ export default {
         to: this.to,
       };
       let assistant = await axios.post(
-        'api_dashboard/assistants' + this.id  , data )
+        'api_dashboard/assistants/' + this.id  , data )
         .then((res) => {
           console.log(res.data)
           this.save = true
         })
         .catch(error => {
           console.log(error.message)
-          // console.log(error.response.data.errors);
+          console.log(error.response.data.errors);
         });
 
     }

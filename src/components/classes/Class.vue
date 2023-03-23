@@ -6,28 +6,32 @@
     <td class="class-actions">
       <div class="d-flex align-items-center gap-4">
         <button class="btn" @click="showEditForm = true">
-          <i class="fa-regular fa-pen-to-square ms-1"></i>
-          تعديل
-        </button>
+          <i class="fa-regular fa-pen-to-square ms-1"></i> تعديل </button>
         <button class="btn" @click="Delete">
-          <i class="fa-solid fa-trash ms-1"></i>
-          حذف
-        </button>
+          <i class="fa-solid fa-trash ms-1"></i> حذف </button>
       </div>
     </td>
   </tr>
   <teleport to="body">
     <div class="edit-class-form" v-if="showEditForm">
       <form dir="rtl" @submit.prevent="upadte_class">
+        <div class="row">
+          <div class="col-lg-12">
+            <div v-if="save" class="alert alert-success" role="alert"> تم تعديل صف دراسى بنجاح . </div>
+          </div>
+        </div>
         <label>تغير اسم الصف</label>
-        <input type="text" v-model="className" />
-        <label>تغير  السنة الدراسية</label>
+        <select v-model="className" class="">
+          <option selected disabled value=""> اختيار من القائمة </option>
+          <option value="1"> الصف الاول الثانوى </option>
+          <option value="2"> الصف الثانى الثانوى </option>
+          <option value="3"> الصف الثالث الثانوى </option>
+        </select>
+        <label>تغير السنة الدراسية</label>
         <input type="text" v-model="classyear" />
-          <div class="actions text-center mt-5" dir="rtl">
-          <button class="btn btn-success m-2"  >حفظ التغييرات</button>
-          <button class="btn btn-danger m-2" @click="showEditForm = false">
-            الغاء
-          </button>
+        <div class="actions text-center mt-5" dir="rtl">
+          <button class="btn btn-success m-2" type="submit">حفظ التغييرات</button>
+          <button class="btn btn-danger m-2" @click="showEditForm = false"> الغاء </button>
         </div>
       </form>
     </div>
@@ -36,14 +40,17 @@
 
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex';
 export default {
   props: ["year"],
   data() {
     return {
       className: this.year.name,
       classyear: this.year.year,
+      branch_id: this.year.branch_id,
       exists: true,
       showEditForm: false,
+      save: false,
     };
   },
   methods: {
@@ -51,18 +58,22 @@ export default {
       let data = {
         name: this.className,
         year: this.classyear,
-        branch_id: 3
+        branch_id: this.branch_id
       }
-      await axios.post('api_dashboard/academicYears/' + this.year.id ,data)
+      await axios.post('api_dashboard/academicYears/' + this.year.id,data)
         .then((res) => {
-          console.log(res.data)
+          this.save = true;
+          setTimeout(() => {
+            this.showEditForm = false;
+          }, 2000);
         })
         .catch(error => {
           console.log(error)
+          console.log(error.response.data.message);
           console.log(error.message);
         });
     },
-      Delete() {
+    Delete() {
       Swal.fire({
         title: 'هل انت متاكد',
         text: "لن تتمكن من التراجع عن هذا!",
@@ -81,7 +92,7 @@ export default {
           );
           this.exists = false;
           await axios.delete(
-            'api_dashboard/academicYears/' + this.year.id )
+            'api_dashboard/academicYears/' + this.year.id)
             .then((res) => {
               console.log(res.data)
               setTimeout(() => {
@@ -106,12 +117,14 @@ export default {
     padding: 10px 20px;
     color: white;
     background: var(--blue-color);
+
     &:hover {
       background: var(--darker-blue);
       color: #fff;
     }
   }
 }
+
 .edit-class-form {
   position: fixed;
   min-width: 30%;
@@ -122,6 +135,7 @@ export default {
   padding: 20px 30px;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgba($color: #000000, $alpha: 0.2);
+
   label {
     display: block;
     font-size: 1.3rem;
@@ -129,25 +143,32 @@ export default {
     color: #777;
     font-weight: bold;
   }
-  input {
+
+  input,
+  select {
     width: 100%;
     border: none;
     padding: 10px 15px;
     border-bottom: 3px solid var(--blue-color);
     font-size: 1.2rem;
+
     &:focus {
       outline: none;
     }
   }
+
   .btn {
     box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
   }
+
   animation: fadeIn 0.8s ease;
 }
+
 @keyframes fadeIn {
   0% {
     transform: translate(-100%, -20%);
   }
+
   100% {
     transform: translate(-10%, -20%);
   }

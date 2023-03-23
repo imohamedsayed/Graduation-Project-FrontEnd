@@ -58,7 +58,7 @@
                               </div>
                               <div class="col-lg-6 col-md-6">
                                 <div class="status mt-30 focus box search">
-                                  <div class="  d-flex align-items-center  gap-4 px-1 mt-3">
+                                  <div class=" statusbg  d-flex align-items-center  gap-4 px-1 mt-3">
                                     <input type="checkbox" name="" v-model="status" />
                                     <label> متاح </label>
                                   </div>
@@ -224,11 +224,19 @@ export default {
   background: var(--darker-blue) !important;
 }
 
-.status input {
+.status{
+  .statusbg
+  {
+  background-color: #efefef;
+  border-radius: 10px;
+  // width: calc(100% - 20px);
+
+  }
+  input {
   // width: auto !important;
   height: 20px !important;
   width: 20px !important;
   margin-top: 20px !important;
   // padding:20px 10px !important;
-}
+}}
 </style>

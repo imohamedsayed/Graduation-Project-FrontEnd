@@ -13,14 +13,14 @@
             </div>
             <div class="col-lg-6">
               <div v-if="save" class="alert alert-success" role="alert"> تم اضافه صف دراسى بنجاح . <span style="{
-                          font-size:18px;
-                          cursor: pointer;
-                          display: inline-block;
-                          transition: .5s a,}" @click="
-                            this.redirectTo({
-                              name: 'viewClasses',
-                              params: {}
-                            })"> عرض جميع الصفوف الدراسية </span>
+                            font-size:18px;
+                            cursor: pointer;
+                            display: inline-block;
+                            transition: .5s a,}" @click="
+                              this.redirectTo({
+                                name: 'viewClasses',
+                                params: {}
+                              })"> عرض جميع الصفوف الدراسية </span>
               </div>
             </div>
           </div>
@@ -52,17 +52,6 @@
                                   <input type="text" v-model="classyear" />
                                 </div>
                               </div>
-                              <div class="col-lg-6 col-md-12">
-                                <div class="mt-30 box ">
-                                  <label>
-                                    <i class="fas fa-list"></i> الفرع </label>
-                                  <select v-model="branch_id" class="">
-                                    <option selected disabled value=""> اختيار من القائمة </option>
-                                    <option v-for="branch in branches_list" :key="branch.id" :value="branch.id">{{
-                                      branch.name }}</option>
-                                  </select>
-                                </div>
-                              </div>
                             </div>
                           </div>
                           <button data-direction="finish" class="btn btn-default steps_btn" @click="add_year"> حفظ
@@ -84,11 +73,13 @@
 
 <script>
 // @ is an alias to /src
+// user.branch_id_assistant
+
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import axios from 'axios';
-import { mapActions } from 'vuex';
+import { mapActions,mapGetters } from 'vuex';
 
 export default {
   name: "CreateClass",
@@ -102,25 +93,14 @@ export default {
       save: false
     }
   },
-  async mounted() {
-    let branches = await axios.get(
-      'api_dashboard/branches')
-      .then((res) => {
-        this.branches_list = res.data.data;
-        console.log(res.data.data);
-      })
-      .catch(error => {
-        console.log(error)
-        console.log(error.response.data.message);
-      });
-  },
   methods: {
     ...mapActions(['redirectTo']),
+    ...mapGetters(['user']),
     async add_year() {
       let data = {
         name: this.className,
         year: this.classyear,
-        branch_id: 3
+        branch_id: localStorage.getItem('branch_id'),
       }
       await axios.post('api_dashboard/academicYears',data)
         .then((res) => {
