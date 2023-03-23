@@ -104,12 +104,12 @@ export default {
   }
 }
 .content {
-  background-color: #d9d9d9;
   direction: rtl;
   padding: 30px 20px;
   width: 100%;
 }
 .content2 {
+  background-color: #d9d9d9;
   direction: rtl;
   padding: 30px 10px;
   width: 100%;
