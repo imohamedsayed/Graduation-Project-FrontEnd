@@ -47,6 +47,7 @@ import cart from '../views/website/Cart/cart.vue';
 import test from '../views/website/test/test.vue'
 import payment from '../views/website/payment/Payment.vue';
 import  testResult from '../views/website/test-result/result.vue';
+import  chooseBranch from '../views/website/chooseBranch/ChooseBranch.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 import Admin_Login from '../views/Admin_Login.vue'
 const routes = [
@@ -335,6 +336,12 @@ const routes = [
     path: "/Website/superior/:id",
     name: "superior",
     component: superior,
+    props: true,
+  },
+  {
+    path: "/Website/chooseBranch/:id",
+    name: "chooseBranch ",
+    component: chooseBranch ,
     props: true,
   },
   {
