@@ -7,18 +7,26 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-6">
-              <h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> تعديل الفرع رقم : {{ id }}</h2>
+              <h2 class="st_title cr_course_title">
+                <i class="fas fa-plus-circle"></i> تعديل الفرع رقم : {{ id }}
+              </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert"> تم تعديل الفرع بنجاح . <span style="{
-                    font-size:25px;
-                    cursor: pointer;
-                    display: inline-block;
-                    transition: .5s a,}" @click="
-                      this.redirectTo({
-                        name: 'ShowBranches',
-                        params: {}
-                      })"> عرض جميع الفروع </span>
+              <div v-if="state.save" class="alert alert-success" role="alert">
+                تم تعديل الفرع بنجاح .
+                <span
+                  style="
+                     {
+                      font-size: 25px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="$router.push({ name: 'ShowBranches' })"
+                >
+                  عرض جميع الفروع
+                </span>
               </div>
             </div>
           </div>
@@ -27,45 +35,101 @@
               <div class="course_tabs_1">
                 <div id="add-course-tab" class="step-app">
                   <div class="step-content">
-                    <div class="step-tab-panel step-tab-info active create-course-tab" id="tab_step1">
+                    <div
+                      class="step-tab-panel step-tab-info active create-course-tab"
+                      id="tab_step1"
+                    >
                       <div class="tab-from-content">
                         <div class="course__form">
                           <div class="general_info10">
                             <div class="row">
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i> تعديل اسم الفرع </label>
-                                  <input type="text" v-model="branch.name" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i> تعديل اسم
+                                    الفرع
+                                  </label>
+                                  <input type="text" v-model="state.name" />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.name.$error"
+                                  >
+                                    {{ v$.name.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل العنوان </label>
-                                  <input type="text" v-model="branch.address" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل
+                                    العنوان
+                                  </label>
+                                  <input type="text" v-model="state.address" />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.address.$error"
+                                  >
+                                    {{ v$.address.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل رقم التلفون</label>
-                                  <input type="text" v-model="branch.phone_number" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل رقم
+                                    التلفون</label
+                                  >
+                                  <input type="text" v-model="state.phone" />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.phone.$error"
+                                  >
+                                    {{ v$.phone.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل الخط الساخن</label>
-                                  <input type="number" v-model="branch.hot_line" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل الخط
+                                    الساخن</label
+                                  >
+                                  <input
+                                    type="number"
+                                    v-model="state.hotline"
+                                  />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.hotline.$error"
+                                  >
+                                    {{ v$.hotline.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تغديل الخريطه </label>
-                                  <input type="text" v-model="branch.map_location" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تغديل
+                                    الخريطه
+                                  </label>
+                                  <input type="text" v-model="state.map" />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.map.$error"
+                                  >
+                                    {{ v$.map.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <button @click="update_branch" data-direction="finish" class="btn btn-default steps_btn"> حفظ
-                            التعديل</button>
+                          <button
+                            @click="update_branch"
+                            data-direction="finish"
+                            class="btn btn-default steps_btn"
+                          >
+                            حفظ التعديل
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -79,6 +143,11 @@
       <Footer></Footer>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
@@ -86,60 +155,117 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import axios from 'axios';
-import { mapActions } from 'vuex';
+import axios from "axios";
+import { mapActions } from "vuex";
+import { reactive, computed, onMounted } from "vue";
+
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, sameAs } from "@vuelidate/validators";
+import Toast from "@/components/Toast.vue";
 
 export default {
   name: "Update-branch",
-  components: { Footer,AsideBar,Header,},
-  props: ["id"],
-  data() {
-    return {
-      // name:`${this.name}`,
-      // address:`${this.address}`,
-      // phone:`${this.phone}`,
-      // hotline:`${this.hotline}`,
-      // map: `${ this.src }`,
+  components: { Footer, AsideBar, Header, Toast },
+  props: {
+    id: String,
+  },
+  setup(props) {
+    const store = useStore();
+    const router = useRouter();
+    const state = reactive({
+      user: computed(() => store.state.user),
+      name: "",
+      address: "",
+      phone: "",
+      hotline: "",
+      map: "",
       save: false,
-      branch: {}
-    }
-  },
-  async mounted() {
-    let token = "Bearer " + localStorage.getItem('manger');
-    let Branchs = await axios.get(
-      'api_dashboard/branches/' + this.id)
-      .then((res) => {
-        this.branch = res.data.data;
-      })
-      .catch(error => {
-        console.log(error)
-        console.log(error.response.data.errors);
-      });
-    // this.displayItems = this.items;
-  },
-  methods: {
-    ...mapActions(['redirectTo']),
-    async update_branch() {
-      let data = {
-        name: this.branch.name,
-        address: this.branch.address,
-        phone_number: this.branch.phone_number,
-        hot_line: this.branch.hot_line,
-        map_location: this.branch.map_location,
-        status:1,
+      branchID: "",
+    });
+
+    onMounted(async () => {
+      if (state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if (state.user.role_id != 1) {
+          router.push("/dashboard");
+        }
       }
-      this.branch.HeadOfBranch.id = this.maneger;
-      let Branch = await axios.post(
-        'api_dashboard/branches/'+this.branch.id , data)
+
+      let Branchs = await axios
+        .get("api_dashboard/branches/" + props.id)
         .then((res) => {
-          this.save = true;
+          state.name = res.data.data.name;
+          state.address = res.data.data.address;
+          state.phone = res.data.data.phone_number;
+          state.hotline = res.data.data.hot_line;
+          state.map = res.data.data.map_location;
+          state.branchID = res.data.data.id;
         })
-        .catch(error => {
-          console.log(error)
+        .catch((error) => {
+          console.log(error);
           console.log(error.response.data.errors);
-          console.log(error.response.data.message);
         });
-    }
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
+    };
+
+    // Validations
+    const rules = computed(() => {
+      return {
+        name: { required },
+        address: { required },
+        phone: { required },
+        hotline: { required },
+        map: { required },
+      };
+    });
+
+    const v$ = useVuelidate(rules, state);
+
+    const update_branch = async () => {
+      v$.value.$validate();
+      if (!v$.value.$error) {
+        let data = {
+          name: state.name,
+          address: state.address,
+          phone_number: state.phone,
+          hot_line: state.hotline,
+          map_location: state.map,
+          status: 1,
+        };
+
+        let Branch = await axios
+          .post("api_dashboard/branches/" + state.branchID, data)
+          .then((res) => {
+            state.save = true;
+          })
+          .catch((error) => {
+            notification("error", error.response.statusText);
+          });
+      } else {
+        notification("error", "Missing Data !");
+      }
+    };
+
+    return { state, v$, toast, update_branch };
   },
 };
 </script>
@@ -228,4 +354,5 @@ export default {
 .course_tabs_1 .steps_btn:hover {
   color: white !important;
   background: var(--darker-blue) !important;
-}</style>
+}
+</style>
