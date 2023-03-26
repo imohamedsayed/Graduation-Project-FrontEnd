@@ -19,14 +19,33 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import Branchlist from '../../../components/Branches/Branchlist.vue'
+import Branchlist from "../../../components/Branches/Branchlist.vue";
+
+import { reactive, computed, onMounted } from "vue";
+
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
 export default {
   name: "ShowBranches",
-  components: { Footer,AsideBar,Header,Branchlist },
-  data() {
-    return {
-    }
-  }
+  components: { Footer, AsideBar, Header, Branchlist },
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const state = reactive({
+      user: computed(() => store.state.user),
+    });
+
+    onMounted(() => {
+      if (state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if (state.user.role_id != 1) {
+          router.push("/dashboard");
+        }
+      }
+    });
+  },
 };
 </script>
 
@@ -82,7 +101,7 @@ export default {
 
   .left {
     select {
-      padding: .375rem .75rem .375rem 1.75rem;
+      padding: 0.375rem 0.75rem 0.375rem 1.75rem;
       margin: 0 10px;
       font-weight: 400;
       display: inline-block;
@@ -90,7 +109,8 @@ export default {
       border: 1px solid var(--darker-blue);
       border-radius: 0.25rem;
       appearance: none;
-      background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat left .75rem center/8px 10px;
+      background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e")
+        no-repeat left 0.75rem center/8px 10px;
     }
   }
 
@@ -101,14 +121,13 @@ export default {
       display: inline-block;
       width: auto;
       height: calc(1.8125rem + 2px);
-      padding: .25rem .5rem;
+      padding: 0.25rem 0.5rem;
       margin: 0 10px;
       border-radius: 0.2rem;
       border: 1px solid var(--darker-blue);
-
     }
 
-    @media(max-width: 767px) {
+    @media (max-width: 767px) {
       float: right;
       margin: 20px 0 0 0;
     }
@@ -124,4 +143,5 @@ export default {
 .row th {
   border-right: 1px solid white;
   border-left: 1px solid white;
-}</style>
+}
+</style>

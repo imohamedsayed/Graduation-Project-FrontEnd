@@ -3,16 +3,37 @@
     <img src="../../public/images/logo/logo_01.png" class="img-logo" alt="" />
     <div class="login-form">
       <h1 class="text-center">مرحبا بعودتك</h1>
-      <form dir="rtl" @submit.prevent="send" class="mt-5 mb-5">
+      <form dir="rtl" @submit.prevent="login" class="mt-5 mb-5">
         <div class="input-container d-flex align-items-center">
           <span class="form-icon"><i class="fa-solid fa-envelope"></i></span>
-          <input type="text" v-model="email" placeholder="رقم الهاتف أو البريد الالكتروني" />
+          <input
+            type="text"
+            v-model="state.email"
+            placeholder="رقم الهاتف أو البريد الالكتروني"
+          />
         </div>
+        <span class="text-danger fw-bold" v-if="v$.email.$error">
+          {{ v$.email.$errors[0].$message }}
+        </span>
         <div class="input-container d-flex align-items-center">
-          <span class="form-icon" @click="passwordVisibility = !passwordVisibility"><i class="fa-solid fa-lock"
-              v-if="!passwordVisibility"> </i><i class="fa-solid fa-lock-open" v-if="passwordVisibility"></i></span>
-          <input :type="passwordVisibility ? 'text' : 'password'" v-model="password" placeholder="كلمة المرور" />
+          <span
+            class="form-icon"
+            @click="state.passwordVisibility = !state.passwordVisibility"
+            ><i class="fa-solid fa-lock" v-if="!state.passwordVisibility"> </i
+            ><i
+              class="fa-solid fa-lock-open"
+              v-if="state.passwordVisibility"
+            ></i
+          ></span>
+          <input
+            :type="state.passwordVisibility ? 'text' : 'password'"
+            v-model="state.password"
+            placeholder="كلمة المرور"
+          />
         </div>
+        <span class="text-danger fw-bold" v-if="v$.password.$error">
+          {{ v$.password.$errors[0].$message }}
+        </span>
         <button class="btn">الدخول</button>
         <div class="remember-me d-flex align-items-center gap-2 px-1 mt-3">
           <input type="checkbox" name="rememberMe" />
@@ -21,49 +42,90 @@
       </form>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
-import axios from 'axios'
-import { mapActions,Store } from 'vuex';
+import { computed, reactive } from "vue";
+
+//import router and vuex
+
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+// import validations tools
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength } from "@vuelidate/validators";
+
+// import Notification Toaster
+
+import Toast from "@/components/Toast.vue";
+
 export default {
-  data() {
-    return {
+  setup() {
+    // Declaring Variables
+    const state = reactive({
+      email: "",
+      password: "",
       passwordVisibility: false,
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    ...mapActions(['redirectTo','user']),
-    async send() {
-      await axios.post('api_dashboard/auth/login',
-        {
-          email: this.email,
-          password: this.password
+    });
+
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    // Store and router
+    const store = useStore();
+    const router = useRouter();
+    // Handle login
+    // validations
+    const rules = computed(() => {
+      return {
+        email: { email, required },
+        password: { required, minLength: minLength(6) },
+      };
+    });
+    const v$ = useVuelidate(rules, state);
+
+    // notify
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
+    };
+
+    // login action
+
+    const login = async () => {
+      v$.value.$validate();
+      if (!v$.value.$error) {
+        try {
+          await store.dispatch("AdminLogin", {
+            email: state.email,
+            password: state.password,
+          });
+          router.push("/dashboard");
+        } catch (err) {
+          notification("error", err);
         }
-      )
-        .then((res) => {
-          console.log(res.data);
-          console.log(res.data.access_token);
-          localStorage.setItem('manger',res.data.access_token);
-          localStorage.setItem('branch_id',res.data.user.exter_info.branch_id? res.data.user.exter_info.branch_id :'');
-          // console.log(res.data.user.exter_info.branch_id);
-          this.redirectTo(({
-            name: 'home',
-            params: {}
-          })
-          );
-          // this.user(res.data.user)
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data.errors);
-        });
-    }
+      } else {
+        notification("error", "User Data Is Not Valid .. ");
+      }
+    };
+    return { state, login, v$, toast };
   },
-}
+  components: { Toast },
+};
 </script>
-<style lang="">
-  
-</style>
+<style lang=""></style>
