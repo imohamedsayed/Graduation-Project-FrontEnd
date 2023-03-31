@@ -50,6 +50,7 @@ import  testResult from '../views/website/test-result/result.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 import Admin_Login from '../views/Admin_Login.vue'
 import allTeacters from "@/views/website/Profile teacher/allTeacters.vue";
+import ChooseBranch from "@/views/website/chooseBranch/ChooseBranch.vue";
 import stdhome from '@/views/website/stdhome'
 
 const routes = [
@@ -355,8 +356,8 @@ const routes = [
   {
     path: "/Website/chooseBranch/:id/:name",
     name: "chooseBranch ",
-    component: chooseBranch ,
-    props: false,
+    component: ChooseBranch ,
+    props: true,
   },
   {
     path: "/Website/payment/:id/:name",
