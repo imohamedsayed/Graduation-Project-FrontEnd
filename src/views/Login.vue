@@ -4,20 +4,23 @@
     <div class="login-form">
       <h1 class="text-center">مرحبا بعودتك</h1>
       <p class="text-center">تابع رحلة التعلم من خلال تسجيل الدخول الي حسابك</p>
-      <form dir="rtl" class="mt-5 mb-5">
+      <form @submit.prevent="login" dir="rtl" class="mt-5 mb-5">
         <div class="input-container d-flex align-items-center">
           <span class="form-icon"><i class="fa-solid fa-envelope"></i></span>
-          <input type="text" placeholder="رقم الهاتف أو البريد الالكتروني" />
+          <input type="text" placeholder=" البريد الالكتروني"
+            v-model="state.mail"
+           />
         </div>
         <div class="input-container d-flex align-items-center">
           <span
             class="form-icon"
-            @click="passwordVisibility = !passwordVisibility"
+            @click="state.passwordVisibility = !state.passwordVisibility"
             ><i class="fa-solid fa-lock" v-if="!passwordVisibility"> </i
             ><i class="fa-solid fa-lock-open" v-if="passwordVisibility"></i
           ></span>
           <input
-            :type="passwordVisibility ? 'text' : 'password'"
+            :type="state.passwordVisibility ? 'text' : 'password'"
+            v-model="state.pass"
             placeholder="كلمة المرور"
           />
         </div>
@@ -26,7 +29,7 @@
              نسيت كلمه السر ?
           </span>
         </router-link>
-        <button class="btn">الدخول</button>
+        <button class="btn" >الدخول</button>
         <div class="remember-me d-flex align-items-center gap-2 px-1 mt-3">
           <input type="checkbox" name="rememberMe" />
           <label>تذكرني المرة القادمة</label>
@@ -48,12 +51,58 @@
 </template>
 
 <script>
+import axios from 'axios';
+import {  useRouter } from 'vue-router';
+import { reactive } from 'vue';
 export default {
+  setup() {
+    const state = reactive({
+      passwordVisibility: false,
+      mail: '',
+      pass: '',
+
+    });
+    const router = useRouter();
+    async function login() {
+      let data = new FormData;
+      data.append('email',state.mail);
+      data.append('password',state.pass);
+      await axios.post('api/login',data
+      )
+        .then((res) => {
+          console.log(res.data)
+          router.push("/Website/chooseBranch/" + res.data.user.id+'/'+res.data.user.name);
+        })
+        .catch(error => {
+          console.log(error)
+          console.log(error.response.data.errors);
+        });
+    };
+    return { state,login };
+  },
   data() {
     return {
-      passwordVisibility: false,
+      
+      
     };
   },
+  methods: {
+    // async login() {
+    //   let data = new FormData;
+    //   data.append('email',this.mail);
+    //   data.append('password',this.pass);      
+    //   await axios.post('api/login',data
+    //   )
+    //     .then((res) => {
+    //       console.log(res.data)
+    //       router.push("/chooseBranch/2");
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //       console.log(error.response.data.errors);
+    //     });
+    // }
+  }
 };
 </script>
 

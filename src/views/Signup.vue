@@ -73,9 +73,12 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
-            <div class="ui search focus mt-30 lbel25">
+            <div class="">
               <label>المحافظه</label>
-              <input type="text" v-model="Governorate" />
+              <select class=" " v-model="Governorate">
+                <option selected disabled value=""> اختيار من القائمة </option>
+                <option v-for="govr in govenorate" :key="govr.id" :value="govr.id"> {{ govr.name}} </option>
+              </select>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -87,7 +90,7 @@
           <div class="col-lg-3 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>تاريخ الميلاد : السنه</label>
-              <input type="text" placeholder="السنه" v-model="yaer" />
+              <input type="number" placeholder="السنه" v-model="year" />
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
@@ -149,42 +152,42 @@ export default {
       month: "",
       day: "",
       avatar:'',
-      years_list: []
+      years_list: [],
+      govenorate: [],
     };
+  },
+  async mounted() {
+    
+    await axios.get('api/govenorate')
+      .then((res) => {
+        this.govenorate = res.data.data;
+      })
+      .catch(error => {
+        console.log(error)
+        console.log(error.response.data.errors);
+      });
   },
   methods: {
     async register() {
-      // let data = {
-      //   f_name: this.f_name,
-      //   m_name: this.SecondName,
-      //   l_name: this.lastName,
-      //   email: this.email,
-      //   password: this.pass,
-      //   password_confirmation: this.pass2,
-      //   phone_number: this.phone,
-      //   guardian_number: this.DadNumber,
-      //   year: this.year,
-      //   month: this.month,
-      //   day: this.day,
-      //   acedemic_year: this.class,
-      //   division: this.section,
-      //   governorate_id: 6,
-      //   national_id_card: this.photo,
-      // }
+      console.log(this.Class);
+      console.log(this.Class);
+      console.log(this.FirstName);
       let data = new FormData;
-      data.append('f_name',this.f_name);
+      data.append('f_name',this.FirstName);
       data.append('m_name',this.SecondName);
       data.append('l_name',this.lastName);
       data.append('email',this.email);
       data.append('password',this.pass);
       data.append('password_confirmation',this.pass2);
+      data.append('phone_number',this.phone);
       data.append('guardian_number',this.DadNumber);
       data.append('year',this.year);
       data.append('month',this.month);
       data.append('day',this.day);
-      data.append('acedemic_year',this.class);
+      data.append('acedemic_year',this.Class);
       data.append('division',this.section);
-      data.append('governorate_id',6);
+      data.append('governorate_id',this.Governorate);
+      data.append('national_id_card',this.avatar);
       await axios.post('api/register',data
       )
         .then((res) => {
@@ -280,6 +283,7 @@ export default {
 }
 
 .signup .signup-form form input[type="text"],
+.signup .signup-form form input[type="number"],
 .signup .signup-form form input[type="email"],
 .signup .signup-form form input[type="phone"],
 .signup .signup-form form input[type="password"],

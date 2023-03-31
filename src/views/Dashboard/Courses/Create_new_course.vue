@@ -13,15 +13,15 @@
             </div>
             <div class="col-lg-6">
               <div v-if="save" class="alert alert-success" role="alert"> تم اضافه فصل بنجاح . <span style="{
-                        font-size:18px;
-                        cursor: pointer;
-                        display: inline-block;
-                        transition: .5s a,}
-                        " @click="
-                          this.redirectTo({
-                            name: 'ShowCources',
-                            params: {}
-                          })"> عرض جميع الدورات </span>
+                            font-size:18px;
+                            cursor: pointer;
+                            display: inline-block;
+                            transition: .5s a,}
+                            " @click="
+                              this.redirectTo({
+                                name: 'ShowCources',
+                                params: {}
+                              })"> عرض جميع الدورات </span>
               </div>
             </div>
           </div>
@@ -70,6 +70,14 @@
                             <option value="1">الاول</option>
                             <option value="2">الثاني</option>
                           </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="box">
+                          <label id="file" for="file">اضافه صورة   </label>
+                          <input type="file" class="file" @change="(e) => {
+                            this.avatar = e.target.files[0];
+                          }" />
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6 ">
@@ -150,9 +158,10 @@ export default {
       course_year: '',
       course_term: '',
       course_photo: '',
+      avatar:'',
       years_list: [],
       status: false,
-      save:false
+      save: false
       // course_price: null
     };
   },
@@ -175,6 +184,7 @@ export default {
         name: this.course_title,
         academic_year_id: this.course_year,
         semester_id: this.course_term,
+        semester_id: this.avatar,
         status: this.status ? '1' : '0',
         // desc: this.course_desc,
         // price: this.course_title,

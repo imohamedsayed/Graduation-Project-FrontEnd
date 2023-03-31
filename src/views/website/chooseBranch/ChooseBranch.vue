@@ -14,10 +14,8 @@
               </div>
             </div>
             <div class="col-md-12">
-              <chooseBranch />
-              <chooseBranch />
-              <chooseBranch />
-              <chooseBranch />
+              <chooseBranch v-for="branch in state.branchlist" :key="branch.id" :wbranch="branch" />
+
             </div>
           </div>
         </div>
@@ -32,10 +30,29 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import chooseBranch from "../../../components/website/chooseBranch/chooseBranchCompnonent.vue";
+
+import { onMounted,reactive } from 'vue';
+import axios from 'axios';
 export default {
-  components: { Footer, AsideBar, Header, chooseBranch },
-  data() {
-    return {};
+  components: { Footer,AsideBar,Header,chooseBranch },
+  setup() {
+    const state = reactive({
+      branchlist: [],
+    });
+
+    onMounted(async () => {
+      await axios
+        .get("/api/branches")
+        .then((res) => {
+          state.branchlist = res.data.data;
+
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.errors);
+        });
+    });
+    return { state };
   },
 };
 </script>
@@ -44,17 +61,24 @@ export default {
 .chooseBranch {
   margin-right: 20rem;
   margin-left: 20rem;
+
   @media (max-width: 991px) {
     margin-right: 0;
     margin-left: 0rem;
   }
 }
+
+
+
 .chooseBranch-con {
   direction: rtl;
   padding: 30px 20px;
   width: 100%;
   margin-right: 20px;
 }
+
+
+
 .title {
   direction: rtl;
   margin-bottom: 30px;
@@ -69,9 +93,13 @@ export default {
   color: var(--light-blue);
   line-height: 1.2;
 }
+
+
+
 .chooseBranch-con .item_title i {
   color: var(--light-blue);
   margin-left: 10px;
   font-size: 22px;
-}
-</style>
+
+}</style>
+
