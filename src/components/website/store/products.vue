@@ -4,19 +4,15 @@
       <img :src="img" alt="" />
     </a>
     <div class="prod_content">
-      <a href="#!" class="box-title">{{Note_name}}</a>
-      <a href="#" class="crse-cate">{{Details}}</a>
-      <div class="row">
-        <p class="teacher1 col-6"><a href="#">{{TeacherName}}</a></p>
-        <div class="price col-6">السعر :  {{price}}</div>
+      <a href="#!" class="box-title">{{ Note_name }}</a>
+      <a href="#" class="crse-cate">{{ Details }}</a>
+      <div class=" row">
+        <p class="teacher1 col-6"><a href="#">{{ TeacherName }}</a></p>
+        <div class="price col-6">السعر : {{ price }}</div>
       </div>
       <div class="row">
-        <a class="col-7 add-to-cart1" href="#!"
-          ><i class="fa fa-shopping-cart"></i> اضافة الي السلة</a
-        >
-        <a class="col-4 fav" href="#!"
-          ><i class="fa-regular fa-heart"></i> المفضله</a
-        >
+        <a class="col-7 add-to-cart1" href="#!"><i class="fa fa-shopping-cart"></i> اضافة الي السلة</a>
+        <a class="col-4 fav" href="#!"><i class="fa-solid fa-trash"></i> ازاله</a>
       </div>
     </div>
   </div>
@@ -26,11 +22,11 @@
 export default {
   data() {
     return {
-    img: require("../../../../public/images/categories/12.jpg"),
-    Note_name:"مذكرة الأدب والنصوص",
-    Details:"عربي | الصف الثالث الثانوي",
-    TeacherName : "محمد عبدالجواد",
-    price:"150 جنيه",
+      img: require("../../../../public/images/categories/12.jpg"),
+      Note_name: "مذكرة الأدب والنصوص",
+      Details: "عربي | الصف الثالث الثانوي",
+      TeacherName: "محمد عبدالجواد",
+      price: "150 جنيه",
     };
   },
 };
@@ -46,21 +42,25 @@ export default {
   border: 1px solid #efefef;
   transition: all 0.2s ease-in-out;
 }
+
 .prod_img {
   width: 100%;
   position: relative;
+
   a {
     background-color: transparent;
   }
+
   img {
     width: 100%;
     border-radius: 5px;
   }
 }
+
 .prod_content {
   padding: 10px 5px;
   width: 100%;
-  position: relative;
+
   .box-title {
     display: block;
     font-size: 16px;
@@ -70,6 +70,7 @@ export default {
     margin-bottom: 7px;
     line-height: 24px;
   }
+
   .crse-cate {
     display: block;
     font-size: 13px;
@@ -79,6 +80,7 @@ export default {
     padding-top: 2px;
     margin-bottom: 15px;
   }
+
   .teacher1 a {
     font-size: 16px;
     font-weight: 600;
@@ -86,13 +88,14 @@ export default {
     text-align: right;
     margin-bottom: 7px;
   }
+
   .price {
-    float: left !important;
     font-size: 16px;
     font-weight: 400;
     color: #333;
   }
 }
+
 .prod_content .row .add-to-cart1 {
   text-align: center;
   padding: 10px;
@@ -104,10 +107,12 @@ export default {
   font-size: 14px;
   font-weight: bold;
 }
+
 .prod_content .add-to-cart1:hover {
   color: white !important;
   background: var(--darker-blue) !important;
 }
+
 .prod_content .fav {
   text-align: center;
   padding: 10px;
@@ -118,19 +123,8 @@ export default {
   font-size: 14px;
   font-weight: bold;
 }
+
 .prod_content .fav:hover {
   color: white !important;
   background: var(--darker-blue) !important;
-}
-@media (max-width: 768px) {
-  .prod_content .row .add-to-cart1 {
-    font-size: 5px !important;
-  }
-  .prod_content .fav{
-        font-size: 5px !important;
-  }
-  .prod_content .price{
-      font-size: 15px !important;
-  }
-}
-</style>
+}</style>

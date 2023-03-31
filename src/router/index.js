@@ -49,6 +49,9 @@ import payment from '../views/website/payment/Payment.vue';
 import  testResult from '../views/website/test-result/result.vue';
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 import Admin_Login from '../views/Admin_Login.vue'
+import allTeacters from "@/views/website/Profile teacher/allTeacters.vue";
+import stdhome from '@/views/website/stdhome'
+
 const routes = [
   {
     path: "/dashboard/login",
@@ -276,75 +279,94 @@ const routes = [
   
   */
   {
-    path: "/profile/:id",
+    path: "/profile/:id/:name",
     name: "profile",
     component: stuProfile,
     props: true,
   },
   {
-    path: "/matrial/:id",
+    path: "/matrial/:id/:name",
     name: "matrial",
     component: StdMatrial,
     props: true,
   },
   {
-    path: "/course/:id",
+    path: "/course/:id/:name",
     name: "course",
     component: studentcourse,
     props: true,
   },
   {
+    path: "/Website/allTeacters/:id/:name",
+    name: "allTeacters",
+    component: allTeacters,
+    props: true,
+  },
+  {
 
-    path: "/teacherProfile/:id",
+    path: "/teacherProfile/:id/:name",
     name: "teacherProfile",
     component: TeacherProfile,
     props: true,
   },
 
   {
-    path: "/Website/notifications/:id",
+    path: "/Website/notifications/:id/:name",
     name: "WebsiteNotificationPage",
     component: WebsiteNotificationPage,
     props: true,
   },
   {
-    path: "/Website/Store/:id",
+    path: "/Website/Store/:id/:name",
     name: "websiteStore",
     component: websiteStore,
     props: true,
   },
   {
-    path: "/Website/Favourite/:id",
+    path: "/Website/Favourite/:id/:name",
     name: "Favourite",
     component: Favourite,
     props: true,
   },
   {
-    path: "/Website/cart/:id",
+    path: "/Website/cart/:id/:name",
     name: "cart",
     component: cart,
     props: true,
   },
   {
-    path: "/Website/test/:id",
+    path: "/Website/test/:id/:name",
     name: "test",
     component: test,
     props: true,
   },
   {
-    path: "/Website/superior/:id",
+    path: "/Website/superior/:id/:name",
     name: "superior",
     component: superior,
     props: true,
   },
   {
-    path: "/Website/payment/:id",
+    path: "/stdhome/:id/:name",
+    name: "stdhome",
+    component: stdhome,
+    props: true,
+  },
+  {
+    path: "/Website/chooseBranch/:id/:name",
+    name: "chooseBranch ",
+    component: chooseBranch ,
+    props: false,
+  },
+  {
+    path: "/Website/payment/:id/:name",
+
     name: "payment",
     component: payment,
     props: true,
   },
   {
-    path: "/Website/testResult/:id",
+    path: "/Website/testResult/:id/:name",
     name: "testResult",
     component: testResult,
     props: true,

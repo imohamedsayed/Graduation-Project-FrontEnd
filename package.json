@@ -27,7 +27,9 @@
     "vue-axios": "^3.5.2",
     "vue-owl-carousel": "^2.0.3",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vue-toast-notification": "3.0",
+    "vuex": "^4.0.0",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

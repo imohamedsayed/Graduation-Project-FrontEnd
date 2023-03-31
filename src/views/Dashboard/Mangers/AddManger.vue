@@ -62,7 +62,6 @@
                         </div>
                       </div>
                       <!-- 
-
                       <div class="col-lg-5 col-md-12">
                         <div class="mt-30 box ">
                           <label>

@@ -27,41 +27,68 @@
 import axios from 'axios'
 import { mapActions,Store } from 'vuex';
 export default {
-  data() {
-    return {
+
+    setup() {
+    // Declaring Variables
+    const state = reactive({
+      email: "",
+      password: "",
       passwordVisibility: false,
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    ...mapActions(['redirectTo','user']),
-    async send() {
-      await axios.post('api_dashboard/auth/login',
-        {
-          email: this.email,
-          password: this.password
+    });
+
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    // Store and router
+    const store = useStore();
+    const router = useRouter();
+    // Handle login
+    // validations
+    const rules = computed(() => {
+      return {
+        email: { email, required },
+        password: { required, minLength: minLength(6) },
+      };
+    });
+    const v$ = useVuelidate(rules, state);
+
+    // notify
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
+    };
+
+    // login action
+
+    const login = async () => {
+      v$.value.$validate();
+      if (!v$.value.$error) {
+        try {
+          await store.dispatch("AdminLogin", {
+            email: state.email,
+            password: state.password,
+          });
+          router.push("/dashboard");
+        } catch (err) {
+          notification("error",err);
+          console.log(err);
         }
-      )
-        .then((res) => {
-          console.log(res.data);
-          console.log(res.data.access_token);
-          localStorage.setItem('manger',res.data.access_token);
-          localStorage.setItem('branch_id',res.data.user.exter_info.branch_id? res.data.user.exter_info.branch_id :'');
-          // console.log(res.data.user.exter_info.branch_id);
-          this.redirectTo(({
-            name: 'home',
-            params: {}
-          })
-          );
-          // this.user(res.data.user)
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data.errors);
-        });
-    }
+      } else {
+        notification("error", "User Data Is Not Valid .. ");
+      }
+    };
+    return { state, login, v$, toast };
+
   },
+
 }
 </script>
 <style lang="">
