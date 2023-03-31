@@ -8,140 +8,302 @@
           <div class="row">
             <div class="col-lg-6">
               <h2 class="st_title">
-                <i class="fas fa-plus-circle"></i> تعديل فصل : {{ updatedsection.course }}
+                <i class="fas fa-plus-circle"></i> تعديل فصل :
+                {{ state.course }}
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert"> تم اضافه  فصل بنجاح . 
-                <span style="{
-                font-size:18px;
-                cursor: pointer;
-                display: inline-block;
-                transition: .5s a,}
-                " 
-                @click="
-                this.redirectTo({
-                  name: 'showsections', 
-                  params: {}
-                })">
-                عرض جميع الفصول 
-              </span>
+              <div v-if="state.save" class="alert alert-success" role="alert">
+                تم اضافه فصل بنجاح .
+                <span
+                  style="
+                     {
+                      font-size: 18px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="$router.push({ name: 'showsections' })"
+                >
+                  عرض جميع الفصول
+                </span>
               </div>
             </div>
           </div>
           <div class="bg">
             <div class="row">
               <div class="col-12">
-                <div class="form">
+                <form class="form" @submit.prevent="updateSection">
                   <div class="form_content">
                     <div class="row">
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fas fa-pencil-alt"></i>اسم الدورة </label>
-                          <select v-model="updatedsection.course"  class="">
-                            <option selected disabled value=""> اختيار من القائمة </option>
-                            <option value="1" selected>فيزياء</option>
-                            <option value="2">كيمياء</option>
-                            <option value="3">عربي</option>
+                            <i class="fas fa-pencil-alt"></i>اسم الدورة
+                          </label>
+                          <select v-model="state.course" class="">
+                            <option selected disabled value="">
+                              اختيار من القائمة
+                            </option>
+                            <option value="فيزياء" selected>فيزياء</option>
+                            <option value="كيمياء">كيمياء</option>
+                            <option value="عربي">عربي</option>
                           </select>
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.course.$error"
+                          >
+                            {{ v$.course.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fa-solid fa-chalkboard-user"></i> اسم المدرس</label>
-                          <select v-model="updatedsection.tech"  class="">
-                            <option value="1" selected>اسم المدرس</option>
-                            <option value="2">اسم المدرس</option>
-                            <option value="3">اسم المدرس</option>
-                            <option value="4">اسم المدرس</option>
+                            <i class="fa-solid fa-chalkboard-user"></i> اسم
+                            المدرس</label
+                          >
+                          <select v-model="state.tech" class="">
+                            <option value="1 المدرس" selected>4 المدرس</option>
+                            <option value="2 المدرس">3 المدرس</option>
+                            <option value="3 المدرس">2 المدرس</option>
+                            <option value="4 المدرس">1 المدرس</option>
                           </select>
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.tech.$error"
+                          >
+                            {{ v$.tech.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fa-solid fa-dollar-sign"></i> السعر</label>
-                          <input v-model="updatedsection.price"  type="number" name="" id="" />
+                            <i class="fa-solid fa-dollar-sign"></i> السعر</label
+                          >
+                          <input
+                            type="number"
+                            v-model="state.price"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.price.$error"
+                          >
+                            {{ v$.price.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
-                      
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fa-solid fa-warehouse"></i> السعة القصوى </label>
-                          <input v-model="updatedsection.max" type="number" name="" id="" />
+                            <i class="fa-solid fa-warehouse"></i> السعة القصوى
+                          </label>
+                          <input
+                            type="number"
+                            v-model="state.max"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.max.$error"
+                          >
+                            {{ v$.max.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fa fa-clipboard-question"></i> امتحان مسبق</label>
-                          <select v-model="updatedsection.exam" class="">
-                            <option value="true" selected> yes </option>
-                            <option value="false">No </option>
+                            <i class="fa fa-clipboard-question"></i> امتحان
+                            مسبق</label
+                          >
+                          <select v-model="state.exam" class="">
+                            <option value="true" selected>yes</option>
+                            <option value="false">No</option>
                           </select>
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.exam.$error"
+                          >
+                            {{ v$.exam.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fa fa-calendar-days"></i> تاريخ البدء </label>
-                          <input v-model="updatedsection.start" type="datetime-local" name="" id="">
+                            <i class="fa fa-calendar-days"></i> تاريخ البدء
+                          </label>
+                          <input
+                            type="datetime-local"
+                            v-model="state.start"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.start.$error"
+                          >
+                            {{ v$.start.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fa fa-calendar-days"></i> تاريخ الانتهاء</label>
-                          <input v-model="updatedsection.end" type="datetime-local" name="" id="">
+                            <i class="fa fa-calendar-days"></i> تاريخ
+                            الانتهاء</label
+                          >
+                          <input
+                            type="datetime-local"
+                            v-model="state.end"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.end.$error"
+                          >
+                            {{ v$.end.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <button 
-                  @click="Updatesection()"
-                  data-direction="finish" 
-                  class="btn btn-default steps_btn"
-                  > حفظ </button>
-                  
-                </div>
+                  <button
+                    type="submit"
+                    data-direction="finish"
+                    class="btn btn-default steps_btn"
+                  >
+                    حفظ
+                  </button>
+                </form>
               </div>
             </div>
           </div>
-          
-          
         </div>
       </div>
       <Footer></Footer>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import axios from 'axios';
-import { mapActions } from 'vuex';
+import Toast from "@/components/Toast.vue";
+
+import axios from "axios";
+
+import { reactive, onMounted, computed } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+
 export default {
   name: "Editesection",
-  components: { Footer,AsideBar,Header },
-  props: ["id"],
-  data() {
-    return {
+  components: { Footer, AsideBar, Header, Toast },
+  props: {
+    id: Number,
+  },
+  setup(props) {
+    const state = reactive({
+      user: computed(() => store.state.user),
       save: false,
-      updatedsection:{},
-      
-    }
+      course: "",
+      tech: "",
+      max: "",
+      price: "",
+      exam: "",
+      start: "",
+      end: "",
+    });
+
+    onMounted(() => {
+      if (state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        console.log(props.id);
+      }
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
+    };
+
+    // Store and router
+
+    const store = useStore();
+    const router = useRouter();
+
+    // validations
+
+    const rules = computed(() => {
+      return {
+        course: { required },
+        tech: { required },
+        max: { required },
+        price: { required },
+        exam: { required },
+        start: { required },
+        end: { required },
+      };
+    });
+
+    const v$ = useVuelidate(rules, state);
+
+    // update new section
+
+    const updateSection = async () => {
+      v$.value.$validate();
+      if (!v$.value.$error) {
+        try {
+          /*
+            --------------
+                  API CODE HERE ...
+            --------------
+          */
+        } catch (err) {
+          notification("error", err.response.statusText);
+        }
+      } else {
+        notification("error", "Missing Data !");
+      }
+    };
+
+    return { state, v$, updateSection, toast };
   },
   // async mounted() {
   //   let section = await axios.get('http://localhost:3000/sections/'+this.id);
   //   if(section.status === 200) {
   //     this.updatedsection = section.data;
   //     console.log(this.updatedsection.course);
-        
+
   //   }
   // },
   // methods:

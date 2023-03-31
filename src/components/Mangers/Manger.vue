@@ -2,8 +2,7 @@
   <div class="main">
     <ag-grid-vue
       class="ag-theme-alpine"
-
-      style="height: 820px;"
+      style="height: 820px"
       :columnDefs="columnDefs.value"
       :rowData="rowData.value"
       :defaultColDef="defaultColDef"
@@ -12,10 +11,7 @@
       :pagination="pagination"
       :paginationPageSize="paginationPageSize"
     >
-    
     </ag-grid-vue>
-    
-
   </div>
 </template>
 
@@ -37,51 +33,45 @@ export default {
 
   data() {
     return {
-      pagination : true,
-      paginationPageSize : 25,
+      pagination: true,
+      paginationPageSize: 25,
     };
   },
   mounted() {
-    let token = "Bearer " + localStorage.getItem('manger');
-    let maneger = axios.get(
-      'http://127.0.0.1:8000/api_dashboard/head-branch'
-      ,
-      {
-        headers:
-        {
-          'Authorization': `token ${ token }`
-        }
-      }
-    )
+    console.log(localStorage.getItem("token"));
+    let token = "Bearer " + localStorage.getItem("token");
+    let maneger = axios
+      .get("http://127.0.0.1:8000/api_dashboard/head-branch", {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      })
       .then((res) => {
-        this.rowData.value = res.data.data
+        this.rowData.value = res.data.data;
         // console.log(res.data.data)
       })
-      .catch(error => {
-        console.log(error)
+      .catch((error) => {
+        console.log(error);
         console.log(error.response.data.errors);
       });
   },
   setup() {
-    const rowData = reactive({}
-    );
+    const rowData = reactive({});
     const columnDefs = reactive({
       value: [
         {
-          field: "Propirtis",cellRenderer: "edit_delete",
-          width: 120,maxWidth: 150,resizable: false
+          field: "Propirtis",
+          cellRenderer: "edit_delete",
+          width: 120,
+          maxWidth: 150,
+          resizable: false,
         },
         // { field: "manage" },
         { field: "email" },
         { field: "name" },
-        { field: "id",width: 70,maxWidth: 70,resizable: false },
+        { field: "id", width: 70, maxWidth: 70, resizable: false },
       ],
     });
-    
-
-
-    
-    
 
     const defaultColDef = {
       sortable: true,
@@ -107,16 +97,16 @@ export default {
   width: 100% !important;
   direction: rtl !important;
 }
-.ag-ltr .ag-body-viewport{
+.ag-ltr .ag-body-viewport {
   &::-webkit-scrollbar {
-      width: 15px !important;
-    }
+    width: 15px !important;
+  }
 
-    &::-webkit-scrollbar-thumb {
-      background: linear-gradient(#312776d2, #363062);
-      border: 5px solid#fff;
-      border-radius: 10px !important;
-    }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(#312776d2, #363062);
+    border: 5px solid#fff;
+    border-radius: 10px !important;
+  }
 }
 
 .ag-header {
@@ -130,16 +120,14 @@ export default {
 }
 .ag-root-wrapper {
   border: none !important;
-
 }
 .ag-paging-panel {
-    border-top: 1px solid var(--darker-blue);
-    color: var(--darker-blue) !important;
+  border-top: 1px solid var(--darker-blue);
+  color: var(--darker-blue) !important;
 }
 .ag-paging-panel .ag-icon {
-    color: var(--darker-blue); 
-    font-size: 25px;
-    font-weight: bold;
-
+  color: var(--darker-blue);
+  font-size: 25px;
+  font-weight: bold;
 }
 </style>

@@ -6,7 +6,6 @@
       <div class="cover">
         <div class="container">
           <div class="bg">
-
             <div class="row">
               <div class="col-lg-6 col-md-6">
                 <div class="mt-30">
@@ -24,7 +23,6 @@
               </div>
             </div>
 
-
             <div class="row">
               <div class="co-md-12">
                 <div class="table-responsive">
@@ -32,7 +30,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -46,12 +43,29 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import Manger from "../../../components/Mangers/Manger.vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import { reactive, computed, onMounted } from "vue";
 export default {
   name: "Show_mangers",
   components: { Footer, AsideBar, Header, Manger },
-  data() {
+  setup() {
+    const store = useStore();
+    const router = useRouter();
 
-    return {};
+    const state = reactive({
+      user: computed(() => store.state.user),
+    });
+
+    onMounted(() => {
+      if (state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if (state.user.role_id != 1) {
+          router.push("/dashboard");
+        }
+      }
+    });
   },
 };
 </script>
@@ -65,12 +79,10 @@ export default {
 }
 
 .link {
-
-      display: block;
-      color: #fff !important;
-      padding: 10px 15px;
-      border-radius: 25px;
-      background-color: var(--darker-blue) !important;
-    }
-
+  display: block;
+  color: #fff !important;
+  padding: 10px 15px;
+  border-radius: 25px;
+  background-color: var(--darker-blue) !important;
+}
 </style>

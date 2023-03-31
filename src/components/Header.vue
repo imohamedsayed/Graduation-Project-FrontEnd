@@ -8,7 +8,11 @@
             class="img-fluid admin-img"
             alt=""
           />
-          <div class="admin-options position-absolute" ref="adminOptions">
+          <div
+            class="admin-options position-absolute"
+            ref="adminOptions"
+            v-if="user"
+          >
             <div
               class="admin-info d-flex p-4 align-items-center gap-2"
               dir="rtl"
@@ -20,11 +24,11 @@
                   alt=""
                 />
               </div>
-              <h5 class="admin-name text-muted">علي خالد</h5>
+              <h5 class="admin-name text-muted">{{ user.name }}</h5>
             </div>
             <ul class="list-unstyled">
               <li dir="rtl">اعدادات الحساب</li>
-              <li dir="rtl">تسجيل خروج</li>
+              <li dir="rtl" @click="logout">تسجيل خروج</li>
             </ul>
           </div>
         </div>
@@ -45,11 +49,27 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
   methods: {
     adminOptions() {
       this.$refs.adminOptions.classList.toggle("open");
     },
+  },
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const logout = () => {
+      store.commit("setUser", null);
+      localStorage.clear();
+      router.push("/dashboard/login");
+    };
+    return {
+      user: computed(() => store.state.user),
+      logout,
+    };
   },
 };
 </script>

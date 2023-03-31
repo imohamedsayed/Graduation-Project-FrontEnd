@@ -1,5 +1,6 @@
 <template>
   <div class="card-Branch rounded mb-3">
+
     <div class="row flex-lg-row flex-md-row flex-sm-column-reverse flex-column-reverse">
       <div class="col-md-4 map ">
       </div>
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
@@ -49,10 +51,12 @@ export default {
 
 
   }
+
 };
 </script>
 
 <style scoped>
+
 .card-Branch {
   background-color: var(--light-blue);
   color: white;
@@ -63,19 +67,21 @@ export default {
   padding: 30px;
 }
 
+
 .card-body h5 {
   font-size: 25px;
   font-weight: 500;
   margin-bottom: 10px;
 }
-
 .card-body p {
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 10px;
 }
 
-iframe {
+=======
+iframe{
+
   margin-right: 5px;
 }
 </style>

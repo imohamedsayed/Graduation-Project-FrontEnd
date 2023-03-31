@@ -12,15 +12,21 @@
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert"> تم اضافة المدير بنجاح . <span style="{
-                    font-size:25px;
-                    cursor: pointer;
-                    display: inline-block;
-                    transition: .5s a,}" @click="
-                      this.redirectTo({
-                        name: 'Show_mangers',
-                        params: {}
-                      })"> عرض جميع المديرين </span>
+              <div v-if="state.save" class="alert alert-success" role="alert">
+                تم اضافة المدير بنجاح .
+                <span
+                  style="
+                     {
+                      font-size: 25px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="$router.push({ name: 'Show_mangers' })"
+                >
+                  عرض جميع المديرين
+                </span>
               </div>
             </div>
           </div>
@@ -31,34 +37,71 @@
                   <div class="form_content">
                     <div class="row">
                       <div class="col-lg-5 col-md-12">
-                        <div class="ui mt-30  focus box search">
+                        <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fas fa-pencil-alt"></i> اسم المدير </label>
-                          <input type="text" v-model="name" name="" id="" />
+                            <i class="fas fa-pencil-alt"></i> اسم المدير
+                          </label>
+                          <input type="text" v-model="state.name" name="" />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.name.$error"
+                          >
+                            {{ v$.name.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <div class="col-1"></div>
                       <div class="col-lg-5 col-md-12">
-                        <div class="mt-30  box">
+                        <div class="mt-30 box">
                           <label>
-                            <i class="fa-regular fa-envelope"></i> الايميل </label>
-                          <input type="email" v-model="email" name="" id="">
+                            <i class="fa-regular fa-envelope"></i> الايميل
+                          </label>
+                          <input type="email" v-model="state.email" name="" />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.email.$error"
+                          >
+                            {{ v$.email.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <div class="col-1"></div>
                       <div class="col-lg-5 col-md-12">
-                        <div class="mt-30   box">
+                        <div class="mt-30 box">
                           <label>
-                            <i class="fa-sharp fa-solid fa-eye"></i> كلمة المرور </label>
-                          <input type="password" v-model="password" name="" id="">
+                            <i class="fa-sharp fa-solid fa-eye"></i> كلمة المرور
+                          </label>
+                          <input
+                            type="password"
+                            v-model="state.password"
+                            name=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.password.$error"
+                          >
+                            {{ v$.password.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <div class="col-1"></div>
                       <div class="col-lg-5 col-md-12">
-                        <div class="mt-30   box">
+                        <div class="mt-30 box">
                           <label>
-                            <i class="fa-sharp fa-solid fa-eye"></i> تأكيد كلمة المرور </label>
-                          <input type="password" v-model="confirm_password" name="" id="">
+                            <i class="fa-sharp fa-solid fa-eye"></i> تأكيد كلمة
+                            المرور
+                          </label>
+                          <input
+                            type="password"
+                            v-model="state.confirm_password"
+                            name=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.confirm_password.$error"
+                          >
+                            {{ v$.confirm_password.$errors[0].$message }}
+                          </span>
                         </div>
                       </div>
                       <!-- 
@@ -81,7 +124,13 @@
                     </div>
                   </div>
                   <br />
-                  <button data-direction="finish" class="btn btn-default steps_btn" @click="add_Maneger"> حفظ </button>
+                  <button
+                    data-direction="finish"
+                    class="btn btn-default steps_btn"
+                    @click="add_Manager"
+                  >
+                    حفظ
+                  </button>
                 </div>
               </div>
             </div>
@@ -91,6 +140,11 @@
       <Footer></Footer>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
@@ -98,43 +152,93 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import axios from "axios";
-import { mapActions } from 'vuex';
+
+import { reactive, computed, onMounted } from "vue";
+
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, sameAs } from "@vuelidate/validators";
+
+import Toast from "@/components/Toast.vue";
+
 export default {
   name: "Add_Manger",
-  components: { Footer,AsideBar,Header },
-  data() {
-    return {
+  components: { Footer, AsideBar, Header, Toast },
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const state = reactive({
+      user: computed(() => store.state.user),
       name: "",
       email: "",
       password: "",
       confirm_password: "",
-      save: false
-    }
-  },
-  methods: {
-    ...mapActions(['redirectTo']),
-    async add_Maneger() {
-      console.log(this.name);
-      let data = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        password_confirmation: this.confirm_password
+      save: false,
+    });
+    onMounted(() => {
+      if (state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if (state.user.role_id != 1) {
+          router.push("/dashboard");
+        }
+      }
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
+    };
+
+    const rules = computed(() => {
+      return {
+        name: { required },
+        email: { required, email },
+        password: { required },
+        confirm_password: { required, sameAs: sameAs(state.password) },
       };
-      let maneger = await axios.post(
-        'api_dashboard/head-branch'
-        ,
-        data,
-      )
-        .then((res) => {
-          console.log(res.data)
-          this.save = true
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data.errors);
-        });
-    }
+    });
+
+    const v$ = useVuelidate(rules, state);
+
+    const add_Manager = async () => {
+      v$.value.$validate();
+      if (!v$.value.$error) {
+        let data = {
+          name: state.name,
+          email: state.email,
+          password: state.password,
+          password_confirmation: state.confirm_password,
+        };
+
+        let res = await axios
+          .post("api_dashboard/head-branch", data)
+          .then((res) => {
+            console.log(res.data);
+            state.save = true;
+          })
+          .catch((error) => {
+            notification("error", error.response.data.errors);
+          });
+      } else {
+        notification("error", "Missing Data !");
+      }
+    };
+
+    return { state, toast, v$, add_Manager };
   },
 };
 </script>
@@ -147,5 +251,4 @@ export default {
     margin-right: 0;
   }
 }
-
 </style>

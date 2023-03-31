@@ -1,7 +1,8 @@
 <template>
   <tr v-if="dell">
-    <td class="check" @click="opened = !opened">{{ section.id }} 
-      <i v-if="opened" class="fa fa-circle-plus plus "></i>
+    <td class="check" @click="opened = !opened">
+      {{ section.id }}
+      <i v-if="opened" class="fa fa-circle-plus plus"></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
     <td>{{ section.course }}</td>
@@ -17,35 +18,63 @@
     <td class="open">{{ section.start }}</td>
     <td class="open">{{ section.end }}</td>
     <td class="open">
-      <a class=" show" @click="this.redirectTo({
-        name: 'applicant_students',
-        params: { id: section.id, course: section.course, }
-      })"> عرض الطلاب </a>
+      <a
+        class="show"
+        @click="
+          this.redirectTo({
+            name: 'applicant_students',
+            params: { id: section.id, course: section.course },
+          })
+        "
+      >
+        عرض الطلاب
+      </a>
     </td>
   </tr>
   <tr class="close" v-if="!opened">
     <td colspan="9">
       <ul>
-        <li>المدرس : <div>{{ section.tech }}</div>
+        <li>
+          المدرس :
+          <div>{{ section.tech }}</div>
         </li>
-        <li>السعة : <div>{{ section.max }}</div>
+        <li>
+          السعة :
+          <div>{{ section.max }}</div>
         </li>
-        <li>السعر : <div>{{ section.price }} EGP</div>
+        <li>
+          السعر :
+          <div>{{ section.price }} EGP</div>
         </li>
-        <li>امتحان : <div><i class="fa-solid fa-circle-check exam" v-if="section.exam"></i>
-        <i class="fa-solid fa-circle-xmark exam" v-else></i></div>
+        <li>
+          امتحان :
+          <div>
+            <i class="fa-solid fa-circle-check exam" v-if="section.exam"></i>
+            <i class="fa-solid fa-circle-xmark exam" v-else></i>
+          </div>
         </li>
-        <li>تاريخ البدء : <div>{{ section.start }}</div>
+        <li>
+          تاريخ البدء :
+          <div>{{ section.start }}</div>
         </li>
-        <li>تاريخ الانتهاء : <div>
-          {{ section.end }}
-        </div>
+        <li>
+          تاريخ الانتهاء :
+          <div>
+            {{ section.end }}
+          </div>
         </li>
-        <li> الطلاب : <a class="btn"
-          @click="this.redirectTo({
-            name: 'applicant_students',
-            params: { id: section.id, course: section.course, }
-          })"> عرض الطلاب 
+        <li>
+          الطلاب :
+          <a
+            class="btn"
+            @click="
+              this.redirectTo({
+                name: 'applicant_students',
+                params: { id: section.id, course: section.course },
+              })
+            "
+          >
+            عرض الطلاب
           </a>
         </li>
       </ul>
@@ -56,17 +85,15 @@
       <div class="close">
         <div>الخصائص</div>
         <ul>
-          <li class="btn" @click="
-            this.redirectTo({
-              name: 'Editesection', params: {
-                id: section.id,
-              }
-            })
-          
-          ">
+          <li
+            class="btn"
+            @click="
+              $router.push({ name: 'Editesection', params: { id: section.id } })
+            "
+          >
             <i class="fa fa-trash"></i> تعديل
           </li>
-          <li class="btn" @click="Delete()"> <i class="fa fa-trash"></i> حذف</li>
+          <li class="btn" @click="Delete()"><i class="fa fa-trash"></i> حذف</li>
         </ul>
       </div>
     </td>
@@ -74,8 +101,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { mapActions } from 'vuex'
+import axios from "axios";
+import { mapActions } from "vuex";
 export default {
   name: "Manger",
   props: ["section"],
@@ -84,50 +111,40 @@ export default {
       opened: true,
       showEditForm: false,
       dell: true,
-      id:0
-    }
+      id: 0,
+    };
   },
-  methods:
-  {
-    ...mapActions(['redirectTo']),
+  methods: {
+    ...mapActions(["redirectTo"]),
     Delete() {
       Swal.fire({
-        title: 'هل انت متاكد',
+        title: "هل انت متاكد",
         text: "لن تتمكن من التراجع عن هذا!",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#363062',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'نعم ، احذفها!',
-        cancelButtonText: 'لا ، إلغاء!',
+        confirmButtonColor: "#363062",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "نعم ، احذفها!",
+        cancelButtonText: "لا ، إلغاء!",
       }).then(async (result) => {
-        if(result.isConfirmed) {
-          Swal.fire(
-            'تم الحذف!',
-            'تم حذف الفصل',
-            'نجاح'
-          )
+        if (result.isConfirmed) {
+          Swal.fire("تم الحذف!", "تم حذف الفصل", "نجاح");
           this.dell = false;
           // await axios.delete('http://localhost:3000/sections/' + this.section.id)
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
 
-
-
 <style lang="scss">
-.table-responsive tbody tr
-{
-  transition: all .5s ease-in-out;
-  &:hover
-  {
-    background-color: rgb(0, 0, 0,.1);
+.table-responsive tbody tr {
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: rgb(0, 0, 0, 0.1);
   }
-  a.show
-  {
+  a.show {
     background-color: var(--darker-blue) !important;
     display: block;
     width: fit-content;
@@ -136,14 +153,11 @@ export default {
     color: var(--white-color);
     cursor: pointer;
     border-radius: 5px;
-    &:hover
-    {
+    &:hover {
       color: antiquewhite;
     }
-    
   }
-  i.exam
-  {
+  i.exam {
     background-color: var(--white-color);
     color: var(--darker-blue);
     font-size: 20px;
