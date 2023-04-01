@@ -185,9 +185,9 @@ export default {
 
     const store = useStore();
     const router = useRouter();
-    
 
     onMounted(() => {
+      // console.log(state.user);
       if (state.user == null) {
         router.push("/dashboard/login");
       }

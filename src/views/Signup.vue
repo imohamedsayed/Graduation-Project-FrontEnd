@@ -2,7 +2,6 @@
   <div class="signup">
     <img src="../../public/images/logo/logo_01.png" class="signup-logo" />
     <div class="signup-form">
-
       <p class="text-center">مرحبا بك في موقع (Edu Center )</p>
       <form dir="rtl" @submit.prevent="register" class="col-lg-12 col-md-12">
         <div class="row">
@@ -52,10 +51,10 @@
             <div class="    ">
               <label>الصف الدراسي</label>
               <select class=" " v-model="Class">
-                <option selected disabled value=""> اختيار من القائمة </option>
-                <option value="1"> الصف الاول الثانوى </option>
-                <option value="2"> الصف الثاني الثانوى </option>
-                <option value="3"> الصف الثالث الثانوى </option>
+                <option selected disabled value="">اختيار من القائمة</option>
+                <option value="1">الصف الاول الثانوى</option>
+                <option value="2">الصف الثاني الثانوى</option>
+                <option value="3">الصف الثالث الثانوى</option>
               </select>
             </div>
           </div>
@@ -63,12 +62,12 @@
             <div class="    ">
               <label>الشعبه</label>
               <select class=" " v-model="section">
-                <option selected disabled value=""> اختيار من القائمة </option>
-                <option value="1"> عام </option>
-                <option value="2"> علمى </option>
-                <option value="3"> ادبى </option>
-                <option value="4"> علمى رياضة </option>
-                <option value="5"> علمى علوم </option>
+                <option selected disabled value="">اختيار من القائمة</option>
+                <option value="1">عام</option>
+                <option value="2">علمى</option>
+                <option value="3">ادبى</option>
+                <option value="4">علمى رياضة</option>
+                <option value="5">علمى علوم</option>
               </select>
             </div>
           </div>
@@ -76,8 +75,14 @@
             <div class="">
               <label>المحافظه</label>
               <select class=" " v-model="Governorate">
-                <option selected disabled value=""> اختيار من القائمة </option>
-                <option v-for="govr in govenorate" :key="govr.id" :value="govr.id"> {{ govr.name}} </option>
+                <option selected disabled value="">اختيار من القائمة</option>
+                <option
+                  v-for="govr in govenorate"
+                  :key="govr.id"
+                  :value="govr.id"
+                >
+                  {{ govr.name }}
+                </option>
               </select>
             </div>
           </div>
@@ -107,11 +112,19 @@
           </div>
           <div class="col-lg-12 col-md-12">
             <div class="ui search focus mt-30 lbel25">
-              <input type="file" class="file" @change="(e) => {
-                this.avatar = e.target.files[0];
-              }" />
-              <label id="file" for="file">صوره البطاقه او شهاده الميلاد <i
-                  class="fa-solid fa-cloud-arrow-down"></i></label>
+              <input
+                type="file"
+                class="file"
+                @change="
+                  (e) => {
+                    this.avatar = e.target.files[0];
+                  }
+                "
+              />
+              <label id="file" for="file"
+                >صوره البطاقه او شهاده الميلاد
+                <i class="fa-solid fa-cloud-arrow-down"></i
+              ></label>
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
@@ -133,7 +146,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
@@ -151,20 +164,20 @@ export default {
       year: "",
       month: "",
       day: "",
-      avatar:'',
+      avatar: "",
       years_list: [],
       govenorate: [],
     };
   },
   async mounted() {
-    
-    await axios.get('api/govenorate')
+    await axios
+      .get("/api/govenorate")
       .then((res) => {
         this.govenorate = res.data.data;
       })
-      .catch(error => {
-        console.log(error)
-        console.log(error.response.data.errors);
+      .catch((error) => {
+        console.log(error);
+        // console.log(error.response.data.errors);
       });
   },
   methods: {
@@ -172,50 +185,36 @@ export default {
       console.log(this.Class);
       console.log(this.Class);
       console.log(this.FirstName);
-      let data = new FormData;
-      data.append('f_name',this.FirstName);
-      data.append('m_name',this.SecondName);
-      data.append('l_name',this.lastName);
-      data.append('email',this.email);
-      data.append('password',this.pass);
-      data.append('password_confirmation',this.pass2);
-      data.append('phone_number',this.phone);
-      data.append('guardian_number',this.DadNumber);
-      data.append('year',this.year);
-      data.append('month',this.month);
-      data.append('day',this.day);
-      data.append('acedemic_year',this.Class);
-      data.append('division',this.section);
-      data.append('governorate_id',this.Governorate);
-      data.append('national_id_card',this.avatar);
-      await axios.post('api/register',data
-      )
+      let data = new FormData();
+      data.append("f_name", this.FirstName);
+      data.append("m_name", this.SecondName);
+      data.append("l_name", this.lastName);
+      data.append("email", this.email);
+      data.append("password", this.pass);
+      data.append("password_confirmation", this.pass2);
+      data.append("phone_number", this.phone);
+      data.append("guardian_number", this.DadNumber);
+      data.append("year", this.year);
+      data.append("month", this.month);
+      data.append("day", this.day);
+      data.append("acedemic_year", this.Class);
+      data.append("division", this.section);
+      data.append("governorate_id", 1);
+      data.append("national_id_card", this.avatar);
+      await axios
+        .post("/api/register", data)
         .then((res) => {
-          console.log(res.data)
-          this.save = true
+          console.log(res.data);
+          this.save = true;
         })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data.errors);
+        .catch((error) => {
+          console.log(error);
+          // console.log(error.response.data.errors);
         });
-    }
+    },
   },
 };
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <style lang="scss">
 .signup {

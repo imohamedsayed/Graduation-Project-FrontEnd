@@ -7,18 +7,31 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-6">
-              <h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> تعديل الترم رقم : {{ id }}</h2>
+              <h2 class="st_title cr_course_title">
+                <i class="fas fa-plus-circle"></i> تعديل الترم رقم : {{ id }}
+              </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert"> تم اضافه ترم دراسى بنجاح . <span style="{
-                          font-size:18px;
-                          cursor: pointer;
-                          display: inline-block;
-                          transition: .5s a,}" @click="
-                            this.redirectTo({
-                              name: 'ShowTerm',
-                              params: {}
-                            })"> عرض الجميع </span>
+              <div v-if="save" class="alert alert-success" role="alert">
+                تم اضافه ترم دراسى بنجاح .
+                <span
+                  style="
+                     {
+                      font-size: 18px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="
+                    this.redirectTo({
+                      name: 'ShowTerm',
+                      params: {},
+                    })
+                  "
+                >
+                  عرض الجميع
+                </span>
               </div>
             </div>
           </div>
@@ -27,43 +40,76 @@
               <div class="course_tabs_1">
                 <div id="add-course-tab" class="step-app">
                   <div class="step-content">
-                    <div class="step-tab-panel step-tab-info active create-course-tab" id="tab_step1">
+                    <div
+                      class="step-tab-panel step-tab-info active create-course-tab"
+                      id="tab_step1"
+                    >
                       <div class="tab-from-content">
                         <div class="course__form">
                           <div class="general_info10">
                             <div class="row">
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل السنه الدراسيه :</label>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل
+                                    السنه الدراسيه :</label
+                                  >
                                   <select v-model="term_value">
-                                    <option selected disabled value=""> اختيار من القائمة </option>
-                                    <option value="1" selected>الترم الدراسي الاول</option>
-                                    <option value="2">الترم الدراسي الثاني</option>
+                                    <option selected disabled value="">
+                                      اختيار من القائمة
+                                    </option>
+                                    <option value="1" selected>
+                                      الترم الدراسي الاول
+                                    </option>
+                                    <option value="2">
+                                      الترم الدراسي الثاني
+                                    </option>
                                   </select>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل الترم الدراسي</label>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل
+                                    الترم الدراسي</label
+                                  >
                                   <select v-model="year_id" class="">
-                                    <option selected disabled value=""> اختيار من القائمة </option>
-                                    <option v-for="year in years_list" :key="year.id" :value="year.id">{{ year.name }}
+                                    <option selected disabled value="">
+                                      اختيار من القائمة
+                                    </option>
+                                    <option
+                                      v-for="year in years_list"
+                                      :key="year.id"
+                                      :value="year.id"
+                                    >
+                                      {{ year.name }} - {{ year.year }}
                                     </option>
                                   </select>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-6">
                                 <div class="status mt-30 focus box search">
-                                  <div class="  d-flex align-items-center  gap-4 px-1 mt-3">
-                                    <input type="checkbox" name="" v-model="status" />
+                                  <div
+                                    class="d-flex align-items-center gap-4 px-1 mt-3"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      name=""
+                                      v-model="status"
+                                    />
                                     <label> متاح </label>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <button data-direction="finish" @click="update_semester" class="btn btn-default steps_btn">حفظ
-                            التعديل</button>
+                          <button
+                            data-direction="finish"
+                            @click="update_semester"
+                            class="btn btn-default steps_btn"
+                          >
+                            حفظ التعديل
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -84,65 +130,79 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import axios from 'axios';
-import { mapActions } from 'vuex';
+import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   props: ["id"],
   name: "UpdateTeachers",
-  components: { Footer,AsideBar,Header },
+  components: { Footer, AsideBar, Header },
   data() {
     return {
-      term_value: '',
+      term_value: "",
       status: false,
-      year_id: '',
+      year_id: "",
       years_list: [],
       save: false,
-      term: {}
-    }
+      term: {},
+    };
   },
   async mounted() {
-    await axios.get(
-      'api_dashboard/semesters/' + this.id)
+    if (this.user == null) {
+      this.$router.push("/dashboard/login");
+    } else {
+      if (this.user.role_id != 3) {
+        this.$router.push("/dashboard");
+      }
+    }
+
+    await axios
+      .get("api_dashboard/semesters/" + this.id)
       .then((res) => {
         this.term = res.data.data;
-        this.term_value = this.term.name === 'الفصل الدراسى الثانى' ? 2 : 1;
-        this.status = this.term.status === '0' ? false : true;
-        console.log(this.term);
+        this.term_value = this.term.name === "الفصل الدراسى الثانى" ? 2 : 1;
+        this.status = this.term.status === 1 ? false : true;
+        //console.log(this.term);
       })
-      .catch(error => {
-        console.log(error)
+      .catch((error) => {
+        console.log(error);
         console.log(error.response.data.errors);
       });
-    await axios.get(
-      'api_dashboard/academicYears')
+    await axios
+      .get("api_dashboard/academicYears")
       .then((res) => {
         this.years_list = res.data.data;
-        console.log(this.years_list);
+        //console.log(this.years_list);
       })
-      .catch(error => {
-        console.log(error)
+      .catch((error) => {
+        console.log(error);
         console.log(error.response.data.message);
       });
   },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+  },
   methods: {
-    ...mapActions(['redirectTo']),
+    ...mapActions(["redirectTo"]),
     async update_semester() {
       let data = {
         name: this.term_value,
-        status: this.status ? '1' : '0',
-        academic_year_id: this.year_id
-      }
-      await axios.post('api_dashboard/semesters/' + this.id,data)
+        status: this.status ? "1" : "0",
+        academic_year_id: this.year_id,
+      };
+      await axios
+        .post("api_dashboard/semesters/" + this.id, data)
         .then((res) => {
           this.save = true;
-          console.log(res.data)
+          //console.log(res.data);
         })
-        .catch(error => {
-          console.log(error)
+        .catch((error) => {
+          console.log(error);
           console.log(error.response.data.errors);
         });
-    }
+    },
   },
 };
 </script>
