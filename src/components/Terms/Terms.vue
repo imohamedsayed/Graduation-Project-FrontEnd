@@ -6,12 +6,12 @@
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
     <td class="open">{{ term.name }}</td>
-    <td>{{ academic_year }}</td>
+    <td>{{ term.academic_year }}</td>
     <td>
       <i class="fa-solid fa-circle-check exam" v-if="status"></i>
-      <i class="fa-solid fa-circle-xmark exam" v-else></i>  
+      <i class="fa-solid fa-circle-xmark exam" v-else></i>
     </td>
-    </tr>
+  </tr>
 
   <tr class="close" v-if="!opened & exists">
     <td colspan="7">
@@ -30,11 +30,11 @@
           <div>الخصائص</div>
           <li
             @click="
-          $router.push({
-            name: 'UpdateTerm',
-            params: { id:term.id},
-          })
-        "
+              $router.push({
+                name: 'UpdateTerm',
+                params: { id: term.id },
+              })
+            "
           >
             <i class="fa fa-pen-to-square"></i> تعديل
           </li>
@@ -46,28 +46,16 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   props: ["term"],
   data() {
     return {
       exists: true,
       opened: true,
-      status:this.term.status==='1'?true:false,
-      academic_year: ''
+      status: this.term.status === "On" ? true : false,
+      
     };
-  },
-  async mounted() {
-    
-    await axios.get(
-      'api_dashboard/academicYears/' + this.term.academic_year_id)
-      .then((res) => {
-        this.academic_year = res.data.data.name;
-      })
-      .catch(error => {
-        console.log(error)
-        console.log(error.response.data.errors);
-      });
   },
   methods: {
     openProparties() {
@@ -87,25 +75,21 @@ export default {
         confirmButtonText: "حذف",
         cancelButtonText: "لا ، إلغاء!",
       }).then(async (result) => {
-        if(result.isConfirmed) {
-          Swal.fire(
-            'تم الحذف!',
-            'تم حذف الترم',
-            'نجاح'
-          );
+        if (result.isConfirmed) {
+          Swal.fire("تم الحذف!", "تم حذف الترم", "نجاح");
           this.exists = false;
-          await axios.delete(
-            'api_dashboard/semesters/' + this.term.id)
+          await axios
+            .delete("api_dashboard/semesters/" + this.term.id)
             .then((res) => {
-              console.log(res.data)
+              console.log(res.data);
             })
-            .catch(error => {
-              console.log(error)
+            .catch((error) => {
+              console.log(error);
               console.log(error.response.data.errors);
               console.log(error.response.data.message);
             });
         }
-      })
+      });
     },
   },
 };

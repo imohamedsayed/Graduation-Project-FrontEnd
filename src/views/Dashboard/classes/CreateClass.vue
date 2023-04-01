@@ -12,15 +12,21 @@
               </h4>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert"> تم اضافه صف دراسى بنجاح . <span style="{
-                            font-size:18px;
-                            cursor: pointer;
-                            display: inline-block;
-                            transition: .5s a,}" @click="
-                              this.redirectTo({
-                                name: 'viewClasses',
-                                params: {}
-                              })"> عرض جميع الصفوف الدراسية </span>
+              <div v-if="state.save" class="alert alert-success" role="alert">
+                تم اضافه صف دراسى بنجاح .
+                <span
+                  style="
+                     {
+                      font-size: 18px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="$router.push({ name: 'viewClasses' })"
+                >
+                  عرض جميع الصفوف الدراسية
+                </span>
               </div>
             </div>
           </div>
@@ -29,32 +35,60 @@
               <div class="course_tabs_1">
                 <div id="add-course-tab" class="step-app">
                   <div class="step-content">
-                    <div class="step-tab-panel step-tab-info active create-course-tab" id="tab_step1">
+                    <div
+                      class="step-tab-panel step-tab-info active create-course-tab"
+                      id="tab_step1"
+                    >
                       <div class="tab-from-content">
                         <div class="course__form">
                           <div class="general_info10">
                             <div class="row">
                               <div class="col-lg-6 col-md-12">
-                                <div class="mt-30 box ">
+                                <div class="mt-30 box">
                                   <label>
-                                    <i class="fas fa-list"></i> الصف </label>
-                                  <select v-model="className" class="">
-                                    <option selected disabled value=""> اختيار من القائمة </option>
-                                    <option value="1"> الصف الاول الثانوى </option>
-                                    <option value="2"> الصف الثانى الثانوى </option>
-                                    <option value="3"> الصف الثالث الثانوى </option>
+                                    <i class="fas fa-list"></i> الصف
+                                  </label>
+                                  <select
+                                    v-model="state.className"
+                                    class=""
+                                    required
+                                  >
+                                    <option selected disabled value="">
+                                      اختيار من القائمة
+                                    </option>
+                                    <option value="1">
+                                      الصف الاول الثانوى
+                                    </option>
+                                    <option value="2">
+                                      الصف الثانى الثانوى
+                                    </option>
+                                    <option value="3">
+                                      الصف الثالث الثانوى
+                                    </option>
                                   </select>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i> السنة الدراسي</label>
-                                  <input type="text" v-model="classyear" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i> السنة
+                                    الدراسي</label
+                                  >
+                                  <input
+                                    type="text"
+                                    v-model="state.classYear"
+                                    required
+                                  />
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <button data-direction="finish" class="btn btn-default steps_btn" @click="add_year"> حفظ
+                          <button
+                            data-direction="finish"
+                            class="btn btn-default steps_btn"
+                            @click="addAcademicYear"
+                          >
+                            حفظ
                           </button>
                         </div>
                       </div>
@@ -69,6 +103,11 @@
       <Footer></Footer>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
@@ -78,40 +117,73 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import axios from 'axios';
-import { mapActions,mapGetters } from 'vuex';
+import axios from "axios";
+
+import { mapActions, mapGetters } from "vuex";
+
+import { useStore } from "vuex";
+import { reactive, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+
+import Toast from "@/components/Toast.vue";
 
 export default {
   name: "CreateClass",
-  components: { Footer,AsideBar,Header },
-  data() {
-    return {
-      className: '',
-      classyear: '',
-      branch_id: '',
-      branches_list: [],
-      save: false
-    }
-  },
-  methods: {
-    ...mapActions(['redirectTo']),
-    ...mapGetters(['user']),
-    async add_year() {
-      let data = {
-        name: this.className,
-        year: this.classyear,
-        branch_id: localStorage.getItem('branch_id'),
+  components: { Footer, AsideBar, Header, Toast },
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const state = reactive({
+      user: computed(() => store.state.user),
+      className: "",
+      classYear: "",
+      save: false,
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
+    };
+
+    onMounted(() => {
+      if (state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if (state.user.role_id != 3) {
+          router.push("/dashboard");
+        }
       }
-      await axios.post('api_dashboard/academicYears',data)
+    });
+
+    const addAcademicYear = async () => {
+      let data = {
+        name: state.className,
+        year: state.classYear,
+        branch_id: state.user.exter_info.branch_id,
+      };
+
+      axios
+        .post("api_dashboard/academicYears", data)
         .then((res) => {
-          this.save = true;
-          console.log(res.data)
+          state.save = true;
         })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data.errors);
+        .catch((error) => {
+          notification("error", error.message);
         });
-    }
+    };
+
+    return { state, toast, addAcademicYear };
   },
 };
 </script>

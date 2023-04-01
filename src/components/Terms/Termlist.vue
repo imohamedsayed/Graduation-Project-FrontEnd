@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-6">
       <div class="left">
-        <span >بحث : </span>
+        <span>بحث : </span>
         <input
           type="text"
           placeholder="البحث عن ترم"
@@ -35,9 +35,9 @@
             <tr>
               <th class="text-center" scope="col">#</th>
               <th class="open cell-ta" scope="col">الترم الدراسي</th>
-                <th class="cell-ta" scope="col">السنه الدراسيه</th>
-                <th class="cell-ta" scope="col"> متاح </th>
-              </tr>
+              <th class="cell-ta" scope="col">السنه الدراسيه</th>
+              <th class="cell-ta" scope="col">متاح</th>
+            </tr>
           </thead>
           <tbody>
             <Terms v-for="term in displayItems" :key="term.id" :term="term" />
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 import Terms from "./Terms.vue";
 export default {
   components: { Terms },
@@ -64,25 +64,25 @@ export default {
     };
   },
   async mounted() {
-    await axios.get(
-      'api_dashboard/semesters',)
+    await axios
+      .get("api_dashboard/semesters")
       .then((res) => {
         this.displayItems = res.data.data;
         this.items = res.data.data;
       })
-      .catch(error => {
-        console.log(error)
+      .catch((error) => {
+        console.log(error);
         console.log(error.response.data.errors);
       });
   },
   methods: {
-    searchBranch(key) {
-      this.displayItems = this.items.filter((item) => item.name.toLowerCase().includes(key.toLowerCase()));
+    searchTerm(key) {
+      this.displayItems = this.items.filter((item) =>
+        item.name.toLowerCase().includes(key.toLowerCase())
+      );
     },
   },
 };
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

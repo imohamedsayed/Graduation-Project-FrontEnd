@@ -34,21 +34,39 @@
           <div class="bg">
             <div class="row">
               <div class="col-12">
-                <form class="form" @submit.prevent="addSection">
+                <form class="form" @submit.prevent="addClassRoom">
                   <div class="form_content">
                     <div class="row">
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
+                          <label> اسم الفصل</label>
+                          <input
+                            type="text"
+                            v-model="state.name"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.name.$error"
+                          >
+                            {{ v$.name.$errors[0].$message }}
+                          </span>
+                        </div>
+                      </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
                             <i class="fas fa-pencil-alt"></i>اسم الدورة
                           </label>
                           <select v-model="state.course" class="">
-                            <option selected disabled value="">
-                              اختيار من القائمة
+                            <option
+                              v-for="sub in state.subjects"
+                              :key="sub.id"
+                              :value="sub.id"
+                            >
+                              {{ sub.name }}
                             </option>
-                            <option value="فيزياء" selected>فيزياء</option>
-                            <option value="كيمياء">كيمياء</option>
-                            <option value="عربي">عربي</option>
                           </select>
                           <span
                             class="text-danger fw-bold"
@@ -65,10 +83,13 @@
                             المدرس</label
                           >
                           <select v-model="state.tech" class="">
-                            <option value="1 المدرس" selected>4 المدرس</option>
-                            <option value="2 المدرس">3 المدرس</option>
-                            <option value="3 المدرس">2 المدرس</option>
-                            <option value="4 المدرس">1 المدرس</option>
+                            <option
+                              v-for="teacher in state.teachers"
+                              :key="teacher.id"
+                              :value="teacher.id"
+                            >
+                              {{ teacher.name }} - {{ teacher.id }}
+                            </option>
                           </select>
                           <span
                             class="text-danger fw-bold"
@@ -123,8 +144,8 @@
                             مسبق</label
                           >
                           <select v-model="state.exam" class="">
-                            <option value="true" selected>yes</option>
-                            <option value="false">No</option>
+                            <option value="1" selected>yes</option>
+                            <option value="0">No</option>
                           </select>
                           <span
                             class="text-danger fw-bold"
@@ -220,6 +241,7 @@ export default {
     const state = reactive({
       user: computed(() => store.state.user),
       save: false,
+      name: "",
       course: "",
       tech: "",
       max: "",
@@ -227,11 +249,38 @@ export default {
       exam: "",
       start: "",
       end: "",
+      teachers: [],
+      subjects: [],
     });
 
-    onMounted(() => {
+    onMounted(async () => {
       if (state.user == null) {
         router.push("/dashboard/login");
+      } else {
+        if (state.user.role_id != 3) {
+          router.push("/dashboard");
+        }
+      }
+
+      // get our teachers
+
+      let res = await axios.get("/api_dashboard/teachers");
+
+      if (res.status == 200) {
+        state.teachers = res.data.data;
+      } else {
+        // error while getting data
+      }
+
+      // get our subjects
+
+      let subject_res = await axios.get("/api_dashboard/subjects");
+
+      if (subject_res.status == 200) {
+        state.subjects = subject_res.data.data;
+        console.log(subject_res.data.data);
+      } else {
+        // error while getting data
       }
     });
 
@@ -260,6 +309,7 @@ export default {
 
     const rules = computed(() => {
       return {
+        name: { required },
         course: { required },
         tech: { required },
         max: { required },
@@ -272,47 +322,41 @@ export default {
 
     const v$ = useVuelidate(rules, state);
 
-    // add new section
+    // add new class room
 
-    const addSection = async () => {
+    const addClassRoom = async () => {
       v$.value.$validate();
       if (!v$.value.$error) {
-        try {
-          /*
-            --------------
-                  API CODE HERE ...
-            --------------
-          */
-        } catch (err) {
-          notification("error", err.response.statusText);
-        }
+        // Start Adding new Class Room
+
+        let data = {
+          name: state.name,
+          price: state.price,
+          status: state.exam,
+          registration_deadline: state.end,
+          start_date: state.start,
+          max_capacity: state.max,
+          branch_id: state.user.exter_info.branch_id,
+          subject_id: state.course,
+          teacher_id: state.tech,
+        };
+        console.log(data);
+        // Start Sending Request
+
+        let res = await axios
+          .post("api_dashboard/classRooms", data)
+          .then(() => {
+            console.log(res);
+            state.save = true;
+          })
+          .catch((err) => notification("error", err.message));
       } else {
         notification("error", "Missing Data !");
       }
     };
 
-    return { state, v$, addSection, toast };
+    return { state, v$, addClassRoom, toast };
   },
-  // methods: {
-  //   ...mapActions(['redirectTo']),
-  //   async addsection() {
-  //     let section = await axios.post('http://localhost:3000/sections/',
-  //       {
-  //         course: this.course,
-  //         tech: this.tech,
-  //         max: this.max,
-  //         price: this.price,
-  //         exam: false,
-  //         start: this.start,
-  //         end: this.end,
-
-  //       })
-  //     if(section.status==201)
-  //     {
-  //       this.save = true;
-  //     }
-  //   }
-  // },
 };
 </script>
 

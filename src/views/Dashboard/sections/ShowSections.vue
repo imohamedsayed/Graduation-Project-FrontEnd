@@ -109,11 +109,11 @@ export default {
       if (state.user == null) {
         router.push("/dashboard/login");
       } else {
-        /*
-          -------------
-            API CODE HERE ....
-          -------------
-        */
+        // let res = await axios.get("api_dashboard/classRooms");
+
+        // if (res.status == 200) {
+        //   console.log(res);
+        // }
 
         state.sections = [
           {

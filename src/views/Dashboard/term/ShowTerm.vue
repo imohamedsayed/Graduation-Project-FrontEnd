@@ -20,12 +20,27 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import Termlist from "../../../components/Terms/Termlist.vue";
+import { useStore } from "vuex";
+import { reactive, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 export default {
   name: "ShowwTerm",
   components: { Footer, AsideBar, Header, Termlist },
-  data() {
-    return {
-    };
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const state = reactive({
+      user: computed(() => store.state.user),
+    });
+    onMounted(() => {
+      if (state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if (state.user.role_id != 3) {
+          router.push("/dashboard");
+        }
+      }
+    });
   },
 };
 </script>
@@ -74,10 +89,10 @@ export default {
   }
   .left {
     float: right;
-    span{
+    span {
       font-weight: 500;
       font-size: 22px;
-      color: var(--darker-blue);      
+      color: var(--darker-blue);
     }
     input {
       width: auto;
