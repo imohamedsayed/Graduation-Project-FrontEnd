@@ -44,6 +44,7 @@ import websiteStore from '../views/website/store/websiteStore.vue';
 import Favourite from '../views/website/Favourite/FavoritePage.vue';
 import superior from '../views/website/superiorStudent/superior.vue';
 import cart from '../views/website/Cart/cart.vue';
+import video from '../views/website/Video/video.vue';
 import test from '../views/website/test/test.vue'
 import payment from '../views/website/payment/Payment.vue';
 import  testResult from '../views/website/test-result/result.vue';
@@ -334,6 +335,12 @@ const routes = [
     path: "/Website/cart/:id/:name",
     name: "cart",
     component: cart,
+    props: true,
+  },
+  {
+    path: "/Website/video/:id/:name",
+    name: "video",
+    component: video,
     props: true,
   },
   {
