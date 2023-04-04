@@ -100,7 +100,7 @@
                     </div>
                     <div class="section-header-right">
                       <span class="section-header-length">
-                        مجاني <i class="fas fa-play"></i
+                        مجاني<i class="fas fa-play"></i
                       ></span>
                     </div>
                   </a>
@@ -108,8 +108,9 @@
                 <div
                   id="accordion"
                   class="ui-accordion ui-widget ui-helper-reset"
+                  v-for="lec in content" :key="lec.id"
                 >
-                  <a
+                  <a  
                     href="javascript:void(0)"
                     class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all"
                   >
@@ -117,168 +118,7 @@
                       <span class="section-title-wrapper">
                         <i class="fas fa-file-video"></i>
                         <span class="section-title-text"
-                          >الوحدة الاولي - الدرس الثاني</span
-                        >
-                      </span>
-                    </div>
-                    <div class="section-header-right">
-                      <span class="section-header-length">
-                        <i class="fas fa-play"></i
-                      ></span>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  id="accordion"
-                  class="ui-accordion ui-widget ui-helper-reset"
-                >
-                  <a
-                    href="javascript:void(0)"
-                    class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all"
-                  >
-                    <div class="section-header-left">
-                      <span class="section-title-wrapper">
-                        <i class="fas fa-file-video"></i>
-                        <span class="section-title-text"
-                          >الوحدة الاولي - الدرس الثالث</span
-                        >
-                      </span>
-                    </div>
-                    <div class="section-header-right">
-                      <span class="section-header-length">
-                        <i class="fas fa-play"></i
-                      ></span>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  id="accordion"
-                  class="ui-accordion ui-widget ui-helper-reset"
-                >
-                  <a
-                    href="javascript:void(0)"
-                    class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all"
-                  >
-                    <div class="section-header-left">
-                      <span class="section-title-wrapper">
-                        <i class="fas fa-file-video"></i>
-                        <span class="section-title-text"
-                          >الوحدة الاولي - الدرس الرابع</span
-                        >
-                      </span>
-                    </div>
-                    <div class="section-header-right">
-                      <span class="section-header-length">
-                        <i class="fas fa-play"></i
-                      ></span>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  id="accordion"
-                  class="ui-accordion ui-widget ui-helper-reset"
-                >
-                  <a
-                    href="javascript:void(0)"
-                    class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all"
-                  >
-                    <div class="section-header-left">
-                      <span class="section-title-wrapper">
-                        <i class="fas fa-file-video"></i>
-                        <span class="section-title-text"
-                          >مقدمة الوحدة الثانية</span
-                        >
-                      </span>
-                    </div>
-                    <div class="section-header-right">
-                      <span class="section-header-length"
-                        ><i class="fas fa-play"></i
-                      ></span>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  id="accordion"
-                  class="ui-accordion ui-widget ui-helper-reset"
-                >
-                  <a
-                    href="javascript:void(0)"
-                    class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all"
-                  >
-                    <div class="section-header-left">
-                      <span class="section-title-wrapper">
-                        <i class="fas fa-file-video"></i>
-                        <span class="section-title-text"
-                          >الوحدة الاولي - الدرس الأول</span
-                        >
-                      </span>
-                    </div>
-                    <div class="section-header-right">
-                      <span class="section-header-length">
-                        <i class="fas fa-play"></i
-                      ></span>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  id="accordion"
-                  class="ui-accordion ui-widget ui-helper-reset"
-                >
-                  <a
-                    href="javascript:void(0)"
-                    class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all"
-                  >
-                    <div class="section-header-left">
-                      <span class="section-title-wrapper">
-                        <i class="fas fa-file-video"></i>
-                        <span class="section-title-text"
-                          >الوحدة الاولي - الدرس الثاني</span
-                        >
-                      </span>
-                    </div>
-                    <div class="section-header-right">
-                      <span class="section-header-length">
-                        <i class="fas fa-play"></i
-                      ></span>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  id="accordion"
-                  class="ui-accordion ui-widget ui-helper-reset"
-                >
-                  <a
-                    href="javascript:void(0)"
-                    class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all"
-                  >
-                    <div class="section-header-left">
-                      <span class="section-title-wrapper">
-                        <i class="fas fa-file-video"></i>
-                        <span class="section-title-text"
-                          >الوحدة الاولي - الدرس الثالث</span
-                        >
-                      </span>
-                    </div>
-                    <div class="section-header-right">
-                      <span class="section-header-length">
-                        <i class="fas fa-play"></i
-                      ></span>
-                    </div>
-                  </a>
-                </div>
-                <div
-                  id="accordion"
-                  class="ui-accordion ui-widget ui-helper-reset"
-                >
-                  <a
-                    href="javascript:void(0)"
-                    class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all"
-                  >
-                    <div class="section-header-left">
-                      <span class="section-title-wrapper">
-                        <i class="fas fa-file-video"></i>
-                        <span class="section-title-text"
-                          >الوحدة الاولي - الدرس الرابع</span
+                          >{{ lec.name }}</span
                         >
                       </span>
                     </div>
@@ -307,7 +147,58 @@ import product from "../../../components/website/Favourite/product_favourite.vue
 export default {
   components: { Footer, AsideBar, Header, product },
   data() {
-    return {};
+    return {
+      content: [
+        {
+          id: 1,
+          name: 'الوحده الاولي _ الدرس التاني ',
+          quist_num: 15,
+          period: 20
+        },
+        {
+          id: 2,
+          name: 'الوحده الاولي _ الدرس الثالث ',
+          quist_num: 15,
+          period: 20
+        },
+        {
+          id: 3,
+          name: 'الوحده الاولي _ الدرس الرابع ',
+          quist_num: 15,
+          period: 20
+        },
+        {
+          id: 4,
+          name: 'الوحده الاولي _ الدرس الخامس ',
+          quist_num: 15,
+          period: 20
+        },
+        {
+          id: 5,
+          name: 'الوحده الثانيه - الدرس الاول',
+          quist_num: 15,
+          period: 20
+        },
+        {
+          id:6,
+          name: 'الوحده الثانيه _ الدرس التاني ',
+          quist_num: 15,
+          period: 20
+        },
+        {
+          id: 7,
+          name: 'الوحده التانيه _ الدرس الثالث ',
+          quist_num: 15,
+          period: 20
+        },
+        {
+          id: 8,
+          name: 'الوحده التانيه _ الدرس الرابع ',
+          quist_num: 15,
+          period: 20
+        },
+      ]
+    };
   },
 };
 </script>
@@ -433,6 +324,9 @@ a {
     background: white !important;
     border: 2px solid black;
     border-radius: 10px;
+}
+.ui-accordion:hover{
+  background-color: #8f94fb !important;
 }
 .active-video {
     background: #8f94fb !important;
