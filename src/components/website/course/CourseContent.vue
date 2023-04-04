@@ -14,7 +14,7 @@
                 <div class="col-9">
                   <div class="title">
                     <i class="fa fa-video "></i>
-                    <router-link :to="{}">{{ lec.name }}</router-link>
+                    <router-link :to="{name: 'video'}">{{ lec.name }}</router-link>
                   </div>
                 </div>
                 <div class="col-3">
