@@ -4,8 +4,8 @@
     <input
       type="text"
       placeholder="ابحث عن موعد معين"
-      v-model="search"
-      @keyup="searchStudent(search)"
+      v-model="state.search"
+      @keyup="searchAppointment(state.search)"
     />
     <div class="list">
       <table class="ap-list">
@@ -16,41 +16,82 @@
           <th>خيارات</th>
         </tr>
         <Appointment
-          v-for="appointment in displayItems"
+          v-for="appointment in state.displayItems"
           :key="appointment.id"
           :appointment="appointment"
         />
       </table>
-      <div class="alert alert-info mt-2" v-if="!displayItems.length">
+      <div class="alert alert-info mt-2" v-if="!state.displayItems.length">
         لا توجد نتائج لعرضها !
       </div>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
 import Appointment from "./Appointment.vue";
+import { reactive, onMounted, computed } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import Toast from "@/components/Toast.vue";
+import axios from "axios";
+
 export default {
-  components: { Appointment },
-  data() {
-    return {
+  components: { Appointment, Toast },
+  props: {
+    classId: String,
+  },
+  setup(props) {
+    const state = reactive({
+      user: computed(() => useStore().state.user),
       search: "",
       items: [],
       displayItems: [],
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
     };
-  },
-  mounted() {
-    this.items = [
-      { id: 1, class: "فيزياء", date: "20/7/2022" },
-      { id: 2, class: "فيزياء", date: "20/7/2022" },
-      { id: 3, class: "عربي", date: "20/7/2022" },
-    ];
-    this.displayItems = this.items;
-  },
-  methods: {
-    searchStudent(key) {
-      this.displayItems = this.items.filter((item) => item.class.includes(key));
-    },
+
+    onMounted(async (message) => {
+      if (state.user == null || state.user.role_id != 3) {
+        useRouter().push("/dashboard/login");
+      } else {
+        try {
+          let appointments = await axios.get("api_dashboard/appointment");
+          if (appointments.status == 200) {
+            console.log(appointments.data.data);
+          }
+        } catch (err) {
+          notification("error", err.response.data.message);
+        }
+      }
+    });
+
+    const searchAppointment = (key) => {
+      state.displayItems = state.items.filter((item) =>
+        item.class.includes(key)
+      );
+    };
+
+    return { state, searchAppointment, toast };
   },
 };
 </script>

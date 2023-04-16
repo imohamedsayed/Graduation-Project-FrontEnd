@@ -228,6 +228,7 @@ export default {
           router.push("/dashboard");
         }
       }
+      console.log(state.user);
     });
 
     //notification

@@ -9,12 +9,12 @@
             <div class="col-lg-6">
               <h2 class="st_title">
                 <i class="fas fa-plus-circle"></i> تعديل فصل :
-                {{ state.course }}
+                {{ state.name }}
               </h2>
             </div>
             <div class="col-lg-6">
               <div v-if="state.save" class="alert alert-success" role="alert">
-                تم اضافه فصل بنجاح .
+                تم تعديل فصل بنجاح .
                 <span
                   style="
                      {
@@ -39,16 +39,34 @@
                     <div class="row">
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
+                          <label> اسم الفصل</label>
+                          <input
+                            type="text"
+                            v-model="state.name"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.name.$error"
+                          >
+                            {{ v$.name.$errors[0].$message }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
                           <label>
                             <i class="fas fa-pencil-alt"></i>اسم الدورة
                           </label>
                           <select v-model="state.course" class="">
-                            <option selected disabled value="">
-                              اختيار من القائمة
+                            <option
+                              v-for="sub in state.subjects"
+                              :key="sub.id"
+                              :value="sub.id"
+                            >
+                              {{ sub.name }}
                             </option>
-                            <option value="فيزياء" selected>فيزياء</option>
-                            <option value="كيمياء">كيمياء</option>
-                            <option value="عربي">عربي</option>
                           </select>
                           <span
                             class="text-danger fw-bold"
@@ -65,10 +83,13 @@
                             المدرس</label
                           >
                           <select v-model="state.tech" class="">
-                            <option value="1 المدرس" selected>4 المدرس</option>
-                            <option value="2 المدرس">3 المدرس</option>
-                            <option value="3 المدرس">2 المدرس</option>
-                            <option value="4 المدرس">1 المدرس</option>
+                            <option
+                              v-for="teacher in state.teachers"
+                              :key="teacher.id"
+                              :value="teacher.id"
+                            >
+                              {{ teacher.name }} - {{ teacher.id }}
+                            </option>
                           </select>
                           <span
                             class="text-danger fw-bold"
@@ -119,12 +140,51 @@
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
+                            <i class="fa-solid fa-warehouse"></i> اقل سعة ممكنة
+                          </label>
+                          <input
+                            type="number"
+                            v-model="state.min_selected"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.min_selected.$error"
+                          >
+                            {{ v$.min_selected.$errors[0].$message }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
+                          <label>
+                            <i class="fa-solid fa-warehouse"></i> الحد الادني
+                            للدرجة
+                          </label>
+                          <input
+                            type="number"
+                            v-model="state.min_grade"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.min_grade.$error"
+                          >
+                            {{ v$.min_grade.$errors[0].$message }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
+                          <label>
                             <i class="fa fa-clipboard-question"></i> امتحان
                             مسبق</label
                           >
                           <select v-model="state.exam" class="">
-                            <option value="true" selected>yes</option>
-                            <option value="false">No</option>
+                            <option value="1" selected>yes</option>
+                            <option value="0">No</option>
                           </select>
                           <span
                             class="text-danger fw-bold"
@@ -217,26 +277,73 @@ export default {
   name: "Editesection",
   components: { Footer, AsideBar, Header, Toast },
   props: {
-    id: Number,
+    id: String,
   },
   setup(props) {
     const state = reactive({
       user: computed(() => store.state.user),
       save: false,
       course: "",
+      name: "",
       tech: "",
       max: "",
       price: "",
       exam: "",
       start: "",
       end: "",
+      min_grade: 0,
+      min_selected: 0,
+      teachers: [],
+      subjects: [],
     });
 
-    onMounted(() => {
+    onMounted(async () => {
       if (state.user == null) {
         router.push("/dashboard/login");
       } else {
-        console.log(props.id);
+        // get our teachers
+
+        let teacher = await axios.get("/api_dashboard/teachers");
+
+        if (teacher.status == 200) {
+          state.teachers = teacher.data.data;
+        } else {
+          // error while getting data
+        }
+
+        // get our subjects
+
+        let subject_res = await axios.get("/api_dashboard/subjects");
+
+        if (subject_res.status == 200) {
+          state.subjects = subject_res.data.data;
+          //console.log(subject_res.data.data);
+        } else {
+          // error while getting data
+        }
+
+        let res = await axios.get("api_dashboard/classRooms/" + props.id);
+
+        if (res.status == 200) {
+          var classRoom = res.data.data;
+
+          console.log(classRoom);
+
+          state.name = classRoom.name;
+          state.price = classRoom.price;
+          state.tech = classRoom.teacher_name;
+          state.max = classRoom.max_capacity;
+          if (classRoom.prerequisite_exam != "Off") {
+            state.exam = 1;
+          } else {
+            state.exam = 0;
+          }
+
+          state.start = classRoom.start_date;
+          state.end = classRoom.registration_deadline;
+        } else {
+          notification("error", "something went wrong while getting data");
+        }
       }
     });
 
@@ -272,6 +379,9 @@ export default {
         exam: { required },
         start: { required },
         end: { required },
+        min_selected: { required },
+        min_grade: { required },
+        name: { required },
       };
     });
 
@@ -282,14 +392,36 @@ export default {
     const updateSection = async () => {
       v$.value.$validate();
       if (!v$.value.$error) {
-        try {
-          /*
-            --------------
-                  API CODE HERE ...
-            --------------
-          */
-        } catch (err) {
-          notification("error", err.response.statusText);
+        state.end = state.end.replace("T", " ");
+
+        state.start = state.start.replace("T", " ");
+
+        if (state.end.length != 19) {
+          state.end += ":00";
+        }
+        if (state.start.length != 19) {
+          state.start += ":00";
+        }
+
+        let data = {
+          name: state.name,
+          price: state.price,
+          status: state.exam,
+          registration_deadline: state.end,
+          start_date: state.start,
+          max_capacity: state.max,
+          branch_id: state.user.exter_info.branch_id,
+          subject_id: state.course,
+          teacher_id: state.tech,
+        };
+        let response = await axios.post(
+          "api_dashboard/classRooms/" + props.id,
+          data
+        );
+        if (response.status) {
+          state.save = true;
+        } else {
+          notification("error", "Error while submitting data");
         }
       } else {
         notification("error", "Missing Data !");
@@ -298,33 +430,6 @@ export default {
 
     return { state, v$, updateSection, toast };
   },
-  // async mounted() {
-  //   let section = await axios.get('http://localhost:3000/sections/'+this.id);
-  //   if(section.status === 200) {
-  //     this.updatedsection = section.data;
-  //     console.log(this.updatedsection.course);
-
-  //   }
-  // },
-  // methods:
-  // {
-  //   ...mapActions(['redirectTo']),
-  //   async Updatesection() {
-  //     let section = await axios.put('http://localhost:3000/sections/'+this.id,
-  //       {
-  //         course: this.updatedsection.course,
-  //         tech: this.updatedsection.tech,
-  //         max: this.updatedsection.max,
-  //         price: this.updatedsection.price,
-  //         exam: this.updatedsection.exam,
-  //         start: this.updatedsection.start,
-  //         end: this.updatedsection.end,
-  //       })
-  //     if(section.status == 200) {
-  //       this.save = true;
-  //     }
-  //   }
-  // },
 };
 </script>
 

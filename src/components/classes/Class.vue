@@ -1,8 +1,8 @@
 <template v-if="exists">
   <tr class="class-item" dir="rtl">
     <td class="class-id">{{ year.id }}</td>
-    <td class="class-name">{{ year.name }}</td>
-    <td class="class-name">{{ year.year }}</td>
+    <td class="class-name">{{ year.year_name }}</td>
+    
     <td class="class-actions">
       <div class="d-flex align-items-center gap-4">
         <button class="btn" @click="showEditForm = true">
@@ -59,6 +59,9 @@ export default {
       showEditForm: false,
       save: false,
     };
+  },
+  mounted() {
+    console.log(this.year);
   },
   computed: {
     user() {

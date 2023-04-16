@@ -67,9 +67,7 @@ import { required, email, minLength } from "@vuelidate/validators";
 import Toast from "@/components/Toast.vue";
 
 export default {
-
   setup() {
-
     // Declaring Variables
     const state = reactive({
       email: "",
@@ -119,21 +117,15 @@ export default {
           });
           router.push("/dashboard");
         } catch (err) {
-
-          notification("error",err);
-          console.log(err);
-
-          notification("error", err);
+          notification("error", err.response.data.error);
         }
       } else {
         notification("error", "User Data Is Not Valid .. ");
       }
     };
     return { state, login, v$, toast };
-
   },
   components: { Toast },
 };
-
 </script>
 <style lang=""></style>

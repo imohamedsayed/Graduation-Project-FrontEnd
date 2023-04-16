@@ -109,41 +109,22 @@ export default {
       if (state.user == null) {
         router.push("/dashboard/login");
       } else {
-        // let res = await axios.get("api_dashboard/classRooms");
-
-        // if (res.status == 200) {
-        //   console.log(res);
-        // }
-
-        state.sections = [
-          {
-            id: 1,
-            course: "منهج الفيزياء الثانوية العامة",
-            tech: "",
-            max: 150,
-            price: 50,
-            exam: false,
-            start: "1-9-2023 12:00",
-            end: "1-9-2023 12:00",
-          },
-          {
-            id: 2,
-            course: "منهج الكيمياء الثانوية العامة",
-            tech: "",
-            max: 150,
-            price: 50,
-            exam: 1,
-            start: "1-9-2023 12:00",
-            end: "1-9-2023 12:00",
-          },
-        ];
+        let res = await axios
+          .get(
+            "/api_dashboard/classrooms.get_by_branch_id/" +
+              state.user.exter_info.branch_id
+          )
+          .then((res) => {
+            state.sections = res.data.data;
+          })
+          .catch((err) => console.log(err));
 
         state.items = state.sections;
       }
     });
 
     const searchCourse = (key) => {
-      state.sections = state.items.filter((item) => item.course.includes(key));
+      state.sections = state.items.filter((item) => item.name.includes(key));
     };
 
     return { state, searchCourse };
