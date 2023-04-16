@@ -5,18 +5,21 @@
       <i v-if="opened" class="fa fa-circle-plus plus"></i>
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
-    <td>{{ section.course }}</td>
+    <td>{{ section.name }}</td>
     <td class="open">
-      {{ section.tech }}
+      {{ section.teacher_name }}
     </td>
-    <td class="open">{{ section.max }}</td>
+    <td class="open">{{ section.max_capacity }}</td>
     <td class="open">{{ section.price }}EGP</td>
     <td class="open">
-      <i class="fa-solid fa-circle-check exam" v-if="section.exam"></i>
+      <i
+        class="fa-solid fa-circle-check exam"
+        v-if="section.prerequisite_exam != 'Off'"
+      ></i>
       <i class="fa-solid fa-circle-xmark exam" v-else></i>
     </td>
-    <td class="open">{{ section.start }}</td>
-    <td class="open">{{ section.end }}</td>
+    <td class="open">{{ section.start_date }}</td>
+    <td class="open">{{ section.registration_deadline }}</td>
     <td class="open">
       <a
         class="show"
@@ -94,6 +97,28 @@
             <i class="fa fa-trash"></i> تعديل
           </li>
           <li class="btn" @click="Delete()"><i class="fa fa-trash"></i> حذف</li>
+          <li
+            class="btn"
+            @click="
+              $router.push({
+                name: 'add_appointment',
+                params: { id: section.id },
+              })
+            "
+          >
+            <i class="fa fa-circle-plus"></i> اضافة موعد
+          </li>
+          <li
+            class="btn"
+            @click="
+              $router.push({
+                name: 'appointments',
+                params: { id: section.id },
+              })
+            "
+          >
+            <i class="fa fa-list"></i> عرض المواعيد
+          </li>
         </ul>
       </div>
     </td>
@@ -128,9 +153,13 @@ export default {
         cancelButtonText: "لا ، إلغاء!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          Swal.fire("تم الحذف!", "تم حذف الفصل", "نجاح");
           this.dell = false;
-          // await axios.delete('http://localhost:3000/sections/' + this.section.id)
+          try {
+            await axios.delete("api_dashboard/classRooms/" + this.section.id);
+            Swal.fire("تم الحذف!", "تم حذف الفصل", "نجاح");
+          } catch (err) {
+            console.error("error while deleting section : ", err);
+          }
         }
       });
     },

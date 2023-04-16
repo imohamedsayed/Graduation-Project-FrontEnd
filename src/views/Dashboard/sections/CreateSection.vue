@@ -140,6 +140,45 @@
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
+                            <i class="fa-solid fa-warehouse"></i> اقل سعة ممكنة
+                          </label>
+                          <input
+                            type="number"
+                            v-model="state.min_selected"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.min_selected.$error"
+                          >
+                            {{ v$.min_selected.$errors[0].$message }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
+                          <label>
+                            <i class="fa-solid fa-warehouse"></i> الحد الادني
+                            للدرجة
+                          </label>
+                          <input
+                            type="number"
+                            v-model="state.min_grade"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.min_grade.$error"
+                          >
+                            {{ v$.min_grade.$errors[0].$message }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
+                          <label>
                             <i class="fa fa-clipboard-question"></i> امتحان
                             مسبق</label
                           >
@@ -249,6 +288,8 @@ export default {
       exam: "",
       start: "",
       end: "",
+      min_grade: 0,
+      min_selected: 0,
       teachers: [],
       subjects: [],
     });
@@ -278,7 +319,7 @@ export default {
 
       if (subject_res.status == 200) {
         state.subjects = subject_res.data.data;
-        console.log(subject_res.data.data);
+        //console.log(subject_res.data.data);
       } else {
         // error while getting data
       }
@@ -317,6 +358,8 @@ export default {
         exam: { required },
         start: { required },
         end: { required },
+        min_selected: { required },
+        min_grade: { required },
       };
     });
 
@@ -327,7 +370,16 @@ export default {
     const addClassRoom = async () => {
       v$.value.$validate();
       if (!v$.value.$error) {
-        // Start Adding new Class Room
+        state.end = state.end.replace("T", " ");
+
+        state.start = state.start.replace("T", " ");
+
+        if (state.end.length != 19) {
+          state.end += ":00";
+        }
+        if (state.start.length != 19) {
+          state.start += ":00";
+        }
 
         let data = {
           name: state.name,
@@ -341,15 +393,14 @@ export default {
           teacher_id: state.tech,
         };
         console.log(data);
+
         // Start Sending Request
 
-        let res = await axios
-          .post("api_dashboard/classRooms", data)
-          .then(() => {
-            console.log(res);
-            state.save = true;
-          })
-          .catch((err) => notification("error", err.message));
+        let res = await axios.post("/api_dashboard/classRooms", data);
+
+        if (res.status == 200) {
+          state.save = true;
+        }
       } else {
         notification("error", "Missing Data !");
       }

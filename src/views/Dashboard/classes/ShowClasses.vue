@@ -15,7 +15,7 @@
             <tr dir="rtl">
               <th>#</th>
               <th>الاسم</th>
-              <th>السنة الدراسيه</th>
+              
               <th>خصائص</th>
             </tr>
             <Class v-for="year in displayItems" :key="year.id" :year="year" />

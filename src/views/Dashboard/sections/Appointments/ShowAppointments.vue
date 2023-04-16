@@ -12,7 +12,7 @@
           جميع المواعيد
         </h3>
         <div class="all-appointments" dir="rtl">
-          <AppointmentsList />
+          <AppointmentsList :classId="id" />
         </div>
       </div>
       <Footer />
@@ -27,6 +27,7 @@ import AsideBar from "../../../../components/AsideBar.vue";
 import AppointmentsList from "@/components/sections/Appointments/AppointmentsList.vue";
 export default {
   components: { Footer, AsideBar, Header, AppointmentsList },
+  props: ["id"],
   data() {
     return {};
   },

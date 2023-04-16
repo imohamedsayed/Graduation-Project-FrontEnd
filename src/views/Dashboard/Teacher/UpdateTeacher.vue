@@ -7,20 +7,32 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-6">
-              <h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> تعديل بيانات الاستاذ : {{
-                teacher.name }}</h2>
+              <h2 class="st_title cr_course_title">
+                <i class="fas fa-plus-circle"></i> تعديل بيانات الاستاذ :
+                {{ teacher.name }}
+              </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert"> تم تعديل المدرس بنجاح . <span style="{
-                            font-size:18px;
-                            cursor: pointer;
-                            display: inline-block;
-                            transition: .5s a,}
-                            " @click="
-                              this.redirectTo({
-                                name: 'ShowTeachers',
-                                params: {}
-                              })"> عرض جميع المدرسين </span>
+              <div v-if="save" class="alert alert-success" role="alert">
+                تم تعديل المدرس بنجاح .
+                <span
+                  style="
+                     {
+                      font-size: 18px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="
+                    this.redirectTo({
+                      name: 'ShowTeachers',
+                      params: {},
+                    })
+                  "
+                >
+                  عرض جميع المدرسين
+                </span>
               </div>
             </div>
           </div>
@@ -29,41 +41,66 @@
               <div class="course_tabs_1">
                 <div id="add-course-tab" class="step-app">
                   <div class="step-content">
-                    <div class="step-tab-panel step-tab-info active create-course-tab" id="tab_step1">
+                    <div
+                      class="step-tab-panel step-tab-info active create-course-tab"
+                      id="tab_step1"
+                    >
                       <div class="tab-from-content">
                         <div class="course__form">
                           <div class="general_info10">
                             <div class="row">
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل الاسم</label>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل
+                                    الاسم</label
+                                  >
                                   <input type="text" v-model="name" />
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل اللقب</label>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل
+                                    اللقب</label
+                                  >
                                   <input type="text" v-model="nickname" />
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i> الصورة</label>
-                                  <input type="file" @change="(e) => {
-                                    this.avatar = e.target.files[0];
-                                  }" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>
+                                    الصورة</label
+                                  >
+                                  <input
+                                    type="file"
+                                    @change="
+                                      (e) => {
+                                        this.avatar = e.target.files[0];
+                                      }
+                                    "
+                                  />
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل رقم الهاتف</label>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل رقم
+                                    الهاتف</label
+                                  >
                                   <input type="number" v-model="phone" />
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <button data-direction="finish" @click="SaveChanged" class="btn btn-default steps_btn">حفظ
-                            التعديل</button>
+                          <button
+                            data-direction="finish"
+                            @click="SaveChanged"
+                            class="btn btn-default steps_btn"
+                          >
+                            حفظ التعديل
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -84,56 +121,58 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import { mapActions } from 'vuex';
-import axios from 'axios';
+import { mapActions } from "vuex";
+import axios from "axios";
 
 export default {
   props: ["id"],
   name: "updateTeachers",
-  components: { Footer,AsideBar,Header },
+  components: { Footer, AsideBar, Header },
   data() {
     return {
       teacher: {},
-      name: '',
-      nickname: '',
-      avatar: '',
-      phone: '',
-      save: false
-    }
+      name: "",
+      nickname: "",
+      avatar: "",
+      phone: "",
+      save: false,
+    };
   },
   async mounted() {
-    await axios.get(
-      'api_dashboard/teachers/' + this.id)
+    await axios
+      .get("api_dashboard/teachers/" + this.id)
       .then((res) => {
+        console.log(res.data.data);
         this.teacher = res.data.data;
-        this.name = this.teacher.name
-        this.nickname = this.teacher.nick_name
-        this.avatar = this.teacher.avatar
-        this.phone = this.teacher.phone_number
+        this.name = this.teacher.name;
+        this.nickname = this.teacher.nick_name;
+        this.avatar = this.teacher.avatar;
+        this.phone = this.teacher.phone_number;
       })
-      .catch(error => {
-        console.log(error)
+      .catch((error) => {
+        console.log(error);
         console.log(error.response.data.message);
       });
   },
   methods: {
-    ...mapActions(['redirectTo']),
+    ...mapActions(["redirectTo"]),
     async SaveChanged() {
-      let data = new FormData;
-      data.append('avatar',this.avatar);
-      data.append('name',this.name);
-      data.append('nick_name',this.nickname);
-      data.append('phone_number',this.phone);
-      await axios.post('api_dashboard/teachers/' + this.id,data)
+      let data = new FormData();
+      data.append("avatar", this.avatar);
+      data.append("name", this.name);
+      data.append("nick_name", this.nickname);
+      data.append("phone_number", this.phone);
+      await axios
+        .post("api_dashboard/teachers/" + this.id, data)
         .then((res) => {
-          console.log(res.data)
-          this.save = true
+          console.log(res.data);
+          this.save = true;
         })
-        .catch(error => {
-          console.log(error)
+        .catch((error) => {
+          console.log(error);
           console.log(error.response.data.message);
         });
-    }
+    },
   },
 };
 </script>
