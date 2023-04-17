@@ -39,11 +39,11 @@
       <ul>
         <li>
           المدرس :
-          <div>{{ section.tech }}</div>
+          <div>{{ section.teacher_name }}</div>
         </li>
         <li>
           السعة :
-          <div>{{ section.max }}</div>
+          <div>{{ section.max_capacity }}</div>
         </li>
         <li>
           السعر :
@@ -52,18 +52,21 @@
         <li>
           امتحان :
           <div>
-            <i class="fa-solid fa-circle-check exam" v-if="section.exam"></i>
+            <i
+              class="fa-solid fa-circle-check exam"
+              v-if="section.prerequisite_exam != 'Off'"
+            ></i>
             <i class="fa-solid fa-circle-xmark exam" v-else></i>
           </div>
         </li>
         <li>
           تاريخ البدء :
-          <div>{{ section.start }}</div>
+          <div>{{ section.start_date }}</div>
         </li>
         <li>
           تاريخ الانتهاء :
           <div>
-            {{ section.end }}
+            {{ section.registration_deadline }}
           </div>
         </li>
         <li>
@@ -118,6 +121,29 @@
             "
           >
             <i class="fa fa-list"></i> عرض المواعيد
+          </li>
+
+          <li
+            class="btn"
+            @click="
+              $router.push({
+                name: 'classroom_notes',
+                params: { id: section.id },
+              })
+            "
+          >
+            <i class="fa-solid fa-note-sticky" c></i> ملاحظات
+          </li>
+          <li
+            class="btn"
+            @click="
+              $router.push({
+                name: 'classroom_attachments',
+                params: { id: section.id },
+              })
+            "
+          >
+            <i class="fa-solid fa-file-pdf"></i> ملحقات
           </li>
         </ul>
       </div>
