@@ -11,7 +11,7 @@
       <table class="ap-list">
         <tr dir="rtl">
           <th>#</th>
-          <th>اسم الدرس</th>
+          <th>اليوم</th>
           <th>الموعد</th>
           <th>خيارات</th>
         </tr>
@@ -75,9 +75,13 @@ export default {
         useRouter().push("/dashboard/login");
       } else {
         try {
-          let appointments = await axios.get("api_dashboard/appointment");
+          let appointments = await axios.get(
+            "api_dashboard/appointment_get_by_classroom_id/" + props.classId
+          );
+
           if (appointments.status == 200) {
-            console.log(appointments.data.data);
+            state.items = appointments.data.data;
+            state.displayItems = appointments.data.data;
           }
         } catch (err) {
           notification("error", err.response.data.message);
@@ -86,9 +90,7 @@ export default {
     });
 
     const searchAppointment = (key) => {
-      state.displayItems = state.items.filter((item) =>
-        item.class.includes(key)
-      );
+      state.displayItems = state.items.filter((item) => item.day.includes(key));
     };
 
     return { state, searchAppointment, toast };

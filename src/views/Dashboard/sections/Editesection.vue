@@ -140,45 +140,6 @@
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
-                            <i class="fa-solid fa-warehouse"></i> اقل سعة ممكنة
-                          </label>
-                          <input
-                            type="number"
-                            v-model="state.min_selected"
-                            name=""
-                            id=""
-                          />
-                          <span
-                            class="text-danger fw-bold"
-                            v-if="v$.min_selected.$error"
-                          >
-                            {{ v$.min_selected.$errors[0].$message }}
-                          </span>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6">
-                        <div class="ui mt-30 focus box search">
-                          <label>
-                            <i class="fa-solid fa-warehouse"></i> الحد الادني
-                            للدرجة
-                          </label>
-                          <input
-                            type="number"
-                            v-model="state.min_grade"
-                            name=""
-                            id=""
-                          />
-                          <span
-                            class="text-danger fw-bold"
-                            v-if="v$.min_grade.$error"
-                          >
-                            {{ v$.min_grade.$errors[0].$message }}
-                          </span>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6">
-                        <div class="ui mt-30 focus box search">
-                          <label>
                             <i class="fa fa-clipboard-question"></i> امتحان
                             مسبق</label
                           >
@@ -194,6 +155,38 @@
                           </span>
                         </div>
                       </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
+                          <label>
+                            <i class="fa-solid fa-warehouse"></i> اقل سعة ممكنة
+                          </label>
+                          <input
+                            type="number"
+                            v-model="state.min_selected"
+                            name=""
+                            id=""
+                            :disabled="state.exam != 1"
+                          />
+                         
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
+                          <label>
+                            <i class="fa-solid fa-warehouse"></i> الحد الادني
+                            للدرجة
+                          </label>
+                          <input
+                            type="number"
+                            v-model="state.min_grade"
+                            name=""
+                            id=""
+                            :disabled="state.exam != 1"
+                          />
+                         
+                        </div>
+                      </div>
+
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
@@ -233,8 +226,23 @@
                           </span>
                         </div>
                       </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div
+                          class="ui mt-30 focus box search d-flex align-items-center gap-2"
+                        >
+                          <input
+                            type="checkbox"
+                            id="status"
+                            class="mb-3"
+                            v-model="state.status"
+                            style="width: 30px; height: 30px"
+                          />
+                          <label for="status" class="text-muted"> الحالة</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
+
                   <button
                     type="submit"
                     data-direction="finish"
@@ -291,6 +299,7 @@ export default {
       exam: "",
       start: "",
       end: "",
+      status: false,
       min_grade: 0,
       min_selected: 0,
       teachers: [],
@@ -333,10 +342,17 @@ export default {
           state.price = classRoom.price;
           state.tech = classRoom.teacher_name;
           state.max = classRoom.max_capacity;
+          state.min_grade = classRoom.min_grade;
+          state.min_selected = classRoom.min_selected;
           if (classRoom.prerequisite_exam != "Off") {
             state.exam = 1;
           } else {
             state.exam = 0;
+          }
+          if (classRoom.status != "Off") {
+            state.status = true;
+          } else {
+            state.status = false;
           }
 
           state.start = classRoom.start_date;
@@ -379,8 +395,6 @@ export default {
         exam: { required },
         start: { required },
         end: { required },
-        min_selected: { required },
-        min_grade: { required },
         name: { required },
       };
     });
@@ -406,14 +420,19 @@ export default {
         let data = {
           name: state.name,
           price: state.price,
-          status: state.exam,
+          prerequisite_exam: state.exam,
+          status: String(Number(state.status)),
           registration_deadline: state.end,
           start_date: state.start,
           max_capacity: state.max,
           branch_id: state.user.exter_info.branch_id,
           subject_id: state.course,
           teacher_id: state.tech,
+          min_grade: state.min_grade,
+          min_selected: state.min_selected,
         };
+
+        console.log(data);
         let response = await axios.post(
           "api_dashboard/classRooms/" + props.id,
           data

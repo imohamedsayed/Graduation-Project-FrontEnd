@@ -1,8 +1,8 @@
 <template>
   <tr class="app-ap" v-if="exists">
-    <td>{{ appointment.id }}</td>
-    <td>{{ appointment.class }}</td>
-    <td>{{ appointment.date }}</td>
+    <td>{{ state.appointment.id }}</td>
+    <td>{{ state.appointment.day }}</td>
+    <td>{{ state.appointment.from }} : {{ state.appointment.to }}</td>
     <td class="d-flex justify-content-center w-100">
       <button
         class="btn btn-primary ms-lg-5 ms-2 approve"
@@ -21,8 +21,18 @@
 </template>
 
 <script>
+import { reactive, onMounted, computed } from "vue";
+import axios from "axios";
+
 export default {
   props: ["appointment"],
+  setup(props) {
+    const state = reactive({
+      appointment: props.appointment,
+    });
+
+    return { state };
+  },
   data() {
     return {
       exists: true,
@@ -38,10 +48,18 @@ export default {
         cancelButtonColor: "#d33",
         confirmButtonText: "حذف",
         cancelButtonText: "لا ، إلغاء!",
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
-          Swal.fire("تم !", "تم حذف الموعد ", "نجاح");
-          this.exists = false;
+          try {
+            let res = await axios.delete(
+              "api_dashboard/appointment/" + this.appointment.id
+            );
+            //console.log(res);
+            Swal.fire("تم !", "تم حذف الموعد ", "نجاح");
+            this.exists = false;
+          } catch (err) {
+            console.log(err);
+          }
         }
       });
     },
