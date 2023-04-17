@@ -54,7 +54,12 @@ import Admin_Login from "../views/Admin_Login.vue";
 import allTeacters from "@/views/website/Profile teacher/allTeacters.vue";
 import ChooseBranch from "@/views/website/chooseBranch/ChooseBranch.vue";
 import stdhome from "@/views/website/stdhome";
-
+import ShowNotes from "@/views/Dashboard/sections/notes/ShowNotes.vue";
+import AddNote from "@/views/Dashboard/sections/notes/AddNote.vue";
+import EditNote from "@/views/Dashboard/sections/notes/EditNote.vue";
+import AddAttachment from "@/views/Dashboard/sections/attachment/AddAttachment.vue";
+import ShowAttachments from "@/views/Dashboard/sections/attachment/ShowAttachments.vue";
+import EditAttachments from "@/views/Dashboard/sections/attachment/EditAttachment.vue";
 const routes = [
   {
     path: "/dashboard/login",
@@ -261,7 +266,42 @@ const routes = [
     name: "applicant_students",
     component: AppStudents,
   },
-
+  {
+    path: "/dashboard/notes/:id",
+    name: "classroom_notes",
+    component: ShowNotes,
+    props: true,
+  },
+  {
+    path: "/dashboard/add_note/:id",
+    name: "add_note",
+    component: AddNote,
+    props: true,
+  },
+  {
+    path: "/dashboard/edit_note/:id",
+    name: "edit_note",
+    component: EditNote,
+    props: true,
+  },
+  {
+    path: "/dashboard/attachments/:id",
+    name: "classroom_attachments",
+    component: ShowAttachments,
+    props: true,
+  },
+  {
+    path: "/dashboard/add_attachment/:id",
+    name: "add_attachment",
+    component: AddAttachment,
+    props: true,
+  },
+  {
+    path: "/dashboard/edit_attachment/:id",
+    name: "edit_attachment",
+    component: EditAttachments,
+    props: true,
+  },
   /*
   
     ----- > STUDENT PAGES
