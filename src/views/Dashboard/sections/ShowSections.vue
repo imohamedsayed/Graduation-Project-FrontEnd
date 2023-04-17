@@ -111,11 +111,12 @@ export default {
       } else {
         let res = await axios
           .get(
-            "/api_dashboard/classrooms.get_by_branch_id/" +
+            "api_dashboard/classrooms_get_by_branch_id/" +
               state.user.exter_info.branch_id
           )
           .then((res) => {
             state.sections = res.data.data;
+            console.log(state.sections);
           })
           .catch((err) => console.log(err));
 

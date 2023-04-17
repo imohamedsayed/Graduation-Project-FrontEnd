@@ -17,13 +17,13 @@
               <div class="col-md-6 col-12">
                 <label><i class="fa-regular fa-calendar ms-2"></i>اليوم</label>
                 <select name="class" v-model="state.day">
-                  <option value="1">الجمعة</option>
-                  <option value="2">السبت</option>
-                  <option value="3">الاحد</option>
-                  <option value="4">الاثنين</option>
-                  <option value="5">الثلاثاء</option>
-                  <option value="6">الاربعاء</option>
-                  <option value="7">الخميس</option>
+                  <option value="0">الجمعة</option>
+                  <option value="1">السبت</option>
+                  <option value="2">الاحد</option>
+                  <option value="3">الاثنين</option>
+                  <option value="4">الثلاثاء</option>
+                  <option value="5">الاربعاء</option>
+                  <option value="6">الخميس</option>
                 </select>
                 <span class="text-danger fw-bold" v-if="v$.day.$error">
                   {{ v$.day.$errors[0].$message }}

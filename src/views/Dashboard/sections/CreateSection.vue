@@ -140,6 +140,24 @@
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
+                            <i class="fa fa-clipboard-question"></i> امتحان
+                            مسبق</label
+                          >
+                          <select v-model="state.exam" class="">
+                            <option value="1" selected>yes</option>
+                            <option value="0">No</option>
+                          </select>
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.exam.$error"
+                          >
+                            {{ v$.exam.$errors[0].$message }}
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="ui mt-30 focus box search">
+                          <label>
                             <i class="fa-solid fa-warehouse"></i> اقل سعة ممكنة
                           </label>
                           <input
@@ -147,6 +165,7 @@
                             v-model="state.min_selected"
                             name=""
                             id=""
+                            :disabled="state.exam != 1"
                           />
                           <span
                             class="text-danger fw-bold"
@@ -167,6 +186,7 @@
                             v-model="state.min_grade"
                             name=""
                             id=""
+                            :disabled="state.exam != 1"
                           />
                           <span
                             class="text-danger fw-bold"
@@ -176,24 +196,7 @@
                           </span>
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6">
-                        <div class="ui mt-30 focus box search">
-                          <label>
-                            <i class="fa fa-clipboard-question"></i> امتحان
-                            مسبق</label
-                          >
-                          <select v-model="state.exam" class="">
-                            <option value="1" selected>yes</option>
-                            <option value="0">No</option>
-                          </select>
-                          <span
-                            class="text-danger fw-bold"
-                            v-if="v$.exam.$error"
-                          >
-                            {{ v$.exam.$errors[0].$message }}
-                          </span>
-                        </div>
-                      </div>
+
                       <div class="col-lg-6 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label>
@@ -231,6 +234,20 @@
                           >
                             {{ v$.end.$errors[0].$message }}
                           </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div
+                          class="ui mt-30 focus box search d-flex align-items-center gap-2"
+                        >
+                          <input
+                            type="checkbox"
+                            id="status"
+                            class="mb-3"
+                            v-model="state.status"
+                            style="width: 30px; height: 30px"
+                          />
+                          <label for="status" class="text-muted"> الحالة</label>
                         </div>
                       </div>
                     </div>
@@ -288,6 +305,8 @@ export default {
       exam: "",
       start: "",
       end: "",
+      status: false,
+
       min_grade: 0,
       min_selected: 0,
       teachers: [],
@@ -384,13 +403,16 @@ export default {
         let data = {
           name: state.name,
           price: state.price,
-          status: state.exam,
+          prerequisite_exam: state.exam,
+          status: String(Number(state.status)),
           registration_deadline: state.end,
           start_date: state.start,
           max_capacity: state.max,
           branch_id: state.user.exter_info.branch_id,
           subject_id: state.course,
           teacher_id: state.tech,
+          min_grade: state.min_grade,
+          min_selected: state.min_selected,
         };
         console.log(data);
 
