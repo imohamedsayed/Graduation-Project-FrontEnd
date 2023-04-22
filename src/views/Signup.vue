@@ -3,7 +3,7 @@
     <img src="../../public/images/logo/logo_01.png" class="signup-logo" />
     <div class="signup-form">
       <p class="text-center">مرحبا بك في موقع (Edu Center )</p>
-      <h4  class="text-center">تنبيه : <span>*</span> تعني ان الحقل مطلوب </h4>
+      <h4 class="text-center">تنبيه : <span>*</span> تعني ان الحقل مطلوب</h4>
       <form dir="rtl" @submit.prevent="register" class="col-lg-12 col-md-12">
         <div class="row">
           <div class="col-lg-4 col-md-6">
