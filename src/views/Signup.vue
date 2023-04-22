@@ -3,12 +3,13 @@
     <img src="../../public/images/logo/logo_01.png" class="signup-logo" />
     <div class="signup-form">
       <p class="text-center">مرحبا بك في موقع (Edu Center )</p>
+      <h4  class="text-center">تنبيه : <span>*</span> تعني ان الحقل مطلوب </h4>
       <form dir="rtl" @submit.prevent="register" class="col-lg-12 col-md-12">
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>الاسم الاول</label>
-              <input type="text" v-model="FirstName" />
+              <input type="text"  v-model="FirstName" />
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -217,6 +218,12 @@ export default {
 </script>
 
 <style lang="scss">
+h4{
+  color: white;
+}
+h4 span{
+  color: red;
+}
 .signup {
   height: 100vh;
   position: absolute;
@@ -227,15 +234,11 @@ export default {
   background-size: cover;
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  .signup {
-    height: 115vh;
-  }
-}
+
 
 @media (max-width: 768px) {
   .signup {
-    height: 195vh;
+    height: 180vh;
   }
 }
 
@@ -249,7 +252,7 @@ export default {
   position: absolute;
   margin: 0px 50%;
   transform: translate(50%);
-  width: 800px;
+  width: 900px;
   padding: 10px 10px;
   background: transparent;
   border-radius: 15px;
@@ -259,9 +262,13 @@ export default {
 }
 
 @media (max-width: 375px) {
+  .signup {
+    top: 0 !important;
+    height: 180vh;
+  }
   .signup .signup-form {
-    top: 35%;
     width: 120px;
+    height: 150vh;
   }
 }
 
@@ -270,9 +277,16 @@ export default {
     width: 100%;
   }
 }
-
+@media (min-width: 768px) and (max-width: 991px) {
+  .signup {
+    height: 115vh;
+  }
+  .signup .signup-form {
+    width: 800px;
+  }
+}
 .signup .signup-form p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: white;
 }
@@ -295,10 +309,11 @@ export default {
   border-radius: 8px;
   padding-right: 15px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.3rem;
   transition: all 0.3s ease;
   border: 2px solid transparent;
   background: #eee;
+  color: var(--landing-blue);
 }
 
 .signup .signup-form form input[type="text"],
@@ -316,7 +331,7 @@ export default {
 .signup .signup-form form input[type="phone"],
 .signup .signup-form form input[type="password"],
 .signup .signup-form form input[type="date"]::placeholder {
-  color: #999;
+  color: var(--landing-blue);
 }
 
 .signup .signup-form form input[type="checkbox"] {
@@ -326,6 +341,11 @@ export default {
 
 .signup .signup-form form label {
   color: #eee;
+  font-size: 1.3rem;
+}
+.signup .signup-form form label:after {
+  content:"*";
+  color:red;
 }
 
 .signup .signup-form form .file {
