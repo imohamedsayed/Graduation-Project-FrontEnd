@@ -9,7 +9,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>الاسم الاول</label>
-              <input type="text" v-model="FirstName" />
+              <input type="text"  v-model="FirstName" />
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -218,10 +218,10 @@ export default {
 </script>
 
 <style lang="scss">
-h4 {
+h4{
   color: white;
 }
-h4 span {
+h4 span{
   color: red;
 }
 .signup {
@@ -233,6 +233,8 @@ h4 span {
   background: url("../../public/images/landing/1.png");
   background-size: cover;
 }
+
+
 
 @media (max-width: 768px) {
   .signup {
@@ -342,8 +344,8 @@ h4 span {
   font-size: 1.3rem;
 }
 .signup .signup-form form label:after {
-  content: "*";
-  color: red;
+  content:"*";
+  color:red;
 }
 
 .signup .signup-form form .file {
