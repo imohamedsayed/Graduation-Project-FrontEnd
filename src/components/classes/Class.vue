@@ -48,7 +48,6 @@
 
 <script>
 import axios from "axios";
-import { mapGetters } from "vuex";
 export default {
   props: ["year"],
   data() {
@@ -59,9 +58,6 @@ export default {
       showEditForm: false,
       save: false,
     };
-  },
-  mounted() {
-    console.log(this.year);
   },
   computed: {
     user() {

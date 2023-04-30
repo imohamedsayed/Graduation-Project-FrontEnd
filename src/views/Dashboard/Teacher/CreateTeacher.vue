@@ -10,16 +10,16 @@
               <h2 class="st_title cr_course_title"><i class="fas fa-plus-circle"></i> اضافه استاذ جديد</h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert"> تم اضافه مدرس بنجاح . <span style="{
-                        font-size:18px;
-                        cursor: pointer;
-                        display: inline-block;
-                        transition: .5s a,}
-                        " @click="
-                          this.redirectTo({
-                            name: 'ShowTeachers',
-                            params: {}
-                          })"> عرض جميع المدرسين </span>
+              <div v-if="state.save" class="alert alert-success" role="alert"> تم اضافه مدرس بنجاح . <span style="{
+                          font-size:18px;
+                          cursor: pointer;
+                          display: inline-block;
+                          transition: .5s a,}
+                          " @click="
+                            this.redirectTo({
+                              name: 'ShowTeachers',
+                              params: {}
+                            })"> عرض جميع المدرسين </span>
               </div>
             </div>
           </div>
@@ -36,28 +36,36 @@
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
                                   <label><i class="fas fa-pencil-alt"></i> الاسم</label>
-                                  <input type="text" v-model="name" />
+                                  <input type="text" v-model="state.name" />
                                 </div>
+                                <span class="text-danger fw-bold" v-if="v$.name.$error"> {{ v$.name.$errors[0].$message }}
+                                </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
                                   <label><i class="fas fa-pencil-alt"></i>اللقب</label>
-                                  <input type="text" v-model="nickname" />
+                                  <input type="text" v-model="state.nickname" />
                                 </div>
+                                <span class="text-danger fw-bold" v-if="v$.nickname.$error"> {{
+                                  v$.nickname.$errors[0].$message }} </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
                                   <label><i class="fas fa-pencil-alt"></i> الصورة</label>
-                                  <input type="file"  @change="(e) => {
-                                      this.avatar = e.target.files[0];
+                                  <input type="file" @change="(e) => {
+                                    state.avatar = e.target.files[0];
                                   }" />
                                 </div>
+                                <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{
+                                  v$.avatar.$errors[0].$message }} </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
                                   <label><i class="fas fa-pencil-alt"></i> رقم الهاتف</label>
-                                  <input type="text" v-model="phone" />
+                                  <input type="text" v-model="state.phone" />
                                 </div>
+                                <span class="text-danger fw-bold" v-if="v$.phone.$error"> {{ v$.phone.$errors[0].$message
+                                }} </span>
                               </div>
                             </div>
                           </div>
@@ -76,6 +84,11 @@
       <Footer></Footer>
     </div>
   </div>
+    <teleport to="body">
+      <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+        <p>{{ toast.notify }}</p>
+      </Toast>
+    </teleport>
 </template>
 
 <script>
@@ -86,36 +99,96 @@ import AsideBar from "../../../components/AsideBar.vue";
 import axios from 'axios';
 import { mapActions } from 'vuex';
 
+import Toast from "@/components/Toast.vue";
+import { reactive,onMounted,computed } from "vue";
+import { useStore } from "vuex";
+import { useVuelidate } from "@vuelidate/core";
+import { required,minLength } from "@vuelidate/validators";
+
+
 export default {
   name: "CreateTeachers",
-  components: { Footer,AsideBar,Header },
-  data() {
-    return {
+  components: { Footer,AsideBar,Header,Toast },
+  setup() {
+    const state = reactive({
+      user: computed(() => store.state.user),
       name: "",
       nickname: '',
       phone: '',
-      save:false,
-      avatar:''
-    }
+      save: false,
+      avatar: ''
+    });
+
+    onMounted(async () => {
+      if(state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if(state.user.role_id != 3) {
+          router.push("/dashboard");
+        }
+      }
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme,message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      },2000);
+    };
+    // Store and router
+
+    const store = useStore();
+
+    // validations
+
+    const rules = computed(() => {
+      return {
+        name: { required },
+        nickname: { required },
+        phone: { required,minLength: minLength(11) },
+        avatar: { required },
+      };
+    });
+
+    const v$ = useVuelidate(rules,state);
+
+    // add new term
+
+    const addteacher = async () => {
+      v$.value.$validate();
+      if(!v$.value.$error) {
+        let data = new FormData;
+        data.append('avatar',state.avatar);
+        data.append('name',state.name);
+        data.append('nick_name',state.nickname);
+        data.append('phone_number',state.phone);
+
+        // Start Sending Request
+
+        let res = await axios.post("/api_dashboard/teachers",data);
+
+        if(res.status == 200) {
+          state.save = true;
+        }
+      } else {
+        console.error()
+        notification("error","Missing Data !");
+      }
+    };
+
+    return { state,v$,addteacher,toast };
   },
   methods: {
     ...mapActions(['redirectTo']),
-    async addteacher() {
-      let data = new FormData;
-      data.append('avatar',this.avatar);
-      data.append('name',this.name);
-      data.append('nick_name',this.nickname);
-      data.append('phone_number',this.phone);
-      await axios.post('api_dashboard/teachers',data)
-        .then((res) => {
-          console.log(res.data)
-          this.save = true
-        })
-        .catch(error => {
-          console.log(error)
-          console.log(error.response.data.message);
-        });
-    }
   },
 };
 </script>
