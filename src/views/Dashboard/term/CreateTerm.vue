@@ -12,26 +12,15 @@
               </h4>
             </div>
             <div class="col-lg-6">
-              <div v-if="save" class="alert alert-success" role="alert">
-                تم اضافه ترم دراسى بنجاح .
-                <span
-                  style="
-                     {
-                      font-size: 18px;
-                      cursor: pointer;
-                      display: inline-block;
-                      transition: 0.5s a;
-                    }
-                  "
-                  @click="
-                    this.redirectTo({
-                      name: 'ShowTerm',
-                      params: {},
-                    })
-                  "
-                >
-                  عرض الجميع
-                </span>
+              <div v-if="state.save" class="alert alert-success" role="alert"> تم اضافه ترم دراسى بنجاح . <span style="
+                          {
+                            font-size: 18px;
+                            cursor: pointer;
+                            display: inline-block;
+                            transition: 0.5s a;
+                          }
+                        " @click="() => router.push('/dashboard/ShowTerm')
+                        "> عرض الجميع </span>
               </div>
             </div>
           </div>
@@ -40,10 +29,7 @@
               <div class="course_tabs_1">
                 <div id="add-course-tab" class="step-app">
                   <div class="step-content">
-                    <div
-                      class="step-tab-panel step-tab-info active create-course-tab"
-                      id="tab_step1"
-                    >
+                    <div class="step-tab-panel step-tab-info active create-course-tab" id="tab_step1">
                       <div class="tab-from-content">
                         <div class="course__form">
                           <div class="general_info10">
@@ -51,64 +37,48 @@
                               <div class="col-lg-6 col-md-6">
                                 <div class="ui mt-30 focus box search">
                                   <label>
-                                    <i class="fas fa-list"></i> اختيار الترم
-                                    الدراسي</label
-                                  >
-                                  <select v-model="term_value">
-                                    <option selected disabled value="">
-                                      اختيار من القائمة
-                                    </option>
-                                    <option value="1" selected>
-                                      الترم الدراسي الاول
-                                    </option>
-                                    <option value="2">
-                                      الترم الدراسي الثاني
-                                    </option>
+                                    <i class="fas fa-list"></i> اختيار الترم الدراسي</label>
+                                  <select v-model="state.term_value">
+                                    <option selected disabled value=""> اختيار من القائمة </option>
+                                    <option value="1" selected> الترم الدراسي الاول </option>
+                                    <option value="2"> الترم الدراسي الثاني </option>
                                   </select>
                                 </div>
+                                <span
+                                      class="text-danger fw-bold"
+                                      v-if="v$.term_value.$error"
+                                    >
+                                      {{ v$.term_value.$errors[0].$message }}
+                                    </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="mt-30 box">
                                   <label>
-                                    <i class="fas fa-list"></i> اختيار السنه
-                                    الدراسيه
-                                  </label>
-                                  <select v-model="year_id" class="">
-                                    <option selected disabled value="">
-                                      اختيار من القائمة
-                                    </option>
-                                    <option
-                                      v-for="year in years_list"
-                                      :key="year.id"
-                                      :value="year.id"
-                                    >
-                                      {{ year.name }} - {{ year.year }}
-                                    </option>
+                                    <i class="fas fa-list"></i> اختيار السنه الدراسيه </label>
+                                  <select v-model="state.year_id" class="">
+                                    <option selected disabled value=""> اختيار من القائمة </option>
+                                    <option v-for="year in state.years_list" :key="year.id" :value="year.id"> {{
+                                      year.year_name }} </option>
                                   </select>
                                 </div>
+                                <span
+                                      class="text-danger fw-bold"
+                                      v-if="v$.year_id.$error"
+                                    >
+                                      {{ v$.year_id.$errors[0].$message }}
+                                    </span>
                               </div>
                               <div class="col-lg-6 col-md-6">
                                 <div class="status mt-30 focus box search">
-                                  <div
-                                    class="statusbg d-flex align-items-center gap-4 px-1 mt-3"
-                                  >
-                                    <input
-                                      type="checkbox"
-                                      name=""
-                                      v-model="status"
-                                    />
+                                  <div class="statusbg d-flex align-items-center gap-4 px-1 mt-3">
+                                    <input type="checkbox" name="" v-model="state.status" />
                                     <label> متاح </label>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <button
-                            data-direction="finish"
-                            @click="add_semester"
-                            class="btn btn-default steps_btn"
-                          >
-                            حفظ
+                          <button data-direction="finish" @click="add_semester" class="btn btn-default steps_btn"> حفظ
                           </button>
                         </div>
                       </div>
@@ -123,6 +93,11 @@
       <Footer></Footer>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
@@ -131,64 +106,112 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import axios from "axios";
-import { mapActions } from "vuex";
+
+
+import Toast from "@/components/Toast.vue";
+import { reactive,onMounted,computed } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
 
 export default {
   name: "CreateTerm",
-  components: { Footer, AsideBar, Header },
-  data() {
-    return {
+  components: { Footer,AsideBar,Header,Toast },
+
+  setup() {
+    const state = reactive({
+      user: computed(() => store.state.user),
       term_value: "",
-      status: false,
       year_id: "",
       years_list: [],
+      status: false,
       save: false,
-    };
-  },
-  async mounted() {
-    if (this.user == null) {
-      this.$router.push("/dashboard/login");
-    } else {
-      if (this.user.role_id != 3) {
-        this.$router.push("/dashboard");
+    });
+
+    onMounted(async () => {
+      if(state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if(state.user.role_id != 3) {
+          router.push("/dashboard");
+        }
       }
-    }
-    await axios
-      .get("api_dashboard/academicYears")
-      .then((res) => {
-        this.years_list = res.data.data;
-        console.log(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log(error.response.data.message);
-      });
-  },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    },
-  },
-  methods: {
-    ...mapActions(["redirectTo"]),
-    async add_semester() {
-      let data = {
-        name: this.term_value,
-        status: this.status ? "1" : "0",
-        academic_year_id: this.year_id,
-      };
+
+      // get our academicYears
       await axios
-        .post("api_dashboard/semesters", data)
+        .get("api_dashboard/academicYears")
         .then((res) => {
-          this.save = true;
-          console.log(res.data);
+          state.years_list = res.data.data;
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.response.data.errors);
+          console.log(error.response.data.message);
         });
-    },
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme,message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      },2000);
+    };
+
+    // Store and router
+
+    const store = useStore();
+    const router = useRouter();
+
+    // validations
+
+    const rules = computed(() => {
+      return {
+        term_value: { required },
+        status: { required },
+        year_id: { required },
+      };
+    });
+
+    const v$ = useVuelidate(rules,state);
+
+    // add new term
+
+    const add_semester = async () => {
+      v$.value.$validate();
+      if(!v$.value.$error) {
+        let data = {
+          name: state.name,
+          name: state.term_value,
+          status: state.status ? "1" : "0",
+          academic_year_id: state.year_id,
+        };
+
+        // Start Sending Request
+
+        let res = await axios.post("/api_dashboard/semesters",data);
+
+        if(res.status == 200) {
+          state.save = true;
+        }
+      } else {
+        notification("error","Missing Data !");
+      }
+    };
+
+    return { state,v$,add_semester,toast,router };
   },
+
+
 };
 </script>
 <style lang="scss">
@@ -284,6 +307,7 @@ export default {
     border-radius: 10px;
     // width: calc(100% - 20px);
   }
+
   input {
     // width: auto !important;
     height: 20px !important;

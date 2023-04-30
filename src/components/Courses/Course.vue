@@ -8,7 +8,7 @@
       <i class="fa-solid fa-circle-check exam" v-if="status"></i>
       <i class="fa-solid fa-circle-xmark exam" v-else></i>
     </td>
-    <td class="open">{{ year.name }} - {{ year.year }} </td>
+    <td class="open">{{ cours.academic_year }}  </td>
     <td class="open">{{ cours.semester_id == 1 ? ' الفصل الدراسي الاول ' : ' الفصل الدراسي الثانى' }} </td>
   </tr>
   <tr class="close" v-if="!opened">
