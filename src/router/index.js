@@ -14,6 +14,7 @@ import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
 import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
+import showExams from "../views/Dashboard/Exams/showExams.vue";
 import CreateBranch from "../views/Dashboard/Branches/Create-Branch.vue";
 import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
 import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
@@ -214,6 +215,11 @@ const routes = [
     path: "/dashboard/classRoom/1/new_Exam",
     name: "new_Exam",
     component: CreateExam,
+  },
+  {
+    path: "/dashboard/classRoom/1/showExams",
+    name: "showExams",
+    component: showExams,
   },
   {
     path: "/dashboard/ShowCources",

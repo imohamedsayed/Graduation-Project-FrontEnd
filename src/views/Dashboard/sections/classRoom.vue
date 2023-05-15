@@ -52,7 +52,7 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">الامتحانات</h5>
-                        <router-link :to="{ name: '' }">
+                        <router-link :to="{ name: 'showExams' }">
                           <a class="btn"> عرض الامتحانات</a></router-link
                         >
                         <router-link :to="{ name: 'new_Exam' }">
