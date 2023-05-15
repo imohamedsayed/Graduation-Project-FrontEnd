@@ -12,7 +12,7 @@
             الطلاب المسجلين
           </h3>
           <div class="app-stu-data" dir="rtl">
-            <StudentsList />
+            <showStudent/>
           </div>
         </div>
         <Footer />
@@ -24,9 +24,9 @@
   import Footer from "../../../components/Footer.vue";
   import Header from "../../../components/Header.vue";
   import AsideBar from "../../../components/AsideBar.vue";
-  import StudentsList from "@/components/sections/studentDone/showStudent.vue";
+  import showStudent from "@/components/sections/studentDone/showStudent.vue";
   export default {
-    components: { Footer, AsideBar, Header, StudentsList },
+    components: { Footer, AsideBar, Header, showStudent },
     data() {
       return {};
     },
