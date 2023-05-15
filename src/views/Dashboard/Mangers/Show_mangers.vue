@@ -85,4 +85,5 @@ export default {
   border-radius: 25px;
   background-color: var(--darker-blue) !important;
 }
+
 </style>
