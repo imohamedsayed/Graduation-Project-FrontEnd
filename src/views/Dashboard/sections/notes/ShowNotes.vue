@@ -18,7 +18,7 @@
                 <div class="col-sm-12 col-md-6">
                   <div class="right">
                     <router-link
-                      :to="{ name: 'add_note', params: { id: id } }"
+                      :to="{ name: 'add_note', }"
                       class="link"
                     >
                       اضافه ملاحظة جديدة
@@ -141,5 +141,4 @@ export default {
     margin-right: 0;
   }
 }
-
 </style>
