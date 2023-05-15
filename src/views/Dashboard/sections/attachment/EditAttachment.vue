@@ -139,12 +139,12 @@ export default {
     const editAttachment = async () => {
       v$.value.$validate();
       if (!v$.value.$error) {
+        console.log();
         let data = {
-          name: state.file,
+          name: typeof state.file == "string" ? null : state.file,
           description: state.description,
-          class_room_id: state.classRoom.id,
         };
-
+        console.log(data);
         try {
           let res = await axios.post(
             "api_dashboard/attachment/" + props.id,

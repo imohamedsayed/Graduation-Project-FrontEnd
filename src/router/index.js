@@ -394,7 +394,6 @@ const routes = [
   },
   {
     path: "/Website/payment/:id/:name",
-
     name: "payment",
     component: payment,
     props: true,
