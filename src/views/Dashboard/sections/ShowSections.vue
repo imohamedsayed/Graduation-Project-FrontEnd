@@ -45,14 +45,8 @@
                       <thead class="thead-s">
                         <tr>
                           <th width="3%">#</th>
-                          <th class="" width="10%">الدورة</th>
-                          <th class="open" width="10%">المدرس</th>
-                          <th class="open" width="5%">السعة</th>
-                          <th class="open" width="5%">السعر</th>
-                          <th class="open" width="5%">امتحان</th>
-                          <th class="open" width="10%">تاريخ البدء</th>
-                          <th class="open" width="10%">تاريخ الانتهاء</th>
-                          <th class="open" width="10%">الطلاب</th>
+                          <th class="" width="50%">الدورة</th>
+                          <th class="open" width="50%"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -141,4 +135,7 @@ export default {
     margin-right: 0;
   }
 }
+
+
+
 </style>

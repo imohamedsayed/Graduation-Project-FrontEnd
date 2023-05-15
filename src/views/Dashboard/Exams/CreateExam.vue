@@ -20,28 +20,44 @@
 											<div class="course__form">
 												<div class="general_info10">
 													<div class="row">
-														<div class="col-lg-12 col-md-12">															
+														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i> الاسم</label>
 																<input type="text" v-model="examName"/>
 															</div>									
 														</div>
-                            <div class="col-lg-6 col-md-12">
-															<div class="mt-30 lbel25">
-																<label><i class="fas fa-list"></i> الدورة</label>
-																<select class="ui hj145 cntry152" v-model="listValue">
-																	<option selected disabled value="">اختيار من القائمة</option>
-																	<option value="مجاني">مجاني</option>
-																	<option value="مدفوع">مدفوع</option>
-																</select>
-															</div>
+														<div class="col-lg-6 col-md-12">															
+															<div class="ui search focus mt-30 lbel25">
+																<label><i class="fas fa-pencil-alt"></i> التفاصيل</label>
+																<input type="text" v-model="desc"/>
+															</div>									
 														</div>
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
-																<label><i class="fas fa-pencil-alt"></i> مدة الاختبار</label>
-																<input type="number" v-model="ExamTime"/>
+																<label><i class="fas fa-pencil-alt"></i> تاريخ البدء</label>
+																<input type="datetime-local" v-model="desc"/>
 															</div>									
 														</div>
+														<div class="col-lg-6 col-md-12">															
+															<div class="ui search focus mt-30 lbel25">
+																<label><i class="fas fa-pencil-alt"></i> تاريخ الانتهاء</label>
+																<input type="datetime-local" v-model="desc"/>
+															</div>									
+														</div>
+                            <div class="col-lg-6 col-md-6">
+                        <div
+                          class="ui mt-30 focus box search d-flex align-items-center gap-2"
+                        >
+                          <input
+                            type="checkbox"
+                            id="status"
+                            class=""
+                            v-model="status"
+                            style="width: 25px; height: 25px"
+                          />
+                          <label for="status" class="text-muted" style="font-size: 20px;"> الحالة</label>
+                        </div>
+                      </div>
 													</div>
 												</div>
 												<button data-direction="finish" class="btn btn-default steps_btn">حفظ</button>
@@ -71,6 +87,7 @@
      data(){
     return {
       examName: '',
+      desc:'',
       listValue:'',
       ExamTime : '',
     }

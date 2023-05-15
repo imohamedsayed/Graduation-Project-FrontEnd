@@ -14,6 +14,7 @@ import CreateClass from "../views/Dashboard/classes/CreateClass.vue";
 import CreateNotificationPage from "../views/Dashboard/notification/CreateNotificationPage.vue";
 import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
 import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
+import showExams from "../views/Dashboard/Exams/showExams.vue";
 import CreateBranch from "../views/Dashboard/Branches/Create-Branch.vue";
 import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
 import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
@@ -25,10 +26,14 @@ import UpdateTeacher from "../views/Dashboard/Teacher/UpdateTeacher.vue";
 import ShowTeachers from "../views/Dashboard/Teacher/ShowTeachers.vue";
 import PlatformSettings from "../views/Dashboard/platform_settings/Platform_Settings.vue";
 import AppStudents from "../views/Dashboard/sections/ShowAppStudents.vue";
+import showStudent from "../views/Dashboard/sections/showStudent.vue";
+import studentAttendance from "../views/Dashboard/sections/studentAttendance.vue";
+import showStudentAttendance from "../views/Dashboard/sections/showStudentAttendance.vue";
 import AddAppointment from "../views/Dashboard/sections/Appointments/AddApointment.vue";
 import EditAppointment from "../views/Dashboard/sections/Appointments/EditAppointment.vue";
 import ShowAppointments from "../views/Dashboard/sections/Appointments/ShowAppointments.vue";
 import Showsections from "../views/Dashboard/sections/ShowSections.vue";
+import classRoom from "../views/Dashboard/sections/classRoom.vue";
 import Editesection from "../views/Dashboard/sections/Editesection.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
@@ -110,6 +115,11 @@ const routes = [
     path: "/dashboard/showsections",
     name: "showsections",
     component: Showsections,
+  },
+  {
+    path: "/dashboard/classRoom/1",
+    name: "classRoom",
+    component: classRoom,
   },
   {
     path: "/dashboard/Editesection:id",
@@ -202,9 +212,14 @@ const routes = [
     component: ViewClasses,
   },
   {
-    path: "/dashboard/new_exam",
+    path: "/dashboard/classRoom/1/new_Exam",
     name: "new_Exam",
     component: CreateExam,
+  },
+  {
+    path: "/dashboard/classRoom/1/showExams",
+    name: "showExams",
+    component: showExams,
   },
   {
     path: "/dashboard/ShowCources",
@@ -239,7 +254,7 @@ const routes = [
     component: PlatformSettings,
   },
   {
-    path: "/dashboard/add_appointment/:id",
+    path: "/dashboard/classRoom/1/add_appointment",
     name: "add_appointment",
     component: AddAppointment,
     props: true,
@@ -251,7 +266,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/all_appointments/:id",
+    path: "/dashboard/classRoom/1/appointments",
     name: "appointments",
     component: ShowAppointments,
     props: true,
@@ -262,18 +277,33 @@ const routes = [
     component: PlatformSettings,
   },
   {
-    path: "/dashboard/app_students",
+    path: "/dashboard/classRoom/1/app_students",
     name: "applicant_students",
     component: AppStudents,
   },
   {
-    path: "/dashboard/notes/:id",
+    path: "/dashboard/classRoom/1/showStudent",
+    name: "showStudent",
+    component: showStudent,
+  },
+  {
+    path: "/dashboard/classRoom/1/studentAttendance",
+    name: "studentAttendance",
+    component: studentAttendance,
+  },
+  {
+    path: "/dashboard/classRoom/1/showStudentAttendance",
+    name: "showStudentAttendance",
+    component:showStudentAttendance,
+  },
+  {
+    path: "/dashboard/classRoom/1/classroom_notes",
     name: "classroom_notes",
     component: ShowNotes,
     props: true,
   },
   {
-    path: "/dashboard/add_note/:id",
+    path: "/dashboard/classRoom/1/add_note",
     name: "add_note",
     component: AddNote,
     props: true,
@@ -285,19 +315,19 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/attachments/:id",
+    path: "/dashboard/classRoom/1/classroom_attachments",
     name: "classroom_attachments",
     component: ShowAttachments,
     props: true,
   },
   {
-    path: "/dashboard/add_attachment/:id",
+    path: "/dashboard/classRoom/1/add_attachment",
     name: "add_attachment",
     component: AddAttachment,
     props: true,
   },
   {
-    path: "/dashboard/edit_attachment/:id",
+    path: "/dashboard/edit_attachment",
     name: "edit_attachment",
     component: EditAttachments,
     props: true,
