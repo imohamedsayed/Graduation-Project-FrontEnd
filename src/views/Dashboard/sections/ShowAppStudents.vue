@@ -24,7 +24,7 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import StudentsList from "@/components/sections/StudentsList.vue";
+import StudentsList from "@/components/sections/studentWait/StudentsList.vue";
 export default {
   components: { Footer, AsideBar, Header, StudentsList },
   data() {
