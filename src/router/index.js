@@ -29,6 +29,7 @@ import AddAppointment from "../views/Dashboard/sections/Appointments/AddApointme
 import EditAppointment from "../views/Dashboard/sections/Appointments/EditAppointment.vue";
 import ShowAppointments from "../views/Dashboard/sections/Appointments/ShowAppointments.vue";
 import Showsections from "../views/Dashboard/sections/ShowSections.vue";
+import classRoom from "../views/Dashboard/sections/classRoom.vue";
 import Editesection from "../views/Dashboard/sections/Editesection.vue";
 import LandingPage from "../views/LandingPage.vue";
 import Login from "../views/Login.vue";
@@ -110,6 +111,11 @@ const routes = [
     path: "/dashboard/showsections",
     name: "showsections",
     component: Showsections,
+  },
+  {
+    path: "/dashboard/classRoom/1",
+    name: "classRoom",
+    component: classRoom,
   },
   {
     path: "/dashboard/Editesection:id",
