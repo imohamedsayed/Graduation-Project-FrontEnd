@@ -15,6 +15,7 @@
           <th>تاريخ البدء</th>
           <th>تاريخ الانتهاء</th>
           <th>الحاله</th>
+          <th>الاسئله</th>
         </tr>
         <Exam
           v-for="student in displayItems"
@@ -80,13 +81,22 @@ export default {
     td,
     th {
       &:first-of-type {
-        width: 15%;
+        width: 30%;
       }
       &:nth-of-type(2) {
-        width: 40%;
+        width: 15%;
+      }
+      &:nth-of-type(3) {
+        width: 15%;
+      }
+      &:nth-of-type(4) {
+        width: 15%;
+      }
+      &:nth-of-type(5) {
+        width: 10%;
       }
       &:last-of-type {
-        width: 10%;
+        width: 15%;
       }
       padding: 10px 8px;
       border: 1px solid rgba(119, 119, 119, 0.239);

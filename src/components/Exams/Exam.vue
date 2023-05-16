@@ -8,6 +8,19 @@
       <i class="fa-solid fa-circle-check exam" v-if="status"></i>
       <i class="fa-solid fa-circle-xmark exam" v-else></i>
     </td>
+    <td>
+      <a
+        class="show"
+        @click="
+          this.redirectTo({
+            name: '',
+            params: {},
+          })
+        "
+      >
+        عرض الاسئله
+      </a>
+    </td>
   </tr>
 </template>
 
@@ -32,5 +45,18 @@ font-size: 20px;
 font-weight: bold;
 }
 
+a.show {
+    background-color: var(--darker-blue) !important;
+    display: block;
+    width: fit-content;
+    padding: 5px 10px;
+    margin: auto;
+    color: var(--white-color);
+    cursor: pointer;
+    border-radius: 5px;
+    &:hover {
+      color: antiquewhite;
+    }
+  }
 
 </style>

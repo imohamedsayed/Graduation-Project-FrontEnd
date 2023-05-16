@@ -121,11 +121,6 @@ export default {
       color: antiquewhite;
     }
   }
-  i.exam {
-    background-color: var(--white-color);
-    color: var(--darker-blue);
-    font-size: 20px;
-    font-weight: bold;
-  }
+
 }
 </style>
