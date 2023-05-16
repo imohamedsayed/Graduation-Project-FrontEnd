@@ -4,8 +4,7 @@
     <td>{{ student.name }}</td>
     <td>{{ student.date }}</td>
     <td>
-      <i class="fa-solid fa-circle-check exam" v-if="status"></i>
-      <i class="fa-solid fa-circle-xmark exam" v-else></i>
+    حضر و دفع
     </td>
   </tr>
 </template>
