@@ -10,7 +10,9 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6">
                   <div class="mt-30">
-                    <label class="name">اللغه العربيه</label>
+                    <label class="name"
+                      >{{ state.section.subject_name }}
+                    </label>
                     <label class="date">2021 / 2022</label>
                     <label class="number-st"
                       ><span> عدد الطلاب :</span>30</label
@@ -20,18 +22,23 @@
                 <div class="col-sm-12 col-md-6">
                   <div class="mt-30">
                     <label class="teacher-class"
-                      ><span> الاستاذ : </span> وحش الكيمياء</label
+                      ><span> الاستاذ : </span> {{ state.section.teacher_name }}
+                    </label>
+                    <label class="teacher-class"
+                      ><span> تاريخ البدء : </span>
+                      {{ state.section.start_date }}</label
                     >
                     <label class="teacher-class"
-                      ><span> تاريخ البدء : </span> 11 / 20 / 2032</label
+                      ><span> تاريخ الانتهاء : </span>
+                      {{ state.section.registration_deadline }}</label
                     >
                     <label class="teacher-class"
-                      ><span> تاريخ الانتهاء : </span> 11/20/2023</label
+                      ><span> السعر : </span> {{ state.section.price }}$</label
                     >
-                    <label class="teacher-class"
-                      ><span> السعر : </span> 500$</label
+                    <label class="number-st"
+                      ><span> السعه :</span
+                      >{{ state.section.max_capacity }}</label
                     >
-                    <label class="number-st"><span> السعه :</span>30</label>
                   </div>
                 </div>
               </div>
@@ -72,10 +79,12 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">المواعيد</h5>
-                        <router-link :to="{ name: 'appointments' }">
+                        <router-link
+                          :to="{ name: 'appointments', id: state.section.id }"
+                        >
                           <a class="btn"> عرض المواعيد</a></router-link
                         >
-                        <router-link :to="{ name: 'add_appointment' }">
+                        <router-link :to="{ name: 'add_appointment',id:state.section.id  }">
                           <a class="btn"> اضافه مواعيد</a></router-link
                         >
                       </div>
@@ -112,10 +121,17 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">الملاحظات</h5>
-                        <router-link :to="{ name: 'classroom_notes' }">
+                        <router-link
+                          :to="{
+                            name: 'classroom_notes',
+                            id: state.section.id,
+                          }"
+                        >
                           <a class="btn"> عرض الملاحظات</a></router-link
                         >
-                        <router-link :to="{ name: 'add_note' }">
+                        <router-link
+                          :to="{ name: 'add_note', id: state.section.id }"
+                        >
                           <a class="btn">اضافه ملاحظات</a></router-link
                         >
                       </div>
@@ -132,10 +148,10 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">الملحقات</h5>
-                        <router-link :to="{ name: 'classroom_attachments' }">
+                        <router-link :to="{ name: 'classroom_attachments',id:state.section.id  }">
                           <a class="btn"> عرض الملحقات</a></router-link
                         >
-                        <router-link :to="{ name: 'add_attachment' }">
+                        <router-link :to="{ name: 'add_attachment',id:state.section.id  }">
                           <a class="btn"> اضافه ملحق</a></router-link
                         >
                       </div>
@@ -187,40 +203,30 @@ import { reactive, computed, onMounted } from "vue";
 
 export default {
   components: { Footer, AsideBar, Section, Header },
-  setup() {
+  props: {
+    id: String,
+  },
+  setup(props) {
     const store = useStore();
     const router = useRouter();
     const state = reactive({
-      sections: [],
-      items: [],
-      search: "",
       user: computed(() => store.state.user),
+      section: "",
     });
 
     onMounted(async () => {
-      if (state.user == null) {
+      if (state.user == null || state.user.role_id != 3) {
         router.push("/dashboard/login");
       } else {
         let res = await axios
-          .get(
-            "api_dashboard/classrooms_get_by_branch_id/" +
-              state.user.exter_info.branch_id
-          )
+          .get("api_dashboard/classRooms/" + props.id)
           .then((res) => {
-            state.sections = res.data.data;
-            console.log(state.sections);
+            state.section = res.data.data;
           })
           .catch((err) => console.log(err));
-
-        state.items = state.sections;
       }
     });
-
-    const searchCourse = (key) => {
-      state.sections = state.items.filter((item) => item.name.includes(key));
-    };
-
-    return { state, searchCourse };
+    return { state };
   },
 };
 </script>

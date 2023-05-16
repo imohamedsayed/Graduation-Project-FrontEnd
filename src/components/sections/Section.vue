@@ -12,7 +12,7 @@
         @click="
           this.redirectTo({
             name: 'classRoom',
-            params: { },
+            params: {id:section.id },
           })
         "
       >

@@ -14,8 +14,11 @@
               </div>
             </div>
             <div class="col-md-12">
-              <chooseBranch v-for="branch in state.branchlist" :key="branch.id" :wbranch="branch" />
-
+              <chooseBranch
+                v-for="branch in state.branchlist"
+                :key="branch.id"
+                :wbranch="branch"
+              />
             </div>
           </div>
         </div>
@@ -31,10 +34,11 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import chooseBranch from "../../../components/website/chooseBranch/chooseBranchCompnonent.vue";
 
-import { onMounted,reactive } from 'vue';
-import axios from 'axios';
+import { onMounted, reactive } from "vue";
+import axios from "axios";
 export default {
-  components: { Footer,AsideBar,Header,chooseBranch },
+  components: { Footer, AsideBar, Header, chooseBranch },
+  props: ["id"],
   setup() {
     const state = reactive({
       branchlist: [],
@@ -45,7 +49,6 @@ export default {
         .get("/api/branches")
         .then((res) => {
           state.branchlist = res.data.data;
-
         })
         .catch((error) => {
           console.log(error);
@@ -68,16 +71,12 @@ export default {
   }
 }
 
-
-
 .chooseBranch-con {
   direction: rtl;
   padding: 30px 20px;
   width: 100%;
   margin-right: 20px;
 }
-
-
 
 .title {
   direction: rtl;
@@ -94,12 +93,9 @@ export default {
   line-height: 1.2;
 }
 
-
-
 .chooseBranch-con .item_title i {
   color: var(--light-blue);
   margin-left: 10px;
   font-size: 22px;
-
-}</style>
-
+}
+</style>

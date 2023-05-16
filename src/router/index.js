@@ -117,9 +117,10 @@ const routes = [
     component: Showsections,
   },
   {
-    path: "/dashboard/classRoom/1",
+    path: "/dashboard/classRoom/:id",
     name: "classRoom",
     component: classRoom,
+    props: true,
   },
   {
     path: "/dashboard/Editesection:id",
@@ -254,7 +255,7 @@ const routes = [
     component: PlatformSettings,
   },
   {
-    path: "/dashboard/classRoom/1/add_appointment",
+    path: "/dashboard/classRoom/:id/add_appointment",
     name: "add_appointment",
     component: AddAppointment,
     props: true,
@@ -266,7 +267,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/classRoom/1/appointments",
+    path: "/dashboard/classRoom/:id/appointments",
     name: "appointments",
     component: ShowAppointments,
     props: true,
@@ -294,16 +295,16 @@ const routes = [
   {
     path: "/dashboard/classRoom/1/showStudentAttendance",
     name: "showStudentAttendance",
-    component:showStudentAttendance,
+    component: showStudentAttendance,
   },
   {
-    path: "/dashboard/classRoom/1/classroom_notes",
+    path: "/dashboard/classRoom/:id/classroom_notes",
     name: "classroom_notes",
     component: ShowNotes,
     props: true,
   },
   {
-    path: "/dashboard/classRoom/1/add_note",
+    path: "/dashboard/classRoom/:id/add_note",
     name: "add_note",
     component: AddNote,
     props: true,
@@ -315,19 +316,19 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/classRoom/1/classroom_attachments",
+    path: "/dashboard/classRoom/:id/classroom_attachments",
     name: "classroom_attachments",
     component: ShowAttachments,
     props: true,
   },
   {
-    path: "/dashboard/classRoom/1/add_attachment",
+    path: "/dashboard/classRoom/:id/add_attachment",
     name: "add_attachment",
     component: AddAttachment,
     props: true,
   },
   {
-    path: "/dashboard/edit_attachment",
+    path: "/dashboard/edit_attachment/:id",
     name: "edit_attachment",
     component: EditAttachments,
     props: true,
@@ -424,7 +425,6 @@ const routes = [
   },
   {
     path: "/Website/payment/:id/:name",
-
     name: "payment",
     component: payment,
     props: true,
