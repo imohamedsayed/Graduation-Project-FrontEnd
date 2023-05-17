@@ -9,7 +9,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>الاسم الاول</label>
-              <input type="text"  v-model="FirstName" />
+              <input type="text" v-model="FirstName" />
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -148,6 +148,7 @@
 
 <script>
 import axios from "axios";
+import router from "@/router";
 export default {
   data() {
     return {
@@ -171,15 +172,18 @@ export default {
     };
   },
   async mounted() {
-    await axios
-      .get("/api/govenorate")
-      .then((res) => {
-        this.govenorate = res.data.data;
-      })
-      .catch((error) => {
-        console.log(error);
-        // console.log(error.response.data.errors);
-      });
+    if (this.$store.state.student != null) {
+      this.$router.push("/Website/chooseBranch"); 
+    } else {
+      await axios
+        .get("/api/govenorate")
+        .then((res) => {
+          this.govenorate = res.data.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   },
   methods: {
     async register() {
@@ -202,26 +206,22 @@ export default {
       data.append("division", this.section);
       data.append("governorate_id", 1);
       data.append("national_id_card", this.avatar);
-      await axios
-        .post("/api/register", data)
-        .then((res) => {
-          console.log(res.data);
-          this.save = true;
-        })
-        .catch((error) => {
-          console.log(error);
-          console.log(error.response.data.errors);
-        });
+      try {
+        await this.$store.dispatch("studentSignup", data);
+        this.$router.push("/Website/chooseBranch");
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };
 </script>
 
 <style lang="scss">
-h4{
+h4 {
   color: white;
 }
-h4 span{
+h4 span {
   color: red;
 }
 .signup {
@@ -233,8 +233,6 @@ h4 span{
   background: url("../../public/images/landing/1.png");
   background-size: cover;
 }
-
-
 
 @media (max-width: 768px) {
   .signup {
@@ -344,8 +342,8 @@ h4 span{
   font-size: 1.3rem;
 }
 .signup .signup-form form label:after {
-  content:"*";
-  color:red;
+  content: "*";
+  color: red;
 }
 
 .signup .signup-form form .file {

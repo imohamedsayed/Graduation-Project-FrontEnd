@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <StudentHeader />
   <div class="main-view">
     <AsideBar />
     <div class="chooseBranch">
@@ -30,18 +30,19 @@
 
 <script>
 import Footer from "../../../components/Footer.vue";
-import Header from "../../../components/Header.vue";
+import StudentHeader from "@/components/StudentHeader.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import chooseBranch from "../../../components/website/chooseBranch/chooseBranchCompnonent.vue";
 
-import { onMounted, reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import axios from "axios";
+import { useStore } from "vuex";
 export default {
-  components: { Footer, AsideBar, Header, chooseBranch },
-  props: ["id"],
+  components: { Footer, AsideBar, StudentHeader, chooseBranch },
   setup() {
     const state = reactive({
       branchlist: [],
+      student: computed(() => useStore().state.user),
     });
 
     onMounted(async () => {

@@ -7,17 +7,34 @@
       <form @submit.prevent="login" dir="rtl" class="mt-5 mb-5">
         <div class="input-container d-flex align-items-center">
           <span class="form-icon"><i class="fa-solid fa-envelope"></i></span>
-          <input type="text" placeholder=" البريد الالكتروني" v-model="state.email" />
+          <input
+            type="text"
+            placeholder=" البريد الالكتروني"
+            v-model="state.email"
+          />
         </div>
-        <span class="text-danger fw-bold" v-if="v$.email.$error"> {{ v$.email.$errors[0].$message }} </span>
+        <span class="text-danger fw-bold" v-if="v$.email.$error">
+          {{ v$.email.$errors[0].$message }}
+        </span>
         <div class="input-container d-flex align-items-center">
-          <span class="form-icon" @click="state.passwordVisibility = !state.passwordVisibility"><i
-              class="fa-solid fa-lock" v-if="!passwordVisibility"> </i><i class="fa-solid fa-lock-open"
-              v-if="passwordVisibility"></i></span>
-          <input :type="state.passwordVisibility ? 'text' : 'password'" v-model="state.password"
-            placeholder="كلمة المرور" />
+          <span
+            class="form-icon"
+            @click="state.passwordVisibility = !state.passwordVisibility"
+            ><i class="fa-solid fa-lock" v-if="!state.passwordVisibility"> </i
+            ><i
+              class="fa-solid fa-lock-open"
+              v-if="state.passwordVisibility"
+            ></i
+          ></span>
+          <input
+            :type="state.passwordVisibility ? 'text' : 'password'"
+            v-model="state.password"
+            placeholder="كلمة المرور"
+          />
         </div>
-        <span class="text-danger fw-bold" v-if="v$.password.$error"> {{ v$.password.$errors[0].$message }} </span>
+        <span class="text-danger fw-bold" v-if="v$.password.$error">
+          {{ v$.password.$errors[0].$message }}
+        </span>
         <router-link :to="{ name: 'ForgetPassword' }">
           <span class="Forget d-md-block d-none"> نسيت كلمه السر ? </span>
         </router-link>
@@ -28,11 +45,18 @@
         </div>
       </form>
       <div class="already-have-account mt-3">
-        <p>ليس لديك حساب ؟ <router-link to="signup" href="#">انشاء حساب</router-link></p>
+        <p>
+          ليس لديك حساب ؟
+          <router-link to="signup" href="#">انشاء حساب</router-link>
+        </p>
       </div>
     </div>
     <div class="copyrights d-flex align-items-center">
-      <img src="../../public/images/logo/logo_01.png" class="img-fluid" alt="" />
+      <img
+        src="../../public/images/logo/logo_01.png"
+        class="img-fluid"
+        alt=""
+      />
       <p>جميع الحقوق محفوظة <span>2023 &copy;</span></p>
     </div>
   </div>
@@ -44,7 +68,7 @@
 </template>
 
 <script>
-import { computed,reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 
 //import router and vuex
 
@@ -54,14 +78,13 @@ import { useRouter } from "vue-router";
 // import validations tools
 
 import { useVuelidate } from "@vuelidate/core";
-import { required,email,minLength } from "@vuelidate/validators";
+import { required, email, minLength } from "@vuelidate/validators";
 
 // import Notification Toaster
 
 import Toast from "@/components/Toast.vue";
 
 export default {
-
   setup() {
     // Declaring Variables
     const state = reactive({
@@ -76,6 +99,12 @@ export default {
       notify: "",
     });
 
+    onMounted(() => {
+      if (this.$store.state.student != null) {
+        this.$router.push("/Website/chooseBranch");
+      }
+    });
+
     // Store and router
     const store = useStore();
     const router = useRouter();
@@ -83,46 +112,44 @@ export default {
     // validations
     const rules = computed(() => {
       return {
-        email: { email,required },
-        password: { required,minLength: minLength(6) },
+        email: { email, required },
+        password: { required, minLength: minLength(6) },
       };
     });
-    const v$ = useVuelidate(rules,state);
+    const v$ = useVuelidate(rules, state);
 
     // notify
 
-    const notification = (theme,message) => {
+    const notification = (theme, message) => {
       toast.theme = theme;
       toast.notify = message;
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      },2000);
+      }, 2000);
     };
 
     // login action
 
     const login = async () => {
       v$.value.$validate();
-      if(!v$.value.$error) {
+      if (!v$.value.$error) {
         try {
-          await store.dispatch("StudentLogin",{
+          await store.dispatch("StudentLogin", {
             email: state.email,
             password: state.password,
           });
-          router.push("/Website/chooseBranch/" + localStorage.getItem('Std_id') + '/' + localStorage.getItem('Std_name'));
-        } catch(err) {
-          notification("error",err.response.data.error);
+          router.push("/Website/chooseBranch/");
+        } catch (err) {
+          notification("error", err.response.data.error);
         }
       } else {
-        notification("error","User Data Is Not Valid .. ");
+        notification("error", "User Data Is Not Valid .. ");
       }
     };
-    return { state,login,v$,toast };
+    return { state, login, v$, toast };
   },
   components: { Toast },
-
-
 };
 </script>
 
