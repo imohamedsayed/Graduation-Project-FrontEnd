@@ -14,6 +14,7 @@
           <th>الاسم</th>
           <th>تاريخ الانضمام</th>
           <th>الحاله</th>
+          <th>الخصائص</th>
         </tr>
         <showAttendabceList
           v-for="student in displayItems"
@@ -82,10 +83,10 @@ export default {
         width: 15%;
       }
       &:nth-of-type(2) {
-        width: 40%;
+        width: 30%;
       }
       &:last-of-type {
-        width: 10%;
+        width: 20%;
       }
       padding: 10px 8px;
       border: 1px solid rgba(119, 119, 119, 0.239);

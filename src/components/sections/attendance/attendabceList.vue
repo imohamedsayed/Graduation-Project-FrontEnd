@@ -2,13 +2,25 @@
   <tr class="app-stu" v-if="exists">
     <td>{{ student.id }}</td>
     <td>{{ student.name }}</td>
-    <td>{{ student.state }}</td>
-    <td class="d-flex justify-content-center w-100">
-      <label class="checkbox-btn">
-    <label for="checkbox"></label>
-    <input id="checkbox" type="checkbox">
-    <span class="checkmark"></span>
+    <td>{{ student.date }}</td>
+    <td>
+      <label class="radio-button">
+  <input value="option1" name="example-radio" type="radio">
+  <span class="radio"></span>
+  حضر ودفع
 </label>
+<label class="radio-button">
+  <input value="option2" name="example-radio" type="radio">
+  <span class="radio"></span>
+  غاب
+</label>
+<label class="radio-button">
+  <input value="option2" name="example-radio" type="radio">
+  <span class="radio"></span>
+  حضر ولم يدفع
+</label>
+
+
     </td>
   </tr>
 </template>
@@ -53,71 +65,54 @@ export default {
   user-select: none;
 }
 
-/* Hide the browser's default checkbox */
-.checkbox-btn input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+.radio-button {
+  display: flex;
+  gap: 10px;
+  justify-content: srart;
+  margin: 10px;
+  position: relative;
+  align-items: center;
 }
 
-.checkbox-btn label {
-  cursor: pointer;
-  font-size: 14px;
-}
-/* Create a custom checkbox */
-.checkmark {
+.radio-button input[type="radio"] {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  border: 2.5px solid black;
-  transition: .2s linear;
-}
-.checkbox-btn input:checked ~ .checkmark {
-  background-color: transparent;
+  opacity: 0;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
+.radio {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  transform: translateZ(-25px);
+  transition: all 0.3s ease-in-out;
+}
+
+.radio::before {
   position: absolute;
-  visibility: hidden;
-  opacity: 0;
-  left: 50%;
-  top: 40%;
+  content: '';
   width: 10px;
-  height: 14px;
-  border: 2px solid #0ea021;
-  filter: drop-shadow(0px 0px 10px #0ea021);
-  border-width: 0 2.5px 2.5px 0;
-  transition: .2s linear;
-  transform: translate(-50%, -50%) rotate(-90deg) scale(0.2);
+  height: 10px;
+  top: 5px;
+  left: 5px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Show the checkmark when checked */
-.checkbox-btn input:checked ~ .checkmark:after {
-  visibility: visible;
+.radio-button input[type="radio"]:checked + .radio {
+  border-color: #5cb85c;
+  transform: translateZ(0px);
+  background-color: #fff;
+}
+
+.radio-button input[type="radio"]:checked + .radio::before {
   opacity: 1;
-  transform: translate(-50%, -50%) rotate(0deg) scale(1);
-  animation: pulse 1s ease-in;
-}
-
-.checkbox-btn input:checked ~ .checkmark {
-  transform: rotate(45deg);
-  border: none;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) rotate(0deg) scale(1.6);
-  }
 }
 
 

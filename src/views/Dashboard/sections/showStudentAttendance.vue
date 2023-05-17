@@ -9,7 +9,7 @@
               class="fa-solid fa-clipboard ms-2"
               style="color: var(--blue-color)"
             ></i>
-            قائمه الحضور والغياب
+            عرض الحضور والغياب
           </h3>
           <div class="app-stu-data" dir="rtl">
             <showAttendance/>
