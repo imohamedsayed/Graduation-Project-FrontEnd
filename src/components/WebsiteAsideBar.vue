@@ -1,7 +1,7 @@
 <template>
   <aside class="vertical-nav" ref="aside">
     <ul class="list-unstyled" dir="rtl">
-      <router-link :to="{ name: 'stdhome' }">
+      <router-link :to="{path: '/student_home'}">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-home"></i>

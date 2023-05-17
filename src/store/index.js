@@ -7,7 +7,7 @@ import * as cookies from "js-cookie";
 
 const state = {
   user: null,
-  student:null
+  student: null,
 };
 
 // Getters
@@ -30,6 +30,11 @@ const mutations = {
   setStudent(state, student) {
     state.student = student;
   },
+
+  setStudentBrach(state, bID) {
+    state.student.branch_id = bID;
+  },
+
   redirectTo(state, payload) {
     router.push({
       name: payload.name,
@@ -44,9 +49,6 @@ const actions = {
   redirectTo({ commit }, payload) {
     commit("redirectTo", { name: payload.name, params: payload.params });
   },
-
-
-
 
   // Login Admin
   async AdminLogin(context, { email, password }) {
@@ -68,27 +70,45 @@ const actions = {
     }
   },
 
-
-    // Admin
+  // Admin
   user(context, user) {
     context.commit("user", user);
   },
 
+  //Student Signup
 
+  async studentSignup(context, data) {
+    let response = await axios.post("/api/register", data);
+    console.log(response);
+    if (response.status == 201) {
+      context.commit("setStudent", response.data.student);
+      console.log(response);
+      localStorage.setItem("token", response.data.access_token);
+    } else {
+      throw new Error("Could not Complete Student Signup ..");
+    }
+  },
 
+  // student brach
+
+  studentBrach(context, id) {
+    context.commit("setStudentBrach", id);
+  },
 
   // Login Student
   async StudentLogin(context, { email, password }) {
-    let response = await axios.post("api/login", {
-      email: email,
-      password: password,
-    }).then()
-      .catch(err => console.log(err.response.data.message))
-      ;
+    let response = await axios
+      .post("api/login", {
+        email: email,
+        password: password,
+      })
+      .then()
+      .catch((err) => console.log(err.response.data.message));
     if (response.status == 200) {
       localStorage.setItem("Std_id", response.data.user.id);
       localStorage.setItem("Std_name", response.data.user.name);
-      context.commit("setUser", response.data.user);
+      context.commit("setStudent", response.data.user);
+      localStorage.setItem("token", response.data.access_token);
     } else {
       throw new Error("Could not Complete Student Login ..");
     }
@@ -98,10 +118,7 @@ const actions = {
   student(context, student) {
     context.commit("student", student);
   },
-
-
-
-};
+}; // end actions
 const modules = {};
 export default createStore({
   state,

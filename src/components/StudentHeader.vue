@@ -24,7 +24,9 @@
                   alt=""
                 />
               </div>
-              <h5 class="admin-name text-muted">{{ user.name }}</h5>
+              <h5 class="admin-name text-muted">
+                {{user.f_name }} 
+              </h5>
             </div>
             <ul class="list-unstyled">
               <li dir="rtl">اعدادات الحساب</li>
@@ -34,7 +36,17 @@
         </div>
       </div>
     </div>
-  
+    <div class="right d-flex">
+      <input type="search" placeholder="ماذا تريد أن تتعلم" />
+
+      <div class="logo" style="width: 140px">
+        <img
+          src="../../public/images/logo/logo_01.png"
+          class="img-fluid"
+          alt=""
+        />
+      </div>
+    </div>
   </header>
 </template>
 
@@ -52,12 +64,12 @@ export default {
     const store = useStore();
     const router = useRouter();
     const logout = () => {
-      store.commit("setUser", null);
+      store.commit("setStudent", null);
       localStorage.clear();
-      router.push("/dashboard/login");
+      router.push("/login");
     };
     return {
-      user: computed(() => store.state.user),
+      user: computed(() => store.state.student),
       logout,
     };
   },

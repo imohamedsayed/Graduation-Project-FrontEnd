@@ -321,7 +321,6 @@ export default {
           router.push("/dashboard");
         }
       }
-
       // get our teachers
 
       let res = await axios.get("/api_dashboard/teachers");
@@ -334,7 +333,7 @@ export default {
 
       // get our subjects
 
-      let subject_res = await axios.get("/api_dashboard/subjects");
+      let subject_res = await axios.get("/api_dashboard/subjects_get_by_branch_id/"+state.user.branch_id_assistant);
 
       if (subject_res.status == 200) {
         state.subjects = subject_res.data.data;

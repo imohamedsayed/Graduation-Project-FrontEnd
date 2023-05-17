@@ -53,18 +53,19 @@ import video from "../views/website/Video/video.vue";
 import test from "../views/website/test/test.vue";
 import payment from "../views/website/payment/Payment.vue";
 import testResult from "../views/website/test-result/result.vue";
-import chooseBranch from "../views/website/chooseBranch/ChooseBranch.vue";
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 import Admin_Login from "../views/Admin_Login.vue";
 import allTeacters from "@/views/website/Profile teacher/allTeacters.vue";
 import ChooseBranch from "@/views/website/chooseBranch/ChooseBranch.vue";
-import stdhome from "@/views/website/stdhome";
 import ShowNotes from "@/views/Dashboard/sections/notes/ShowNotes.vue";
 import AddNote from "@/views/Dashboard/sections/notes/AddNote.vue";
 import EditNote from "@/views/Dashboard/sections/notes/EditNote.vue";
 import AddAttachment from "@/views/Dashboard/sections/attachment/AddAttachment.vue";
 import ShowAttachments from "@/views/Dashboard/sections/attachment/ShowAttachments.vue";
 import EditAttachments from "@/views/Dashboard/sections/attachment/EditAttachment.vue";
+import Home from "@/views/website/stdhome";
+import TeacherClasses from "@/views/website/ClassRooms/TeacherClassRooms.vue";
+import CourseClasses from "@/views/website/ClassRooms/CourseClassRooms.vue";
 const routes = [
   {
     path: "/dashboard/login",
@@ -339,100 +340,100 @@ const routes = [
   
   */
   {
-    path: "/profile/:id/:name",
+    path: "/profile",
     name: "profile",
     component: stuProfile,
-    props: true,
   },
   {
-    path: "/matrial/:id/:name",
+    path: "/matrial",
     name: "matrial",
     component: StdMatrial,
-    props: true,
   },
   {
-    path: "/course/:id/:name",
+    path: "/course",
     name: "course",
     component: studentcourse,
-    props: true,
   },
   {
-    path: "/Website/allTeacters/:id/:name",
+    path: "/Website/allTeacters",
     name: "allTeacters",
     component: allTeacters,
-    props: true,
   },
   {
-    path: "/teacherProfile/:id/:name",
+    path: "/teacherProfile",
     name: "teacherProfile",
     component: TeacherProfile,
+  },
+
+  {
+    path: "/Website/notifications",
+    name: "WebsiteNotificationPage",
+    component: WebsiteNotificationPage,
+  },
+  {
+    path: "/Website/Store",
+    name: "websiteStore",
+    component: websiteStore,
+  },
+  {
+    path: "/Website/Favourite",
+    name: "Favourite",
+    component: Favourite,
+  },
+  {
+    path: "/Website/cart",
+    name: "cart",
+    component: cart,
+  },
+  {
+    path: "/Website/video",
+    name: "video",
+    component: video,
+  },
+  {
+    path: "/Website/test",
+    name: "test",
+    component: test,
+  },
+  {
+    path: "/Website/superior",
+    name: "superior",
+    component: superior,
+  },
+  {
+    path: "/student_home",
+    name: "student_home",
+    component: Home,
+  },
+  {
+    path: "/Website/chooseBranch",
+    name: "chooseBranch ",
+    component: ChooseBranch,
+  },
+  {
+    path: "/Website/payment",
+    name: "payment",
+    component: payment,
+  },
+  {
+    path: "/Website/testResult",
+    name: "testResult",
+    component: testResult,
+  },
+
+  // Class Rooms
+
+  {
+    path: "/website/teacher/:id/classes",
+    name: "teacher_classes",
+    component: TeacherClasses,
     props: true,
   },
 
   {
-    path: "/Website/notifications/:id/:name",
-    name: "WebsiteNotificationPage",
-    component: WebsiteNotificationPage,
-    props: true,
-  },
-  {
-    path: "/Website/Store/:id/:name",
-    name: "websiteStore",
-    component: websiteStore,
-    props: true,
-  },
-  {
-    path: "/Website/Favourite/:id/:name",
-    name: "Favourite",
-    component: Favourite,
-    props: true,
-  },
-  {
-    path: "/Website/cart/:id/:name",
-    name: "cart",
-    component: cart,
-    props: true,
-  },
-  {
-    path: "/Website/video/:id/:name",
-    name: "video",
-    component: video,
-    props: true,
-  },
-  {
-    path: "/Website/test/:id/:name",
-    name: "test",
-    component: test,
-    props: true,
-  },
-  {
-    path: "/Website/superior/:id/:name",
-    name: "superior",
-    component: superior,
-    props: true,
-  },
-  {
-    path: "/stdhome/:id/:name",
-    name: "stdhome",
-    component: stdhome,
-    props: true,
-  },
-  {
-    path: "/Website/chooseBranch/:id/:name",
-    name: "chooseBranch ",
-    component: ChooseBranch,
-    props: true,
-  },
-  {
-    path: "/Website/payment/:id/:name",
-    name: "payment",
-    component: payment,
-    props: true,
-  },
-  {
-    path: "/Website/testResult/:id/:name",
-    name: "testResult",
-    component: testResult,
+    path: "/website/course/:id/classes",
+    name: "course_classes",
+    component: CourseClasses,
     props: true,
   },
 ];
