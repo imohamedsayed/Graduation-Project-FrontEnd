@@ -9,14 +9,20 @@
         </div>
         <div class="year1">
           <h1><i class="fa fa-list"></i> الفصول</h1>
-
-          <div class="row mt-5" v-if="state.classRooms.length">
-            <classRoom
-              v-for="classRoom in state.classRooms"
-              :key="classRoom.id"
-              :data="classRoom"
-            />
-          </div>
+          <Suspense>
+            <div class="row mt-5" v-if="state.classRooms.length">
+              <classRoom
+                v-for="classRoom in state.classRooms"
+                :key="classRoom.id"
+                :data="classRoom"
+              />
+            </div>
+            <template #fallback
+              ><div class="col-lg-3 col-md-6 col-12">
+                <div class="skelton"></div>
+              </div>
+            </template>
+          </Suspense>
         </div>
       </div>
       <Footer />
@@ -67,6 +73,11 @@ export default {
   h3 {
     color: var(--darker-blue);
   }
+}
+.skelton {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right bottom, #d1d1d19e, white);
 }
 </style>
 <!-- .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {

@@ -144,12 +144,16 @@
       </div>
     </div>
   </div>
+  <SpinnerLoading :loading="loading" />
 </template>
 
 <script>
 import axios from "axios";
 import router from "@/router";
+
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
 export default {
+  components: { SpinnerLoading },
   data() {
     return {
       FirstName: "",
@@ -169,11 +173,12 @@ export default {
       avatar: "",
       years_list: [],
       govenorate: [],
+      loading: false,
     };
   },
   async mounted() {
     if (this.$store.state.student != null) {
-      this.$router.push("/Website/chooseBranch"); 
+      this.$router.push("/Website/chooseBranch");
     } else {
       await axios
         .get("/api/govenorate")
@@ -187,6 +192,8 @@ export default {
   },
   methods: {
     async register() {
+      this.loading = true;
+
       console.log(this.Class);
       console.log(this.Class);
       console.log(this.FirstName);
@@ -211,6 +218,7 @@ export default {
         this.$router.push("/Website/chooseBranch");
       } catch (err) {
         console.log(err);
+        this.loading = false;
       }
     },
   },

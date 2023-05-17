@@ -26,6 +26,7 @@
     </div>
     <Footer />
   </div>
+  <SpinnerLoading :loading="state.loading" />
 </template>
 
 <script>
@@ -33,16 +34,17 @@ import Footer from "../../../components/Footer.vue";
 import StudentHeader from "@/components/StudentHeader.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import chooseBranch from "../../../components/website/chooseBranch/chooseBranchCompnonent.vue";
-
 import { computed, onMounted, reactive } from "vue";
 import axios from "axios";
 import { useStore } from "vuex";
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
 export default {
-  components: { Footer, AsideBar, StudentHeader, chooseBranch },
+  components: { Footer, AsideBar, StudentHeader, chooseBranch, SpinnerLoading },
   setup() {
     const state = reactive({
       branchlist: [],
       student: computed(() => useStore().state.user),
+      loading: true,
     });
 
     onMounted(async () => {
@@ -50,6 +52,7 @@ export default {
         .get("/api/branches")
         .then((res) => {
           state.branchlist = res.data.data;
+          state.loading = false;
         })
         .catch((error) => {
           console.log(error);

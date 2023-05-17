@@ -65,7 +65,11 @@ body::-webkit-scrollbar-thumb:hover {
     }
   }
 }
-
+.skelton {
+  height: 200px;
+  width: 200px;
+  background: linear-gradient(to right bottom, #d1d1d19e, white);
+}
 /*
 nav {
   padding: 30px;

@@ -60,6 +60,7 @@
       <p>جميع الحقوق محفوظة <span>2023 &copy;</span></p>
     </div>
   </div>
+  <SpinnerLoading :loading="state.loading" />
   <teleport to="body">
     <Toast :theme="toast.theme" :showNotification="toast.showNotification">
       <p>{{ toast.notify }}</p>
@@ -84,6 +85,8 @@ import { required, email, minLength } from "@vuelidate/validators";
 
 import Toast from "@/components/Toast.vue";
 
+import SpinnerLoading from "../components/SpinnerLoading.vue";
+
 export default {
   setup() {
     // Declaring Variables
@@ -91,6 +94,7 @@ export default {
       email: "",
       password: "",
       passwordVisibility: false,
+      loading: false,
     });
 
     const toast = reactive({
@@ -98,15 +102,15 @@ export default {
       theme: "",
       notify: "",
     });
+    const store = useStore();
 
     onMounted(() => {
-      if (this.$store.state.student != null) {
+      if (store.state.student != null) {
         this.$router.push("/Website/chooseBranch");
       }
     });
 
     // Store and router
-    const store = useStore();
     const router = useRouter();
     // Handle login
     // validations
@@ -134,6 +138,7 @@ export default {
     const login = async () => {
       v$.value.$validate();
       if (!v$.value.$error) {
+        state.loading = true;
         try {
           await store.dispatch("StudentLogin", {
             email: state.email,
@@ -142,14 +147,16 @@ export default {
           router.push("/Website/chooseBranch/");
         } catch (err) {
           notification("error", err.response.data.error);
+          state.loading = false;
         }
       } else {
         notification("error", "User Data Is Not Valid .. ");
+        state.loading = false;
       }
     };
     return { state, login, v$, toast };
   },
-  components: { Toast },
+  components: { Toast, SpinnerLoading },
 };
 </script>
 

@@ -11,7 +11,10 @@
         </div>
         <div class="year1">
           <h1><i class="fa fa-list"></i> الاساتذة</h1>
-          <Chooseteacher :id="state.id" />
+          <Suspense>
+            <Chooseteacher :id="state.id" />
+            <template #fallback> </template>
+          </Suspense>
         </div>
         <div class="year2">
           <h1><i class="fa fa-list"></i> الدورات</h1>
