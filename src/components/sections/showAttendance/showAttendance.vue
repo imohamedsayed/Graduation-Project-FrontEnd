@@ -14,6 +14,7 @@
           <th>الاسم</th>
           <th>تاريخ الانضمام</th>
           <th>الحاله</th>
+          <th>الخصائص</th>
         </tr>
         <showAttendabceList
           v-for="student in displayItems"

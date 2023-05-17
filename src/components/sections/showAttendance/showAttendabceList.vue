@@ -6,6 +6,9 @@
     <td>
     حضر و دفع
     </td>
+    <td class="d-flex justify-content-center w-100">
+      <button class="btn btn-danger reject" @click="Delete()">حذف</button>
+    </td>
   </tr>
 </template>
 
@@ -18,7 +21,32 @@ export default {
       status:true 
     };
   },
-
+  methods: {
+    Delete() {
+      Swal.fire({
+        title: "هل انت متاكد",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#363062",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "حذف",
+        cancelButtonText: "لا ، إلغاء!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            let res = await axios.delete(
+              "api_dashboard/appointment/" + this.appointment.id
+            );
+            //console.log(res);
+            Swal.fire("تم !", "تم حذف الموعد ", "نجاح");
+            this.exists = false;
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      });
+    },
+  },
 };
 </script>
 
