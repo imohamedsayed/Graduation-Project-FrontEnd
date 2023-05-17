@@ -30,7 +30,7 @@
             @click="
               this.redirectTo({
                 name: 'classRoom',
-                params: {},
+                params: {id:section.id },
               })
             "
           >
@@ -108,7 +108,7 @@ export default {
   &:hover {
     background-color: rgb(0, 0, 0, 0.1);
   }
-  a.show {
+  a.show , a.btn{
     background-color: var(--darker-blue) !important;
     display: block;
     width: fit-content;

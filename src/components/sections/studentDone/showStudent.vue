@@ -13,6 +13,7 @@
             <th>كود الطالب</th>
             <th>الاسم</th>
             <th>تاريخ الانضمام</th>
+            <th>الخصائص</th>
           </tr>
           <ApplicantStudent
             v-for="student in displayItems"

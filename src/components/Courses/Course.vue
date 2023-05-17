@@ -4,7 +4,7 @@
       <i v-else class="fa-solid fa-circle-minus minus"></i>
     </td>
     <td>{{ cours.name }}</td>
-    <td>
+    <td class="open">
       <i class="fa-solid fa-circle-check exam" v-if="status"></i>
       <i class="fa-solid fa-circle-xmark exam" v-else></i>
     </td>
@@ -14,15 +14,14 @@
   <tr class="close" v-if="!opened">
     <td colspan="7">
       <ul>
-        <li>الصورة <div><img src="../../../public/images/courses/img-2.jpg" alt=""></div>
+        <li>متاح<div>
+          <i class="fa-solid fa-circle-check exam" v-if="status"></i>
+      <i class="fa-solid fa-circle-xmark exam" v-else></i>
+        </div>
         </li>
-        <li>القسم <div>{{ cours.part }}</div>
+        <li>السنه الدراسيه<div>{{ cours.academic_year }} </div>
         </li>
-        <li>الصف <div>{{ cours.class_num }}</div>
-        </li>
-        <li>السعر <div>{{ cours.price }}</div>
-        </li>
-        <li>المبيعات <div>{{ cours.pays }}</div>
+        <li>الترم الدراسي<div>{{ cours.semester_id == 1 ? ' الفصل الدراسي الاول ' : ' الفصل الدراسي الثانى' }} </div>
         </li>
       </ul>
     </td>
@@ -32,12 +31,6 @@
       <div class="close">
         <div>الخصائص</div>
         <ul>
-          <li><a href=""> <i class="fas fa-list"></i> المحتوى</a> </li>
-          <li><a href=""> <i class="fas fa-list"></i> الاختبارات</a> </li>
-          <li><a href=""> <i class="fas fa-list"></i> ورشة العمل</a> </li>
-          <li><a href=""> <i class="fas fa-list"></i> الاسئلة</a> </li>
-          <li><a href=""> <i class="fas fa-list"></i> التفريغات</a> </li>
-          <li><a href=""> <i class="fas fa-list"></i> الاعلامات</a> </li>
           <li class="btn" @click="
             this.redirectTo({
               name: 'EditeCourse', params: {
@@ -202,4 +195,54 @@ td.check {
     font-size: 1rem !important;
   }
 }
+.table-responsive
+    {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 30px;
+      border-radius: 5px;
+      margin-bottom: 12px;
+      thead {
+        font-weight: 500;
+        padding: 12px !important;
+        border-radius: 4px;
+        background-color: var(--darker-blue);
+        color: #333 !important;
+        th {
+          border-bottom-left-radius: 0;
+          border: 1px solid rgba(119, 119, 119, 0.239);
+          font-size: 14px;
+          color: white ;
+          padding: 12px;
+          font-weight: bold;
+      }      
+    }
+    tbody{
+      tr{
+        background-color: #fff ;
+      }
+    }
+    &::-webkit-scrollbar {
+    height: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #8f94fb87;
+    border: 1px solid #fff;
+    border-radius: 20px;
+  }
+  }
+  .thumb_img
+      {
+        width: 120px;
+        margin: 0 auto;
+        img{
+          width: 100%;
+          border-radius: 5px;
+        }
+      }
+      tr td {
+        text-align: center;
+        font-weight: 500;
+      }
 </style>

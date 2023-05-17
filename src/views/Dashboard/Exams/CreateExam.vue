@@ -35,13 +35,13 @@
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i> تاريخ البدء</label>
-																<input type="datetime-local" v-model="desc"/>
+																<input type="datetime-local" v-model="startDate"/>
 															</div>									
 														</div>
 														<div class="col-lg-6 col-md-12">															
 															<div class="ui search focus mt-30 lbel25">
 																<label><i class="fas fa-pencil-alt"></i> تاريخ الانتهاء</label>
-																<input type="datetime-local" v-model="desc"/>
+																<input type="datetime-local" v-model="endDate"/>
 															</div>									
 														</div>
                             <div class="col-lg-6 col-md-6">
@@ -88,6 +88,8 @@
     return {
       examName: '',
       desc:'',
+      startDate:'',
+      endDate :'',
       listValue:'',
       ExamTime : '',
     }
