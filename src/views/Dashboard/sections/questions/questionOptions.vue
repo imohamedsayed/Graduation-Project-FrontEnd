@@ -8,11 +8,11 @@
             <div class="row">
               <div class="col-lg-6">
                 <h2 class="st_title cr_course_title">
-                  <i class="fas fa-plus-circle"></i> تعديل بيانات الامتحات : 
+                  <i class="fas fa-plus-circle"></i> اضافه اختيارات للسوال
                 </h2>
               </div>
               <div class="col-lg-6">
-                <div v-if="state.save" class="alert alert-success" role="alert"> تم تعديل الامتحان بنجاح . <span style="
+                <div v-if="state.save" class="alert alert-success" role="alert"> تم اضافه الاختيارات للسوال بنجاح<span style="
                          {
                           font-size: 18px;
                           cursor: pointer;
@@ -21,10 +21,10 @@
                         }
                       " @click="
                         this.redirectTo({
-                          name: 'showExams',
+                          name: '',
                           params: {},
                         })
-                      "> عرض جميع الامتحانات </span>
+                      "> عرض جميع الاسئله</span>
                 </div>
               </div>
             </div>
@@ -40,68 +40,40 @@
                               <div class="row">
                                 <div class="col-lg-6 col-md-12">
                                   <div class="ui search focus mt-30 lbel25">
-                                    <label><i class="fas fa-pencil-alt"></i>تعديل الاسم</label>
-                                    <input type="text" v-model="name" />
+                                    <label><i class="fas fa-pencil-alt"></i>الاختيار الاول</label>
+                                    <input type="text" v-model="option1" />
                                   </div>
                                   <span class="text-danger fw-bold" v-if="v$.name.$error"> {{
                                     v$.name.$errors[0].$message }} </span>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                   <div class="ui search focus mt-30 lbel25">
-                                    <label><i class="fas fa-pencil-alt"></i>تعديل الوصف</label>
-                                    <input type="text" v-model="desc" />
+                                    <label><i class="fas fa-pencil-alt"></i>الاختيار الثان</label>
+                                    <input type="فثءف" v-model="option2" />
                                   </div>
                                   <span class="text-danger fw-bold" v-if="v$.nickname.$error"> {{
                                     v$.nickname.$errors[0].$message }} </span>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                   <div class="ui search focus mt-30 lbel25">
-                                    <label><i class="fas fa-pencil-alt"></i> تعديل تاريخ البدء</label>
-                                    <input type="datetime-local" v-model="desc"/>
+                                    <label><i class="fas fa-pencil-alt"></i> الاختيار الثالث</label>
+                                    <input type="text" v-model="option3"/>
                                   </div>
                                   <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{
                                     v$.avatar.$errors[0].$message }} </span>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                   <div class="ui search focus mt-30 lbel25">
-                                    <label><i class="fas fa-pencil-alt"></i>تعديل تاريخ الانتهاء</label>
-                                    <input type="datetime-local" v-model="desc"/>
+                                    <label><i class="fas fa-pencil-alt"></i>الاختيار الرابع</label>
+                                    <input type="text" v-model="option4"/>
                                   </div>
                                   <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{
                                     v$.avatar.$errors[0].$message }} </span>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
-                                  <div class="ui search focus mt-30 lbel25">
-                                    <label>
-                            <i class="fas fa-list"></i>تغير النوع</label>
-                          <select v-model="state.course_year">
-                            <option selected disabled value=""> اختيار من القائمة </option>
-                            <option value="عادي">عادي </option>
-                            <option value="نوع تاني كدا">نوع تاني كدا
-                            </option>
-                          </select>
-                                  </div>
-                                  <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{
-                                    v$.avatar.$errors[0].$message }} </span>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                        <div
-                          class="ui mt-30 focus box search d-flex align-items-center gap-2"
-                        >
-                          <input
-                            type="checkbox"
-                            id="status"
-                            class=""
-                            v-model="status"
-                            style="width: 25px; height: 25px"
-                          />
-                          <label for="status" class="text-muted" style="font-size: 25px;"> الحالة</label>
-                        </div>
-                      </div>
                               </div>
                             </div>
                             <button data-direction="finish" @click="SaveChanged" class="btn btn-default steps_btn"> حفظ
-                              التعديل </button>
+                              </button>
                           </div>
                         </div>
                       </div>
@@ -124,9 +96,9 @@
   
   <script>
   // @ is an alias to /src
-  import Footer from "../../../components/Footer.vue";
-  import Header from "../../../components/Header.vue";
-  import AsideBar from "../../../components/AsideBar.vue";
+  import Footer from "../../../../components/Footer.vue";
+  import Header from "../../../../components/Header.vue";
+  import AsideBar from "../../../../components/AsideBar.vue";
   import { mapActions } from "vuex";
   import axios from "axios";
   
@@ -138,18 +110,18 @@
   
   export default {
     props: ["id"],
-    name: "updateTeachers",
+    name: "questionOptions",
     components: { Footer,AsideBar,Header ,Toast },
   
     setup(props) {
       const state = reactive({
         user: computed(() => store.state.user),
-        name: "",
-        nickname: '',
-        phone: '',
-        avatar: '',
+        option1:'',
+        option2:'',
+        option3:'',
+        option4:'',
         save: false,
-        teacher: {},
+        option: {},
       });
   
       onMounted(async () => {
@@ -165,12 +137,12 @@
           .get("api_dashboard/teachers/" + props.id)
           .then((res) => {
             console.log(res.data.data);
-            state.teacher = res.data.data;
-            state.name = state.teacher.name;
-            state.nickname = state.teacher.nick_name;
-            state.avatar = state.teacher.avatar;
-            state.phone = state.teacher.phone_number;
-            console.log(state.teacher);
+            state.option = res.data.data;
+            state.name = state.option.name;
+            state.nickname = state.option.nick_name;
+            state.avatar = state.option.avatar;
+            state.phone = state.option.phone_number;
+            console.log(state.option);
           })
           .catch((error) => {
             console.log(error);

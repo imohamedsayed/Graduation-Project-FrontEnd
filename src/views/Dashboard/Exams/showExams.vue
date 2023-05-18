@@ -34,6 +34,7 @@
                         <th class="open text-center" scope="col">تاريخ البدء</th>
                         <th class="open text-center" scope="col">تاريخ الانتهاء</th>
                         <th class="open text-center" scope="col">الحاله</th>
+                        <th class="open text-center" scope="col">النوع</th>
                         <th class="open text-center" scope="col">الاسئله</th>
                       </tr>
                     </thead>

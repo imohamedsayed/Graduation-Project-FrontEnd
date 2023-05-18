@@ -16,6 +16,9 @@ import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
 import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
 import showExams from "../views/Dashboard/Exams/showExams.vue";
 import editExam from "../views/Dashboard/Exams/EditExam.vue";
+import showQuestions from "../views/Dashboard/sections/questions/showQuestions.vue";
+import editQuestion from "../views/Dashboard/sections/questions/EditQuestion.vue";
+import questionOptions from "../views/Dashboard/sections/questions/questionOptions.vue";
 import CreateBranch from "../views/Dashboard/Branches/Create-Branch.vue";
 import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
 import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
@@ -230,6 +233,11 @@ const routes = [
     component: editExam,
   },
   {
+    path: "/dashboard/classRoom/1/editQuestion/:id",
+    name: "editQuestion",
+    component: editQuestion,
+  },
+  {
     path: "/dashboard/ShowCources",
     name: "ShowCources",
     component: ShowCources,
@@ -288,6 +296,16 @@ const routes = [
     path: "/dashboard/classRoom/1/app_students",
     name: "applicant_students",
     component: AppStudents,
+  },
+  {
+    path: "/dashboard/classRoom/1/exam_id/showQuestions",
+    name: "showQuestions",
+    component: showQuestions,
+  },
+  {
+    path: "/dashboard/classRoom/1/exam_id/Question_id/option_id",
+    name: "questionOptions",
+    component: questionOptions,
   },
   {
     path: "/dashboard/classRoom/1/showStudent",
