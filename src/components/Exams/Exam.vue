@@ -11,11 +11,12 @@
     <td class="open">{{ cours.academic_year }}  </td>
     <td class="open">{{ cours.semester_id == 1 ? ' الفصل الدراسي الاول ' : ' الفصل الدراسي الثانى' }} </td>
     <td class="open">{{ cours.semester_id == 1 ? ' الفصل الدراسي الاول ' : ' الفصل الدراسي الثانى' }} </td>
+    <td class="open">عادي </td>
     <td class="open">      <a
         class="show"
         @click="
           this.redirectTo({
-            name: '',
+            name: 'showQuestions',
             params: {},
           })
         "
@@ -37,11 +38,13 @@
         </li>
         <li>الحاله<div>{{ cours.academic_year}} </div>
         </li>
+        <li>النوع<div>عادي </div>
+        </li>
         <li>الاسئله<div>      <a
         class="show"
         @click="
           this.redirectTo({
-            name: '',
+            name: 'showQuestions',
             params: {},
           })
         "
