@@ -4,7 +4,7 @@
     <input
       type="text"
       placeholder="ابحث عن طالب معين"
-      v-model="search"
+      v-model="state.search"
       @keyup="searchStudent(search)"
     />
     <div class="list">
@@ -16,12 +16,13 @@
           <th>خيارات</th>
         </tr>
         <ApplicantStudent
-          v-for="student in displayItems"
+          v-for="student in state.displayItems"
           :key="student.id"
           :student="student"
+          :room_id="room_id"
         />
       </table>
-      <div class="alert alert-info mt-2" v-if="!displayItems.length">
+      <div class="alert alert-info mt-2" v-if="!state.displayItems.length">
         لا توجد نتائج لعرضها !
       </div>
     </div>
@@ -30,28 +31,49 @@
 
 <script>
 import ApplicantStudent from "./ApplicantStudent.vue";
+import { reactive,computed,onMounted } from "vue";
+
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import axios from 'axios';
+
 export default {
   components: { ApplicantStudent },
-  data() {
-    return {
+  props: {
+    room_id: String,
+  },
+  setup(props) {
+    const store = useStore();
+    const router = useRouter();
+    const state = reactive({
+      user: computed(() => store.state.user),
       search: "",
       items: [],
       displayItems: [],
-    };
-  },
-  mounted() {
-    this.items = [
-      { id: 162019133, name: "محمد سيد", date: "20/7/2022" },
-      { id: 162019134, name: " محمود خيري", date: "20/7/2022" },
-      { id: 162019135, name: " محمود احمد", date: "20/7/2022" },
-    ];
-    this.displayItems = this.items;
-  },
-  methods: {
-    searchStudent(key) {
+    });
+    onMounted(async () => {
+      if(state.user == null) {
+        router.push("/dashboard/login");
+      } else {
+        if(state.user.role_id != 3) {
+          router.push("/dashboard");
+        }
+      }
+      const room_id=props.room_id
+      await axios.get('api_dashboard/all-students-classroom-waiting/'+room_id)
+        .then(res => {
+          state.items = res.data.data.allStudent;
+        console.log(state.items);
+      })
+    })
+    state.displayItems = state.items;
+    let searchStudent=(key)=>
+    {
       this.displayItems = this.items.filter((item) => item.name.includes(key));
-    },
+    }
+    return { state,searchStudent, };
   },
+
 };
 </script>
 

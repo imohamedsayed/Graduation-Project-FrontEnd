@@ -13,8 +13,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-  props: ["student"],
+  props: ["student",'room_id'],
   data() {
     return {
       exists: true,
@@ -30,10 +31,18 @@ export default {
         cancelButtonColor: "#d33",
         confirmButtonText: "قبول الطالب",
         cancelButtonText: "لا ، إلغاء!",
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
           Swal.fire("تم !", "تم قبول الطالب ", "نجاح");
           this.exists = false;
+          const data = {
+            classroom_id: room_id,
+            student_id: student.id,
+          }
+          await axios.post('accept-student-classroom',data)
+            .then(res => {
+            console.log(res);
+          })
         }
       });
     },

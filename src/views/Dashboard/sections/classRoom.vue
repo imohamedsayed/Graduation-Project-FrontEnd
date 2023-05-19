@@ -101,7 +101,7 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">الطلاب</h5>
-                        <router-link :to="{ name: 'showStudent' }">
+                        <router-link :to="{ name: 'showStudent', id: state.section.id  }">
                           <a class="btn"> عرض الطلاب </a></router-link
                         >
                         <router-link :to="{ name: 'applicant_students' }">

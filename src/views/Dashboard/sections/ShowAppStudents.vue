@@ -12,7 +12,7 @@
           جميع الطلاب المقدمين لحضور الدرس
         </h3>
         <div class="app-stu-data" dir="rtl">
-          <StudentsList />
+          <StudentsList :room_id="id" />
         </div>
       </div>
       <Footer />
@@ -26,10 +26,16 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import StudentsList from "@/components/sections/studentWait/StudentsList.vue";
 export default {
-  components: { Footer, AsideBar, Header, StudentsList },
+  components: { Footer,AsideBar,Header,StudentsList },
+  props: {
+    id: String,
+  },
   data() {
     return {};
   },
+  mounted() {
+    // console.log(id);
+  }
 };
 </script>
 
