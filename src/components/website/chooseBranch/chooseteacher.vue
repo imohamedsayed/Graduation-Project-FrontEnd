@@ -133,6 +133,7 @@ export default {
 .teachera {
   transition: all 0.3s ease-out;
   cursor: pointer;
+  margin-bottom: 60px;
   &:hover {
     transform: scale(1.05);
   }

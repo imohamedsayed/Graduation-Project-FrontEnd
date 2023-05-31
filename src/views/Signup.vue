@@ -9,60 +9,76 @@
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>الاسم الاول</label>
-              <input type="text" v-model="FirstName" />
+              <input type="text" v-model="state.FirstName" />
+              <span class="text-danger fw-bold" v-if="v$.FirstName.$error"> {{ v$.FirstName.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label> اسم الثاني</label>
-              <input type="text" v-model="SecondName" />
+              <input type="text" v-model="state.SecondName" />
+              <span class="text-danger fw-bold" v-if="v$.SecondName.$error"> {{ v$.SecondName.$errors[0].$message }}
+              </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label> الاسم الاخير</label>
-              <input type="text" v-model="lastName" />
+              <input type="text" v-model="state.lastName" />
+              <span class="text-danger fw-bold" v-if="v$.lastName.$error"> {{ v$.lastName.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>البريد الالكتروني</label>
-              <input type="email" v-model="email" />
+              <input type="email" v-model="state.email" />
+              <span class="text-danger fw-bold" v-if="v$.email.$error"> {{ v$.email.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>رقم الهاتف المحمول</label>
-              <input type="phone" v-model="phone" />
+              <input type="phone" v-model="state.phone" />
+              <span class="text-danger fw-bold" v-if="v$.phone.$error"> {{ v$.phone.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>كلمه المرور</label>
-              <input type="password" v-model="pass" />
+              <input type="password" v-model="state.pass" />
+              <span class="text-danger fw-bold" v-if="v$.pass.$error"> {{ v$.pass.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>تاكيد كلمه المرور</label>
-              <input type="password" v-model="pass2" />
+              <input type="password" v-model="state.pass2"
+                @input="(e)=>{
+                e.target.value!=state.pass?
+                  state.equalpass=true
+                :
+                  state.equalpass = false
+              }" />
+              <span class="text-danger fw-bold" v-if="v$.pass2.$error"> {{ v$.pass2.$errors[0].$message }} </span>
+                <span class="text-danger fw-bold" v-if="state.equalpass">Password doesn't match</span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="    ">
               <label>الصف الدراسي</label>
-              <select class=" " v-model="Class">
+              <select class=" " v-model="state.Class">
                 <option selected disabled value="">اختيار من القائمة</option>
                 <option value="1">الصف الاول الثانوى</option>
                 <option value="2">الصف الثاني الثانوى</option>
                 <option value="3">الصف الثالث الثانوى</option>
               </select>
+              <span class="text-danger fw-bold" v-if="v$.Class.$error"> {{ v$.Class.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="    ">
               <label>الشعبه</label>
-              <select class=" " v-model="section">
+              <select class=" " v-model="state.section">
                 <option selected disabled value="">اختيار من القائمة</option>
                 <option value="1">عام</option>
                 <option value="2">علمى</option>
@@ -70,62 +86,75 @@
                 <option value="4">علمى رياضة</option>
                 <option value="5">علمى علوم</option>
               </select>
+              <span class="text-danger fw-bold" v-if="v$.section.$error"> {{ v$.section.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="">
               <label>المحافظه</label>
-              <select class=" " v-model="Governorate">
+              <select class=" " v-model="state.Governorate">
                 <option selected disabled value="">اختيار من القائمة</option>
-                <option
-                  v-for="govr in govenorate"
-                  :key="govr.id"
-                  :value="govr.id"
-                >
-                  {{ govr.name }}
-                </option>
+                <option v-for="govr in state.govenorate" :key="govr.id" :value="govr.id"> {{ govr.name }} </option>
               </select>
+              <span class="text-danger fw-bold" v-if="v$.Governorate.$error"> {{ v$.Governorate.$errors[0].$message }}
+              </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>رقم ولي الامر</label>
-              <input type="phone" v-model="DadNumber" />
-            </div>
+              
+              <input type="phone" v-model="state.DadNumber"
+              @input="(e) => {
+                  e.target.value == state.phone ?
+                    state.equalphone = true
+                    :
+                    state.equalphone = false
+                }" />
+              <span class="text-danger fw-bold" v-if="v$.DadNumber.$error"> {{ v$.DadNumber.$errors[0].$message }} </span>
+                <span class="text-danger fw-bold" v-if="state.equalphone">Guardian number mustn't  match your phone number </span>
+              </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>تاريخ الميلاد : السنه</label>
-              <input type="number" placeholder="السنه" v-model="year" />
+              <input type="number" placeholder="السنه" v-model="state.year" />
+              <span class="text-danger fw-bold" v-if="v$.year.$error"> {{ v$.year.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
-            <div class="ui search focus mt-30 lbel25">
+            <div class="">
               <label style="display: hidden">الشهر</label>
-              <input type="text" placeholder="الشهر" v-model="month" />
+              <select name="" v-model="state.month"  id="">
+                <option selected disabled value="">اختيار الشهر</option>
+                <option  v-for="(number, index) in state.month_list" :key="index" :value="number" >
+                    {{ number }}
+                </option>
+              </select>
+              <span class="text-danger fw-bold" v-if="v$.month.$error"> {{ v$.month.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-2 col-md-6">
-            <div class="ui search focus mt-30 lbel25">
+            <div class="">
               <label>اليوم</label>
-              <input type="text" placeholder="اليوم" v-model="day" />
+              <select name="" v-model="state.day"  id="">
+                  <option selected disabled value=""> اليوم </option>
+                  <option  v-for="(number, index) in state.day_list" :key="index" :value="number" >
+                      {{ number }}
+                  </option>
+                </select>
+              <span class="text-danger fw-bold" v-if="v$.day.$error"> {{ v$.day.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
             <div class="ui search focus mt-30 lbel25">
-              <input
-                type="file"
-                class="file"
-                @change="
-                  (e) => {
-                    this.avatar = e.target.files[0];
-                  }
-                "
-              />
-              <label id="file" for="file"
-                >صوره البطاقه او شهاده الميلاد
-                <i class="fa-solid fa-cloud-arrow-down"></i
-              ></label>
+              <input type="file" class="file" @change="(e) => {
+                state.avatar = e.target.files[0];
+              }
+                " />
+              <label id="file" for="file">صوره البطاقه او شهاده الميلاد <i
+                  class="fa-solid fa-cloud-arrow-down"></i></label>
+              <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{ v$.avatar.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
@@ -144,18 +173,37 @@
       </div>
     </div>
   </div>
-  <SpinnerLoading :loading="loading" />
+  <SpinnerLoading :loading="state.loading" />
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
 import axios from "axios";
-import router from "@/router";
+import { computed,onMounted,reactive } from "vue";
 
-import SpinnerLoading from "@/components/SpinnerLoading.vue";
+//import router and vuex
+
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+// import validations tools
+
+import { useVuelidate } from "@vuelidate/core";
+import { required,email,minLength ,sameAs  ,maxLength } from "@vuelidate/validators";
+// import Notification Toaster
+
+import Toast from "@/components/Toast.vue";
+
+import SpinnerLoading from "../components/SpinnerLoading.vue";
+
 export default {
-  components: { SpinnerLoading },
-  data() {
-    return {
+  components: { Toast,SpinnerLoading },
+  setup() {
+    const state = reactive({
       FirstName: "",
       SecondName: "",
       lastName: "",
@@ -173,54 +221,120 @@ export default {
       avatar: "",
       years_list: [],
       govenorate: [],
+      month_list: Array.from({ length: 12 },(_,index) => index + 1),
+      day_list: Array.from({ length: 31 },(_,index) => index + 1),
+      equalpass:false,
+      equalphone: false,
       loading: false,
-    };
-  },
-  async mounted() {
-    if (this.$store.state.student != null) {
-      this.$router.push("/Website/chooseBranch");
-    } else {
-      await axios
-        .get("/api/govenorate")
-        .then((res) => {
-          this.govenorate = res.data.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  },
-  methods: {
-    async register() {
-      this.loading = true;
+    });
 
-      console.log(this.Class);
-      console.log(this.Class);
-      console.log(this.FirstName);
-      let data = new FormData();
-      data.append("f_name", this.FirstName);
-      data.append("m_name", this.SecondName);
-      data.append("l_name", this.lastName);
-      data.append("email", this.email);
-      data.append("password", this.pass);
-      data.append("password_confirmation", this.pass2);
-      data.append("phone_number", this.phone);
-      data.append("guardian_number", this.DadNumber);
-      data.append("year", this.year);
-      data.append("month", this.month);
-      data.append("day", this.day);
-      data.append("acedemic_year", this.Class);
-      data.append("division", this.section);
-      data.append("governorate_id", 1);
-      data.append("national_id_card", this.avatar);
-      try {
-        await this.$store.dispatch("studentSignup", data);
-        this.$router.push("/Website/chooseBranch");
-      } catch (err) {
-        console.log(err);
-        this.loading = false;
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+    const store = useStore();
+
+    onMounted(async () => {
+      if(store.state.student != null) {
+        router.push("/Website/chooseBranch");
+      } else {
+        await axios
+          .get("/api/govenorate")
+          .then((res) => {
+            state.govenorate = res.data.data;
+          })
+          .catch((error) => {
+            notification("error",err.response.data.error);
+          });
       }
-    },
+    });
+
+    const router = useRouter();
+
+
+    const rules = computed(() => {
+      return {
+        FirstName: { required },
+        SecondName: { required },
+        lastName: { required },
+        email: { email,required },
+        phone: {
+          required,
+          minLength: minLength(11),
+          maxLength: maxLength(11),
+          
+        },
+        pass: { required,minLength: minLength(6) },
+        pass2: {
+          required,minLength: minLength(6),
+        },
+        Class: { required },
+        section: { required },
+        Governorate: { required },
+        DadNumber: {
+          required,
+          minLength: minLength(11),
+          maxLength: maxLength(11),          
+        },
+        year: {
+          required,
+        },
+        month: {
+          required,
+        },
+        day: { required },
+        avatar: { required },
+      };
+    });
+    const v$ = useVuelidate(rules,state);
+
+    const notification = (theme,message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      },2000);
+    };
+
+
+    const register = async () => {
+      v$.value.$validate();
+      if(!v$.value.$error) {
+        state.loading = true;
+        let data = new FormData();
+        data.append("f_name",state.FirstName);
+        data.append("m_name",state.SecondName);
+        data.append("l_name",state.lastName);
+        data.append("email",state.email);
+        data.append("password",state.pass);
+        data.append("password_confirmation",state.pass2);
+        data.append("phone_number",state.phone);
+        data.append("guardian_number",state.DadNumber);
+        data.append("year",state.year);
+        data.append("month",state.month);
+        data.append("day",state.day);
+        data.append("acedemic_year",state.Class);
+        data.append("division",state.section);
+        data.append("governorate_id",state.Governorate);
+        data.append("national_id_card",state.avatar);
+        try {
+          await store.dispatch("studentSignup",data);
+          router.push("/Website/chooseBranch");
+        } catch(err) {
+          notification("error",err.response.data.error);
+          console.log(err);
+          state.loading = false;
+        }
+      }
+      else {
+        notification("error","User Data Is Not Valid .. ");
+        state.loading = false;
+      }
+    };
+
+    return { state,register,v$,toast };
   },
 };
 </script>
@@ -229,9 +343,11 @@ export default {
 h4 {
   color: white;
 }
+
 h4 span {
   color: red;
 }
+
 .signup {
   height: 100vh;
   position: absolute;
@@ -272,6 +388,7 @@ h4 span {
     top: 0 !important;
     height: 180vh;
   }
+
   .signup .signup-form {
     width: 120px;
     height: 150vh;
@@ -283,14 +400,17 @@ h4 span {
     width: 100%;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .signup {
     height: 115vh;
   }
+
   .signup .signup-form {
     width: 800px;
   }
 }
+
 .signup .signup-form p {
   font-size: 1.5rem;
   font-weight: bold;
@@ -349,6 +469,7 @@ h4 span {
   color: #eee;
   font-size: 1.3rem;
 }
+
 .signup .signup-form form label:after {
   content: "*";
   color: red;

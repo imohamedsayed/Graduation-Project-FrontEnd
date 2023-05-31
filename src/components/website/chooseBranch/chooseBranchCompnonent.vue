@@ -3,7 +3,9 @@
     <div
       class="row flex-lg-row flex-md-row flex-sm-column-reverse flex-column-reverse"
     >
-      <div class="col-md-4 map"></div>
+      <div class="col-md-4 map">
+
+      </div>
       <div class="col-md-8">
         <div class="card-body text-center">
           <h5 class="card-title">{{ branch.name }}</h5>
@@ -49,10 +51,15 @@ export default {
     onMounted(() => {
       let map = document.querySelectorAll(".map");
       for (let i = 0; i < map.length; i++) {
-        if (props.wbranch.id === i + 1) {
+        if (props.wbranch.id === i +1) {
           map[i].innerHTML = props.wbranch.map_location;
         }
       }
+      let iframs = document.querySelectorAll("iframe");
+      iframs.forEach(element => {
+        element.width ="100%"
+        element.height = 255
+      });
     });
 
     const choseBrach = (id,name) => {
@@ -90,6 +97,6 @@ export default {
 
 iframe {
   margin-right: 5px;
-  width: 100px;
+  width: 100000000000px;
 }
 </style>

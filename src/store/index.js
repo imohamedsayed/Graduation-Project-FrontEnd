@@ -80,7 +80,9 @@ const actions = {
   async studentSignup(context, data) {
     let response = await axios.post("/api/register", data);
     console.log(response);
-    if (response.status == 201) {
+    if(response.status == 201) {
+      localStorage.setItem("Std_id", response.data.student.id);
+      localStorage.setItem("Std_name", response.data.student.name);
       context.commit("setStudent", response.data.student);
       console.log(response);
       localStorage.setItem("token", response.data.access_token);
