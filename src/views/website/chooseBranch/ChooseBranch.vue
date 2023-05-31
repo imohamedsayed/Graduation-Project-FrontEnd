@@ -5,15 +5,15 @@
     <div class="chooseBranch">
       <div class="chooseBranch-con">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12 text-center">
+          <div class="row m-0">
+            <div class="col-12 text-center">
               <div class="title">
                 <h4 class="item_title">
                   <i class="fa-solid fa-list"></i> الفروع المتاحه
                 </h4>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-12">
               <chooseBranch
                 v-for="branch in state.branchlist"
                 :key="branch.id"
@@ -23,8 +23,9 @@
           </div>
         </div>
       </div>
+          <Footer />
     </div>
-    <Footer />
+
   </div>
   <SpinnerLoading :loading="state.loading" />
 </template>
@@ -66,12 +67,10 @@ export default {
 
 <style lang="scss">
 .chooseBranch {
-  margin-right: 20rem;
-  margin-left: 20rem;
+  margin-right: 15rem;
 
   @media (max-width: 991px) {
     margin-right: 0;
-    margin-left: 0rem;
   }
 }
 
@@ -79,7 +78,7 @@ export default {
   direction: rtl;
   padding: 30px 20px;
   width: 100%;
-  margin-right: 20px;
+  // margin-right: 20px;
 }
 
 .title {

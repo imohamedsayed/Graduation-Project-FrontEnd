@@ -106,46 +106,49 @@
                                   </span>
                                 </div>
                               </div>
-                              <div class="col-lg-6 col-md-12">
-                                <div class="ui search focus mt-30 lbel25">
-                                  <label
-                                    ><i class="fas fa-pencil-alt"></i
-                                    >الخريطه</label
-                                  >
-                                  <input type="text" v-model="state.map" />
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.map.$error"
-                                  >
-                                    {{ v$.map.$errors[0].$message }}
-                                  </span>
-                                </div>
-                              </div>
-                              <div class="col-lg-6 col-md-12">
-                                <div class="mt-30 box">
-                                  <label>
-                                    <i class="fas fa-list"></i> المدير
-                                  </label>
-                                  <select v-model="state.maneger" class="">
-                                    <option selected disabled value="">
-                                      اختيار من القائمة
-                                    </option>
-                                    <option
-                                      v-for="maneger in state.manegers_list"
-                                      :key="maneger.id"
-                                      :value="maneger.id"
+                                <div class="col-lg-6 col-md-12">
+                                  <div class="mt-30 box">
+                                    <label>
+                                      <i class="fas fa-list"></i> المدير
+                                    </label>
+                                    <select v-model="state.maneger" class="">
+                                      <option selected disabled value="">
+                                        اختيار من القائمة
+                                      </option>
+                                      <option
+                                        v-for="maneger in state.manegers_list"
+                                        :key="maneger.id"
+                                        :value="maneger.id"
+                                      >
+                                        {{ maneger.name }}
+                                      </option>
+                                    </select>
+                                    <span
+                                      class="text-danger fw-bold"
+                                      v-if="v$.maneger.$error"
                                     >
-                                      {{ maneger.name }}
-                                    </option>
-                                  </select>
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.maneger.$error"
-                                  >
-                                    {{ v$.maneger.$errors[0].$message }}
-                                  </span>
+                                      {{ v$.maneger.$errors[0].$message }}
+                                    </span>
+                                  </div>
                                 </div>
-                              </div>
+                              <div class="col-lg-12 col-md-12">
+                                    <div class="ui search focus mt-30 lbel25 map">
+                                      <label
+                                        ><i class="fas fa-pencil-alt"></i
+                                        >الخريطه</label
+                                      >
+                                    
+                                      <input type="text" v-model="state.map" @change="onInputChange" />
+                                      <br><br>
+                                      <span
+                                        class="text-danger fw-bold"
+                                        v-if="v$.map.$error"
+                                      >
+                                        {{ v$.map.$errors[0].$message }}
+                                      </span>
+                                    </div>
+                                  </div>
+
                             </div>
                           </div>
                           <button
@@ -287,8 +290,15 @@ export default {
         notification("error", "Missing Data !");
       }
     };
+    const onInputChange = (e) => {
+      let map = document.querySelector(".map")
 
-    return { state, v$, toast, add_Branch };
+      map.innerHTML += state.map
+      let frame = document.querySelector('iframe');
+      frame.width = `100%`
+      console.log(frame)
+    }
+    return { state, v$, toast, add_Branch,onInputChange };
   },
 };
 </script>
@@ -379,3 +389,4 @@ export default {
   background: var(--darker-blue) !important;
 }
 </style>
+
