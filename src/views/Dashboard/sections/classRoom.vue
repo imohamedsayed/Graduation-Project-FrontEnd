@@ -168,10 +168,10 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">حضور و غياب</h5>
-                        <router-link :to="{ name: 'showStudentAttendance' }">
+                        <router-link :to="{ name: 'showStudentAttendance',id: state.section.id  }">
                           <a class="btn"> عرض الحضور والغياب</a></router-link
                         >
-                        <router-link :to="{ name: 'studentAttendance' }">
+                        <router-link :to="{ name: 'studentAttendance', id: state.section.id  }">
                           <a class="btn"> تسجيل حضور</a></router-link
                         >
                       </div>

@@ -302,26 +302,31 @@ const routes = [
     path: "/dashboard/classRoom/:id/exam_id/showQuestions",
     name: "showQuestions",
     component: showQuestions,
+    props: true,
   },
   {
     path: "/dashboard/classRoom/:id/exam_id/Question_id/option_id",
     name: "questionOptions",
     component: questionOptions,
+    props: true,
   },
   {
     path: "/dashboard/classRoom/:id/showStudent",
     name: "showStudent",
     component: showStudent,
+    props: true,
   },
   {
     path: "/dashboard/classRoom/:id/studentAttendance",
     name: "studentAttendance",
     component: studentAttendance,
+    props: true,
   },
   {
     path: "/dashboard/classRoom/:id/showStudentAttendance",
     name: "showStudentAttendance",
     component: showStudentAttendance,
+    props: true,
   },
   {
     path: "/dashboard/classRoom/:id/classroom_notes",

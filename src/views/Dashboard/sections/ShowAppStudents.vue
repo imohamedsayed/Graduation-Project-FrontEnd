@@ -41,7 +41,7 @@ export default {
 
 <style lang="scss">
 .app-students {
-  margin-right: 14rem;
+  margin-right: 16rem !important;
   @media (max-width: 991px) {
     margin-right: 0;
   }
