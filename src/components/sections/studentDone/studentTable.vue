@@ -29,16 +29,16 @@
         cancelButtonText: "لا ، إلغاء!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          try {
-            let res = await axios.delete(
-              "api_dashboard/appointment/" 
-            );
-            //console.log(res);
-            Swal.fire("تم !", "تم حذف الموعد ", "نجاح");
+          // try {
+          //   let res = await axios.delete(
+          //     "api_dashboard/appointment/" 
+          //   );
+          //   //console.log(res);
+          //   Swal.fire("تم !", "تم حذف الموعد ", "نجاح");
             this.exists = false;
-          } catch (err) {
-            console.log(err);
-          }
+          // } catch (err) {
+          //   console.log(err);
+          // }
         }
       });
     },

@@ -1,33 +1,30 @@
 <template>
-  <tr class="app-stu" v-if="exists">
-    <td>{{ student.id }}</td>
-    <td>{{ student.name }}</td>
-    <td>{{ student.date }}</td>
-    <td>
-      <label class="radio-button">
-  <input value="option1" name="example-radio" type="radio">
-  <span class="radio"></span>
-  حضر ودفع
-</label>
-<label class="radio-button">
-  <input value="option2" name="example-radio" type="radio">
-  <span class="radio"></span>
-  غاب
-</label>
-<label class="radio-button">
-  <input value="option2" name="example-radio" type="radio">
-  <span class="radio"></span>
-  حضر ولم يدفع
-</label>
-
-
-    </td>
-  </tr>
+  
 </template>
 
 <script>
 export default {
-  props: ["student"],
+  props: ["student","room_id"],
+  setup(props) {
+
+
+
+
+
+    setTimeout(() => {
+      let select = document.querySelectorAll('#mySelect' + props.student.id);
+      select.forEach(element => {
+        element.addEventListener('change',() => {
+          let selectedValue = element.value;
+          if(selectedValue) {
+            console.log(props.student.id + "    :   " + selectedValue);
+          }
+        })
+
+      });
+    },1000);
+    return {}
+  },
   data() {
     return {
       exists: true,
@@ -40,18 +37,22 @@ export default {
 <style lang="scss">
 .app-stu {
   transition: all 0.3s ease;
+
   &:hover {
     background: rgba($color: #000000, $alpha: 0.1);
   }
+
   button {
     &.approve {
       background: #4caf50 !important;
     }
+
     &.reject {
       background: #e91e63 !important;
     }
   }
 }
+
 /* Customize the label (the checkbox-btn) */
 .checkbox-btn {
   display: block;
@@ -105,15 +106,13 @@ export default {
   transition: all 0.3s ease-in-out;
 }
 
-.radio-button input[type="radio"]:checked + .radio {
+.radio-button input[type="radio"]:checked+.radio {
   border-color: #5cb85c;
   transform: translateZ(0px);
   background-color: #fff;
 }
 
-.radio-button input[type="radio"]:checked + .radio::before {
+.radio-button input[type="radio"]:checked+.radio::before {
   opacity: 1;
 }
-
-
 </style>

@@ -12,7 +12,10 @@
             قائمه الحضور والغياب
           </h3>
           <div class="app-stu-data" dir="rtl">
-            <showAttendance/>
+            <showAttendance
+            :room_id="id"
+            :appointment_id="'3'"
+            />
           </div>
         </div>
         <Footer />
@@ -26,9 +29,15 @@
   import AsideBar from "../../../components/AsideBar.vue";
   import showAttendance from "@/components/sections/attendance/showAttendance.vue";
   export default {
-    components: { Footer, AsideBar, Header,showAttendance },
+    components: { Footer,AsideBar,Header,showAttendance },
+    props: {
+      id: String,
+      appointment:String
+    },
     data() {
-      return {};
+      return {
+
+      };
     },
   };
   </script>
