@@ -70,6 +70,7 @@ import EditAttachments from "@/views/Dashboard/sections/attachment/EditAttachmen
 import Home from "@/views/website/stdhome";
 import TeacherClasses from "@/views/website/ClassRooms/TeacherClassRooms.vue";
 import CourseClasses from "@/views/website/ClassRooms/CourseClassRooms.vue";
+import AppointmentsToAttendence from "@/views/Dashboard/sections/AppointmentsToGetAttendence.vue";
 const routes = [
   {
     path: "/dashboard/login",
@@ -317,7 +318,13 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/classRoom/:id/studentAttendance",
+    path: "/dashboard/classRoom/:id/showAppointments",
+    name: "showAppointmentsForAttendance",
+    component: AppointmentsToAttendence,
+    props: true,
+  },
+  {
+    path: "/dashboard/classRoom/:id/studentAttendance/:AId",
     name: "studentAttendance",
     component: studentAttendance,
     props: true,

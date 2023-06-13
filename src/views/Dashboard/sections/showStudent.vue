@@ -27,9 +27,9 @@
   import showStudent from "@/components/sections/studentDone/showStudent.vue";
   export default {
     components: { Footer, AsideBar, Header, showStudent },
-    data() {
-      return {};
-    },
+    setup(){
+      
+    }
   };
   </script>
   

@@ -79,7 +79,7 @@
                         <div class="box pt-2 ">
                           <div class="status mt-30 focus box search ">
                             <div class=" statusbg  d-flex align-items-center  gap-4 px-1 mt-4 ">
-                              <input type="checkbox" name="" v-model="status" />
+                              <input type="checkbox" name="" v-model="state.status" />
                               <label class="pt-4"> متاح </label>
                             </div>
                           </div>
@@ -201,7 +201,11 @@ export default {
         }
         // Start Sending Request
 
-        let res = await axios.post("/api_dashboard/subjects",data)
+        let res = await axios.post("/api_dashboard/subjects",data , {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
           .then()
           .catch(err => {
           console.log(err.response.data.message);

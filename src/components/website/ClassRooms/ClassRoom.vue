@@ -26,42 +26,95 @@
         </li>
       </ul>
       <div class="card-body text-center">
-        <button class="btn btn-success" @click="apply(data.id)">التقديم</button>
-        <!-- <button class="btn btn-danger">الغاء التقديم</button> -->
+        <button
+          class="btn btn-success"
+          @click="apply(data.id)"
+          v-if="!state.alreadySubscribed"
+        >
+          التقديم
+        </button>
+        <button class="btn btn-danger" v-else @click="revoke(data.id)">
+          الغاء التقديم
+        </button>
       </div>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
 import { onMounted, reactive, computed } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
+import Toast from "../../Toast.vue";
 export default {
   props: ["data"],
-
+  components: { Toast },
   setup(props) {
     const state = reactive({
       student: computed(() => useStore().state.student),
+      alreadySubscribed: false,
     });
 
     onMounted(async () => {
-      //   const res = await axios.get(
-      //     "/api/get-remaining-students/" + state.student.branch_id
-      //   );
+      const res = await axios.get(
+        "/api/classrooms-get-subscribed-classrooms/" + state.student.id
+      );
+
+      let classArray = res.data.data;
+      classArray.forEach((cr) => {
+        if (cr.id == props.data.id) {
+          state.alreadySubscribed = true;
+        }
+      });
     });
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
+    };
 
     const apply = async (cId) => {
       let data = {
         classroom_id: cId,
       };
+      let res = await axios.post("api/register-classroom", data);
 
-      let res = await axios.post("api/register-classroom");
-
-      console.log(res);
+      if (res.status == 200) {
+        console.log(res);
+        notification("success", res.data.message);
+      } else {
+        notification("error", err.response.data.message);
+      }
     };
+    const revoke = async (cId) => {
+      let data = {
+        classroom_id: cId,
+      };
+      console.log(data);
 
-    return { apply };
+      let res = await axios.delete("api/unsubscribe-classroom", data);
+
+      if (res.status == 200) {
+        console.log(res);
+        notification("success", res.data.message);
+      } else {
+        notification("error", err.response.data.message);
+      }
+    };
+    return { state, apply, toast, revoke };
   },
 };
 </script>
