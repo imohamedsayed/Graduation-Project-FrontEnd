@@ -18,8 +18,7 @@
         <ApplicantStudent
           v-for="student in state.displayItems"
           :key="student.id"
-          :student="student"
-          :room_id="room_id"
+          :student="{ ...student, room_id }"
         />
       </table>
       <div class="alert alert-info mt-2" v-if="!state.displayItems.length">
@@ -31,11 +30,11 @@
 
 <script>
 import ApplicantStudent from "./ApplicantStudent.vue";
-import { reactive,computed,onMounted } from "vue";
+import { reactive, computed, onMounted } from "vue";
 
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   components: { ApplicantStudent },
@@ -52,28 +51,26 @@ export default {
       displayItems: [],
     });
     onMounted(async () => {
-      if(state.user == null) {
+      if (state.user == null) {
         router.push("/dashboard/login");
       } else {
-        if(state.user.role_id != 3) {
+        if (state.user.role_id != 3) {
           router.push("/dashboard");
         }
       }
-      const room_id=props.room_id
-      await axios.get('api_dashboard/all-students-classroom-waiting/'+room_id)
-        .then(res => {
+      const room_id = props.room_id;
+      await axios
+        .get("api_dashboard/all-students-classroom-waiting/" + room_id)
+        .then((res) => {
           state.items = res.data.data.allStudent;
-        console.log(state.items);
-      })
-    })
-    state.displayItems = state.items;
-    let searchStudent=(key)=>
-    {
+          state.displayItems = state.items;
+        });
+    });
+    let searchStudent = (key) => {
       this.displayItems = this.items.filter((item) => item.name.includes(key));
-    }
-    return { state,searchStudent, };
+    };
+    return { state, searchStudent };
   },
-
 };
 </script>
 

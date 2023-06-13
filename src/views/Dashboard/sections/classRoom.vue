@@ -84,7 +84,12 @@
                         >
                           <a class="btn"> عرض المواعيد</a></router-link
                         >
-                        <router-link :to="{ name: 'add_appointment',id:state.section.id  }">
+                        <router-link
+                          :to="{
+                            name: 'add_appointment',
+                            id: state.section.id,
+                          }"
+                        >
                           <a class="btn"> اضافه مواعيد</a></router-link
                         >
                       </div>
@@ -101,7 +106,9 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">الطلاب</h5>
-                        <router-link :to="{ name: 'showStudent', id: state.section.id  }">
+                        <router-link
+                          :to="{ name: 'showStudent', id: state.section.id }"
+                        >
                           <a class="btn"> عرض الطلاب </a></router-link
                         >
                         <router-link :to="{ name: 'applicant_students' }">
@@ -148,10 +155,17 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">الملحقات</h5>
-                        <router-link :to="{ name: 'classroom_attachments',id:state.section.id  }">
+                        <router-link
+                          :to="{
+                            name: 'classroom_attachments',
+                            id: state.section.id,
+                          }"
+                        >
                           <a class="btn"> عرض الملحقات</a></router-link
                         >
-                        <router-link :to="{ name: 'add_attachment',id:state.section.id  }">
+                        <router-link
+                          :to="{ name: 'add_attachment', id: state.section.id }"
+                        >
                           <a class="btn"> اضافه ملحق</a></router-link
                         >
                       </div>
@@ -168,10 +182,20 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">حضور و غياب</h5>
-                        <router-link :to="{ name: 'showStudentAttendance',id: state.section.id  }">
+                        <router-link
+                          :to="{
+                            name: 'showStudentAttendance',
+                            id: state.section.id,
+                          }"
+                        >
                           <a class="btn"> عرض الحضور والغياب</a></router-link
                         >
-                        <router-link :to="{ name: 'studentAttendance', id: state.section.id  }">
+                        <router-link
+                          :to="{
+                            name: 'showAppointmentsForAttendance',
+                            id: state.section.id,
+                          }"
+                        >
                           <a class="btn"> تسجيل حضور</a></router-link
                         >
                       </div>

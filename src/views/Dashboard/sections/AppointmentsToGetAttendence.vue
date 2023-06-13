@@ -2,17 +2,17 @@
   <Header />
   <div class="main-view">
     <AsideBar />
-    <div class="app-students">
+    <div class="appointments">
       <div class="container">
         <h3 class="header" dir="rtl">
           <i
             class="fa-solid fa-clipboard ms-2"
             style="color: var(--blue-color)"
           ></i>
-          قائمه الحضور والغياب
+          الميعاد
         </h3>
-        <div class="app-stu-data" dir="rtl">
-          <showAttendance :room_id="id" :appointment_id="AId" />
+        <div class="all-appointments" dir="rtl">
+          <AppointmentsList :classId="id" />
         </div>
       </div>
       <Footer />
@@ -24,22 +24,18 @@
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
-import showAttendance from "@/components/sections/attendance/showAttendance.vue";
+import AppointmentsList from "@/components/sections/Appointments/AppointmentsListAttendence.vue";
 export default {
-  components: { Footer, AsideBar, Header, showAttendance },
-  props: {
-    id: String,
-    AId: String,
-  },
+  components: { Footer, AsideBar, Header, AppointmentsList },
+  props: ["id"],
   data() {
     return {};
   },
-  
 };
 </script>
 
 <style lang="scss">
-.app-students {
+.appointments {
   margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
@@ -50,7 +46,7 @@ export default {
     font-size: 1.4rem;
     margin-block: 30px;
   }
-  .app-stu-data {
+  .all-appointments {
     background: #fff;
     margin: 60px 0;
     padding: 30px 20px;

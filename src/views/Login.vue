@@ -144,6 +144,7 @@ export default {
             email: state.email,
             password: state.password,
           });
+          state.loading = false;
           router.push("/Website/chooseBranch/");
         } catch (err) {
           notification("error", err.response.data.error);

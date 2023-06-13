@@ -1,8 +1,8 @@
 <template>
   <tr class="app-stu" v-if="exists">
     <td>{{ student.id }}</td>
-    <td>{{ student.name }}</td>
-    <td>{{ student.date }}</td>
+    <td>{{ student.full_name }}</td>
+    <td>{{ student.created_at }}</td>
     <td class="d-flex justify-content-center w-100">
       <button class="btn btn-success ms-lg-5 ms-2 approve" @click="approve()">
         قبول
@@ -13,14 +13,15 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  props: ["student",'room_id'],
+  props: ["student", "cid"],
   data() {
     return {
       exists: true,
     };
   },
+  mounted() {},
   methods: {
     approve() {
       Swal.fire({
@@ -33,16 +34,17 @@ export default {
         cancelButtonText: "لا ، إلغاء!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          Swal.fire("تم !", "تم قبول الطالب ", "نجاح");
-          this.exists = false;
           const data = {
-            classroom_id: room_id,
-            student_id: student.id,
-          }
-          await axios.post('accept-student-classroom',data)
-            .then(res => {
-            console.log(res);
-          })
+            classroom_id: this.student.room_id,
+            student_id: this.student.id,
+          };
+          console.log(data);
+          await axios
+            .post("/api_dashboard/accept-all-student-classroom", data)
+            .then((res) => {
+              Swal.fire("تم !", "تم قبول الطالب ", "نجاح");
+              this.exists = false;
+            });
         }
       });
     },
@@ -55,10 +57,19 @@ export default {
         cancelButtonColor: "#d33",
         confirmButtonText: "رفض",
         cancelButtonText: "لا ، إلغاء!",
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
-          Swal.fire("تم !", "تم رفض الطالب ", "نجاح");
-          this.exists = false;
+          const data = {
+            classroom_id: this.student.room_id,
+            student_id: this.student.id,
+          };
+          console.log(data);
+          await axios
+            .post("/api_dashboard/accept-all-student-classroom", data)
+            .then((res) => {
+              Swal.fire("تم !", "تم رفض الطالب ", "نجاح");
+              this.exists = false;
+            });
         }
       });
     },
