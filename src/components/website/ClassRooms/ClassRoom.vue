@@ -94,6 +94,7 @@ export default {
 
       if (res.status == 200) {
         console.log(res);
+        state.alreadySubscribed = true;
         notification("success", res.data.message);
       } else {
         notification("error", err.response.data.message);
@@ -109,6 +110,7 @@ export default {
 
       if (res.status == 200) {
         console.log(res);
+        state.alreadySubscribed = false;
         notification("success", res.data.message);
       } else {
         notification("error", err.response.data.message);

@@ -1,7 +1,12 @@
 <template>
   <div class="students-list">
     <h4><i class="fa-solid fa-list-ul ms-3"></i>قائمة الطلاب</h4>
-    <input type="text" placeholder="ابحث عن طالب معين" v-model="state.search" @keyup="searchStudent(state.search)" />
+    <input
+      type="text"
+      placeholder="ابحث عن طالب معين"
+      v-model="state.search"
+      @keyup="searchStudent(state.search)"
+    />
     <div class="list">
       <table class="stu-list">
         <tr dir="rtl">
@@ -10,30 +15,32 @@
           <th>تاريخ الانضمام</th>
           <th>الخصائص</th>
         </tr>
-        <ApplicantStudent v-for="student in state.displayItems" :key="student.id" :student="student" />
+        <ApplicantStudent
+          v-for="student in state.displayItems"
+          :key="student.id"
+          :student="student"
+        />
       </table>
-      <div class="alert alert-info mt-2" v-if="!state.displayItems.length"> لا توجد نتائج لعرضها ! </div>
+      <div class="alert alert-info mt-2" v-if="!state.displayItems.length">
+        لا توجد نتائج لعرضها !
+      </div>
     </div>
   </div>
 </template>
-  
-<script>
 
+<script>
 import ApplicantStudent from "./studentTable.vue";
 
-
-import { reactive,computed,onMounted } from "vue";
+import { reactive, computed, onMounted } from "vue";
 
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import axios from 'axios';
-
+import axios from "axios";
 
 export default {
   components: { ApplicantStudent },
   props: {
     room_id: String,
-    appointment_id: String,
   },
   setup(props) {
     const store = useStore();
@@ -45,30 +52,33 @@ export default {
       displayItems: [],
     });
     onMounted(async () => {
-      if(state.user == null) {
+      if (state.user == null) {
         router.push("/dashboard/login");
       } else {
-        if(state.user.role_id != 3) {
+        if (state.user.role_id != 3) {
           router.push("/dashboard");
         }
       }
-      const room_id = props.room_id
-      const appointment_id = 2
-      await axios.get('api_dashboard/all-students-classroom/' + room_id+"/"+ appointment_id)
-        .then(res => {
-          state.items = res.data.data.allStudent;
-          console.log(res.data);
-        })
-    })
-    state.displayItems = state.items;
+      await axios
+        .get(
+          "api_dashboard/all-students-classroom_based_on_status/" +
+            props.room_id +
+            "/" +
+            3
+        )
+        .then((res) => {
+          state.items = Array.from(res.data.data.allStudent);
+          state.displayItems = state.items;
+        });
+    });
     let searchStudent = (key) => {
-      this.displayItems = this.items.filter((item) => item.name.includes(key));
-    }
-    return { state,searchStudent,};
+      this.displayItems = this.items.filter((item) => item.full_name.includes(key));
+    };
+    return { state, searchStudent };
   },
 };
 </script>
-  
+
 <style lang="scss">
 .students-list {
   h4 {
@@ -119,4 +129,3 @@ export default {
   }
 }
 </style>
-  

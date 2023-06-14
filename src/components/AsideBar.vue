@@ -127,7 +127,7 @@
             </ul>
           </div>
         </div>
-      
+
         <!--Add Brach-->
         <div v-if="user_role == 1">
           <li
@@ -386,7 +386,7 @@
         </a>
         <!--End Users-->
         <!--Start Exams -->
-        <div v-if="user_role == 3">
+        <!-- <div v-if="user_role == 3">
           <li
             class="d-flex justify-content-between align-items-center"
             data-bs-target="#exam-sections"
@@ -423,7 +423,7 @@
               </a>
             </ul>
           </div>
-        </div>
+        </div> -->
         <!--End Exams -->
         <!--Notification-->
         <router-link :to="{ name: 'CreateNotificationPage' }">

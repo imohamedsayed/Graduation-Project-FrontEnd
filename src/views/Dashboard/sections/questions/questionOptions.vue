@@ -10,6 +10,13 @@
               <h2 class="st_title cr_course_title">
                 <i class="fas fa-plus-circle"></i> اضافه اختيارات للسوال
               </h2>
+              <h5 class="text-danger fw-bold">
+                رجاء محلاظة انه بمجرد اضافة الاختيارات لا يمكن تعديلها لاحقا ***
+              </h5>
+              <h6 class="text-muted">
+                في حالة وجود خطأ يتوجب حذف السؤال ثم اضافته مرة اخري ثم معاودة
+                ادخال الاختيارات
+              </h6>
             </div>
             <div class="col-lg-6">
               <div v-if="state.save" class="alert alert-success" role="alert">
@@ -53,21 +60,22 @@
                                     ><i class="fas fa-pencil-alt"></i>الاختيار
                                     الاول</label
                                   >
-                                  <input type="text" v-model="option1" />
+                                  <input type="text" v-model="state.option1" />
                                   <label class="radio-button">
-                                  <input
-                                    value="option1"
-                                    name="example-radio"
-                                    type="radio"
-                                  />
-                                  <span class="radio"></span>
-                                </label>
+                                    <input
+                                      value="1"
+                                      name="example-radio"
+                                      type="radio"
+                                      v-model="state.is_correct"
+                                    />
+                                    <span class="radio"></span>
+                                  </label>
                                 </div>
                                 <span
                                   class="text-danger fw-bold"
-                                  v-if="v$.name.$error"
+                                  v-if="v$.option1.$error"
                                 >
-                                  {{ v$.name.$errors[0].$message }}
+                                  {{ v$.option1.$errors[0].$message }}
                                 </span>
                               </div>
                               <div class="col-lg-12 col-md-12">
@@ -76,21 +84,22 @@
                                     ><i class="fas fa-pencil-alt"></i>الاختيار
                                     الثان</label
                                   >
-                                  <input type="فثءف" v-model="option2" />
+                                  <input type="text" v-model="state.option2" />
                                   <label class="radio-button">
-                                  <input
-                                    value="option2"
-                                    name="example-radio"
-                                    type="radio"
-                                  />
-                                  <span class="radio"></span>
-                                </label>
+                                    <input
+                                      value="2"
+                                      name="example-radio"
+                                      type="radio"
+                                      v-model="state.is_correct"
+                                    />
+                                    <span class="radio"></span>
+                                  </label>
                                 </div>
                                 <span
                                   class="text-danger fw-bold"
-                                  v-if="v$.nickname.$error"
+                                  v-if="v$.option2.$error"
                                 >
-                                  {{ v$.nickname.$errors[0].$message }}
+                                  {{ v$.option2.$errors[0].$message }}
                                 </span>
                               </div>
                               <div class="col-lg-12 col-md-12">
@@ -99,21 +108,22 @@
                                     ><i class="fas fa-pencil-alt"></i> الاختيار
                                     الثالث</label
                                   >
-                                  <input type="text" v-model="option3" />
+                                  <input type="text" v-model="state.option3" />
                                   <label class="radio-button">
-                                  <input
-                                    value="option3"
-                                    name="example-radio"
-                                    type="radio"
-                                  />
-                                  <span class="radio"></span>
-                                </label>
+                                    <input
+                                      value="3"
+                                      name="example-radio"
+                                      type="radio"
+                                      v-model="state.is_correct"
+                                    />
+                                    <span class="radio"></span>
+                                  </label>
                                 </div>
                                 <span
                                   class="text-danger fw-bold"
-                                  v-if="v$.avatar.$error"
+                                  v-if="v$.option3.$error"
                                 >
-                                  {{ v$.avatar.$errors[0].$message }}
+                                  {{ v$.option3.$errors[0].$message }}
                                 </span>
                               </div>
                               <div class="col-lg-12 col-md-12">
@@ -122,21 +132,22 @@
                                     ><i class="fas fa-pencil-alt"></i>الاختيار
                                     الرابع</label
                                   >
-                                  <input type="text" v-model="option4" />
+                                  <input type="text" v-model="state.option4" />
                                   <label class="radio-button">
-                                  <input
-                                    value="option4"
-                                    name="example-radio"
-                                    type="radio"
-                                  />
-                                  <span class="radio"></span>
-                                </label>
+                                    <input
+                                      value="4"
+                                      name="example-radio"
+                                      type="radio"
+                                      v-model="state.is_correct"
+                                    />
+                                    <span class="radio"></span>
+                                  </label>
                                 </div>
                                 <span
                                   class="text-danger fw-bold"
-                                  v-if="v$.avatar.$error"
+                                  v-if="v$.option4.$error"
                                 >
-                                  {{ v$.avatar.$errors[0].$message }}
+                                  {{ v$.option4.$errors[0].$message }}
                                 </span>
                               </div>
                             </div>
@@ -183,7 +194,10 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 
 export default {
-  props: ["id"],
+  props: {
+    id: String,
+    eid: String,
+  },
   name: "questionOptions",
   components: { Footer, AsideBar, Header, Toast },
 
@@ -195,7 +209,7 @@ export default {
       option3: "",
       option4: "",
       save: false,
-      option: {},
+      is_correct: 0,
     });
 
     onMounted(async () => {
@@ -206,22 +220,6 @@ export default {
           router.push("/dashboard");
         }
       }
-
-      await axios
-        .get("api_dashboard/teachers/" + props.id)
-        .then((res) => {
-          console.log(res.data.data);
-          state.option = res.data.data;
-          state.name = state.option.name;
-          state.nickname = state.option.nick_name;
-          state.avatar = state.option.avatar;
-          state.phone = state.option.phone_number;
-          console.log(state.option);
-        })
-        .catch((error) => {
-          console.log(error);
-          console.log(error.response.data.message);
-        });
     });
 
     //notification
@@ -248,10 +246,10 @@ export default {
 
     const rules = computed(() => {
       return {
-        name: { required },
-        nickname: { required },
-        phone: { required, minLength: minLength(11) },
-        avatar: { required },
+        option1: { required },
+        option2: { required },
+        option3: { required },
+        option4: { required },
       };
     });
 
@@ -261,22 +259,40 @@ export default {
 
     const SaveChanged = async () => {
       v$.value.$validate();
-      if (!v$.value.$error) {
-        let data = new FormData();
-        data.append("avatar", state.avatar);
-        data.append("name", state.name);
-        data.append("nick_name", state.nickname);
-        data.append("phone_number", state.phone);
+      if (!v$.value.$error && state.is_correct != 0) {
+        const data = {
+          exam_id: props.eid,
+          question_id: props.id,
+          option: {
+            1: state.option1,
+            2: state.option2,
+            3: state.option3,
+            4: state.option4,
+          },
+          is_correct: {
+            1: state.is_correct == 1 ? 1 : 0,
+            2: state.is_correct == 2 ? 1 : 0,
+            3: state.is_correct == 3 ? 1 : 0,
+            4: state.is_correct == 4 ? 1 : 0,
+          },
+        };
 
-        // Start Sending Request
+        console.log(data);
+        try {
+          let res = await axios.post(
+            "/api_dashboard/options/" + props.id,
+            data
+          );
 
-        let res = await axios.post("api_dashboard/teachers/" + props.id, data);
-
-        if (res.status == 200) {
-          state.save = true;
+          if (res.status == 200) {
+            notification("success", "تم اضافة الاختيارات");
+          } else {
+            notification("error", "حدث خطأ ما, عاود المحاولة لاحقا");
+          }
+        } catch (err) {
+          notification("error", err.response.data.message);
         }
       } else {
-        console.error();
         notification("error", "Missing Data !");
       }
     };
@@ -347,10 +363,10 @@ export default {
   margin-top: 10px;
 }
 @media (max-width: 991px) {
-  .course_tabs_1 input{
+  .course_tabs_1 input {
     width: 80% !important;
   }
-  }
+}
 .course_tabs_1 input:focus {
   outline: none;
 }
@@ -407,7 +423,7 @@ export default {
 
 .radio::before {
   position: absolute;
-  content: '';
+  content: "";
   width: 10px;
   height: 10px;
   top: 5px;
@@ -428,5 +444,4 @@ export default {
 .radio-button input[type="radio"]:checked + .radio::before {
   opacity: 1;
 }
-
 </style>

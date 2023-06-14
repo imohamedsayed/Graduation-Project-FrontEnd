@@ -31,14 +31,42 @@
           <td>{{ student.id }}</td>
           <td>{{ student.full_name }}</td>
           <td>{{ student.created_at }}</td>
-          <td>
+          <td v-if="student.attendances">
             <select
               class="form-control"
               ref="mySelect"
               v-model="state.attendances[student.id]"
               @change="attendance(student.id, state.attendances[student.id])"
             >
-              <option value="5" selected disabled>اختر من القائمة</option>
+              <option value="5" disabled>اختر من القائمة</option>
+              <option
+                value="2"
+                :selected="student.attendances.status[0] == '2'"
+              >
+                حضر ودفع
+              </option>
+              <option
+                value="1"
+                :selected="student.attendances.status[0] == '1'"
+              >
+                حضر ولم يدفع
+              </option>
+              <option
+                value="0"
+                :selected="student.attendances.status[0] == '0'"
+              >
+                غاب
+              </option>
+            </select>
+          </td>
+          <td v-else>
+            <select
+              class="form-control"
+              ref="mySelect"
+              v-model="state.attendances[student.id]"
+              @change="attendance(student.id, state.attendances[student.id])"
+            >
+              <option value="5" disabled selected>اختر من القائمة</option>
               <option value="2">حضر ودفع</option>
               <option value="1">حضر ولم يدفع</option>
               <option value="0">غاب</option>

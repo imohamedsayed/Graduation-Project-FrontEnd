@@ -60,7 +60,11 @@ export default {
       }
       const room_id = props.room_id;
       await axios
-        .get("api_dashboard/all-students-classroom-waiting/" + room_id)
+        .get(
+          "api_dashboard/all-students-classroom_based_on_status/" +
+            room_id +
+            "/0"
+        )
         .then((res) => {
           state.items = res.data.data.allStudent;
           state.displayItems = state.items;
