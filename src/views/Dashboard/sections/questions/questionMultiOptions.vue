@@ -270,9 +270,9 @@
             },
             is_correct: {
               1: state.one_is_correct == 1 ? 1 : 0,
-              2: state.two_is_correct == 2 ? 1 : 0,
-              3: state.three_is_correct == 3 ? 1 : 0,
-              4: state.four_is_correct == 4 ? 1 : 0,
+              2: state.two_is_correct == 1 ? 1 : 0,
+              3: state.three_is_correct == 1 ? 1 : 0,
+              4: state.four_is_correct == 1 ? 1 : 0,
             },
           };
   

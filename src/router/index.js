@@ -246,7 +246,7 @@ const routes = [
     component: editQuestion,
   },
   {
-    path: "/dashboard/exam/addQuestion/:id",
+    path: "/dashboard/exam/:id/addQuestion",
     name: "addQuestion",
     props: true,
     component: addQuestion,

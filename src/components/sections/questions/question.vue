@@ -11,13 +11,41 @@
       {{ question.explanation ? question.explanation : "لا يوجد" }}
     </td>
     <td class="open">{{ question.type }}</td>
-    <td class="open">
+    <td class="open" v-if="type == 0">
       <button
         class="btn"
         :disabled="question.options.length > 0"
         @click="
           $router.push({
             name: 'questionMCQ',
+            params: { eid: examId, id: question.id },
+          })
+        "
+      >
+        اضافه اختيارات
+      </button>
+    </td>
+    <td class="open" v-if="type == 1">
+      <button
+        class="btn"
+        :disabled="question.options.length > 0"
+        @click="
+          $router.push({
+            name: 'question_Multi_MCQ',
+            params: { eid: examId, id: question.id },
+          })
+        "
+      >
+        اضافه اختيارات
+      </button>
+    </td>
+    <td class="open" v-if="type == 2">
+      <button
+        class="btn"
+        :disabled="question.options.length > 0"
+        @click="
+          $router.push({
+            name: 'questionT_F',
             params: { eid: examId, id: question.id },
           })
         "
@@ -61,9 +89,22 @@ export default {
       opened: true,
       dell: true,
       showEditForm: false,
+      type: 0,
     };
   },
-  async mounted() {},
+  async mounted() {
+    switch (this.question.type.toLowerCase()) {
+      case "single choice":
+        this.type = "0";
+        break;
+      case "multiple choice":
+        this.type = "1";
+        break;
+      case "t/f":
+        this.type = "2";
+        break;
+    }
+  },
   methods: {
     ...mapActions(["redirectTo"]),
     async Delete() {
