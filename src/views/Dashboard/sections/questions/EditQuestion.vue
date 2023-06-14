@@ -211,7 +211,7 @@ export default {
               state.type = "1";
               break;
             case "t/f":
-              state.type = "3";
+              state.type = "2";
               break;
           }
         }
