@@ -18,7 +18,10 @@ import showExams from "../views/Dashboard/Exams/showExams.vue";
 import editExam from "../views/Dashboard/Exams/EditExam.vue";
 import showQuestions from "../views/Dashboard/sections/questions/showQuestions.vue";
 import editQuestion from "../views/Dashboard/sections/questions/EditQuestion.vue";
+import addQuestion from "../views/Dashboard/sections/questions/addQuestion.vue";
 import questionOptions from "../views/Dashboard/sections/questions/questionOptions.vue";
+import questionMultiOptions from "../views/Dashboard/sections/questions/questionMultiOptions.vue";
+import questionT_F from "../views/Dashboard/sections/questions/questionT_F.vue";
 import CreateBranch from "../views/Dashboard/Branches/Create-Branch.vue";
 import UpdateBranch from "../views/Dashboard/Branches/Update-Branch.vue";
 import ShowBranches from "../views/Dashboard/Branches/Show-Branches.vue";
@@ -243,6 +246,12 @@ const routes = [
     component: editQuestion,
   },
   {
+    path: "/dashboard/exam/addQuestion/:id",
+    name: "addQuestion",
+    props: true,
+    component: addQuestion,
+  },
+  {
     path: "/dashboard/ShowCources",
     name: "ShowCources",
     component: ShowCources,
@@ -313,6 +322,18 @@ const routes = [
     path: "/dashboard/exam/:eid/question/:id/addMCQ",
     name: "questionMCQ",
     component: questionOptions,
+    props: true,
+  },
+  {
+    path: "/dashboard/exam/:eid/question/:id/add_Multi_MCQ",
+    name: "question_Multi_MCQ",
+    component: questionMultiOptions,
+    props: true,
+  },
+  {
+    path: "/dashboard/exam/:eid/question/:id/add_TF_MCQ",
+    name: "questionT_F",
+    component: questionT_F,
     props: true,
   },
   {
