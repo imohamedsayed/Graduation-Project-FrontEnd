@@ -42,6 +42,7 @@
       </form>
     </div>
   </div>
+  <SpinnerLoading :loading="state.loading" />
   <teleport to="body">
     <Toast :theme="toast.theme" :showNotification="toast.showNotification">
       <p>{{ toast.notify }}</p>
@@ -65,6 +66,7 @@ import { required, email, minLength } from "@vuelidate/validators";
 // import Notification Toaster
 
 import Toast from "@/components/Toast.vue";
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
 
 export default {
   setup() {
@@ -73,6 +75,7 @@ export default {
       email: "",
       password: "",
       passwordVisibility: false,
+      loading: false,
     });
 
     const toast = reactive({
@@ -111,6 +114,7 @@ export default {
       v$.value.$validate();
       if (!v$.value.$error) {
         try {
+          state.loading = true;
           await store.dispatch("AdminLogin", {
             email: state.email,
             password: state.password,
@@ -118,6 +122,7 @@ export default {
           router.push("/dashboard");
         } catch (err) {
           notification("error", err.response.data.error);
+          state.loading = false;
         }
       } else {
         notification("error", "User Data Is Not Valid .. ");
@@ -125,7 +130,7 @@ export default {
     };
     return { state, login, v$, toast };
   },
-  components: { Toast },
+  components: { SpinnerLoading, Toast },
 };
 </script>
 <style lang=""></style>

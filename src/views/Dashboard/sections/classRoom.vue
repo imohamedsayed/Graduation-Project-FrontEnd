@@ -59,10 +59,14 @@
                       />
                       <div class="card-body">
                         <h5 class="card-title">الامتحانات</h5>
-                        <router-link :to="{ name: 'showExams' }">
+                        <router-link
+                          :to="{ name: 'showExams', id: state.section.id }"
+                        >
                           <a class="btn"> عرض الامتحانات</a></router-link
                         >
-                        <router-link :to="{ name: 'new_Exam' }">
+                        <router-link
+                          :to="{ name: 'new_Exam', id: state.section.id }"
+                        >
                           <a class="btn"> اضافه امتحان</a></router-link
                         >
                       </div>

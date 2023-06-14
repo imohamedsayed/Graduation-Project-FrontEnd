@@ -12,19 +12,26 @@
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="state.save" class="alert alert-success" role="alert"> تم تعديل السوال بنجاح . <span style="
-                       {
-                        font-size: 18px;
-                        cursor: pointer;
-                        display: inline-block;
-                        transition: 0.5s a;
-                      }
-                    " @click="
-                      this.redirectTo({
-                        name: 'showExams',
-                        params: {},
-                      })
-                    "> عرض جميع الاسئله</span>
+              <div v-if="state.save" class="alert alert-success" role="alert">
+                تم تعديل السوال بنجاح .
+                <span
+                  style="
+                     {
+                      font-size: 18px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="
+                    this.redirectTo({
+                      name: 'showExams',
+                      params: {},
+                    })
+                  "
+                >
+                  عرض جميع الاسئله</span
+                >
               </div>
             </div>
           </div>
@@ -33,61 +40,105 @@
               <div class="course_tabs_1">
                 <div id="add-course-tab" class="step-app">
                   <div class="step-content">
-                    <div class="step-tab-panel step-tab-info active create-course-tab" id="tab_step1">
+                    <div
+                      class="step-tab-panel step-tab-info active create-course-tab"
+                      id="tab_step1"
+                    >
                       <div class="tab-from-content">
                         <div class="course__form">
                           <div class="general_info10">
                             <div class="row">
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل السوال</label>
-                                  <input type="text" v-model="name" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل
+                                    السوال</label
+                                  >
+                                  <input type="text" v-model="state.question" />
                                 </div>
-                                <span class="text-danger fw-bold" v-if="v$.name.$error"> {{
-                                  v$.name.$errors[0].$message }} </span>
+                                <span
+                                  class="text-danger fw-bold"
+                                  v-if="v$.question.$error"
+                                >
+                                  {{ v$.question.$errors[0].$message }}
+                                </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل الدرجه</label>
-                                  <input type="number" v-model="point" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل
+                                    الدرجه</label
+                                  >
+                                  <input type="number" v-model="state.point" />
                                 </div>
-                                <span class="text-danger fw-bold" v-if="v$.nickname.$error"> {{
-                                  v$.nickname.$errors[0].$message }} </span>
+                                <span
+                                  class="text-danger fw-bold"
+                                  v-if="v$.point.$error"
+                                >
+                                  {{ v$.point.$errors[0].$message }}
+                                </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i> تعديل الصوره</label>
-                                  <input type="file"/>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i> تعديل
+                                    الصوره</label
+                                  >
+                                  <input
+                                    type="file"
+                                    @change="
+                                      (e) => {
+                                        state.image = e.target.files[0];
+                                      }
+                                    "
+                                  />
                                 </div>
-                                <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{
-                                  v$.avatar.$errors[0].$message }} </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>تعديل التفسير</label>
-                                  <input type="text" v-model="desc"/>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>تعديل
+                                    التفسير</label
+                                  >
+                                  <input
+                                    type="text"
+                                    v-model="state.explanation"
+                                  />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.explanation.$error"
+                                  >
+                                    {{ v$.explanation.$errors[0].$message }}
+                                  </span>
                                 </div>
-                                <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{
-                                  v$.avatar.$errors[0].$message }} </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
                                   <label>
-                          <i class="fas fa-list"></i>تغير النوع</label>
-                        <select v-model="state.course_year">
-                          <option selected disabled value=""> اختيار من القائمة </option>
-                          <option value="متعدد الاختيارات">متعدد الاختيارات</option>
-                          <option value="الاختيار الواحد">الاختيار الواحد</option>
-                          <option value="صح و غلط">صح وغلط</option>
-                        </select>
+                                    <i class="fas fa-list"></i>تغير النوع</label
+                                  >
+                                  <select v-model="state.type">
+                                    <option value="0">الاختيار الواحد</option>
+                                    <option value="1">متعدد الاختيارات</option>
+                                    <option value="2">صح وغلط</option>
+                                  </select>
                                 </div>
-                                <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{
-                                  v$.avatar.$errors[0].$message }} </span>
+                                <span
+                                  class="text-danger fw-bold"
+                                  v-if="v$.type.$error"
+                                >
+                                  {{ v$.type.$errors[0].$message }}
+                                </span>
                               </div>
                             </div>
                           </div>
-                          <button data-direction="finish" @click="SaveChanged" class="btn btn-default steps_btn"> حفظ
-                            التعديل </button>
+                          <button
+                            data-direction="finish"
+                            @click="SaveChanged"
+                            class="btn btn-default steps_btn"
+                          >
+                            حفظ التعديل
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -117,51 +168,54 @@ import { mapActions } from "vuex";
 import axios from "axios";
 
 import Toast from "@/components/Toast.vue";
-import { reactive,onMounted,computed } from "vue";
+import { reactive, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import { useVuelidate } from "@vuelidate/core";
-import { required,minLength } from "@vuelidate/validators";
+import { required, decimal } from "@vuelidate/validators";
 
 export default {
-  props: ["id"],
-  name: "updateTeachers",
-  components: { Footer,AsideBar,Header ,Toast },
+  props: {
+    id: String,
+  },
+  name: "updateQuestion",
+  components: { Footer, AsideBar, Header, Toast },
 
   setup(props) {
     const state = reactive({
       user: computed(() => store.state.user),
-      name: "",
-      nickname: '',
-      phone: '',
-      avatar: '',
+      question: "",
+      type: "",
+      point: "",
+      image: "",
+      explanation: "",
       save: false,
-      teacher: {},
     });
 
     onMounted(async () => {
-      if(state.user == null) {
+      if (state.user == null || state.user.role_id != 3) {
         router.push("/dashboard/login");
       } else {
-        if(state.user.role_id != 3) {
-          router.push("/dashboard");
+        let res = await axios.get("/api_dashboard/questions/" + props.id);
+
+        if (res.status == 200) {
+          const question = res.data.data;
+          state.question = question.question;
+          state.point = question.point;
+          state.image = null;
+          state.explanation = question.explanation;
+          switch (question.type.toLowerCase()) {
+            case "single choice":
+              state.type = "0";
+              break;
+            case "multiple choice":
+              state.type = "1";
+              break;
+            case "t/f":
+              state.type = "3";
+              break;
+          }
         }
       }
-
-      await axios
-        .get("api_dashboard/teachers/" + props.id)
-        .then((res) => {
-          console.log(res.data.data);
-          state.teacher = res.data.data;
-          state.name = state.teacher.name;
-          state.nickname = state.teacher.nick_name;
-          state.avatar = state.teacher.avatar;
-          state.phone = state.teacher.phone_number;
-          console.log(state.teacher);
-        })
-        .catch((error) => {
-          console.log(error);
-          console.log(error.response.data.message);
-        });
     });
 
     //notification
@@ -171,15 +225,14 @@ export default {
       notify: "",
     });
 
-    const notification = (theme,message) => {
+    const notification = (theme, message) => {
       toast.theme = theme;
       toast.notify = message;
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      },2000);
+      }, 2000);
     };
-
 
     // Store and router
 
@@ -189,43 +242,54 @@ export default {
 
     const rules = computed(() => {
       return {
-        name: { required },
-        nickname: { required },
-        phone: { required,minLength: minLength(11) },
-        avatar: { required },
+        question: { required },
+        type: { required },
+        explanation: { required },
+        point: { required, decimal },
       };
     });
 
-    const v$ = useVuelidate(rules,state);
+    const v$ = useVuelidate(rules, state);
 
     // add new term
 
     const SaveChanged = async () => {
       v$.value.$validate();
-      if(!v$.value.$error) {
-        let data = new FormData;
-        data.append('avatar',state.avatar);
-        data.append('name',state.name);
-        data.append('nick_name',state.nickname);
-        data.append('phone_number',state.phone);
-
-        // Start Sending Request
-
-        let res = await axios.post("api_dashboard/teachers/" + props.id,data)
-
-        if(res.status == 200) {
-          state.save = true;
+      if (!v$.value.$error) {
+        let data = {
+          question: state.question,
+          type: state.type,
+          point: state.point,
+          image: state.image,
+          explanation: state.explanation,
+        };
+        try {
+          let res = await axios.post(
+            "/api_dashboard/questions/" + props.id,
+            data,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          if (res.status == 200) {
+            notification("success", "تم تعديل السؤال");
+          } else {
+            notification("error", "حدث خطأ ما, عاود المحاولة لاحقا");
+          }
+        } catch (err) {
+          notification("error", err.response.data.message);
         }
       } else {
-        console.error()
-        notification("error","Missing Data !");
+        notification("error", "Missing Data !");
       }
     };
 
-    return { state,v$,SaveChanged,toast };
+    return { state, v$, SaveChanged, toast };
   },
   methods: {
-    ...mapActions(['redirectTo']),
+    ...mapActions(["redirectTo"]),
   },
 };
 </script>

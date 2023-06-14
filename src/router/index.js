@@ -129,7 +129,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/Editesection:id",
+    path: "/dashboard/Editesection/:id",
     name: "Editesection",
     component: Editesection,
     props: true,
@@ -151,7 +151,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/ShowTerm",
+    path: "/dashboard/ShowTerm/",
     name: "ShowTerm",
     component: ShowTerm,
   },
@@ -219,23 +219,27 @@ const routes = [
     component: ViewClasses,
   },
   {
-    path: "/dashboard/classRoom/1/new_Exam",
+    path: "/dashboard/classRoom/:id/new_Exam",
     name: "new_Exam",
+    props: true,
     component: CreateExam,
   },
   {
-    path: "/dashboard/classRoom/1/showExams",
+    path: "/dashboard/classRoom/:id/exams",
     name: "showExams",
+    props: true,
     component: showExams,
   },
   {
-    path: "/dashboard/classRoom/1/editExam/:id",
+    path: "/dashboard/editExam/:id",
     name: "editExam",
+    props: true,
     component: editExam,
   },
   {
-    path: "/dashboard/classRoom/1/editQuestion/:id",
+    path: "/dashboard/exam/editQuestion/:id",
     name: "editQuestion",
+    props: true,
     component: editQuestion,
   },
   {
@@ -300,14 +304,14 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/classRoom/:id/exam_id/showQuestions",
+    path: "/dashboard/exam/:id/questions",
     name: "showQuestions",
     component: showQuestions,
     props: true,
   },
   {
-    path: "/dashboard/classRoom/:id/exam_id/Question_id/option_id",
-    name: "questionOptions",
+    path: "/dashboard/exam/:eid/question/:id/addMCQ",
+    name: "questionMCQ",
     component: questionOptions,
     props: true,
   },
