@@ -7,13 +7,19 @@
         <div class="container">
           <div class="bg">
             <div class="row">
-              <div class="col-lg-12 col-md-12">
+              <iv style="display: flex; justify-content: space-between"
+      class="col-lg-12 col-md-12">
                 <div class="mt-30">
                   <label class="head">
                     <i class="fas fa-list"></i> قائمه الاسئله</label
                   >
                 </div>
-              </div>
+                <div class="content-action-btns">
+        <router-link :to="{ name: '' }"
+          ><i class="fas fa-plus-circle"></i> اضافة سوال</router-link
+        >
+      </div>
+              </iv>
             </div>
             <div class="row">
               <div class="col-12">
