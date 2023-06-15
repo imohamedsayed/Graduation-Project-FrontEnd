@@ -12,7 +12,7 @@
   <tr class="close" v-if="!opened  & exists" >
     <td colspan="7">
       <ul>
-      <li>العنوان 
+      <li>اللقب
         <div>{{teacher.nick_name }}</div>  
       </li>
       <!-- <li>الايميل

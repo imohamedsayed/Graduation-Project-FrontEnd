@@ -197,10 +197,12 @@ export default {
     padding: 10px 20px;
     border: 1px solid var(--landing-blue);
     transition: all 0.3s ease;
-
+    @media (max-width: 991px) {
+      width: 75% !important;
+    }
     &:focus {
-      outline: none;
-      transform: scale(1.01);
+      outline: none !important;
+      transform: scale(1.1) !important;
     }
   }
 

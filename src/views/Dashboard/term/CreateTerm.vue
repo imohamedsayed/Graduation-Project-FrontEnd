@@ -214,7 +214,7 @@ export default {
 
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .content {
   direction: rtl;
   padding: 30px 20px;
@@ -234,8 +234,8 @@ export default {
   font-size: 20px;
 }
 
-.content .st_title i {
-  color: var(--darker-blue);
+.content .st_title  {
+  color: var(--darker-blue) !important;
   margin-left: 10px;
   font-size: 22px;
 }
@@ -312,8 +312,11 @@ export default {
     // width: auto !important;
     height: 20px !important;
     width: 20px !important;
-    margin-top: 20px !important;
+    margin-top: 10px !important;
     // padding:20px 10px !important;
+  }
+  label{
+    margin-top: 10px !important;
   }
 }
 </style>
