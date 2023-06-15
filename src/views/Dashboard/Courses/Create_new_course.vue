@@ -295,7 +295,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .new-course {
   margin-right: 14rem;
 
@@ -463,6 +463,21 @@ export default {
     input {
       margin: 0 -50px !important;
     }
+  }
+}
+.status {
+  .statusbg {
+    background-color: #efefef;
+    border-radius: 10px;
+    // width: calc(100% - 20px);
+  }
+
+  input {
+    // width: auto !important;
+    height: 20px !important;
+    width: 20px !important;
+    margin-top: 20px !important;
+    // padding:20px 10px !important;
   }
 }
 </style>

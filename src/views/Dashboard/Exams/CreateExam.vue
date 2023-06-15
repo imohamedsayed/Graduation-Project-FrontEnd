@@ -283,7 +283,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .sa4d25 {
   direction: rtl;
   padding: 30px 20px;
@@ -330,7 +330,20 @@ export default {
 .course_tabs_1 label i {
   margin-left: 10px;
 }
+.course_tabs_1 select {
+  padding: 15px 15px;
+  height: auto;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  border: var(--border);
+  width: 100%;
+  margin-top: 10px;
+}
 
+.course_tabs_1 select:focus {
+  outline: none;
+}
 .course_tabs_1 input {
   padding: 15px 15px;
   height: auto;

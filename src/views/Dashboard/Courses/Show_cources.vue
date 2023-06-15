@@ -10,7 +10,7 @@
               <div class="col-lg-12 col-md-12">
                 <div class=" mt-30  ">
                   <label class="head">
-                    <i class="fas fa-list"></i> منتجات المتجر</label>
+                    <i class="fas fa-list"></i> عرض الدورات</label>
                 </div>
               </div>
             </div>

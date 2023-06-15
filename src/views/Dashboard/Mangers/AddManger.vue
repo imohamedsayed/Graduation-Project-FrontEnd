@@ -243,12 +243,189 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .new-course {
   margin-right: 14rem;
 
   @media (max-width: 991px) {
     margin-right: 0;
+  }
+}
+
+.cover {
+  padding: 30px 20px;
+  width: 100%;
+
+  .st_title {
+    margin-bottom: 8px;
+    color: var(--text-black);
+    font-size: 20px;
+
+    i {
+      color: var(--darker-blue) !important;
+      margin-left: 10px;
+    }
+  }
+
+  .bg {
+    background: #fff;
+    margin-top: 30px;
+    padding: 0 30px;
+    padding-bottom: 30px;
+    border-radius: 10px;
+    border: 1px solid #efefef;
+  }
+
+  label {
+    font-weight: 500;
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+    color: var(--text-black);
+    text-align: right;
+    display: block;
+
+    i {
+      color: var(--darker-blue) !important;
+      margin-left: 10px;
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 15px 15px;
+    height: auto;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    border: var(--border);
+    width: 100%;
+    margin-top: 10px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  textarea {
+    height: 150px;
+  }
+
+  .form_content {
+    .box {
+      margin-top: 30px;
+      position: relative;
+    }
+  }
+
+  .view_info {
+    display: block;
+    width: 100%;
+    float: right;
+    padding: 30px 30px 0;
+
+    .left {
+      float: left;
+      width: 40%;
+
+      .view_img {
+        img {
+          width: 100%;
+          border-radius: 10px;
+        }
+      }
+
+      @media (max-width: 991px) {
+        width: 100%;
+      }
+    }
+
+    .right {
+      float: right;
+      width: 50%;
+      margin-left: 30px;
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        color: #686f7a;
+        line-height: 26px;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      .upload_input {
+        width: 100% !important;
+        padding: 10px;
+      }
+
+      @media (max-width: 991px) {
+        width: 100%;
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .course_price {
+    float: right;
+    width: 100%;
+    margin-top: 50px;
+    padding: 40px 30px 0;
+    border-top: 1px solid #efefef;
+  }
+
+  .price {
+    > span {
+      width: 100%;
+      display: block;
+      text-align: center;
+      padding: 10px;
+      background: var(--darker-blue);
+      color: white;
+      border-radius: 10px;
+      font-size: 12pt;
+      margin-top: 15px;
+    }
+  }
+
+  .steps_btn {
+    color: var(--white-color);
+    margin: 25px 25px;
+    float: right;
+    padding: 10px 50px !important;
+    margin-bottom: 0;
+    margin-top: 50px;
+    font-size: 12pt !important;
+    height: auto !important;
+    background: var(--light-blue) !important;
+    font-family: "Cairo", sans-serif !important;
+    font-weight: 700 !important;
+
+    &:hover {
+      background: var(--light-blue) !important;
+      color: var(--white-color);
+    }
+  }
+
+  .upload_input {
+    input {
+      margin: 0 -50px !important;
+    }
+  }
+}
+.status {
+  .statusbg {
+    background-color: #efefef;
+    border-radius: 10px;
+    // width: calc(100% - 20px);
+  }
+
+  input {
+    // width: auto !important;
+    height: 20px !important;
+    width: 20px !important;
+    margin-top: 20px !important;
+    // padding:20px 10px !important;
   }
 }
 </style>

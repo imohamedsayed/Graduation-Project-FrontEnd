@@ -13,10 +13,7 @@
   <tr class="close" v-if="!opened">
     <td colspan="9">
       <ul>
-        <li>
-          الفصل :
-          <div>{{ note.classroom_name }}</div>
-        </li>
+
         <li>
           الملاحظة :
           <div>{{ note.description }}</div>

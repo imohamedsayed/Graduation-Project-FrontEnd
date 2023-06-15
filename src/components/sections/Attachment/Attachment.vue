@@ -13,12 +13,9 @@
   <tr class="close" v-if="!opened">
     <td colspan="9">
       <ul>
+
         <li>
-          الفصل :
-          <div>{{ attachment.classroom_name }}</div>
-        </li>
-        <li>
-          الملاحظة :
+          اسم الملف :
           <div>{{ attachment.name }}</div>
         </li>
       </ul>
