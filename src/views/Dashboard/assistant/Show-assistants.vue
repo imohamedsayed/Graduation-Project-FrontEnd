@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .ShowCources {
   margin-right: 14rem;
   @media (max-width: 991px) {
@@ -67,7 +67,7 @@ export default {
     border: 1px solid #efefef;
     label {
       font-weight: 500;
-      font-size: 22px !important;
+      font-size: 15px !important;
       margin-bottom: 10px !important;
       color: #333;
       text-align: right;

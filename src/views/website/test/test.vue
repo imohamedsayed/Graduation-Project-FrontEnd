@@ -45,16 +45,8 @@
             <div class="row">
               <div class="col-lg-8">
               <testComponent />
-              <testComponent />
-              <testComponent />
-              <testComponent />
-              <testComponent />
-              <testComponent />
-              <testComponent />
-              <testComponent />
-              <testComponent />
-              <testComponent />
-              <testComponent />
+              <t_fOption />
+              <multiChoiceOption />
               <button class="test_submit_btn" type="submit">
       <i class="fas fa-check"></i> لقد انتهيت !
     </button>
@@ -98,8 +90,10 @@
   import Header from "../../../components/Header.vue";
   import AsideBar from "../../../components/WebsiteAsideBar.vue";
   import testComponent from "../../../components/test/testComponent.vue";
+  import t_fOption from "../../../components/test/t_fOption.vue";
+  import multiChoiceOption from "../../../components/test/multiChoiceOption.vue";
   export default {
-    components: { Footer, AsideBar, Header,testComponent },
+    components: { Footer, AsideBar, Header,testComponent , t_fOption ,multiChoiceOption },
     data() {
       return {};
     },
@@ -275,13 +269,14 @@ h4:last-child{
   .test_submit_btn {
     font-size: 15px;
   margin-right: 80px;
+  margin-bottom: 80px;
   font-weight: 600;
   color: #fff !important;
   background-color: var(--blue-color) !important ;
   border-radius: 20px;
   text-align: center;
   border: 0;
-  width: 25%;
+  width: 50%;
   float:right;
   height: 40px;
   padding: 10px 0;

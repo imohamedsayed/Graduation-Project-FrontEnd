@@ -10,26 +10,35 @@
           <div class="grouped fields">
             <div class="field fltr-radio">
               <label class="radio-button">
-                <input value="1" name="example1" type="radio" />
-                <span class="radio"></span> التوازي
-              </label>
-            </div>
-            <div class="field">
-              <label class="radio-button">
-                <input value="2" name="example1" type="radio" />
+                <input value="1" type="checkbox" />
                 <span class="radio"></span> التوالي
               </label>
             </div>
             <div class="field">
               <label class="radio-button">
-                <input value="3" name="example1" type="radio" />
-                <span class="radio"></span> جميع ما سبق 
+                <input
+                  value="2"
+                  type="checkbox"
+                />
+                <span class="radio"></span> التوازي
+              </label>
+            </div>
+            <div class="field">
+              <label class="radio-button">
+                <input
+                  value="3"
+                  type="checkbox"
+                />
+                <span class="radio"></span> جميع ما سبق
               </label>
             </div>
             <div class="field fltr-radio">
               <label class="radio-button">
-                <input value="4" name="example1" type="radio" />
-                <span class="radio"></span> لا توجد اجابه صحيحه
+                <input
+                  value="4"
+                  type="checkbox"
+                />
+                <span class="radio"></span> لا توجد اجابه
               </label>
             </div>
           </div>
@@ -115,53 +124,53 @@ export default {};
   }
 }
 .radio-button {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin: 10px;
-  position: relative;
-  align-items: center;
-  display: inline !important;
-}
-
-.radio-button input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-}
-
-.radio {
-  position: relative;
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid var(--darker-blue);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  transform: translateZ(-25px);
-  transition: all 0.3s ease-in-out;
-}
-
-.radio::before {
-  position: absolute;
-  content: "";
-  width: 10px;
-  height: 10px;
-  top: 5px;
-  left: 5px;
-  border-radius: 50%;
-  background-color: var(--darker-blue) !important;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-}
-
-.radio-button input[type="radio"]:checked + .radio {
-  border-color: var(--blue-color) !important;
-  transform: translateZ(0px);
-  background-color: #fff;
-}
-
-.radio-button input[type="radio"]:checked + .radio::before {
-  opacity: 1;
-}
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px;
+    position: relative;
+    align-items: center;
+    display: inline !important;
+  }
+  
+  .radio-button input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+  }
+  
+  .radio {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 0 !important;
+    border: 2px solid var(--darker-blue);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    transform: translateZ(-25px);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .radio::before {
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    top: 5px;
+    left: 5px;
+    border-radius: 0 !important;
+    background-color: var(--darker-blue) !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .radio-button input[type="checkbox"]:checked + .radio {
+    border-color: var(--blue-color) !important;
+    transform: translateZ(0px);
+    background-color: #fff;
+  }
+  
+  .radio-button input[type="checkbox"]:checked + .radio::before {
+    opacity: 1;
+  }
 </style>
