@@ -2,26 +2,26 @@
     <div class="coursContent">
       <div class="row">
         <div class="col-3 title">
-          <i class="fa fa-list"></i> 10 محاضرات
+          <i class="fa fa-list"></i> {{ state.content.length }} محاضرات
         </div>
         <div class="col-4 title">
           <i class="fa fa-list"></i> 20:13:12 ساعة
         </div>
         <div class="col-12">
           <div class="ul">
-            <li v-for="lec in content" :key="lec.id">
+            <li v-for="lec in state.content" :key="lec.id">
               <div class="row">
                 <div class="col-9">
                   <div class="title">
-                    <i class="fa fa-video "></i>
-                    <router-link :to="{name: 'video'}">{{ lec.name }}</router-link>
+                    <i class="fa fa-file"></i>
+                    <a >{{ lec.description              }}</a>
                   </div>
                 </div>
                 <div class="col-3">
                   <div class="info">
-                    <div class="quist_num">
-                      مجانى <i class="fa fa-play"></i> 
-                    </div>
+                    <a :href="'http://127.0.0.1:8000/'+lec.name" target="_blank"  class="quist_num">
+                      تنزيل   <i class="fa-solid fa-download"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -31,64 +31,43 @@
       </div>
     </div>
 </template>
-
+<!-- http://127.0.0.1:8000/Attachment/file.pdf -->
 <script>
+import { computed,onMounted,reactive } from "vue";
+import { useStore } from "vuex";
+import axios from 'axios';
+
 export default {
-  data() {
-    return {
-      content: [
-        {
-          
-          id: 1,
-          name: 'مقدمة في الفيزياء',
-          quist_num: 15,
-          period: 20
-        },
-        {
-          id: 2,
-          name: 'الوحده الاولي _ الدرس التاني ',
-          quist_num: 15,
-          period: 20
-        },
-        {
-          id: 3,
-          name: 'الوحده التانيه _ الدرس الرابع ',
-          quist_num: 15,
-          period: 20
-        },
-        {
-          id: 4,
-          name: 'الوحده التانيه _ الدرس الرابع ',
-          quist_num: 15,
-          period: 20
-        },
-        {
-          id: 5,
-          name: 'مقدمة في الفيزياء',
-          quist_num: 15,
-          period: 20
-        },
-        {
-          id:6,
-          name: 'الوحده الاولي _ الدرس التاني ',
-          quist_num: 15,
-          period: 20
-        },
-        {
-          id: 7,
-          name: 'الوحده التانيه _ الدرس الرابع ',
-          quist_num: 15,
-          period: 20
-        },
-        {
-          id: 8,
-          name: 'الوحده التانيه _ الدرس الرابع ',
-          quist_num: 15,
-          period: 20
-        },
-      ]
-    }
+    props: {
+    id: String,
   },
+  setup(props) {
+    const state = reactive({
+      loading: true,
+      accepted: false,
+      content: [],
+      std_id: computed(() => useStore().state.student.id),
+    });
+    const cours_id = props.id;
+    onMounted(async () => {
+      await axios
+        .get("api/attachments/" + cours_id)
+        .then((res) => {
+          if(res.data.data) {
+            state.content = res.data.data
+          }
+          else {
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.errors);
+        });
+    });
+    return { state };
+  },
+
+
 }
 </script>
 

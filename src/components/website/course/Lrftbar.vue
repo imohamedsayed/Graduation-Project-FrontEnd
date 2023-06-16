@@ -3,129 +3,148 @@
     <div class="notify">
       <h4> اعلامات الدورة </h4>
       <div class="ul">
-        <li v-for="notify in notification" :key="notify.id">
-          <h6> {{ notify.content }} </h6>
-          <div>{{ notify.time }} </div>
+        <li v-for="notify in state.notification" :key="notify.id">
+          <h6> - {{ notify.description }} </h6>
         </li>
       </div>
     </div>
     <div class="techer">
       <div class="row">
         <div class="col-12">
-          <h4><i class="fa fa-user"></i> عن المدرب </h4>
+          <h4><i class="fa fa-user"></i> عن المدرس </h4>
         </div>
         <div class="col-12">
           <div class="img">
-            <img src="../../../assets/course/Ellipse_45.png" alt="">
+            <img :src="'http://127.0.0.1:8000/'+state.teacher.avatar" alt="">
           </div>
         </div>
         <div class="row">
-          <div class="col-8 info">
-            <i class="fa-solid fa-chevron-left"></i>
-            الاسم
+          <div class="col-6  info">
+            <i class="fa-solid fa-chevron-left"></i> الاسم
           </div>
-          <div class="col-4">
-            محمد خليفة
-          </div>
+          <div class="col-6">  {{state.teacher.name}} </div>
         </div>
         <div class="row">
-          <div class="col-8 info">
+          <div class="col-6  info">
             <i class="fa-solid fa-chevron-left"></i> تاريخ الانضمام
           </div>
-          <div class="col-4">  12/3/2022 </div>
+          <div class="col-6"> {{ state.teacher.created_at }} </div>
         </div>
         <div class="row">
-          <div class="col-8 info">
+          <div class="col-6  info">
             <i class="fa-solid fa-chevron-left"></i> عدد الدورات
           </div>
-          <div class="col-4">  3 </div>
+          <div class="col-6"> {{ state.teacher.dfd }} </div>
         </div>
         <div class="row">
-          <div class="col-8 info">
+          <div class="col-6  info">
             <i class="fa-solid fa-chevron-left"></i> اجمالى الطلاب
           </div>
-          <div class="col-4">  345 </div>
+          <div class="col-6"> {{ state.teacher.dfd }} </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
+import { computed,onMounted,reactive } from "vue";
+import { useStore } from "vuex";
+import axios from 'axios';
 export default {
-data() {
-  return {
-    notification: [
-      {
-        id: 1,
-        content: 'سوف يتم اضافة الوحدة التانية بعد اسبوع.',
-        time: '12-2-2020 12:13 PM'
-      },
-      {
-        id: 2,
-        content: 'سوف يتم اضافة الوحدة التانية بعد اسبوع.',
-        time: '12-2-2020 12:13 PM'
-      },
-      {
-        id: 3,
-        content: 'سوف يتم اضافة الوحدة التانية بعد اسبوع.',
-        time: '12-2-2020 12:13 PM'
-      },
-      {
-        id: 4,
-        content: 'سوف يتم اضافة الوحدة التانية بعد اسبوع.',
-        time: '12-2-2020 12:13 PM'
-      },
-    ]
-  }
-},
+  props: {
+    id: String,
+  },
+  setup(props) {
+    const state = reactive({
+      loading: true,
+      teacher: {},
+      notification: [],
+      std_id: computed(() => useStore().state.student.id),
+    });
+    const cours_id = props.id;
+    onMounted(async () => {
+      await axios
+        .get("api/notes/" + cours_id)
+        .then((res) => {
+          if(res.data.data) {
+            state.notification = res.data.data
+          }
+          else {
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.errors);
+        });
+      await axios
+        .get("api/get-teachers/" + cours_id)
+        .then((res) => {
+          state.teacher = res.data.data;
+          console.log(state.teacher);
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.errors);
+        });
+    });
+    return { state };
+  },
+
 }
 </script>
 
 <style lang="scss">
-.lftbar
-{
+.lftbar {
   margin-top: 65px;
   margin-left: 50px;
-  
-  .notify
-  {
-    margin-bottom: 30px;
-    background-color: var(--gray-blue);
-    border-radius: 8px;
-      padding: 15px;
-    .ul {
-        li {
-          list-style: none;
-          margin: 10px;
-          border-bottom: 1px solid #8D8484;
-        }
-      }
-  }.techer
-  {
+
+  .notify {
     margin-bottom: 30px;
     background-color: var(--gray-blue);
     border-radius: 8px;
     padding: 15px;
-    h4 
-    {
-      i{
+
+    .ul {
+      li {
+        list-style: none;
+        margin: 10px;
+        border-bottom: 1px solid #8D8484;
+      }
+    }
+  }
+
+  .techer {
+    margin-bottom: 30px;
+    background-color: var(--gray-blue);
+    border-radius: 8px;
+    padding: 15px;
+
+    h4 {
+      i {
         color: var(--darker-blue);
       }
     }
-    .img
-    {
-      margin: 20px 0;
+
+    .img {
+      margin: 20px auto;
       display: flex;
+      // width: 50%;
+      width: 150px;
+      height: 150px;
       justify-content: center;
+
+      img {
+        width: 100%;
+        border-radius: 50%;
+      }
     }
-    .info
-    {
+
+    .info {
       margin: 10px 0;
       color: rgb(14, 90, 116);
     }
   }
-  
+
 }
 </style>

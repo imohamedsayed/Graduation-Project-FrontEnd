@@ -7,29 +7,26 @@
         <div class="row">
           <div class="col-lg-8  courses">
             <div class="row">
-              <div class="col-xl-3 col-lg-5 col-md-5 cours" v-for="cours in courses" :key="cours.id">
+              <div class="col-xl-4 col-lg-5 col-md-5 cours" v-for="cours in state.accepted_courses" :key="cours.id">
                 <div class="img">
-                  <img :src="cours.img" alt="">
+                  <img src="../../../../../public/images/intro_background.png" alt="">
                 </div>
                 <div class="overlay">
-                  <span
-                  @click="this.redirectTo({
-                      name: 'course', params: {
-                      id: cours.id,
-                    }
-                  })"
-                  >{{ cours.name}}</span>
+                  <router-link :to="{ name: 'course', params: { id: cours.id } }">
+                    <span> {{ cours.name }} <span class="time">: Start <br>{{ cours.start_date }}</span>
+                    </span>
+                  </router-link>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-lg-4 leftbar ">
             <div class="cat">
-              <h3>الفئات</h3>
+              <h3>المجموعات المعلقة</h3>
               <ul>
-                <li v-for="cours in courses" :key="cours.id">
+                <li v-for="cours in state.waited_courses" :key="cours.id">
                   <i class="fa fa-book-open-reader"></i>
-                  <span>{{cours.name }}</span>
+                  <span>{{ cours.name }}</span>
                 </li>
               </ul>
             </div>
@@ -37,7 +34,7 @@
               <div class="row">
                 <div class="overlay"></div>
                 <div class="col-12">
-                  <h4>هل تحتاج مساعدة ؟</h4>                  
+                  <h4>هل تحتاج مساعدة ؟</h4>
                 </div>
                 <div class="col-12">
                   <p>إذا لديك أي استفسارات نحن سعداء بمساعدتك</p>
@@ -53,69 +50,59 @@
       <Footer />
     </div>
   </div>
+  <SpinnerLoading :loading="state.loading" />
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
 import Footer from "../../../../components/Footer.vue";
-import Header from "../../../../components/Header.vue";
+import Header from "../../../../components/StudentHeader.vue";
 import AsideBar from "../../../../components/WebsiteAsideBar.vue";
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
+import { computed,onMounted,reactive } from "vue";
+import { useStore } from "vuex";
+import axios from 'axios';
 export default {
   name: 'course',
   components: {
-    Footer,AsideBar,Header
+    Footer,AsideBar,Header,SpinnerLoading
   },
-  props: ['id'],
-  data() {
-    return {
-      std_id: this.id,
-      courses: [
-        {
-          id: 1,
-          name: 'فيزياء',
-          img: require('../../../../assets/course/8.png')
-        },
-        {
-          id: 2,
-          name: 'رياضيات',
-          img:require( '../../../../assets/course/1.png')
-        },
-        {
-          id: 3,
-          name: 'كيمياء',
-          img:require( '../../../../assets/course/2.png')
-        },
-        {
-          id: 4,
-          name: 'علوم',
-          img:require( '../../../../assets/course/3.png')
-        },
-        {
-          id: 5,
-          name: 'احياء',
-          img:require( '../../../../assets/course/4.png')
-        },
-        {
-          id: 6,
-          name: 'تاريخ',
-          img:require( '../../../../assets/course/5.png')
-        },
-        {
-          id: 7,
-          name: 'لغة انجليزية',
-          img:require( '../../../../assets/course/6.png')
-        },
-        {
-          id: 8,
-          name: 'لغة عربية',
-          img:require( '../../../../assets/course/7.png')
-        },
-        
-      ]
-    }
-  },
-  methods: {
-    ...mapMutations(['redirectTo'])
+  setup(props) {
+    const state = reactive({
+      loading: true,
+      accepted_courses: [],
+      waited_courses: [],
+      std_id: computed(() => useStore().state.student.id),
+    });
+
+    onMounted(async () => {
+      
+      // get accepted courses
+
+      await axios
+        .get("api/all-classroom-basedOnAuthStudent/3")
+        .then((res) => {
+          state.accepted_courses = res.data.data.allStudent;
+          state.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.message)
+        });
+
+      // get waited courses
+
+      await axios
+        .get("api/all-classroom-basedOnAuthStudent/0")
+        .then((res) => {
+          state.waited_courses = res.data.data.allStudent;
+          state.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.message)
+        });
+    });
+    return { state };
   },
 
 }
@@ -128,97 +115,121 @@ export default {
   @media (max-width: 991px) {
     margin-right: 0;
   }
-  .back
-  {
+
+  .back {
     padding: 30px;
-    .courses
-    {
+
+    .courses {
       .cours {
-          position: relative;
-          margin: 20px;
-          border-radius: 5px;
-          box-shadow: 3px 2px 8px #12111166;
-      
-          .img {
+        position: relative;
+        margin: 20px;
+        border-radius: 5px;
+        padding: 0;
+        box-shadow: 3px 2px 8px #12111166;
+
+        .img {
+          width: 100%;
+
+          img {
             width: 100%;
-      
-            img {
-              width: 100%;
-              height: 200px;
-              border-radius: 5px;
-            }
-          }
-      
-          .overlay {
+            height: 200px;
             border-radius: 5px;
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.50);
-            top: 0;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-      
+          }
+        }
+
+        .overlay {
+          position: absolute;
+          border-radius: 5px;
+          background-color: rgba(0, 0, 0, 0.50);
+          background-color: var(--gray-blue);
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          display: flex;
+          flex-wrap: wrap;
+          padding: 50px 10px;
+
+          a {
+            text-align: center;
+            margin: auto;
+
             span {
-              position: absolute;
+              // position: absolute;
+              display: block;
+              width: 100%;
               font-size: 24px;
               font-weight: bold;
               color: #fff;
-              top: 50%;
-              left: 50%;
+              margin-bottom: 15px;
+              top: 0;
+              left: 0;
               transition: .5s all;
-              transform: translate(-50%, -50%);
+              // transform: translate(-50%, -50%);
               cursor: pointer;
             }
-          }
-          &:hover
-          {
-            span {
-              scale: 1.3;
+
+            .time {
+              font-size: 18px;
+              text-align: center;
+              // color: var(--darker-blue) !important;
             }
           }
         }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.50);
+
+          span.time {
+            color: #fff !important;
+            // scale: 1.3;
+          }
+        }
+      }
     }
-    .leftbar
-    {
-      .cat
-      {
+
+    .leftbar {
+      .cat {
         background-color: var(--gray-blue);
         border-radius: 8px;
         padding: 20px;
-        h3
-        {
+
+        h3 {
           text-align: center;
           padding-bottom: 10px;
           border-bottom: 1px solid #8d8484cb;
         }
-        li
-        {
+
+        li {
           padding: 10px;
           font-size: 18px;
           width: 100;
           transition: .5s;
+
           &:hover {
-              padding-right: 15px;
-            }
-          i{
+            padding-right: 15px;
+          }
+
+          i {
             color: var(--darker-blue);
             margin-left: 10px;
           }
-          
+
         }
       }
-      .help
-      {
+
+      .help {
         margin-top: 30px;
         border-radius: 8px;
         padding: 20px;
         color: #fff;
-        background:url(../../../../assets/course/bg.png) no-repeat;
+        background: url(../../../../assets/course/bg.png) no-repeat;
         background-position: center;
         background-size: cover;
         position: relative;
-        .overlay{
-          content:'';
+
+        .overlay {
+          content: '';
           position: absolute;
           top: 0;
           left: 0;
@@ -227,13 +238,16 @@ export default {
           background-color: rgba(0, 0, 0, 0.541);
           border-radius: 8px;
         }
-        h4{
+
+        h4 {
           position: relative;
         }
-        p{
+
+        p {
           position: relative;
         }
-        a{
+
+        a {
           position: relative;
           display: block;
           margin: 20px auto;
@@ -246,15 +260,16 @@ export default {
           padding: 10px 20px;
           border-radius: 8px;
           transition: .5s;
+
           &:hover {
-              color: rgb(221, 221, 221) ;
-              background-color: var(--darker-blue) !important;
-            }
+            color: rgb(221, 221, 221);
+            background-color: var(--darker-blue) !important;
+          }
         }
       }
     }
-    
-    
+
+
   }
 }
 </style>

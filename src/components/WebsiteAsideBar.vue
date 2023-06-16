@@ -94,7 +94,7 @@
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-clipboard"></i>
-            <span>دوراتي</span>
+            <span>مجموعاتى</span>
           </div>
         </li>
       </router-link>

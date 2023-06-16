@@ -17,6 +17,11 @@
                 :data="classRoom"
               />
             </div>
+            <div v-else>
+              <h4 class="alert alert-info my-5">
+                لا يوجد مجموعات لهذه المادة حتي الان
+              </h4>
+            </div>
             <template #fallback
               ><div class="col-lg-3 col-md-6 col-12">
                 <div class="skelton"></div>
