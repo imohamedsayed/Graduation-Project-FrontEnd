@@ -95,7 +95,7 @@
                                 <div class="ui search focus mt-30 lbel25">
                                   <label
                                     ><i class="fas fa-pencil-alt"></i>اضافه
-                                    التفسير</label
+                                    الوصف</label
                                   >
                                   <input
                                     type="text"
@@ -116,6 +116,9 @@
                                     النوع</label
                                   >
                                   <select v-model="state.type">
+                                    <option selected disabled value="">
+                                      اختيار من القائمة
+                                    </option>
                                     <option value="0">الاختيار الواحد</option>
                                     <option value="1">متعدد الاختيارات</option>
                                     <option value="2">صح وغلط</option>
@@ -327,6 +330,20 @@ export default {
 }
 
 .course_tabs_1 input:focus {
+  outline: none;
+}
+.course_tabs_1 select {
+  padding: 15px 15px;
+  height: auto;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  border: var(--border);
+  width: 90%;
+  margin-top: 10px;
+}
+
+.course_tabs_1 select:focus {
   outline: none;
 }
 

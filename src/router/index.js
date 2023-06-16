@@ -16,6 +16,12 @@ import ViewClasses from "../views/Dashboard/classes/ShowClasses.vue";
 import CreateExam from "../views/Dashboard/Exams/CreateExam.vue";
 import showExams from "../views/Dashboard/Exams/showExams.vue";
 import editExam from "../views/Dashboard/Exams/EditExam.vue";
+import newCategory from "../views/Dashboard/shop/newCategory.vue";
+import editCategory from "../views/Dashboard/shop/editCategory.vue";
+import showCategories from "../views/Dashboard/shop/showCategories.vue";
+import newProduct from "../views/Dashboard/shop/product/newProduct.vue";
+import editProduct from "../views/Dashboard/shop/product/editProduct.vue";
+import showProducts from "../views/Dashboard/shop/product/showProducts.vue";
 import showQuestions from "../views/Dashboard/sections/questions/showQuestions.vue";
 import editQuestion from "../views/Dashboard/sections/questions/EditQuestion.vue";
 import addQuestion from "../views/Dashboard/sections/questions/addQuestion.vue";
@@ -114,6 +120,42 @@ const routes = [
     path: "/dashboard/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/dashboard/new_section",
+    name: "new_Section",
+    component: CreateSection,
+  },
+  {
+    path: "/dashboard/newCategory",
+    name: "newCategory",
+    component: newCategory,
+  },
+  {
+    path: "/dashboard/editCategory",
+    name: "editCategory",
+    component: editCategory,
+  },
+  {
+    path: "/dashboard/showCategories",
+    name: "showCategories",
+    component: showCategories,
+  },
+  {
+    path: "/dashboard/newProduct",
+    name: "newProduct",
+    component: newProduct,
+  },
+  {
+    path: "/dashboard/editProduct",
+    name: "editProduct",
+    component: editProduct,
+  },
+  {
+    path: "/dashboard/category/:id/showProducts",
+    name: "showProducts",
+    component: showProducts,
+    props: showProducts,
   },
   {
     path: "/dashboard/new_section",
@@ -318,6 +360,7 @@ const routes = [
     component: showQuestions,
     props: true,
   },
+
   {
     path: "/dashboard/exam/:eid/question/:id/addMCQ",
     name: "questionMCQ",
