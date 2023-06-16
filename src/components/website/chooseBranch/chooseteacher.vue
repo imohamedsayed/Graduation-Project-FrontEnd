@@ -15,7 +15,7 @@
           <div class="teachera" @click="goToClasses(item.id)">
             <div class="img">
               <img
-                src="../../../assets/course/Ellipse_45.png"
+                :src="'http://127.0.0.1:8000/Teacher_image/Franecki_2023-06-16.png'                 "
                 alt=""
                 srcset=""
               />
@@ -66,9 +66,10 @@ export default {
 
     onMounted(async () => {
       await axios
-        .get("/api/teachers/" + props.id)
+        .get("/api/classrooms-teacher/"+props.id + "/" + props.id)
+        // .get("/api/teachers/" + props.id)
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data.data);
           state.teacherlist = res.data.data;
         })
         .catch((error) => {

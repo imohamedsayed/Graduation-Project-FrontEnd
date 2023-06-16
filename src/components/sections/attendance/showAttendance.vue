@@ -128,7 +128,7 @@ export default {
             props.appointment_id
         );
         if (res.status == 200) {
-          console.log(res.data.data.allStudent);
+          // console.log(res.data.data.allStudent);
           state.displayItems = res.data.data.allStudent;
           state.items = state.displayItems;
 

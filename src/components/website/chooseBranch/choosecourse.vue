@@ -1,21 +1,9 @@
 <template>
   <div class="row">
     <div class="col-12 mt-2">
-      <swiper
-        :modules="modules"
-        :breakpoints="len"
-        :space-between="50"
-        :pagination="{ clickable: true }"
-        :autoplay="autoplay"
-        Lazy
-        @swiper="onSwiper"
-        @slideChange="onSlideChange"
-      >
-        <swiper-slide
-          v-for="cours in state.courseList"
-          :key="cours.id"
-          @click="classRoom(cours.id)"
-        >
+      <swiper :modules="modules" :breakpoints="len" :space-between="50" :pagination="{ clickable: true }"
+        :autoplay="autoplay" Lazy @swiper="onSwiper" @slideChange="onSlideChange">
+        <swiper-slide v-for="cours in state.courseList" :key="cours.id" @click="classRoom(cours.id)">
           <div class="box-product mb-20">
             <a class="prod_img">
               <img src="../../../assets/course/4.png" alt="" />
@@ -49,13 +37,13 @@ import {
   Lazy,
 } from "swiper";
 
-import { Swiper, SwiperSlide } from "swiper/vue";
+import { Swiper,SwiperSlide } from "swiper/vue";
 import { useRouter } from "vue-router";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { onMounted, reactive } from "vue";
+import { onMounted,reactive } from "vue";
 import axios from "axios";
 
 export default {
@@ -75,7 +63,7 @@ export default {
     });
     onMounted(async () => {
       await axios
-        .get("/api/subjects/" + props.id)
+        .get("/api/classrooms-subject/" + props.id + "/" + props.id)
         .then((res) => {
           state.courseList = res.data.data;
         })
@@ -83,15 +71,6 @@ export default {
           console.log(error);
           console.log(error.response.data.errors);
         });
-      // await axios
-      //   .get("Subject_image/" + this.course.image)
-      //   .then((res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     // console.log(error.response.data.errors);
-      //   });
     });
 
     let autoplay = {
@@ -109,7 +88,7 @@ export default {
     const router = useRouter();
 
     const classRoom = (course_id) => {
-      router.push({ name: "course_classes", params: { id: course_id } });
+      router.push({ name: "course_classes",params: { id: course_id } });
     };
 
     return {
@@ -119,7 +98,7 @@ export default {
       Autoplay,
       len,
       autoplay,
-      modules: [Navigation, Pagination, Scrollbar, A11y, Autoplay, Lazy],
+      modules: [Navigation,Pagination,Scrollbar,A11y,Autoplay,Lazy],
       classRoom,
     };
   },
@@ -130,11 +109,13 @@ export default {
   cursor: pointer;
   margin-bottom: 60px;
   transition: all 0.3s ease;
+
   &:hover {
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
   }
 }
+
 .cartYear1 {
   border: 2px solid #d9d9d9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.144);
@@ -167,3 +148,7 @@ export default {
   background-color: var(--landing-blue);
 }
 </style>
+
+
+
+

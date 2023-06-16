@@ -1,20 +1,22 @@
 <template>
   <div class="courseexam">
-    <div class="row">
+    <div class="row" v-if="state.accepted">
       <div class="col-12 title">
-        <i class="fa fa-list"></i>
-        15 اختبار
+        <i class="fa fa-list"></i> {{ state.exams.length }} اختبار
       </div>
-      
       <div class="col-12">
         <div class="ul">
-          <li v-for="exam in exams" :key="exam.id">
+          <li v-for="exam in state.exams" :key="exam.id">
             <div class="row">
               <div class="col-8">
                 <div class="title">
                   <i class="fa-regular fa-newspaper"></i>
-                  <span>{{ exam.name }}</span>
-                </div>                
+                  <span>
+                  <router-link :to="{name:'test', params: { id: exam.id } }">
+                    {{ exam.name }}
+                  </router-link>
+                  </span>
+                </div>
               </div>
               <div class="col-4">
                 <div class="info">
@@ -22,13 +24,12 @@
                     <div class="col-6">
                       <div class="quist_num">
                         <i class="fa fa-list"></i>
-                        {{ exam.quist_num }} سؤال
+                        {{ exam.count_questions }} سؤال
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="time">
-                        <i class="fa fa-clock border"></i>
-                        {{ exam.period }} دقيقة
+                        <i class="fa fa-clock border"></i> {{ exam.period }}   دقيقة 
                       </div>
                     </div>
                   </div>
@@ -39,85 +40,97 @@
         </div>
       </div>
     </div>
+    <h3 class="mt-5" v-else> لم يتم قبول تسجيلك حتى الان </h3>
   </div>
 </template>
 
 <script>
+import { computed,onMounted,reactive } from "vue";
+import { useStore } from "vuex";
+import axios from 'axios';
+
 export default {
-data() {
-  return {
-    exams: [
-      {
-        id: 1,
-        name:'اختبار الوحدة الاولى ',
-        quist_num: 15,
-        period:20
-      },
-      {
-        id: 2,
-        name: 'اختبار الوحدة الثانية ',
-        quist_num: 15,
-        period: 20
-      },
-      {
-        id: 3,
-        name: 'اختبار الوحدة الثالثه ',
-        quist_num: 15,
-        period: 20
-      },
-      {
-        id: 4,
-        name: 'اختبار الوحدة الرابعة ',
-        quist_num: 15,
-        period: 20
-      },
-      {
-        id: 5,
-        name: 'اختبار الوحدة الخامسة ',
-        quist_num: 15,
-        period: 20
-      },
-    ]
-  }
-},
+  props: {
+    id: String,
+  },
+  setup(props) {
+    const state = reactive({
+      loading: true,
+      accepted: false,
+      exams: [],
+      std_id: computed(() => useStore().state.student.id),
+    });
+    const cours_id = props.id;
+    onMounted(async () => {
+      await axios
+        .get("api/exams/" + cours_id)
+        .then((res) => {
+          if(res.data.data) {
+            // console.log(res.data.data.allExam);
+            state.exams = res.data.data.allExam
+            state.accepted = true
+          }
+          else {
+            // console.log(res.data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.errors);
+        });
+      state.exams.forEach(el => {
+        const start_at = new Date(el.start_at);
+        const end_at = new Date(el.end_at);
+        const period = end_at - start_at;
+        const periodMinutes = (period / (1000 * 60));
+        el.period = periodMinutes;
+      })
+    });
+    return { state };
+  },
 }
 </script>
 
 <style lang="scss">
-.courseexam{
+.courseexam {
   padding: 20px 30px;
-  .title
-  {
+
+  .title {
     color: var(--darker-blue);
     font-size: 18px;
-    i{
+
+    i {
       margin-left: 10px;
     }
   }
-  .ul{
-    padding: 10px ;
+
+  .ul {
+    padding: 10px;
+
     li {
-        list-style: none;
-        background-color: var(--gray-blue);
-        padding: 15px;
-        margin: 15px;
-        border-radius: 8px;
-        box-shadow: 4px 2px 8px #00000052;
-        transition: .5s;
-        &:hover {
-            scale: 1.1;
-          }
-        i
-        {
-          color: var(--darker-blue);
-          margin-left: 10px;
-        }
-        .title span
-        {
-          font-size: 19px;
-        }
+      list-style: none;
+      background-color: var(--gray-blue);
+      padding: 15px;
+      margin: 15px;
+      border-radius: 8px;
+      box-shadow: 4px 2px 8px #00000052;
+      transition: .5s;
+
+      &:hover {
+        scale: 1.1;
       }
+
+      i {
+        color: var(--darker-blue);
+        margin-left: 10px;
+      }
+
+      .title a {
+        color: var(--darker-blue);
+        font-size: 19px;
+      }
+    }
   }
-  
+
 }
 </style>

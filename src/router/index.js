@@ -412,9 +412,10 @@ const routes = [
     component: StdMatrial,
   },
   {
-    path: "/course",
+    path: "/course/:id",
     name: "course",
     component: studentcourse,
+    props: true,
   },
   {
     path: "/Website/allTeacters",
@@ -453,9 +454,10 @@ const routes = [
     component: video,
   },
   {
-    path: "/Website/test",
+    path: "/Website/test/:id",
     name: "test",
     component: test,
+    props:true
   },
   {
     path: "/Website/superior",
