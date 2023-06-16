@@ -247,7 +247,7 @@
                             v-model="state.status"
                             style="width: 30px; height: 30px"
                           />
-                          <label for="status" class="text-muted"> الحالة</label>
+                          <label for="status" style="font-size: 20px !important;" class="text-muted"> الحالة</label>
                         </div>
                       </div>
                     </div>

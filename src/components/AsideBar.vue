@@ -263,7 +263,27 @@
           </li>
           <div class="collapse" id="store-sections">
             <ul class="list-unstyled">
-              <a href="#">
+              <router-link :to="{ name: 'newCategory' }">
+                <li
+                  class="d-flex justify-content-between align-items-center second-li px-4"
+                >
+                  <div class="section-name">
+                    <i class="fa-solid fa-plus"></i>
+                    <span> اضافة فئه جديده</span>
+                  </div>
+                </li>
+              </router-link>
+              <router-link :to="{ name: 'showCategories' }">
+                <li
+                  class="d-flex justify-content-between align-items-center second-li px-4"
+                >
+                  <div class="section-name">
+                    <i class="fa-regular fa-eye"></i>
+                    <span> عرض الفئات</span>
+                  </div>
+                </li>
+              </router-link>
+              <router-link :to="{ name: 'newProduct' }">
                 <li
                   class="d-flex justify-content-between align-items-center second-li px-4"
                 >
@@ -272,17 +292,7 @@
                     <span> اضافة منتج جديد</span>
                   </div>
                 </li>
-              </a>
-              <a href="#">
-                <li
-                  class="d-flex justify-content-between align-items-center second-li px-4"
-                >
-                  <div class="section-name">
-                    <i class="fa-regular fa-eye"></i>
-                    <span> عرض المنتجات </span>
-                  </div>
-                </li>
-              </a>
+              </router-link>
               <a href="#">
                 <li
                   class="d-flex justify-content-between align-items-center second-li px-4"
