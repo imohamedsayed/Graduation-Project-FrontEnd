@@ -65,9 +65,16 @@
                     class="single-choice-question"
                     v-if="question.type.toLowerCase() == 'single choice'"
                   >
-                    <p class="fw-semibold fs-4 question-title">
-                      <i class="fa-solid fa-circle-question"></i>
-                      {{ question.question }}
+                    <p
+                      class="fw-semibold fs-4 question-title d-flex justify-content-between"
+                    >
+                      <span
+                        ><i class="fa-solid fa-circle-question ms-2"></i
+                        >{{ question.question }}</span
+                      >
+                      <span class="text-muted"
+                        >({{ question.point }}) درجة</span
+                      >
                     </p>
                     <hr class="mb-2" />
 
@@ -98,9 +105,16 @@
                     class="multi-choice-question"
                     v-if="question.type.toLowerCase() == 'multiple choice'"
                   >
-                    <p class="fw-semibold fs-4 question-title">
-                      <i class="fa-solid fa-circle-question"></i>
-                      {{ question.question }}
+                    <p
+                      class="fw-semibold fs-4 question-title d-flex justify-content-between"
+                    >
+                      <span
+                        ><i class="fa-solid fa-circle-question ms-2"></i
+                        >{{ question.question }}</span
+                      >
+                      <span class="text-muted"
+                        >({{ question.point }}) درجة</span
+                      >
                     </p>
                     <hr class="mb-2" />
 
@@ -132,9 +146,16 @@
                     class="TF-choice-question"
                     v-if="question.type.toLowerCase() == 't/f'"
                   >
-                    <p class="fw-semibold fs-4 question-title">
-                      <i class="fa-solid fa-circle-question"></i>
-                      {{ question.question }}
+                    <p
+                      class="fw-semibold fs-4 question-title d-flex justify-content-between"
+                    >
+                      <span
+                        ><i class="fa-solid fa-circle-question ms-2"></i
+                        >{{ question.question }}</span
+                      >
+                      <span class="text-muted"
+                        >({{ question.point }}) درجة</span
+                      >
                     </p>
                     <hr class="mb-2" />
                     <img
@@ -168,12 +189,14 @@
                     class="btn btn-primary"
                     type="submit"
                     :disabled="state.loading"
+                    v-if="!state.done"
                   >
-                    <span
-                      class="spinner-grow spinner-grow-sm ms-2"
-                      v-if="state.loading"
-                    ></span>
+                    <span class="spinner-grow spinner-grow-sm ms-2" v-if="state.loading"></span>
                     <i class="fas fa-check" v-if="!state.loading"></i> ارسال
+                  </button>
+
+                  <button class="btn btn-success" disabled v-else>
+                    <i class="fas fa-check"></i> تم ارسال اجاباتك
                   </button>
                 </div>
                 <p class="alert alert-warning mt-5">
@@ -273,6 +296,7 @@ export default {
       exam: "",
       questions: [],
       loading: false,
+      done: false,
     });
     const examForm = ref(null);
 
@@ -304,16 +328,10 @@ export default {
 
       myFormData.forEach((value, key) => {
         if (key in answers) {
-          if (Array.isArray(answers[key])) {
-            answers[key].push(value);
-          } else {
-            let oldValue = answers[key];
-            answers[key] = [];
-            answers[key].push(oldValue);
-            answers[key].push(value);
-          }
+          answers[key].push(value);
         } else {
-          answers[key] = value;
+          answers[key] = [];
+          answers[key].push(value);
         }
       });
       let data = {
@@ -323,7 +341,6 @@ export default {
       let dataInJson = JSON.stringify(data);
       //console.log(dataInJson);
       let back = JSON.parse(dataInJson);
-      console.log(back);
 
       try {
         let res = await axios.post(
@@ -338,12 +355,11 @@ export default {
 
         if (res.status == 200) {
           notification("success", "لقد تم ارسال اجاباتك");
-          console.log(res);
+          state.done = true;
         } else {
           notification("error", "حدث خطأ ما, حاول مجددا");
         }
       } catch (err) {
-        console.log(err);
         notification("error", err.response.data.message);
       }
 
@@ -356,8 +372,9 @@ export default {
 </script>
 
 <style lang="scss">
-.test {
-  margin-right: 13rem;
+.test,
+.test-cart {
+  margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
   }
