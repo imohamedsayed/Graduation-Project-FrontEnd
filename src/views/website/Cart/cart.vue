@@ -97,8 +97,8 @@ export default {
 </script>
 
 <style lang="scss">
-.cartShopping {
-  margin-right: 13rem;
+.cartShopping , .cart{
+  margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
   }
