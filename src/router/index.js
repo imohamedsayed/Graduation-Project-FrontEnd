@@ -59,6 +59,7 @@ import studentcourse from "../views/website/Course/studentcourse.vue";
 import StdMatrial from "../views/website/Course/StdMatrial/StdMatrial.vue";
 import TeacherProfile from "../views/website/Profile teacher/TeacherProfile.vue";
 import websiteStore from "../views/website/store/websiteStore.vue";
+import categories from "../views/website/store/categories.vue";
 import Favourite from "../views/website/Favourite/FavoritePage.vue";
 import superior from "../views/website/superiorStudent/superior.vue";
 import cart from "../views/website/Cart/cart.vue";
@@ -480,6 +481,11 @@ const routes = [
     path: "/Website/Store",
     name: "websiteStore",
     component: websiteStore,
+  },
+  {
+    path: "/Website/categories",
+    name: "categories",
+    component: categories,
   },
   {
     path: "/Website/Favourite",
