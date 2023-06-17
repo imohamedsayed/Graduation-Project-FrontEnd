@@ -13,11 +13,17 @@
                 </h4>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="products d-grid gap-4">
+            <div class="component col-md-11">
+              <div class="person">
+                <div class="row">
+                <category/>
+                <category />
+                <category/>
                 <category />
                 <category />
                 <category />
+                <category />
+                </div>
               </div>
             </div>
           </div>
@@ -49,7 +55,9 @@ export default {
     margin-right: 0;
   }
 }
-
+.component{
+margin-top: 5rem;
+}
 .store-con {
   direction: rtl;
   padding: 30px 20px;
@@ -66,7 +74,7 @@ export default {
 
 .store-con .item_title {
   margin-bottom: auto;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   color: var(--light-blue);
   line-height: 1.2;
@@ -75,20 +83,7 @@ export default {
 .store-con .item_title i {
   color: var(--light-blue);
   margin-left: 10px;
-  font-size: 22px;
+  font-size: 25px !important;
 }
 
-.products {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-.products button {
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    transform: scale(1.02);
-  }
-}
 </style>

@@ -45,7 +45,6 @@
               </div>
               <div class="result_content1">
                 <a
-                  href="http://gambolthemes.net/html-imgs/certificate.jpg"
                   class="download_btn"
                   download="w3logo"
                   target="_blank"
