@@ -503,7 +503,7 @@ const routes = [
     component: video,
   },
   {
-    path: "/Website/test/:id",
+    path: "/Website/test/:cid/:id",
     name: "test",
     component: test,
     props:true

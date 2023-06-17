@@ -87,6 +87,7 @@ import Toast from "@/components/Toast.vue";
 
 import SpinnerLoading from "../components/SpinnerLoading.vue";
 
+
 export default {
   setup() {
     // Declaring Variables
@@ -106,7 +107,7 @@ export default {
 
     onMounted(() => {
       if (store.state.student != null) {
-        this.$router.push("/Website/chooseBranch");
+        router.push("/Website/chooseBranch");
       }
     });
 

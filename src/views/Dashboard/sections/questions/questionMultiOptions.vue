@@ -254,7 +254,6 @@
   
       const v$ = useVuelidate(rules, state);
   
-      // add new ضعثسفهخى
   
       const SaveChanged = async () => {
         v$.value.$validate();
@@ -276,7 +275,6 @@
             },
           };
   
-          console.log(data);
           try {
             let res = await axios.post(
               "/api_dashboard/options/" + props.id,
