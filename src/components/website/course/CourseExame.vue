@@ -12,9 +12,11 @@
                 <div class="title">
                   <i class="fa-regular fa-newspaper"></i>
                   <span>
-                  <router-link :to="{name:'test', params: { id: exam.id } }">
-                    {{ exam.name }}
-                  </router-link>
+                    <router-link
+                      :to="{ name: 'test', params: { cid: cid, id: exam.id } }"
+                    >
+                      {{ exam.name }}
+                    </router-link>
                   </span>
                 </div>
               </div>
@@ -29,7 +31,8 @@
                     </div>
                     <div class="col-6">
                       <div class="time">
-                        <i class="fa fa-clock border"></i> {{ exam.period }}   دقيقة 
+                        <i class="fa fa-clock border"></i>
+                        {{ exam.period }} دقيقة
                       </div>
                     </div>
                   </div>
@@ -40,18 +43,19 @@
         </div>
       </div>
     </div>
-    <h3 class="mt-5" v-else> لم يتم قبول تسجيلك حتى الان </h3>
+    <h3 class="mt-5" v-else>لم يتم قبول تسجيلك حتى الان</h3>
   </div>
 </template>
 
 <script>
-import { computed,onMounted,reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   props: {
     id: String,
+    cid: String,
   },
   setup(props) {
     const state = reactive({
@@ -65,12 +69,11 @@ export default {
       await axios
         .get("api/exams/" + cours_id)
         .then((res) => {
-          if(res.data.data) {
+          if (res.data.data) {
             // console.log(res.data.data.allExam);
-            state.exams = res.data.data.allExam
-            state.accepted = true
-          }
-          else {
+            state.exams = res.data.data.allExam;
+            state.accepted = true;
+          } else {
             // console.log(res.data);
           }
         })
@@ -78,17 +81,17 @@ export default {
           console.log(error);
           console.log(error.response.data.errors);
         });
-      state.exams.forEach(el => {
+      state.exams.forEach((el) => {
         const start_at = new Date(el.start_at);
         const end_at = new Date(el.end_at);
         const period = end_at - start_at;
-        const periodMinutes = (period / (1000 * 60));
+        const periodMinutes = period / (1000 * 60);
         el.period = periodMinutes;
-      })
+      });
     });
     return { state };
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -114,7 +117,7 @@ export default {
       margin: 15px;
       border-radius: 8px;
       box-shadow: 4px 2px 8px #00000052;
-      transition: .5s;
+      transition: 0.5s;
 
       &:hover {
         scale: 1.1;
@@ -131,6 +134,5 @@ export default {
       }
     }
   }
-
 }
 </style>
