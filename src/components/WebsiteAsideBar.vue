@@ -110,11 +110,11 @@
       </router-link>
       <!--End Favorites-->
       <!--Start store-->
-      <router-link :to="{ name: 'websiteStore' }">
+      <router-link :to="{ name: 'categories' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-store"></i>
-            <span>المتجر</span>
+            <span>الفئات</span>
           </div>
         </li>
       </router-link>

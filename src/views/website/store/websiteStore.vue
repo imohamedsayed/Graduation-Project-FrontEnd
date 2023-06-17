@@ -10,7 +10,7 @@
             <div class="col-md-12">
               <div class="title">
                 <h4 class="item_title">
-                  <i class="fas fa-shopping-bag"></i> المتجر
+                  <i class="fas fa-shopping-bag"></i> المنتجات
                 </h4>
               </div>
             </div>
