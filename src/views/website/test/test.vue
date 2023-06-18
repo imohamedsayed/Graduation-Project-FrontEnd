@@ -381,7 +381,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .test,
 .test-cart {
   margin-right: 14rem;

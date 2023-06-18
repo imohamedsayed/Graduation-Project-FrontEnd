@@ -8,18 +8,18 @@
           <div class="row">
             <div class="col-lg-6">
               <h2 class="st_title">
-                <i class="fas fa-plus-circle"></i> انشاء فئه جديده
+                <i class="fas fa-plus-circle"></i> تعديل المجر
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="state.save" class="alert alert-success" role="alert"> تم اضافه فصل بنجاح . <span style="
+              <div v-if="state.save" class="alert alert-success" role="alert"> تم التعديل فصل بنجاح . <span style="
                        {
                         font-size: 18px;
                         cursor: pointer;
                         display: inline-block;
                         transition: 0.5s a;
                       }
-                    " @click="$router.push({ name: 'showCategories', params: { shop_id: shop_id } })"> عرض جميع الفئات </span>
+                    " @click="$router.push({ name: 'showshops' })"> عرض جميع المتاجر </span>
               </div>
             </div>
           </div>
@@ -31,24 +31,16 @@
                     <div class="row">
                       <div class="col-lg-9 col-md-6">
                         <div class="ui mt-30 focus box search">
-                          <label> اسم الفئه</label>
+                          <label> تعديل اسم المتجر</label>
                           <input type="text" v-model="state.name" name="" id="" />
                           <span class="text-danger fw-bold" v-if="v$.name.$error"> {{ v$.name.$errors[0].$message }}
                           </span>
                         </div>
                       </div>
-                      <div class="col-lg-3 col-md-6 ">
-                        <div class="ui  focus box search d-flex align-items-center justify-content-center gap-2">
-                          <input type="checkbox" id="status" class="mt-lg-5" v-model="state.status"
-                            style="width: 30px; height: 30px" />
-                          <label for="status" style="font-size: 20px !important;" class="mt-lg-5 text-muted">
-                            الحالة</label>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                  <button type="submit" data-direction="finish" class="btn btn-default steps_btn" @click="addCategory()">
-                    حفظ </button>
+                  <button type="submit" data-direction="finish" @click="editshop()" class="btn btn-default steps_btn"> حفظ
+                    التعديل </button>
                 </form>
               </div>
             </div>
@@ -66,9 +58,9 @@
 </template>
   
 <script>
-import Footer from "../../../components/Footer.vue";
-import Header from "../../../components/Header.vue";
-import AsideBar from "../../../components/AsideBar.vue";
+import Footer from "../../../../components/Footer.vue";
+import Header from "../../../../components/Header.vue";
+import AsideBar from "../../../../components/AsideBar.vue";
 import Toast from "@/components/Toast.vue";
 
 import axios from "axios";
@@ -84,7 +76,7 @@ export default {
   name: "Create_section",
   components: { Footer,AsideBar,Header,Toast },
   props: {
-    shop_id: String,
+    id: String,
   },
   setup(props) {
     const state = reactive({
@@ -94,13 +86,21 @@ export default {
       status: false,
     });
 
-    const shop_id = props.shop_id;
     onMounted(async () => {
       if(state.user == null) {
         router.push("/dashboard/login");
       } else {
         if(state.user.role_id != 3) {
           router.push("/dashboard");
+        } else {
+          await axios
+            .get('api_dashboard/shops/' + props.id)
+            .then(res => {
+              state.name=res.data.data.name
+            })
+            .catch(err => {
+              notification("error",err.response.data.errors);
+            })
         }
       }
 
@@ -111,7 +111,6 @@ export default {
       showNotification: false,
       theme: "",
       notify: "",
-      branch_id: computed(() => useStore().state.student.branch_id),
     });
 
     const notification = (theme,message) => {
@@ -138,30 +137,33 @@ export default {
 
     const v$ = useVuelidate(rules,state);
 
-    // add new Category
+    // add new class room
 
-    const addCategory = async () => {
+    const editshop = async () => {
       v$.value.$validate();
       if(!v$.value.$error) {
         let data = {
           name: state.name,
-          status: String(Number(state.status)),
-          shop_id:shop_id
+          branche_id: state.user.exter_info.branch_id
         };
-        console.log(data);
-
         // Start Sending Request
-        let res = await axios.post("api_dashboard/categories",data);
-        if(res.status == 200) {
 
+        let res = await axios.post('api_dashboard/shops/' + props.id,data)
+          .then(res => {
           state.save = true;
-        }
+          })
+          .catch(err => {
+              notification("error",err.response.data.message);
+
+        })
+
+    
       } else {
         notification("error","Missing Data !");
       }
     };
 
-    return { state,v$,addCategory,toast,shop_id };
+    return { state,v$,editshop,toast };
   },
 };
 </script>

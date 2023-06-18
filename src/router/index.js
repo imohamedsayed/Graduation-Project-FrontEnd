@@ -81,6 +81,10 @@ import Home from "@/views/website/stdhome";
 import TeacherClasses from "@/views/website/ClassRooms/TeacherClassRooms.vue";
 import CourseClasses from "@/views/website/ClassRooms/CourseClassRooms.vue";
 import AppointmentsToAttendence from "@/views/Dashboard/sections/AppointmentsToGetAttendence.vue";
+import newshop from "../views/Dashboard/shop/Shop/NewShop.vue";
+import showshops from "../views/Dashboard/shop/Shop/showShops.vue";
+import editshop from "../views/Dashboard/shop/Shop/editShop.vue"
+import shoporder from "../views/Dashboard/shop/ShopOrder.vue"
 const routes = [
   {
     path: "/dashboard/login",
@@ -128,35 +132,61 @@ const routes = [
     component: CreateSection,
   },
   {
-    path: "/dashboard/newCategory",
-    name: "newCategory",
-    component: newCategory,
+    path: "/dashboard/shoporder",
+    name: "shoporder",
+    component: shoporder,
   },
   {
-    path: "/dashboard/editCategory",
+    path: "/dashboard/newshop",
+    name: "newshop",
+    component: newshop,
+  },
+  {
+    path: "/dashboard/showshops",
+    name: "showshops",
+    component: showshops,
+    props:true
+  },
+  {
+    path: "/dashboard/editshop/:id",
+    name: 'editshop',
+    component: editshop,
+    props:true
+  },             
+  {
+    path: "/dashboard/newCategory/:shop_id",
+    name: "newCategory",
+    component: newCategory,
+    props:true
+  },
+  {
+    path: "/dashboard/editCategory/:id",
     name: "editCategory",
     component: editCategory,
   },
   {
-    path: "/dashboard/showCategories",
+    path: "/dashboard/showCategories/:shop_id",
     name: "showCategories",
     component: showCategories,
+    props:true
   },
   {
-    path: "/dashboard/newProduct",
+    path: "/dashboard/newProduct/:category_id",
     name: "newProduct",
     component: newProduct,
+    props:true
   },
   {
-    path: "/dashboard/editProduct",
+    path: "/dashboard/editProduct/:id",
     name: "editProduct",
     component: editProduct,
+    props:true
   },
   {
-    path: "/dashboard/category/:id/showProducts",
+    path: "/dashboard/showProducts/:category_id",
     name: "showProducts",
     component: showProducts,
-    props: showProducts,
+    props: true,
   },
   {
     path: "/dashboard/new_section",

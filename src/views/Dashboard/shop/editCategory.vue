@@ -24,7 +24,7 @@
                         transition: 0.5s a;
                       }
                     "
-                    @click="$router.push({ name: '' })"
+                    @click="$router.push({ name: 'showCategories' ,params: { shop_id: state.shop.id } })"
                   >
                     عرض جميع الفئات
                   </span>
@@ -74,6 +74,7 @@
                       type="submit"
                       data-direction="finish"
                       class="btn btn-default steps_btn"
+                      @click="editcategory()"
                     >
                       حفظ التعديل
                     </button>
@@ -110,12 +111,17 @@
   
   export default {
     name: "Create_section",
-    components: { Footer, AsideBar, Header, Toast },
-    setup() {
+    components: { Footer,AsideBar,Header,Toast },
+    props: {
+      id: String,
+    },
+    setup(props) {
       const state = reactive({
         user: computed(() => store.state.user),
         save: false,
         name: "",
+        shop_id: '',
+        category_id:'',
         status: false,
       });
   
@@ -125,6 +131,21 @@
         } else {
           if (state.user.role_id != 3) {
             router.push("/dashboard");
+          }
+            else {
+            await axios
+              .get('api_dashboard/categories/1')
+              .then(res => {
+                console.log(res.data.data);
+                state.name = res.data.data.name;
+                state.shop_id = res.data.data.shop;
+                state.category_id = res.data.data.category_id;
+                
+              })
+              .catch(err => {
+                console.log(err);
+                notification("error",err.response.data.message);
+              })
           }
         }
         // get our teachers
@@ -164,18 +185,19 @@
   
       // add new class room
   
-      const addClassRoom = async () => {
+      const editcategory = async () => {
         v$.value.$validate();
         if (!v$.value.$error) {
           let data = {
             name: state.name,
             status: String(Number(state.status)),
+            shop_id:state.shop_id
           };
           console.log(data);
   
           // Start Sending Request
   
-          let res = await axios.post("", data);
+          let res = await axios.post("api_dashboard/categories/"+ state.category_id, data);
   
           if (res.status == 200) {
             state.save = true;
@@ -185,7 +207,7 @@
         }
       };
   
-      return { state, v$, addClassRoom, toast };
+      return { state, v$, editcategory, toast };
     },
   };
   </script>

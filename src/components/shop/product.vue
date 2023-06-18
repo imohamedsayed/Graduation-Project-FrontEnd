@@ -10,7 +10,10 @@
       <td class="open">
         {{ product.explanation ? product.explanation : "لا يوجد" }}
       </td>
-      <td class="open">{{ question.image }}</td>
+      <td class="open">
+        <img :src="'http://127.0.0.1:8000/'+ product.image" alt="">
+        <!-- {{ product.image }} -->
+      </td>
     </tr>
   
     <tr v-if="!opened && dell">
@@ -23,7 +26,7 @@
               @click="
                 $router.push({
                   name: 'editProduct',
-                  params: { id: question.id },
+                  params: { id: product.id },
                 })
               "
             >
@@ -65,11 +68,11 @@
         }).then(async (result) => {
           if (result.isConfirmed) {
             let res = await axios.delete(
-              "/api_dashboard/questions/" + this.question.id
+              "api_dashboard/products/" + this.product.id
             );
   
             if (res.status == 200) {
-              Swal.fire("تم الحذف!", "تم حذف السؤال", "نجاح");
+              Swal.fire("تم الحذف!", "تم حذف المنتج", "نجاح");
               this.dell = false;
             }
           }

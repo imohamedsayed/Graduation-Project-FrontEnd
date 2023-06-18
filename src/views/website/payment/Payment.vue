@@ -179,8 +179,8 @@ export default {
 </script>
 
 <style lang="scss">
-.payment-page {
-  margin-right: 13rem;
+.payment-page , .cartPayment {
+  margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
   }

@@ -12,10 +12,10 @@
                   <label class="head">
                     <i class="fas fa-list"></i> قائمه المنتجات</label>
                 </div>
-                <div class="content-action-btns">
+                <!-- <div class="content-action-btns">
                   <router-link :to="{ name: 'newProduct', params: { category_id: category_id } }"><i
                       class="fas fa-plus-circle"></i> اضافة منتج جديد</router-link>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="row">
@@ -34,16 +34,18 @@
                     <thead class="thead-s">
                       <tr>
                         <th class="text-center" scope="col">#</th>
-                        <th class="cell-ta" scope="col" style="width: 40%"> اسم المنتج </th>
-                        <th class="open cell-ta" scope="col">السعر</th>
-                        <th class="open text-center" scope="col">الكميه</th>
-                        <th class="open text-center" scope="col">الوصف</th>
-                        <th class="open text-center" scope="col"> الصوره ( ان وجدت ) </th>
+                        <th class="cell-ta" scope="col" > رقم الطالب </th>
+                        <th class="open cell-ta" scope="col">الحاله</th>
+                        <th class="open text-center" scope="col">الخصم</th>
+                        <th class="open text-center" scope="col">السعر </th>
+                        <th class="open text-center" scope="col">السعر الكلى</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <product v-for="product in state.displayItems" :key="product.id" :product="product"
-                        :categoryId="category_id" />
+                      <order v-for="order in state.displayItems"
+                      :key="order.id"
+                      :order="order"
+                      />
                     </tbody>
                   </table>
                   <div class="alert alert-info mt-2" v-if="!state.displayItems.length"> لا توجد نتائج لعرضها ! </div>
@@ -59,17 +61,17 @@
 </template>
   
 <script>
-import Footer from "../../../../components/Footer.vue";
-import Header from "../../../../components/Header.vue";
-import AsideBar from "../../../../components/AsideBar.vue";
-import product from "../../../../components/shop/product.vue";
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
+import AsideBar from "../../../components/AsideBar.vue";
+import order from "../../../components/shop/order.vue";
 import axios from "axios";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { onMounted,reactive,computed } from "vue";
 export default {
   name: "showProducts",
-  components: { Footer,AsideBar,Header,product },
+  components: { Footer,AsideBar,Header,order },
   props: {
     category_id: String,
   },
@@ -83,13 +85,12 @@ export default {
       items: [],
       displayItems: []
     });
-    const category_id = props.category_id;
     onMounted(async () => {
       if(state.user == null || state.user.role_id != 3) {
         router.push("/dashboard/login");
       } else {
         let res = await axios.get(
-          "api_dashboard/products/" + props.category_id
+          "api_dashboard/orders"
         );
 
         if(res.status == 200) {
@@ -106,7 +107,7 @@ export default {
       );
     };
 
-    return { state,searchProducts,category_id };
+    return { state,searchProducts,};
   },
 };
 </script>
