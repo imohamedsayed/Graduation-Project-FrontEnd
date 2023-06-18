@@ -86,7 +86,7 @@
   };
   </script>
   
-  <style lang="scss">
+  <style lang="scss" scoped>
   tr {
     img {
       width: 100px;
