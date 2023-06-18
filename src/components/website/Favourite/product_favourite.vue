@@ -1,39 +1,111 @@
 <template>
-  <div class="box-product mb-20">
-    <a href="#!" class="prod_img">
-      <img :src="img" alt="" />
+  <div class="box-product mb-20" v-if="state.exists">
+    <a class="prod_img">
+      <img
+        alt=""
+        :src="'http://127.0.0.1:8000/' + product.product_image"
+        style="height: 250px"
+      />
     </a>
     <div class="prod_content">
-      <a href="#!" class="box-title">{{ Note_name }}</a>
-      <a href="#" class="crse-cate">{{ Details }}</a>
+      <a href="#!" class="box-title"> {{ product.product_name }} </a>
+      <a href="#" class="crse-cate">{{ product.product_subject }} </a>
       <div class="row">
         <p class="teacher1 col-6">
-          <a href="#">{{ TeacherName }}</a>
+          <a href="#"> {{ product.product_teacher }} </a>
         </p>
-        <div class="price col-6">السعر : {{ price }}</div>
+        <div class="price col-6">السعر : {{ product.product_price }}</div>
       </div>
       <div class="row">
-        <a class="col-7 add-to-cart1" href="#!"
+        <a class="col-7 add-to-cart1" @click="addToCart(product.product_id)"
           ><i class="fa fa-shopping-cart"></i> اضافة الي السلة</a
         >
-        <a class="col-4 fav" href="#!"
+
+        <a class="col-4 fav" @click="removeFromWishlist(product.product_id)"
           ><i class="fa-solid fa-trash"></i> ازاله</a
         >
       </div>
     </div>
   </div>
+  <SpinnerLoading :loading="state.loading" />
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
+import Toast from "@/components/Toast.vue";
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
+import { reactive } from "vue";
+import axios from "axios";
 export default {
-  data() {
-    return {
-      img: require("../../../../public/images/categories/12.jpg"),
-      Note_name: "مذكرة الأدب والنصوص",
-      Details: "عربي | الصف الثالث الثانوي",
-      TeacherName: "محمد عبدالجواد",
-      price: "150 جنيه",
+  props: ["product"],
+  components: { Toast, SpinnerLoading },
+  setup(props) {
+    const state = reactive({
+      product: props.product,
+      exists: true,
+      loading: false,
+    });
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
     };
+
+    const addToCart = async (id) => {
+      state.loading = true;
+      console.log(id);
+      try {
+        let res = await axios.post("/api/create-cart", {
+          product_id: id,
+          quantity: 1,
+          status: 1,
+        });
+
+        if (res.status == 200) {
+          if (res.data.message != "Created Successfully") {
+            notification("error", "المنتج موجود في سلتك بالفعل");
+          } else {
+            state.exists = false;
+            notification("success", "تم اضافة المنتج للسلة");
+          }
+        } else {
+          notification("error", "حدث خطأ ما, حاول مجددا");
+        }
+      } catch (err) {
+        notification("error", err.response.data.message);
+      }
+      state.loading = false;
+    };
+
+    const removeFromWishlist = async (id) => {
+      try {
+        let res = await axios.delete("api/delete_product/" + id);
+        if (res.status == 200) {
+          notification("success", "تم ازالة المنتج من المفضلة  ");
+          state.exists = false;
+        } else {
+          notification("error", "حدث خطأ ما, حاول مجددا");
+        }
+      } catch (err) {
+        notification("error", err);
+      }
+    };
+
+    return { state, toast, removeFromWishlist, addToCart };
   },
 };
 </script>
@@ -58,6 +130,9 @@ export default {
     width: 100%;
     border-radius: 5px;
   }
+}
+a {
+  cursor: pointer;
 }
 .prod_content {
   padding: 10px 5px;

@@ -1,38 +1,154 @@
 <template>
-  <div class="fcrse_1">
+  <div class="fcrse_1" v-if="state.exists">
     <a href="course_detail_view.html" class="hf_img">
       <img
         class="cart_img"
-        :src="img"
+        :src="'http://127.0.0.1:8000/' + product.product_image"
         alt=""
       />
     </a>
-    <div class="hs_content">
+    <div class="hs_content mb-4">
       <div class="eps_dots eps_dots10 more_dropdown">
-        <a href="#"><i class="uil uil-times"></i></a>
+        <span @click="removeFromCart()"><i class="uil uil-times"></i></span>
       </div>
-      <a href="course_detail_view.html" class="crse14s title900 pt-2"
-        >{{Note_name}}</a
-      >
-      <a href="#" class="crse-cate">{{Details}}</a>
+      <a href="course_detail_view.html" class="crse14s title900 pt-2">{{
+        product.product_name
+      }}</a>
+      <a href="#" class="crse-cate">{{ product.product_subject }}</a>
       <div class="auth1lnkprce">
-        <p class="cr1fot"><a>{{TeacherName}}</a></p>
-        <div class="prce142">السعر : {{price}}</div>
+        <p class="cr1fot">
+          <a>{{ product.product_teacher }}</a>
+        </p>
+        <div class="prce142">السعر : {{ product.product_price }}</div>
       </div>
     </div>
+    <div class="quantity">
+      <span class="btn btn-outline-dark ms-2 me-4 mb-2" @click="increase()"
+        >+</span
+      >
+      <input
+        type="number"
+        min="1"
+        style="width: 40px; height: 34px"
+        class="text-center py-3"
+        @change="() => (changed = true)"
+        v-model="state.quantity"
+      />
+      <span class="btn btn-outline-dark me-2 mb-2" @click="decrease()">-</span>
+    </div>
+
+    <div class="update-product" v-show="state.changed">
+      <button
+        class="btn btn-success"
+        v-if="!state.doneUpdating"
+        @click="update()"
+      >
+        تحديث الكمية
+      </button>
+      <button class="btn btn-success" v-else>
+        تم التحديث<i class="fa-solid fa-check me-2"></i>
+      </button>
+
+      
+    </div>
   </div>
+  <SpinnerLoading :loading="state.loading" />
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
+import Toast from "@/components/Toast.vue";
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
+import { reactive } from "vue";
+import axios from "axios";
 export default {
-  data() {
-    return {
-    img: require("../../../../public/images/categories/12.jpg"),
-    Note_name:"مذكرة الأدب والنصوص",
-    Details:"عربي | الصف الثالث الثانوي",
-    TeacherName : "محمد عبدالجواد",
-    price:"150 جنيه",
+  props: ["product"],
+  components: { Toast, SpinnerLoading },
+  setup(props) {
+    const state = reactive({
+      product: props.product,
+      quantity: props.product.quantity_in_cart,
+      doneUpdating: false,
+      changed: false,
+      loading: false,
+      exists: true,
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
     };
+
+    const increase = () => {
+      state.quantity += 1;
+      state.changed = true;
+    };
+    const decrease = () => {
+      if (state.quantity > 1) {
+        state.quantity -= 1;
+        state.changed = true;
+      }
+    };
+
+    const update = async () => {
+      state.loading = true;
+      let data = {
+        product_id: state.product.product_id,
+        status: 1,
+        quantity: state.quantity,
+      };
+      try {
+        let res = await axios.post("/api/ubdate-cart", data);
+        if (res.status == 200) {
+          notification("success", "تم تعديل الكمية  ");
+        } else {
+          notification("error", "حدث خطأ ما, حاول مجددا");
+        }
+      } catch (err) {
+        notification("error", err);
+      }
+
+      state.changed = false;
+      state.loading = false;
+    };
+
+
+
+    const removeFromCart = async () => {
+      state.loading = true;
+
+      try {
+        let res = await axios.delete(
+          "api/delete_product/" + state.product.product_id
+        );
+        if (res.status == 200) {
+          notification("success", "تم ازالة المنتج من سلتك  ");
+        } else {
+          notification("error", "حدث خطأ ما, حاول مجددا");
+        }
+      } catch (err) {
+        notification("error", err);
+      }
+      state.exists = false;
+      state.loading = false;
+    };
+
+    return { state, increase, decrease, update, toast, removeFromCart };
   },
 };
 </script>
@@ -47,6 +163,13 @@ export default {
   border: 1px solid #efefef;
   margin-bottom: 15px;
   transition: all 0.2s ease-in-out;
+  position: relative;
+}
+.update-product {
+  position: absolute;
+  bottom: 14px;
+  left: 20px;
+  transition: all 0.6s ease;
 }
 .hf_img {
   width: 30%;
@@ -86,12 +209,13 @@ export default {
   left: 0;
 }
 
-.eps_dots a {
+.eps_dots span {
   font-size: 20px;
   color: #afafaf !important;
+  cursor: pointer;
 }
 
-.eps_dots a:hover {
+.eps_dots span:hover {
   color: #333 !important;
 }
 @media (max-width: 575.98px) {
@@ -162,11 +286,11 @@ p:first-child {
   text-align: left;
 }
 @media (max-width: 768px) {
-  .auth1lnkprce{
-  display: flex !important;
-  flex-direction: column !important;
+  .auth1lnkprce {
+    display: flex !important;
+    flex-direction: column !important;
   }
-  .prce142{
+  .prce142 {
     text-align: right;
   }
 }
