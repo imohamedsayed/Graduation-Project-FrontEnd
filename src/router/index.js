@@ -163,6 +163,7 @@ const routes = [
     path: "/dashboard/editCategory/:id",
     name: "editCategory",
     component: editCategory,
+    props:true
   },
   {
     path: "/dashboard/showCategories/:shop_id",

@@ -24,7 +24,7 @@
                         transition: 0.5s a;
                       }
                     "
-                    @click="$router.push({ name: 'showCategories' ,params: { shop_id: state.shop.id } })"
+                    @click="$router.push({ name: 'showCategories' ,params: { shop_id: state.shop_id } })"
                   >
                     عرض جميع الفئات
                   </span>
@@ -133,13 +133,14 @@
             router.push("/dashboard");
           }
             else {
+              console.log(props.id);
             await axios
-              .get('api_dashboard/categories/1')
+              .get('api_dashboard/category/'+props.id)
               .then(res => {
-                console.log(res.data.data);
                 state.name = res.data.data.name;
                 state.shop_id = res.data.data.shop;
-                state.category_id = res.data.data.category_id;
+                state.category_id = res.data.data.id;
+                state.status = res.data.data.status == "on" ? true : false;
                 
               })
               .catch(err => {
@@ -201,6 +202,9 @@
   
           if (res.status == 200) {
             state.save = true;
+          }
+          else {
+            console.log(err.response.data);
           }
         } else {
           notification("error", "Missing Data !");
