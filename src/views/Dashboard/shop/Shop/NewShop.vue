@@ -151,7 +151,7 @@ export default {
 };
 </script>
   
-<style lang="scss" scoped>
+<style lang="scss">
 .newCategory {
   margin-right: 14rem;
 
@@ -186,7 +186,7 @@ export default {
 
   label {
     font-weight: 500;
-    font-size: 15px !important;
+    font-size: 22px !important;
     margin-bottom: 10px !important;
     color: var(--text-black);
     text-align: right;

@@ -1,9 +1,9 @@
 <template>
-  <div class="signup">
+  <div class="signup" >
     <img src="../../public/images/logo/logo_01.png" class="signup-logo" />
     <div class="signup-form">
       <p class="text-center">مرحبا بك في موقع (Edu Center )</p>
-      <h4 class="text-center">تنبيه : <span>*</span> تعني ان الحقل مطلوب</h4>
+      <h4 class="text-center">تنبيه : <span>*</span>  مطلوب</h4>
       <form dir="rtl" @submit.prevent="register" class="col-lg-12 col-md-12">
         <div class="row">
           <div class="col-lg-4 col-md-6">
@@ -337,6 +337,9 @@ export default {
     return { state,register,v$,toast };
   },
 };
+
+
+
 </script>
 
 <style lang="scss">
@@ -350,7 +353,7 @@ h4 span {
 
 .signup {
   height: 100vh;
-  position: absolute;
+  position:absolute;
   width: 100%;
   top: 0;
   left: 0;
@@ -358,20 +361,16 @@ h4 span {
   background-size: cover;
 }
 
-@media (max-width: 768px) {
-  .signup {
-    height: 180vh;
-  }
-}
 
 .signup .signup-logo {
   margin: 40px 50% 10px;
   width: 100px;
   transform: translateX(50%);
+  
 }
 
 .signup .signup-form {
-  position: absolute;
+  position:absolute;
   margin: 0px 50%;
   transform: translate(50%);
   width: 900px;
@@ -381,6 +380,7 @@ h4 span {
   border-width: 5px;
   border-style: solid;
   border-image: linear-gradient(to bottom, #aeabc7, white, #aeabc7) 1;
+  
 }
 
 @media (max-width: 375px) {
@@ -398,6 +398,10 @@ h4 span {
 @media (max-width: 724px) {
   .signup .signup-form {
     width: 100%;
+    position: absolute;
+  }
+  .signup{
+    position: absolute;
   }
 }
 
@@ -407,7 +411,15 @@ h4 span {
   }
 
   .signup .signup-form {
-    width: 800px;
+    width: 100%;
+  }
+  .signup .signup-logo{
+    margin: 0px 50% 0px;
+  }
+}
+@media (max-width: 768px) {
+  .signup {
+    height: 230vh;
   }
 }
 
