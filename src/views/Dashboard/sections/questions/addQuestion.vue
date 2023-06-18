@@ -101,12 +101,6 @@
                                     type="text"
                                     v-model="state.explanation"
                                   />
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.explanation.$error"
-                                  >
-                                    {{ v$.explanation.$errors[0].$message }}
-                                  </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
@@ -218,7 +212,6 @@ export default {
       return {
         question: { required },
         type: { required },
-        explanation: { required },
         point: { required, decimal },
       };
     });

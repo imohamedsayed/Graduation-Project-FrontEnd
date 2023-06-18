@@ -263,7 +263,7 @@ export default {
           type: state.type,
           class_room_id: props.id,
         };
-
+        console.log(data);
         try {
           let res = await axios.post("api_dashboard/exams", data);
           if (res.status == 200) {
@@ -283,7 +283,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .sa4d25 {
   direction: rtl;
   padding: 30px 20px;

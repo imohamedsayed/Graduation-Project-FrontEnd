@@ -263,6 +263,7 @@ export default {
           semester_id: state.course_term,
           image: state.avatar,
           status: state.status ? 1 : 0,
+          // branch_id: state.user.exter_info.branch_id,
         };
         // Start Sending Request
 

@@ -145,19 +145,19 @@ const routes = [
     path: "/dashboard/showshops",
     name: "showshops",
     component: showshops,
-    props:true
+    props: true,
   },
   {
     path: "/dashboard/editshop/:id",
-    name: 'editshop',
+    name: "editshop",
     component: editshop,
-    props:true
-  },             
+    props: true,
+  },
   {
     path: "/dashboard/newCategory/:shop_id",
     name: "newCategory",
     component: newCategory,
-    props:true
+    props: true,
   },
   {
     path: "/dashboard/editCategory/:id",
@@ -168,19 +168,19 @@ const routes = [
     path: "/dashboard/showCategories/:shop_id",
     name: "showCategories",
     component: showCategories,
-    props:true
+    props: true,
   },
   {
     path: "/dashboard/newProduct/:category_id",
     name: "newProduct",
     component: newProduct,
-    props:true
+    props: true,
   },
   {
     path: "/dashboard/editProduct/:id",
     name: "editProduct",
     component: editProduct,
-    props:true
+    props: true,
   },
   {
     path: "/dashboard/showProducts/:category_id",
@@ -536,7 +536,7 @@ const routes = [
     path: "/Website/test/:cid/:id",
     name: "test",
     component: test,
-    props:true
+    props: true,
   },
   {
     path: "/Website/superior",
@@ -544,8 +544,8 @@ const routes = [
     component: superior,
   },
   {
-    path: "/student_home",
-    name: "student_home",
+    path: "/branch",
+    name: "branch",
     component: Home,
   },
   {

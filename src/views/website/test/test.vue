@@ -46,12 +46,9 @@
       <div class="test-content2">
         <div class="container">
           <div class="row">
-            <div class="col-lg-8">
-              <!-- <testComponent />
-              <t_fOption />
-              <multiChoiceOption /> -->
-
+            <div :class="state.alreadySubmitBefore ? 'col-lg-12' : 'col-lg-8'">
               <form
+                v-if="state.exam"
                 class="exam-form"
                 @submit.prevent="submitExam()"
                 ref="examForm"
@@ -191,7 +188,10 @@
                     :disabled="state.loading"
                     v-if="!state.done"
                   >
-                    <span class="spinner-grow spinner-grow-sm ms-2" v-if="state.loading"></span>
+                    <span
+                      class="spinner-grow spinner-grow-sm ms-2"
+                      v-if="state.loading"
+                    ></span>
                     <i class="fas fa-check" v-if="!state.loading"></i> ارسال
                   </button>
 
@@ -204,8 +204,22 @@
                   السؤال
                 </p>
               </form>
+              <div class="submited text-center">
+                <img
+                  src="../../../../public/images/exam.jpg"
+                  class="img-fluid"
+                  style="width: 400px"
+                  alt=""
+                />
+                <h1 class="alert alert-info">
+                  لقد تم ارسال اجاباتك
+                  <span class="spinner-grow spinner-grow-lg me-4 ms-2"></span>
+                  <span class="spinner-grow spinner-grow-lg ms-2"></span>
+                  <span class="spinner-grow spinner-grow-lg"></span>
+                </h1>
+              </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4" v-if="state.exam">
               <div class="faq1256">
                 <div class="container">
                   <div class="row justify-content-md-center">
@@ -297,6 +311,7 @@ export default {
       questions: [],
       loading: false,
       done: false,
+      alreadySubmitBefore: false,
     });
     const examForm = ref(null);
 
@@ -305,16 +320,19 @@ export default {
         router.push("/");
       }
       state.loading = true;
-      let res = await axios.get("api/view-exam/" + props.cid + "/" + props.id);
-
-      if (res.status == 200) {
-        // console.log(res.data.data);
-        state.exam = res.data.data.exam;
-
-        state.questions = res.data.data.questions;
+      let res = await axios.get("/api/view-exam/" + props.cid + "/" + props.id);
+      if (!res.data.status == 422) {
+        if (res.status == 200) {
+          console.log(res.data.data);
+          state.exam = res.data.data.exam;
+          state.questions = res.data.data.questions;
+        } else {
+          router.push("/");
+        }
       } else {
-        router.push("/");
+        state.alreadySubmitBefore = true;
       }
+
       state.loading = false;
     });
 
@@ -338,6 +356,12 @@ export default {
         answers: answers,
       };
 
+      // console.log(data);
+
+      if (Object.keys(data.answers).length == 0) {
+        data.answers[state.questions[0].id] = ["1"];
+      }
+
       let dataInJson = JSON.stringify(data);
       //console.log(dataInJson);
       let back = JSON.parse(dataInJson);
@@ -356,6 +380,9 @@ export default {
         if (res.status == 200) {
           notification("success", "لقد تم ارسال اجاباتك");
           state.done = true;
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
         } else {
           notification("error", "حدث خطأ ما, حاول مجددا");
         }

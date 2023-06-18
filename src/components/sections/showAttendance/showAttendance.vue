@@ -30,9 +30,12 @@
 </template>
 
 <script>
+import axios from "axios";
 import showAttendabceList from "./showAttendabceList.vue";
 export default {
   components: { showAttendabceList },
+  props: ["id"],
+
   data() {
     return {
       search: "",
@@ -40,7 +43,7 @@ export default {
       displayItems: [],
     };
   },
-  mounted() {
+  async mounted() {
     this.items = [
       { id: 162019133, name: "محمد سيد", date: "20/7/2022" },
       { id: 162019134, name: " محمود خيري", date: "20/7/2022" },

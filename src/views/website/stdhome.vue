@@ -6,7 +6,7 @@
       <div class="bg">
         <div class="row">
           <div class="col-12 p-2">
-            <h3>محتوى فرع {{ state.bName }}</h3>
+            <h3> فرع {{ state.bName }}</h3>
           </div>
         </div>
         <div class="year1">
@@ -32,8 +32,8 @@ import Header from "../../components/StudentHeader.vue";
 import AsideBar from "../../components/WebsiteAsideBar.vue";
 import { reactive, computed, onMounted } from "vue";
 import { useStore } from "vuex";
-import Choosecourse from "@/components/website/chooseBranch/choosecourse.vue";
-import Chooseteacher from "@/components/website/chooseBranch/chooseteacher.vue";
+import Chooseteacher from "@/components/website/BranchHome/GetTeacherBranchClassrooms.vue";
+import Choosecourse from "@/components/website/BranchHome/GetSubjectBranchClassrooms.vue";
 export default {
   components: {
     Footer,
