@@ -32,8 +32,7 @@
                 $router.push({
                   name: 'editCategory',
                   params: {
-                    id: category.id,
-                    
+                    id: category.id,  
                   },
                 })
               "
