@@ -23,7 +23,18 @@
             class="btn btn-light"
             @click="choseBrach(branch.id, branch.name)"
           >
+            <i class="fa-solid fa-school ms-2"></i>
+
             اختر هذا الفرع
+          </button>
+          <button
+            type="button"
+            class="btn btn-light me-2"
+            v-if="state.shop != null"
+            @click="chooseShop(branch.id, state.shop.id, branch.name)"
+          >
+            <i class="fa-solid fa-shop ms-2"></i>
+            المتجر
           </button>
         </div>
       </div>
@@ -36,6 +47,7 @@ import axios from "axios";
 import { onMounted, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+
 export default {
   props: ["wbranch"],
   data() {
@@ -49,6 +61,7 @@ export default {
 
     const state = reactive({
       branch: props.wbranch,
+      shop: null,
     });
 
     onMounted(async () => {
@@ -69,11 +82,13 @@ export default {
         ------ Get Shop Data
       */
 
-      // let shopRes = await axios.get("api_dashboard/shops/" + state.branch.id);
+      let shopRes = await axios.get(
+        "/api/get-shops-for-branch/" + state.branch.id
+      );
 
-      // if (shopRes.status == 200) {
-      //   console.log(shopRes);
-      // }
+      if (shopRes.status == 200) {
+        state.shop = shopRes.data.data;
+      }
     });
 
     const choseBrach = (id, name) => {
@@ -82,7 +97,14 @@ export default {
       router.push("/branch");
     };
 
-    return { choseBrach };
+    const chooseShop = (bid, sid, name) => {
+      localStorage.branch_name = name;
+      store.dispatch("studentBrach", bid);
+
+      router.push({ name: "shop_cats", params: { id: sid } });
+    };
+
+    return { choseBrach, state, chooseShop };
   },
 };
 </script>

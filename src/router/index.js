@@ -83,8 +83,8 @@ import CourseClasses from "@/views/website/ClassRooms/CourseClassRooms.vue";
 import AppointmentsToAttendence from "@/views/Dashboard/sections/AppointmentsToGetAttendence.vue";
 import newshop from "../views/Dashboard/shop/Shop/NewShop.vue";
 import showshops from "../views/Dashboard/shop/Shop/showShops.vue";
-import editshop from "../views/Dashboard/shop/Shop/editShop.vue"
-import shoporder from "../views/Dashboard/shop/ShopOrder.vue"
+import editshop from "../views/Dashboard/shop/Shop/editShop.vue";
+import shoporder from "../views/Dashboard/shop/ShopOrder.vue";
 const routes = [
   {
     path: "/dashboard/login",
@@ -508,13 +508,15 @@ const routes = [
     component: WebsiteNotificationPage,
   },
   {
-    path: "/Website/Store",
+    path: "/Website/shop/:sid/category/:id/products",
     name: "websiteStore",
+    props: true,
     component: websiteStore,
   },
   {
-    path: "/Website/categories",
-    name: "categories",
+    path: "/Website/branch_shop/:id/categories",
+    name: "shop_cats",
+    props: true,
     component: categories,
   },
   {
