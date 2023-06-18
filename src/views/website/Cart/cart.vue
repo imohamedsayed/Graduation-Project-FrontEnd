@@ -13,7 +13,9 @@
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                          <router-link :to="{name : 'home'}">الرئيسية </router-link>
+                          <router-link :to="{ name: 'home' }"
+                            >الرئيسية
+                          </router-link>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                           سلة الشراء
@@ -38,20 +40,13 @@
     <div class="cart">
       <div class="content2">
         <div class="container">
-          <div class="row">
+          <div class="row" v-if="state.student && state.products.length">
             <div class="col-lg-8">
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
-            <Cartproduct />
+              <Cartproduct
+                v-for="product in state.products"
+                :key="product.id"
+                :product="product"
+              />
             </div>
             <div class="col-lg-4">
               <div class="membership_chk_bg rght1528">
@@ -61,43 +56,100 @@
                 <div class="order_dt_section">
                   <div class="order_title">
                     <h4>السعر الأصلي</h4>
-                    <div class="order_price">150 جنيه</div>
+                    <div class="order_price">{{ state.total }} جنيه</div>
                   </div>
                   <div class="order_title">
                     <h6>خصومات</h6>
-                    <div class="order_price">5 جنيه</div>
+                    <div class="order_price">0 جنيه</div>
                   </div>
                   <div class="order_title">
                     <h2>الاجمالي</h2>
-                    <div class="order_price5">145 جنيه</div>
+                    <div class="order_price5">{{ state.total }} جنيه</div>
                   </div>
-                  <router-link :to="{name : 'payment'}" class="chck-btn22">المتابعة الي الشراء</router-link>
+                  <router-link :to="{ name: 'payment' }" class="chck-btn22"
+                    >المتابعة الي الشراء</router-link
+                  >
                 </div>
               </div>
             </div>
           </div>
+          <div
+            v-if="!state.student"
+            class="text-center"
+            style="background: white"
+          >
+            <img
+              src="../../../../public/images/cart.jpg"
+              class="img-fluid"
+              style="height: 500px; width: 600px"
+              alt=""
+            />
+            <h5 class="alert alert-danger mt-2">
+              <span class="spinner-grow spinner-grow-sm ms-2"></span>
+              يجب عليك تسجيل الدخول للمتابعة
+            </h5>
+          </div>
+          <div
+            v-if="!state.products.length && state.student"
+            class="text-center"
+            style="background: white"
+          >
+            <img
+              src="../../../../public/images/empty-cart.png"
+              class="img-fluid"
+              style="height: 500px; width: 600px"
+              alt=""
+            />
+            <h5 class="alert alert-info mt-2">
+              <span class="spinner-grow spinner-grow-sm ms-2"></span>
+              السلة فارغة, اضف منتجات الي سلتك
+            </h5>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
+import { computed, onMounted, reactive } from "vue";
 import Footer from "../../../components/Footer.vue";
-import Header from "../../../components/Header.vue";
+import Header from "../../../components/StudentHeader.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import Cartproduct from "../../../components/website/CartWebsite/Cart.vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import axios from "axios";
 export default {
   components: { Footer, AsideBar, Header, Cartproduct },
-  data() {
-    return {};
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const state = reactive({
+      student: computed(() => store.state.student),
+      products: [],
+      total: "",
+    });
+
+    onMounted(async () => {
+      let res = await axios.get("/api/show-cart");
+
+      if (res.status == 200) {
+        state.total = res.data.total;
+        state.products = res.data.data;
+      }
+    });
+
+    return { state };
   },
 };
 </script>
 
 <style lang="scss">
-.cartShopping , .cart{
+.cartShopping,
+.cart {
   margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
@@ -109,7 +161,7 @@ export default {
   width: 100%;
 }
 .content2 {
-  background-color: #d9d9d9;
+  background-color: #fff;
   direction: rtl;
   padding: 30px 10px;
   width: 100%;

@@ -14,7 +14,11 @@
         </p>
         <div class="price col-6">السعر :{{ product.price }}</div>
       </div>
-      <div class="text-center">
+      <div
+        class="text-center"
+        v-if="!state.alreadyExists"
+        style="font-size: 1.6rem"
+      >
         <a
           class="btn btn-light"
           v-if="!state.loading"
@@ -24,6 +28,23 @@
         <button class="btn btn-primary" disabled v-else>
           لحظة من فضلك
           <span class="spinner-border spinner-border-sm me-1"></span>
+        </button>
+        <span class="btn btn-outline-light me-4" style="font-size: 1.6rem">
+          <i
+            class="fa-solid fa-heart text-danger"
+            v-if="state.inFav"
+            @click="removeFromWishlist(product.id)"
+          ></i>
+          <i
+            class="fa-regular fa-heart text-danger"
+            v-else
+            @click="addToWishlist(product.id)"
+          ></i>
+        </span>
+      </div>
+      <div class="text-center" v-else>
+        <button class="btn btn-primary" @click="$router.push('/Website/cart')">
+          <i class="fa fa-shopping-cart"></i> شاهده في السلة
         </button>
       </div>
     </div>
@@ -43,9 +64,11 @@ import Toast from "@/components/Toast.vue";
 export default {
   props: ["product"],
   components: { Toast },
-  setup() {
+  setup(props) {
     const state = reactive({
       loading: false,
+      alreadyExists: false,
+      inFav: false,
     });
 
     //notification
@@ -53,6 +76,10 @@ export default {
       showNotification: false,
       theme: "",
       notify: "",
+    });
+
+    onMounted(() => {
+      console.log(props.product);
     });
 
     const notification = (theme, message) => {
@@ -74,7 +101,13 @@ export default {
         });
 
         if (res.status == 200) {
-          notification("success", "تم اضافة المنتج للسلة");
+          console.log(res);
+          if (res.data.message != "Created Successfully") {
+            notification("error", "المنتج موجود في سلتك بالفعل");
+            state.alreadyExists = true;
+          } else {
+            notification("success", "تم اضافة المنتج للسلة");
+          }
         } else {
           notification("error", "حدث خطأ ما, حاول مجددا");
         }
@@ -83,7 +116,53 @@ export default {
       }
       state.loading = false;
     };
-    return { toast, state, addToCart };
+
+    /*
+    
+      ----->>> Wishlist
+
+    */
+
+    const addToWishlist = async (id) => {
+      try {
+        let res = await axios.post("/api/create-cart", {
+          product_id: id,
+          quantity: 1,
+          status: 2,
+        });
+
+        if (res.status == 200) {
+          console.log(res);
+          if (res.data.message != "Created Successfully") {
+            notification("error", "المنتج موجود في المفضلة بالفعل");
+            state.inFav = true;
+          } else {
+            notification("success", "تم اضافة المنتج للمفضلة");
+          }
+        } else {
+          notification("error", "حدث خطأ ما, حاول مجددا");
+        }
+      } catch (err) {
+        notification("error", err.response.data.message);
+      }
+      state.inFav = true;
+    };
+
+    const removeFromWishlist = async (id) => {
+      try {
+        let res = await axios.delete("api/delete_product/" + id);
+        if (res.status == 200) {
+          notification("success", "تم ازالة المنتج من المفضلة  ");
+          state.inFav = false;
+        } else {
+          notification("error", "حدث خطأ ما, حاول مجددا");
+        }
+      } catch (err) {
+        notification("error", err);
+      }
+    };
+
+    return { toast, state, addToCart, addToWishlist, removeFromWishlist };
   },
 };
 </script>

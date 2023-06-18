@@ -82,8 +82,9 @@
                         role="tab"
                         aria-controls="bank"
                         aria-selected="true"
+                        disabled
                       >
-                        الدفع عند الاستلام
+                        الدفع عند الاستلام (غير متوفر حاليا)
                       </button>
                     </li>
                   </ul>
@@ -110,7 +111,7 @@
                     <keep-alive> <Fawry /> </keep-alive>
                   </div>
                 </div>
-                <div class="chckout_order_dt1">
+                <!-- <div class="chckout_order_dt1">
                   <div class="checkout_title">
                     <h4>عناصر الطلب</h4>
                   </div>
@@ -131,7 +132,7 @@
                       تأكيد الدفع
                     </button>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="col-lg-4">
@@ -142,44 +143,76 @@
                 <div class="order_dt_section">
                   <div class="order_title">
                     <h4>السعر الأصلي</h4>
-                    <div class="order_price">150 جنيه</div>
+                    <div class="order_price">{{ state.total }} جنيه</div>
                   </div>
                   <div class="order_title">
                     <h6>خصومات</h6>
-                    <div class="order_price">5 جنيه</div>
+                    <div class="order_price">0 جنيه</div>
                   </div>
                   <div class="order_title">
                     <h2>الاجمالي</h2>
-                    <div class="order_price5">145 جنيه</div>
+                    <div class="order_price5">{{ state.total }} جنيه</div>
                   </div>
-                  <a href="#" class="chck-btn22">دفع مؤمن</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
 import Footer from "../../../components/Footer.vue";
-import Header from "../../../components/Header.vue";
+import Header from "../../../components/StudentHeader.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import bank from "../../../components/website/payment/bank.vue";
 import Fawry from "../../../components/website/payment/Fawry.vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import axios from "axios";
+import { computed, reactive, onMounted } from "vue";
 export default {
   components: { Footer, AsideBar, Header, bank, Fawry },
-  data() {
-    return {};
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const state = reactive({
+      student: computed(() => store.state.student),
+      cart: null,
+      total: "",
+    });
+
+    onMounted(async () => {
+      if (state.student == null) {
+        router.push("/");
+      }
+
+      let res = await axios.get("/api/show-cart");
+
+      if (res.status == 200) {
+        state.cart = res.data.data;
+        state.total = res.data.total;
+      }
+
+      if (state.cart.length == 0) {
+        router.push("/");
+      }
+    });
+
+    
+
+    return { state };
   },
 };
 </script>
 
 <style lang="scss">
-.payment-page , .cartPayment {
+.payment-page,
+.cartPayment {
   margin-right: 14rem;
   @media (max-width: 991px) {
     margin-right: 0;
@@ -544,6 +577,7 @@ export default {
   font-weight: 500;
   background: #4e54c8;
   display: block;
+  transition: all 0.3s ease;
 }
 
 .chckot_btn:hover {

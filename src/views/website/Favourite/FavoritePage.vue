@@ -14,30 +14,93 @@
               </div>
             </div>
             <div class="col-md-12">
-              <div class="products">
+              <div
+                class="products"
+                v-if="state.student && state.products.length"
+              >
                 <div class="row">
-                  <div class="col-lg-3 col-md-4"><product /></div>
-                  <div class="col-lg-3 col-md-4"><product /></div>
+                  <div
+                    class="col-lg-3 col-md-4"
+                    v-for="product in state.products"
+                    :key="product.id"
+                  >
+                    <product :product="product" />
+                  </div>
                 </div>
+              </div>
+              <div
+                v-if="!state.student"
+                class="text-center"
+                style="background: white"
+              >
+                <img
+                  src="../../../../public/images/wishlist.jpg"
+                  class="img-fluid"
+                  style="height: 500px; width: 600px"
+                  alt=""
+                />
+                <h5 class="alert alert-danger mt-2">
+                  <span class="spinner-grow spinner-grow-sm ms-2"></span>
+                  يجب عليك تسجيل الدخول للمتابعة
+                </h5>
+              </div>
+              <div
+                v-if="!state.products.length && state.student"
+                class="text-center"
+                style="background: white"
+              >
+                <img
+                  src="../../../../public/images/wishlist.jpg"
+                  class="img-fluid"
+                  style="height: 500px; width: 600px"
+                  alt=""
+                />
+                <h5 class="alert alert-info mt-2">
+                  <span class="spinner-grow spinner-grow-sm ms-2"></span>
+                  القائمة فارغة, اضف منتجات الي المفضلة
+                </h5>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
   </div>
+  <SpinnerLoading :loading="state.loading" />
 </template>
 
 <script>
 import Footer from "../../../components/Footer.vue";
-import Header from "../../../components/Header.vue";
+import Header from "../../../components/StudentHeader.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import product from "../../../components/website/Favourite/product_favourite.vue";
+import { computed, onMounted, reactive } from "vue";
+import { useStore } from "vuex";
+import axios from "axios";
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
+
 export default {
-  components: { Footer, AsideBar, Header, product },
-  data() {
-    return {};
+  components: { Footer, AsideBar, Header, product, SpinnerLoading },
+  setup() {
+    const store = useStore();
+    const state = reactive({
+      student: computed(() => store.state.student),
+      products: [],
+      loading: false,
+    });
+
+    onMounted(async () => {
+      state.loading = true;
+      let res = await axios.get("/api/show-cart");
+
+      if (res.status == 200) {
+        state.products = res.data.data;
+      }
+      state.loading = false;
+    });
+
+    return { state };
   },
 };
 </script>

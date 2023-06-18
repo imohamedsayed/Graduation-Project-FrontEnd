@@ -59,7 +59,6 @@ export default {
 
     onMounted(async () => {
       let res = await axios.get("/api/get-products-for-category/" + props.id);
-
       if (res.status == 200) {
         state.products = res.data.data;
       }
