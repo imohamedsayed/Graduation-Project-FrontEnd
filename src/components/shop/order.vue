@@ -1,27 +1,21 @@
 <template>
     <tr v-if="dell">
       <td class="check" @click="opened = !opened">
-        {{ category.id }} <i v-if="opened" class="fa fa-circle-plus plus"></i>
+        {{ order.id }} <i v-if="opened" class="fa fa-circle-plus plus"></i>
         <i v-else class="fa-solid fa-circle-minus minus"></i>
       </td>
-      <td>{{ category.name }}</td>
-      
+      <td style="width: 20%">{{ order.student_id }}</td>
+      <td class="open">{{ order.status }}</td>
+      <td class="open">{{ order.discount }}</td>
       <td class="open">
-        <i class="fa-solid fa-circle-check exam" v-if="category.status=='on'"></i>
-        <i class="fa-solid fa-circle-xmark exam" v-else></i>
+        {{ order.sub_total }}
       </td>
       <td class="open">
-        <a
-          class="show"
-          @click="
-            $router.push({ name: 'showProducts', params: { category_id: category.id } })
-          "
-        >
-          عرض المنتجات
-        </a>
-      </td>
+        {{ order.total }}
+        </td>
     </tr>
-    <tr v-if="!opened && dell">
+  
+    <!-- <tr v-if="!opened && dell">
       <td colspan="7">
         <div class="close">
           <div>الخصائص</div>
@@ -30,11 +24,8 @@
               class="btn"
               @click="
                 $router.push({
-                  name: 'editCategory',
-                  params: {
-                    id: category.id,
-                    
-                  },
+                  name: 'editorder',
+                  params: { id: order.id },
                 })
               "
             >
@@ -44,23 +35,25 @@
           </ul>
         </div>
       </td>
-    </tr>
+    </tr> -->
   </template>
   
   <script>
   import { mapActions } from "vuex";
   import axios from "axios";
   export default {
-    name: "Cشفثلخقغ",
-    props: ["category"],
+    name: "order",
+    props: ["order", "categoryId"],
     data() {
       return {
         opened: true,
         dell: true,
         showEditForm: false,
+        type: 0,
       };
     },
     methods: {
+      ...mapActions(["redirectTo"]),
       async Delete() {
         Swal.fire({
           title: "هل انت متاكد",
@@ -73,17 +66,14 @@
           cancelButtonText: "لا ، إلغاء!",
         }).then(async (result) => {
           if (result.isConfirmed) {
-            await axios
-              .delete("api_dashboard/categories/" + this.category.id)
-              .then((res) => {
-                Swal.fire("تم الحذف!", "تم حذف الامتحان", "نجاح");
-                this.dell = false;
-              })
-              .catch((error) => {
-                console.log(error);
-                console.log(error.response.data.errors);
-                console.log(error.response.data.message);
-              });
+            let res = await axios.delete(
+              "api_dashboard/orders/" + this.order.id
+            );
+  
+            if (res.status == 200) {
+              Swal.fire("تم الحذف!", "تم حذف المنتج", "نجاح");
+              this.dell = false;
+            }
           }
         });
       },
@@ -221,6 +211,17 @@
   tr td {
     text-align: center;
     font-weight: 500;
+  }
+  button.btn {
+    background: var(--darker-blue);
+    color: white;
+    opacity: 0.9;
+  
+    &:hover {
+      background: var(--darker-blue);
+      color: white;
+      opacity: 1;
+    }
   }
   </style>
   

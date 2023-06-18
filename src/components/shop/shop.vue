@@ -1,23 +1,19 @@
 <template>
     <tr v-if="dell">
       <td class="check" @click="opened = !opened">
-        {{ category.id }} <i v-if="opened" class="fa fa-circle-plus plus"></i>
+        {{ shop.id }} <i v-if="opened" class="fa fa-circle-plus plus"></i>
         <i v-else class="fa-solid fa-circle-minus minus"></i>
       </td>
-      <td>{{ category.name }}</td>
+      <td>{{ shop.name }}</td>
       
-      <td class="open">
-        <i class="fa-solid fa-circle-check exam" v-if="category.status=='on'"></i>
-        <i class="fa-solid fa-circle-xmark exam" v-else></i>
-      </td>
       <td class="open">
         <a
           class="show"
           @click="
-            $router.push({ name: 'showProducts', params: { category_id: category.id } })
+            $router.push({ name: 'showCategories', params: { shop_id: shop.id } })
           "
         >
-          عرض المنتجات
+          عرض الفئات
         </a>
       </td>
     </tr>
@@ -30,10 +26,9 @@
               class="btn"
               @click="
                 $router.push({
-                  name: 'editCategory',
+                  name: 'editshop',
                   params: {
-                    id: category.id,
-                    
+                  id: shop.id,
                   },
                 })
               "
@@ -51,8 +46,8 @@
   import { mapActions } from "vuex";
   import axios from "axios";
   export default {
-    name: "Cشفثلخقغ",
-    props: ["category"],
+    name: "shop",
+    props: ["shop"],
     data() {
       return {
         opened: true,
@@ -74,9 +69,9 @@
         }).then(async (result) => {
           if (result.isConfirmed) {
             await axios
-              .delete("api_dashboard/categories/" + this.category.id)
+              .delete("api_dashboard/shops/" + this.shop.id)
               .then((res) => {
-                Swal.fire("تم الحذف!", "تم حذف الامتحان", "نجاح");
+                Swal.fire("تم الحذف!", "تم حذف المتجر", "نجاح");
                 this.dell = false;
               })
               .catch((error) => {
