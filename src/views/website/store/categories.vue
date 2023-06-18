@@ -15,14 +15,12 @@
             </div>
             <div class="component col-md-11">
               <div class="person">
-                <div class="row">
-                <category/>
-                <category />
-                <category/>
-                <category />
-                <category />
-                <category />
-                <category />
+                <div class="row" v-if="state.shop_categories.length">
+                  <category
+                    v-for="cat in state.shop_categories"
+                    :key="cat.id"
+                    :category="{ ...cat, shop_id: id }"
+                  />
                 </div>
               </div>
             </div>
@@ -35,14 +33,29 @@
 </template>
 
 <script>
+import { onMounted, reactive } from "vue";
 import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import category from "../../../components/website/store/category.vue";
+import axios from "axios";
 export default {
   components: { Footer, AsideBar, Header, category },
-  data() {
-    return {};
+  props: { id: String },
+  setup(props) {
+    const state = reactive({
+      shop_categories: [],
+    });
+
+    onMounted(async () => {
+      let res = await axios.get("/api/get-categories-for-shop/" + props.id);
+
+      if (res.status == 200) {
+        state.shop_categories = res.data.data;
+      }
+    });
+
+    return { state };
   },
 };
 </script>
@@ -55,8 +68,8 @@ export default {
     margin-right: 0;
   }
 }
-.component{
-margin-top: 5rem;
+.component {
+  margin-top: 5rem;
 }
 .store-con {
   direction: rtl;
@@ -85,5 +98,4 @@ margin-top: 5rem;
   margin-left: 10px;
   font-size: 25px !important;
 }
-
 </style>

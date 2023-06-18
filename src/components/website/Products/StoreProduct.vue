@@ -1,39 +1,89 @@
 <template>
   <div class="box-product mb-20">
     <a href="#!" class="prod_img">
-      <img :src="img" alt="" />
+      <img :src="'http://127.0.0.1:8000/' + product.image" alt="" />
     </a>
     <div class="prod_content">
-      <a href="#!" class="box-title">{{ Note_name }}</a>
-      <a href="#" class="crse-cate">{{ Details }}</a>
+      <a href="#!" class="box-title">{{ product.name }}</a>
+      <a href="#" class="crse-cate" v-if="product.description">{{
+        product.description
+      }}</a>
       <div class="row">
         <p class="teacher1 col-6">
-          <a href="#">{{ TeacherName }}</a>
+          <a href="#">{{ product.teacher }}</a>
         </p>
-        <div class="price col-6">السعر : {{ price }}</div>
+        <div class="price col-6">السعر :{{ product.price }}</div>
       </div>
-      <div class="row">
-        <a class="col-7 add-to-cart1" href="#!"
+      <div class="text-center">
+        <a
+          class="btn btn-light"
+          v-if="!state.loading"
+          @click="addToCart(product.id)"
           ><i class="fa fa-shopping-cart"></i> اضافة الي السلة</a
         >
-        <a class="col-4 fav" href="#!"
-          ><i class="fa-solid fa-trash"></i> ازاله</a
-        >
+        <button class="btn btn-primary" disabled v-else>
+          لحظة من فضلك
+          <span class="spinner-border spinner-border-sm me-1"></span>
+        </button>
       </div>
     </div>
   </div>
+  <teleport to="body">
+    <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+      <p>{{ toast.notify }}</p>
+    </Toast>
+  </teleport>
 </template>
 
 <script>
+import { onMounted, reactive } from "vue";
+import axios from "axios";
+import Toast from "@/components/Toast.vue";
+
 export default {
-  data() {
-    return {
-      img: require("../../../../public/images/categories/12.jpg"),
-      Note_name: "مذكرة الأدب والنصوص",
-      Details: "عربي | الصف الثالث الثانوي",
-      TeacherName: "محمد عبدالجواد",
-      price: "150 جنيه",
+  props: ["product"],
+  components: { Toast },
+  setup() {
+    const state = reactive({
+      loading: false,
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme, message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      }, 2000);
     };
+    const addToCart = async (id) => {
+      state.loading = true;
+
+      try {
+        let res = await axios.post("/api/create-cart", {
+          product_id: id,
+          quantity: 1,
+          status: 1,
+        });
+
+        if (res.status == 200) {
+          notification("success", "تم اضافة المنتج للسلة");
+        } else {
+          notification("error", "حدث خطأ ما, حاول مجددا");
+        }
+      } catch (err) {
+        notification("error", err.response.data.message);
+      }
+      state.loading = false;
+    };
+    return { toast, state, addToCart };
   },
 };
 </script>

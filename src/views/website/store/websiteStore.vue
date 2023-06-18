@@ -1,4 +1,3 @@
-
 <template>
   <Header />
   <div class="main-view">
@@ -16,13 +15,19 @@
             </div>
             <div class="col-md-12">
               <div class="products">
-                <div class="row">
-                  <div class="col-lg-3 col-md-4">
-                    <product />
+                <div class="row" v-if="state.products.length">
+                  <div
+                    class="col-lg-3 col-md-4"
+                    v-for="product in state.products"
+                    :key="product.id"
+                  >
+                    <product :product="product" />
                   </div>
-                  <div class="col-lg-3 col-md-4">
-                    <product />
-                  </div>
+                </div>
+                <div v-else>
+                  <p class="alert alert-warning">
+                    لم يتم اضافة منتجات لهذه الفئة بعد
+                  </p>
                 </div>
               </div>
             </div>
@@ -36,13 +41,31 @@
 
 <script>
 import Footer from "../../../components/Footer.vue";
-import Header from "../../../components/Header.vue";
+import Header from "../../../components/StudentHeader.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
-import product from "../../../components/website/Favourite/product_favourite.vue";
+import product from "../../../components/website/Products/StoreProduct.vue";
+import { reactive, onMounted } from "vue";
+import axios from "axios";
 export default {
-  components: { Footer,AsideBar,Header,product },
-  data() {
-    return {};
+  components: { Footer, AsideBar, Header, product },
+  props: {
+    id: String,
+    sid: String,
+  },
+  setup(props) {
+    const state = reactive({
+      products: [],
+    });
+
+    onMounted(async () => {
+      let res = await axios.get("/api/get-products-for-category/" + props.id);
+
+      if (res.status == 200) {
+        state.products = res.data.data;
+      }
+    });
+
+    return { state };
   },
 };
 </script>
