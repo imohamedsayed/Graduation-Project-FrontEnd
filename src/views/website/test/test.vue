@@ -52,6 +52,7 @@
               <multiChoiceOption /> -->
 
               <form
+                v-if="state.exam"
                 class="exam-form"
                 @submit.prevent="submitExam()"
                 ref="examForm"
@@ -191,7 +192,10 @@
                     :disabled="state.loading"
                     v-if="!state.done"
                   >
-                    <span class="spinner-grow spinner-grow-sm ms-2" v-if="state.loading"></span>
+                    <span
+                      class="spinner-grow spinner-grow-sm ms-2"
+                      v-if="state.loading"
+                    ></span>
                     <i class="fas fa-check" v-if="!state.loading"></i> ارسال
                   </button>
 
@@ -208,7 +212,7 @@
             <div class="col-lg-4">
               <div class="faq1256">
                 <div class="container">
-                  <div class="row justify-content-md-center">
+                  <div class="row justify-content-md-center" v-if="state.exam">
                     <div class="certi_form rght1528">
                       <div class="test_timer_bg">
                         <ul class="test_timer_left">
@@ -337,6 +341,12 @@ export default {
       let data = {
         answers: answers,
       };
+
+      // console.log(data);
+
+      if (Object.keys(data.answers).length == 0) {
+        data.answers[state.questions[0].id] = ["1"];
+      }
 
       let dataInJson = JSON.stringify(data);
       //console.log(dataInJson);
