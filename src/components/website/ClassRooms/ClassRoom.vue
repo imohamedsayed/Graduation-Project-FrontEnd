@@ -7,7 +7,9 @@
         alt="..."
       />
       <div class="card-body">
-        <h5 class="card-title">{{ data.name }}</h5>
+        <h5 class="card-title">
+          <a :href="`/course/${data.id}`">{{ data.name }}</a>
+        </h5>
         <p class="card-text text-primary">
           {{ data.branch_name }}
         </p>
@@ -34,7 +36,7 @@
           التقديم
         </button>
         <button class="btn btn-danger" v-else @click="revoke(data.id)">
-          الغاء التقديم
+          الغاء الاشتراك
         </button>
       </div>
     </div>

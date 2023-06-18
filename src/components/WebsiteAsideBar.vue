@@ -1,11 +1,20 @@
 <template>
   <aside class="vertical-nav" ref="aside">
     <ul class="list-unstyled" dir="rtl">
-      <router-link :to="{path: '/student_home'}">
+      <router-link :to="{ path: '/branch' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-home"></i>
             <span> الرئيسية</span>
+          </div>
+        </li>
+      </router-link>
+
+      <router-link :to="{ path: '/Website/chooseBranch' }">
+        <li class="d-flex justify-content-between align-items-center">
+          <div class="section-name">
+            <i class="fa-solid fa-school"></i>
+            <span> الفروع </span>
           </div>
         </li>
       </router-link>
@@ -90,7 +99,7 @@
       </div>
       <!--End Sections-->
       <!--Start My Courses-->
-      <router-link :to="{ name:'matrial'}">
+      <router-link :to="{ name: 'matrial' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-clipboard"></i>
@@ -100,7 +109,7 @@
       </router-link>
       <!--End My Courses-->
       <!--Start Favorites-->
-      <router-link :to="{name : 'Favourite'}">
+      <router-link :to="{ name: 'Favourite' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-regular fa-heart"></i>
@@ -120,7 +129,7 @@
       </router-link>
       <!--End store-->
       <!--Start genuses-->
-      <router-link :to="{ name:'superior'}">
+      <router-link :to="{ name: 'superior' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-trophy text-warning"></i>
