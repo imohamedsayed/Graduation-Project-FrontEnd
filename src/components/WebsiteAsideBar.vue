@@ -197,14 +197,14 @@
       <!--End support-->
 
       <!--Settings-->
-      <a href="#">
+      <router-link :to="{ name: 'studentSettings' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-gear"></i>
             <span> الاعدادات </span>
           </div>
         </li>
-      </a>
+      </router-link>
       <!--End Settings-->
     </ul>
   </aside>

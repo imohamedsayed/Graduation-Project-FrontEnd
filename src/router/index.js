@@ -63,6 +63,7 @@ import categories from "../views/website/store/categories.vue";
 import Favourite from "../views/website/Favourite/FavoritePage.vue";
 import superior from "../views/website/superiorStudent/superior.vue";
 import cart from "../views/website/Cart/cart.vue";
+import settings from "../views/website/settings/settings.vue";
 import video from "../views/website/Video/video.vue";
 import test from "../views/website/test/test.vue";
 import payment from "../views/website/payment/Payment.vue";
@@ -163,6 +164,7 @@ const routes = [
     path: "/dashboard/editCategory/:id",
     name: "editCategory",
     component: editCategory,
+    props:true
   },
   {
     path: "/dashboard/showCategories/:shop_id",
@@ -528,6 +530,11 @@ const routes = [
     path: "/Website/cart",
     name: "cart",
     component: cart,
+  },
+  {
+    path: "/Website/settings",
+    name: "studentSettings",
+    component: settings,
   },
   {
     path: "/Website/video",

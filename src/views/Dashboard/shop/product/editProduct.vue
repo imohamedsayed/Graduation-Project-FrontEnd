@@ -20,7 +20,7 @@
                         transition: 0.5s a;
                       }
                     " @click="
-                      $router.push({ name: '', params: { id: id } })
+                      $router.push({ name: 'showProducts', params: { category_id: state.category_id } })
                       "> عرض جميع المنتجات</span>
               </div>
             </div>
@@ -95,11 +95,28 @@
                                 <div class="ui search focus mt-30 lbel25">
                                   <label><i class="fas fa-pencil-alt"></i> تعديل الصوره</label>
                                   <input type="file" @change="(e) => {
-                                      state.image = e.target.files[0];
-                                    }
+                                    state.image = e.target.files[0];
+                                  }
                                     " />
                                 </div>
                               </div>
+                              <div class="col-lg-6 col-md-12 mb-2">
+                                  <div class="ui search focus mt-30 lbel25">
+                                    <label>
+                                      <i class="fas fa-list"></i>الحالة</label
+                                    >
+                                    <select v-model="state.status">
+                                      <option value="1">متاح </option>
+                                      <option value="0">غير متاح  </option>
+                                    </select>
+                                  </div>
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.status.$error"
+                                  >
+                                    {{ v$.status.$errors[0].$message }}
+                                  </span>
+                                </div>
                             </div>
                           </div>
                           <button data-direction="finish" @click="Save" class="btn btn-default steps_btn"> حفظ </button>
@@ -155,6 +172,9 @@ export default {
       save: false,
       course: "",
       tech: "",
+      category_id: '',
+      status:false,
+      product: {},
       teachers: [],
       subjects: [],
     });
@@ -190,6 +210,7 @@ export default {
         image: { required },
         quentity: { required,decimal },
         price: { required,decimal },
+        status: { required },
       };
     });
 
@@ -199,15 +220,27 @@ export default {
       if(state.user == null || state.user.role_id != 3) {
         router.push("/dashboard/login");
       }
-      await axios.get("/api_dashboard/products/1")
+
+      // get Product
+      await axios.get("api_dashboard/product/" + props.id)
         .then(res => {
-          console.log(res.data.data);
+          state.product = res.data.data;
+          state.name = state.product.name
+          state.price = state.product.price
+          state.quentity = state.product.quantity
+          state.image = state.product.image
+          state.explanation = state.product.description
+          state.course = state.product.subject
+          state.tech = state.product.teacher
+          state.category_id = state.product.category
+          state.status = state.product.status=='on'?1:0
+          console.log(state.product);
         })
         .catch(err => {
-          console.log(err.response.data);
+          console.log(err.response);
         })
-      
-       // get our teachers
+
+      // get our teachers
 
       let res = await axios.get("/api_dashboard/teachers");
 
@@ -226,7 +259,7 @@ export default {
       }
     });
 
-    // const category_id = props.category_id;
+    const category_id = 5;
 
     // add new 
 
@@ -241,10 +274,11 @@ export default {
           quantity: state.quentity,
           image: state.image,
           description: state.explanation,
-          category_id: category_id
+          category_id: category_id,
+          status:state.status
         };
         try {
-          let res = await axios.post("api_dashboard/products/"+props.id,data,{
+          let res = await axios.post("api_dashboard/products/" + props.id,data,{
             headers: {
               "Content-Type": "multipart/form-data",
             },

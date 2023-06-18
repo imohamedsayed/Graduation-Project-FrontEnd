@@ -6,9 +6,9 @@
       </td>
       <td style="width: 20%">{{ product.name }}</td>
       <td class="open">{{ product.price }}</td>
-      <td class="open">{{ product.quentity }}</td>
+      <td class="open">{{ product.quantity }}</td>
       <td class="open">
-        {{ product.explanation ? product.explanation : "لا يوجد" }}
+        {{ product.description ? product.description : "لا يوجد" }}
       </td>
       <td class="open">
         <img :src="'http://127.0.0.1:8000/'+ product.image" alt="">
