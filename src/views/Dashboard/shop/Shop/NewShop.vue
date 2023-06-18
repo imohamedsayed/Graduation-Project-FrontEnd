@@ -8,7 +8,7 @@
           <div class="row">
             <div class="col-lg-6">
               <h2 class="st_title">
-                <i class="fas fa-plus-circle"></i> انشاء فئه جديده
+                <i class="fas fa-plus-circle"></i> انشاء متجر جديد
               </h2>
             </div>
             <div class="col-lg-6">
@@ -19,7 +19,7 @@
                         display: inline-block;
                         transition: 0.5s a;
                       }
-                    " @click="$router.push({ name: 'showCategories', params: { shop_id: shop_id } })"> عرض جميع الفئات </span>
+                    " @click="$router.push({ name: 'showshops' })"> عرض جميع المتاجر </span>
               </div>
             </div>
           </div>
@@ -31,23 +31,15 @@
                     <div class="row">
                       <div class="col-lg-9 col-md-6">
                         <div class="ui mt-30 focus box search">
-                          <label> اسم الفئه</label>
+                          <label> اسم المتجر</label>
                           <input type="text" v-model="state.name" name="" id="" />
                           <span class="text-danger fw-bold" v-if="v$.name.$error"> {{ v$.name.$errors[0].$message }}
                           </span>
                         </div>
                       </div>
-                      <div class="col-lg-3 col-md-6 ">
-                        <div class="ui  focus box search d-flex align-items-center justify-content-center gap-2">
-                          <input type="checkbox" id="status" class="mt-lg-5" v-model="state.status"
-                            style="width: 30px; height: 30px" />
-                          <label for="status" style="font-size: 20px !important;" class="mt-lg-5 text-muted">
-                            الحالة</label>
-                        </div>
-                      </div>
                     </div>
                   </div>
-                  <button type="submit" data-direction="finish" class="btn btn-default steps_btn" @click="addCategory()">
+                  <button type="submit" data-direction="finish" class="btn btn-default steps_btn" @click="addShop()">
                     حفظ </button>
                 </form>
               </div>
@@ -66,9 +58,9 @@
 </template>
   
 <script>
-import Footer from "../../../components/Footer.vue";
-import Header from "../../../components/Header.vue";
-import AsideBar from "../../../components/AsideBar.vue";
+import Footer from "../../../../components/Footer.vue";
+import Header from "../../../../components/Header.vue";
+import AsideBar from "../../../../components/AsideBar.vue";
 import Toast from "@/components/Toast.vue";
 
 import axios from "axios";
@@ -83,10 +75,7 @@ import { required } from "@vuelidate/validators";
 export default {
   name: "Create_section",
   components: { Footer,AsideBar,Header,Toast },
-  props: {
-    shop_id: String,
-  },
-  setup(props) {
+  setup() {
     const state = reactive({
       user: computed(() => store.state.user),
       save: false,
@@ -94,7 +83,6 @@ export default {
       status: false,
     });
 
-    const shop_id = props.shop_id;
     onMounted(async () => {
       if(state.user == null) {
         router.push("/dashboard/login");
@@ -111,7 +99,6 @@ export default {
       showNotification: false,
       theme: "",
       notify: "",
-      branch_id: computed(() => useStore().state.student.branch_id),
     });
 
     const notification = (theme,message) => {
@@ -140,18 +127,16 @@ export default {
 
     // add new Category
 
-    const addCategory = async () => {
+    const addShop = async () => {
       v$.value.$validate();
       if(!v$.value.$error) {
         let data = {
           name: state.name,
-          status: String(Number(state.status)),
-          shop_id:shop_id
+          branche_id: state.user.exter_info.branch_id
         };
-        console.log(data);
 
         // Start Sending Request
-        let res = await axios.post("api_dashboard/categories",data);
+        let res = await axios.post("api_dashboard/shops",data);
         if(res.status == 200) {
 
           state.save = true;
@@ -161,7 +146,7 @@ export default {
       }
     };
 
-    return { state,v$,addCategory,toast,shop_id };
+    return { state,v$,addShop,toast };
   },
 };
 </script>
