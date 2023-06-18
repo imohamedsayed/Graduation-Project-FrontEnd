@@ -126,7 +126,7 @@
 
     .header {
       color: var(--text-black);
-      font-size: 1.4rem;
+      font-size: 22px;
       margin-block: 30px;
     }
 
