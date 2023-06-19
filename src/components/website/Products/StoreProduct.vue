@@ -1,7 +1,11 @@
 <template>
   <div class="box-product mb-20">
     <a href="#!" class="prod_img">
-      <img :src="'http://127.0.0.1:8000/' + product.image" alt="" />
+      <img
+        :src="'http://127.0.0.1:8000/' + product.image"
+        alt=""
+        style="height: 240px"
+      />
     </a>
     <div class="prod_content">
       <a href="#!" class="box-title">{{ product.name }}</a>
@@ -78,9 +82,9 @@ export default {
       notify: "",
     });
 
-    onMounted(() => {
-      console.log(props.product);
-    });
+    // onMounted(() => {
+    //   console.log(props.product);
+    // });
 
     const notification = (theme, message) => {
       toast.theme = theme;
@@ -125,19 +129,25 @@ export default {
 
     const addToWishlist = async (id) => {
       try {
-        let res = await axios.post("/api/create-cart", {
+        let res = await axios.post("/api/add-item-to-wishlist", {
           product_id: id,
           quantity: 1,
-          status: 2,
         });
 
         if (res.status == 200) {
-          console.log(res);
           if (res.data.message != "Created Successfully") {
-            notification("error", "المنتج موجود في المفضلة بالفعل");
-            state.inFav = true;
+            if (res.data.message == "this product already in your cart") {
+              notification(
+                "error",
+                "لا يمكن الاضافة للمفضلة لأنه موجود في سلة الشراء"
+              );
+            } else {
+              notification("error", "المنتج موجود في المفضلة بالفعل");
+              state.inFav = true;
+            }
           } else {
             notification("success", "تم اضافة المنتج للمفضلة");
+            state.inFav = true;
           }
         } else {
           notification("error", "حدث خطأ ما, حاول مجددا");
@@ -145,12 +155,11 @@ export default {
       } catch (err) {
         notification("error", err.response.data.message);
       }
-      state.inFav = true;
     };
 
     const removeFromWishlist = async (id) => {
       try {
-        let res = await axios.delete("api/delete_product/" + id);
+        let res = await axios.delete("/api/delete-product-in-wish-list/" + id);
         if (res.status == 200) {
           notification("success", "تم ازالة المنتج من المفضلة  ");
           state.inFav = false;

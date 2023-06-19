@@ -67,20 +67,18 @@ export default {
 
     const addToCart = async (id) => {
       state.loading = true;
-      console.log(id);
       try {
-        let res = await axios.post("/api/create-cart", {
-          product_id: id,
-          quantity: 1,
-          status: 1,
-        });
-
+        let res = await axios.post("/api/forward-to-cart/" + id);
+        console.log(res);
         if (res.status == 200) {
-          if (res.data.message != "Created Successfully") {
+          if (res.data.message != "Update") {
             notification("error", "المنتج موجود في سلتك بالفعل");
           } else {
             state.exists = false;
             notification("success", "تم اضافة المنتج للسلة");
+            setTimeout(() => {
+              location.reload();
+            }, 1500);
           }
         } else {
           notification("error", "حدث خطأ ما, حاول مجددا");
@@ -93,10 +91,13 @@ export default {
 
     const removeFromWishlist = async (id) => {
       try {
-        let res = await axios.delete("api/delete_product/" + id);
+        let res = await axios.delete("/api/delete-product-in-wish-list/" + id);
         if (res.status == 200) {
           notification("success", "تم ازالة المنتج من المفضلة  ");
           state.exists = false;
+          setTimeout(() => {
+            location.reload();
+          }, 1500);
         } else {
           notification("error", "حدث خطأ ما, حاول مجددا");
         }
