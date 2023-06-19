@@ -78,16 +78,31 @@ const actions = {
   //Student Signup
 
   async studentSignup(context, data) {
-    let response = await axios.post("/api/register", data);
-    console.log(response);
-    if(response.status == 201) {
-      localStorage.setItem("Std_id", response.data.student.id);
-      localStorage.setItem("Std_name", response.data.student.name);
-      context.commit("setStudent", response.data.student);
+    try {
+      let response = await axios.post("/api/register", data);
       console.log(response);
-      localStorage.setItem("token", response.data.access_token);
-    } else {
-      throw new Error("Could not Complete Student Signup ..");
+      if (response.status == 201) {
+        localStorage.setItem("Std_id", response.data.student.original.user.id);
+        localStorage.setItem(
+          "Std_name",
+          response.data.student.original.user.f_name
+        );
+        context.commit(
+          "setStudent",
+          response.data.student.student.original.user
+        );
+        console.log(response);
+        localStorage.setItem(
+          "token",
+          response.data.student.original.access_token
+        );
+        console.log(localStorage.getItem("token"));
+      } else {
+        throw new Error("Could not Complete Student Signup ..");
+      }
+    } catch (err) {
+      console.log(err);
+      throw new Error(err);
     }
   },
 

@@ -102,7 +102,7 @@ export default {
           notification("error", "حدث خطأ ما, حاول مجددا");
         }
       } catch (err) {
-        notification("error", err);
+        notification("error", err.response.data.message);
       }
     };
 
