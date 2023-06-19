@@ -5,18 +5,32 @@
     <div class="stu-profile">
       <div class="stu-pic">
         <div class="student-name">
-          <h1 class="text-center pt-2 text-light"> {{ state.student.full_name }} </h1>
+          <h1 class="text-center pt-2 text-light">
+            {{ state.student.full_name }}
+          </h1>
         </div>
         <div class="profile-picture">
-          <img :src="'http://127.0.0.1:8000/' + state.student.national_id_card" alt="profile picture" class="img-fluid" />
+          <img
+            :src="'http://127.0.0.1:8000/' + state.student.national_id_card"
+            alt="profile picture"
+            class="img-fluid"
+          />
         </div>
       </div>
       <div class="container">
         <div class="details">
           <!--1-->
           <p>
-            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#user-details"
-              aria-expanded="false" aria-controls="user-details"> تفاصيل المستخدم </button>
+            <button
+              class="btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#user-details"
+              aria-expanded="false"
+              aria-controls="user-details"
+            >
+              تفاصيل المستخدم
+            </button>
           </p>
           <div class="collapse" id="user-details">
             <div class="card card-body">
@@ -25,8 +39,16 @@
           </div>
           <!--2-->
           <p>
-            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#courses-details"
-              aria-expanded="false" aria-controls="courses-details"> تفاصيل المقررات الدراسية </button>
+            <button
+              class="btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#courses-details"
+              aria-expanded="false"
+              aria-controls="courses-details"
+            >
+              تفاصيل المقررات الدراسية
+            </button>
           </p>
           <div class="collapse" id="courses-details">
             <div class="card card-body">
@@ -36,8 +58,16 @@
           <!--3-->
           <!--4-->
           <p>
-            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#reports" aria-expanded="false"
-              aria-controls="reports"> التقارير </button>
+            <button
+              class="btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#reports"
+              aria-expanded="false"
+              aria-controls="reports"
+            >
+              التقارير
+            </button>
           </p>
           <div class="collapse" id="reports">
             <div class="card card-body">
@@ -46,8 +76,16 @@
           </div>
           <!--5-->
           <p>
-            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#log-details"
-              aria-expanded="false" aria-controls="log-details"> نشاط تسجيل الدخول </button>
+            <button
+              class="btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#log-details"
+              aria-expanded="false"
+              aria-controls="log-details"
+            >
+              نشاط تسجيل الدخول
+            </button>
           </p>
           <div class="collapse" id="log-details">
             <div class="card card-body">
@@ -62,8 +100,8 @@
           </div>
         </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
   </div>
   <SpinnerLoading :loading="state.loading" />
   <teleport to="body">
@@ -78,24 +116,29 @@ import Footer from "../../../components/Footer.vue";
 import Header from "../../../components/StudentHeader.vue";
 import AsideBar from "../../../components/WebsiteAsideBar.vue";
 import LastVisitedCourses from "@/components/website/profile/LastVisitedCourses.vue";
-import StudentData from '@/components/website/profile/studentData.vue';
-import CourseData from '@/components/website/profile/courseData.vue';
+import StudentData from "@/components/website/profile/studentData.vue";
+import CourseData from "@/components/website/profile/courseData.vue";
 import Toast from "@/components/Toast.vue";
 import SpinnerLoading from "@/components/SpinnerLoading.vue";
-import { reactive,onMounted,computed } from "vue";
+import { reactive, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import axios from "axios";
-import ReportsData from '@/components/website/profile/reportsData.vue';
-import ActivityData from '@/components/website/profile/activityData.vue';
+import ReportsData from "@/components/website/profile/reportsData.vue";
+import ActivityData from "@/components/website/profile/activityData.vue";
 
 export default {
   components: {
-    Footer,AsideBar
-    ,Header,LastVisitedCourses,
-    StudentData,Toast,SpinnerLoading,CourseData,
+    Footer,
+    AsideBar,
+    Header,
+    LastVisitedCourses,
+    StudentData,
+    Toast,
+    SpinnerLoading,
+    CourseData,
     ReportsData,
-    ActivityData
+    ActivityData,
   },
 
   setup(props) {
@@ -106,13 +149,13 @@ export default {
       theme: "",
       notify: "",
     });
-    const notification = (theme,message) => {
+    const notification = (theme, message) => {
       toast.theme = theme;
       toast.notify = message;
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      },2000);
+      }, 2000);
     };
 
     const state = reactive({
@@ -121,20 +164,16 @@ export default {
     });
 
     onMounted(async () => {
-
-      if(!state.student) {
+      if (!state.student) {
         router.push("/");
       }
       state.loading = true;
       // let res = await axios.get("/api/view-exam/" + props.cid + "/" + props.id);
 
-
-
       state.loading = false;
     });
 
-
-    return { state,toast };
+    return { state, toast };
   },
 };
 </script>

@@ -25,11 +25,13 @@
                 />
               </div>
               <h5 class="admin-name text-muted">
-                {{user.f_name }} 
+                {{ user.f_name }}
               </h5>
             </div>
             <ul class="list-unstyled">
-              <li dir="rtl">اعدادات الحساب</li>
+              <li dir="rtl" @click="$router.push({ name: 'studentSettings' })">
+                اعدادات الحساب
+              </li>
               <li dir="rtl" @click="logout">تسجيل خروج</li>
             </ul>
           </div>
@@ -54,6 +56,7 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import axios from "axios";
 export default {
   methods: {
     adminOptions() {
@@ -63,7 +66,11 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
-    const logout = () => {
+    const logout = async () => {
+      try {
+        let res = await axios.post("/api/logout");
+      } catch (err) {}
+
       store.commit("setStudent", null);
       localStorage.clear();
       router.push("/login");

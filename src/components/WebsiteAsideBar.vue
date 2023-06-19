@@ -10,6 +10,14 @@
         </li>
       </router-link>
 
+      <router-link :to="{ name: 'profile' }">
+        <li class="d-flex justify-content-between align-items-center">
+          <div class="section-name">
+            <i class="fa-solid fa-user"></i> <span>حسابي</span>
+          </div>
+        </li>
+      </router-link>
+
       <router-link :to="{ path: '/Website/chooseBranch' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
@@ -119,7 +127,7 @@
       </router-link>
       <!--End Favorites-->
       <!--Start store-->
-   
+
       <!--End store-->
       <!--Start genuses-->
       <router-link :to="{ name: 'superior' }">
@@ -134,7 +142,7 @@
 
       <!--start my account-->
 
-      <li
+      <!-- <li
         class="d-flex justify-content-between align-items-center"
         data-bs-target="#Accounty"
         aria-expanded="false"
@@ -179,7 +187,7 @@
             </li>
           </a>
         </ul>
-      </div>
+      </div> -->
 
       <!--end my account-->
 

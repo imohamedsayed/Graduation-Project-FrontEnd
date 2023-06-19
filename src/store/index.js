@@ -31,11 +31,9 @@ const mutations = {
     state.student = student;
   },
 
-
   setStudentBrach(state, bID) {
     state.student.branch_id = bID;
   },
-
 
   redirectTo(state, payload) {
     router.push({
@@ -82,40 +80,36 @@ const actions = {
   async studentSignup(context, data) {
     try {
       let response = await axios.post("/api/register", data);
-      console.log(response);
       if (response.status == 201) {
-        localStorage.setItem("Std_id", response.data.student.original.user.id);
-        localStorage.setItem(
-          "Std_name",
-          response.data.student.original.user.f_name
-        );
-        context.commit(
-          "setStudent",
-          response.data.student.student.original.user
-        );
-        console.log(response);
-        localStorage.setItem(
-          "token",
-          response.data.student.original.access_token
-        );
+        const resData = response.data.student.original;
+
+        localStorage.setItem("Std_id", resData.user.id);
+        localStorage.setItem("Std_name", resData.user.f_name);
+        context.commit("setStudent", resData.user);
+        localStorage.setItem("token", resData.access_token);
         console.log(localStorage.getItem("token"));
       } else {
         throw new Error("Could not Complete Student Signup ..");
       }
     } catch (err) {
-      console.log(err);
-      throw new Error(err);
+      const errors = err.response.data;
+      console.log(errors);
+      let err_str = "";
+      for (var prop in errors) {
+        err_str += errors[prop][0] + "\n";
+      }
+      console.log(err_str);
+      throw new Error(err_str);
     }
   },
 
-
   //Student Update
 
-  async studentUpdate(context,data) {
+  async studentUpdate(context, data) {
     // let std_id = getters.student.id;
     let response = await axios.post("/api/students/" + data.id, data.data);
     console.log(response);
-    if(response.status == 200) {
+    if (response.status == 200) {
       // localStorage.setItem("Std_id", response.data.student.id);
       // localStorage.setItem("Std_name", response.data.student.name);
       // context.commit("setStudent", response.data.student);
