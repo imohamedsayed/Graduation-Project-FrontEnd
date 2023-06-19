@@ -13,9 +13,9 @@ const state = {
 // Getters
 
 const getters = {
-  // user: (state) => {
-  //   return state.user;
-  // },
+  student: (state) => {
+    return state.student;
+  },
 };
 
 // Mutations
@@ -31,9 +31,11 @@ const mutations = {
     state.student = student;
   },
 
+
   setStudentBrach(state, bID) {
     state.student.branch_id = bID;
   },
+
 
   redirectTo(state, payload) {
     router.push({
@@ -103,6 +105,24 @@ const actions = {
     } catch (err) {
       console.log(err);
       throw new Error(err);
+    }
+  },
+
+
+  //Student Update
+
+  async studentUpdate(context,data) {
+    // let std_id = getters.student.id;
+    let response = await axios.post("/api/students/" + data.id, data.data);
+    console.log(response);
+    if(response.status == 200) {
+      // localStorage.setItem("Std_id", response.data.student.id);
+      // localStorage.setItem("Std_name", response.data.student.name);
+      // context.commit("setStudent", response.data.student);
+      console.log(response.data);
+      // localStorage.setItem("token", response.data.access_token);
+    } else {
+      throw new Error("Could not Complete Student update ..");
     }
   },
 
