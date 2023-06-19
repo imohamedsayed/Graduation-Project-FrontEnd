@@ -92,7 +92,7 @@ export default {
 
     onMounted(async () => {
       state.loading = true;
-      let res = await axios.get("/api/show-cart");
+      let res = await axios.get("/api/show-wish-list");
 
       if (res.status == 200) {
         state.products = res.data.data;
