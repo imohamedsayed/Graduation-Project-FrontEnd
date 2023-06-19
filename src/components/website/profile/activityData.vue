@@ -1,13 +1,13 @@
 <template>
-  <div class="row mt-5 align-items-center justify-content-center ">
-    <div class="col-lg-4 col-12" v-for="course in state.courses" :key="course.id">
-      <div class="card course-box" style="width: 18rem">
-        <img :src="'http://127.0.0.1:8000/Subject_image/maha_2023-06-16.PNG'" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">{{ course.subject_name }}</h5>
-          <p class="card-text text-muted">أ.{{ course.teacher_name }}</p>
-          <p class="mt-2 mb-0 course-date text-muted">{{ course.start_date }}</p>
+  <div class="">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12" v-for="cours in state.accepted_courses" :key="cours.id">
+        <div class="box d-flex ">
+          <router-link :to="{ name: 'course', params: { id: cours.id } }"> {{ cours.name }} </router-link>
         </div>
+      </div>
+      <div class="col-12" v-if="!state.accepted_courses.length">
+        <div class="box"> لم تقم باى نشاط من قبل    </div>
       </div>
     </div>
   </div>
@@ -36,8 +36,7 @@ export default {
     });
 
     const state = reactive({
-      allcourses: [],
-      courses: [],
+      accepted_courses: [],
       std_id: computed(() => useStore().state.student.id),
 
     });
@@ -55,10 +54,7 @@ export default {
       await axios
         .get("api/all-classroom-basedOnAuthStudent/3")
         .then((res) => {
-          console.log(res.data.data.allStudent);
-          state.allcourses = res.data.data.allStudent;
-          state.courses.push(state.allcourses[0])
-          state.courses.push(state.allcourses[1])
+          state.accepted_courses = res.data.data.allStudent;
         })
         .catch((error) => {
           console.log(error);
@@ -71,27 +67,27 @@ export default {
     return { state,toast };
   },
 };
-
 </script>
 
-<style lang="scss">
-.course-box {
-  min-height: 350px !important;
-  position: relative;
-  padding-bottom: 35px;
+<style lang="scss" scoped>
+.stu-profile {
+  .box {
+    font-size: 20px;
+    margin-bottom: 20px;
+    background-color: var(--gray-blue);
+    padding: 5px 15px;
+    border-radius: 10px;
+    transition: .3s ease-in-out;
 
-  @media (max-width: 993px) {
-    margin: 10px auto;
-  }
+    &:hover {
+      scale: 1.03;
+    }
 
-  .course-date {
-    border-top: 1px solid grey;
-    padding: 5px;
-    text-align: center;
-    word-spacing: 8px;
-    position: absolute;
-    bottom: 0;
-    width: 90%;
+    a {
+      color: var(--darker-blue);
+      transition: .3s ease-in-out;
+      font-weight: bold;
+    }
   }
 }
 </style>
