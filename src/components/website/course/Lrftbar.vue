@@ -22,25 +22,19 @@
           <div class="col-6  info">
             <i class="fa-solid fa-chevron-left"></i> الاسم
           </div>
-          <div class="col-6">  {{state.teacher.name}} </div>
+          <div class="col-6 pt-3" >  {{state.teacher.name}} </div>
         </div>
         <div class="row">
           <div class="col-6  info">
             <i class="fa-solid fa-chevron-left"></i> تاريخ الانضمام
           </div>
-          <div class="col-6"> {{ state.teacher.created_at }} </div>
+          <div class="col-6 pt-3" > {{ state.teacher.created_at }} </div>
         </div>
         <div class="row">
           <div class="col-6  info">
             <i class="fa-solid fa-chevron-left"></i> عدد الدورات
           </div>
-          <div class="col-6"> {{ state.teacher.dfd }} </div>
-        </div>
-        <div class="row">
-          <div class="col-6  info">
-            <i class="fa-solid fa-chevron-left"></i> اجمالى الطلاب
-          </div>
-          <div class="col-6"> {{ state.teacher.dfd }} </div>
+          <div class="col-6 pt-3" > {{ state.teacher.classroom_count }} </div>
         </div>
       </div>
     </div>
@@ -65,7 +59,7 @@ export default {
     const cours_id = props.id;
     onMounted(async () => {
       await axios
-        .get("api/notes/" + cours_id)
+        .get("api/lastFiveNotes/" + cours_id)
         .then((res) => {
           if(res.data.data) {
             state.notification = res.data.data

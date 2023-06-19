@@ -7,7 +7,9 @@
         <div class="row">
           <div class="col-lg-8  courses">
             <div class="row">
-              <div class="col-xl-4 col-lg-5 col-md-5 cours" v-for="cours in state.accepted_courses" :key="cours.id">
+              <div class="col-xl-4 col-lg-5 col-md-5 cours" 
+              v-for="cours in state.accepted_courses" 
+              :key="cours.id">
                 <div class="img">
                   <img src="../../../../../public/images/intro_background.png" alt="">
                 </div>

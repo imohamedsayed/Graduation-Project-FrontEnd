@@ -37,6 +37,7 @@
         </div>
       </div>
     </div>
+    
     <div class="cart">
       <div class="content2">
         <div class="container">
@@ -54,11 +55,12 @@
                           name=""
                           id=""
                         />
-                        <span class="text-danger fw-bold" v-if="v$.name.$error">
-                          {{ v$.name.$errors[0].$message }}
+                        <span class="text-danger fw-bold" v-if="v$.FirstName.$error">
+                          {{ v$.FirstName.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label> الاسم الثاني</label>
@@ -68,11 +70,12 @@
                           name=""
                           id=""
                         />
-                        <span class="text-danger fw-bold" v-if="v$.name.$error">
-                          {{ v$.name.$errors[0].$message }}
+                        <span class="text-danger fw-bold" v-if="v$.SecondName.$error">
+                          {{ v$.SecondName.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label> الاسم الثالت</label>
@@ -82,57 +85,32 @@
                           name=""
                           id=""
                         />
-                        <span class="text-danger fw-bold" v-if="v$.name.$error">
-                          {{ v$.name.$errors[0].$message }}
+                        <span class="text-danger fw-bold" v-if="v$.lastName.$error">
+                          {{ v$.lastName.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label> الايميل</label>
                         <input type="email" v-model="state.email" />
-                        <span class="text-danger fw-bold" v-if="v$.name.$error">
-                          {{ v$.name.$errors[0].$message }}
+                        <span class="text-danger fw-bold" v-if="v$.email.$error">
+                          {{ v$.email.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label> رقم التلفون</label>
-                        <input type="number" v-model="state.phone" />
-                        <span class="text-danger fw-bold" v-if="v$.name.$error">
-                          {{ v$.name.$errors[0].$message }}
+                        <input type="text" v-model="state.phone" />
+                        <span class="text-danger fw-bold" v-if="v$.phone.$error">
+                          {{ v$.phone.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                      <div class="ui mt-30 focus box search">
-                        <label> كلمه السر</label>
-                        <input type="password" v-model="state.pass" />
-                        <span class="text-danger fw-bold" v-if="v$.name.$error">
-                          {{ v$.name.$errors[0].$message }}
-                        </span>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                      <div class="ui mt-30 focus box search">
-                        <label> تاكيد كلمه السر</label>
-                        <input
-                          type="password"
-                          v-model="state.pass2"
-                          @input="
-                            (e) => {
-                              e.target.value != state.pass
-                                ? (state.equalpass = true)
-                                : (state.equalpass = false);
-                            }
-                          "
-                        />
-                        <span class="text-danger fw-bold" v-if="v$.name.$error">
-                          {{ v$.name.$errors[0].$message }}
-                        </span>
-                      </div>
-                    </div>
+
                     <div class="col-lg-6 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label>الصف الدراسي</label>
@@ -146,12 +124,13 @@
                         </select>
                         <span
                           class="text-danger fw-bold"
-                          v-if="v$.course.$error"
+                          v-if="v$.Class.$error"
                         >
-                          {{ v$.course.$errors[0].$message }}
+                          {{ v$.Class.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label>الشعبه</label>
@@ -167,12 +146,13 @@
                         </select>
                         <span
                           class="text-danger fw-bold"
-                          v-if="v$.course.$error"
+                          v-if="v$.section.$error"
                         >
-                          {{ v$.course.$errors[0].$message }}
+                          {{ v$.section.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-6 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label>المحافظه</label>
@@ -190,12 +170,13 @@
                         </select>
                         <span
                           class="text-danger fw-bold"
-                          v-if="v$.course.$error"
+                          v-if="v$.Governorate.$error"
                         >
-                          {{ v$.course.$errors[0].$message }}
+                          {{ v$.Governorate.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-12 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label>رقم ولي الامر</label>
@@ -211,11 +192,12 @@
                             }
                           "
                         />
-                        <span class="text-danger fw-bold" v-if="v$.tech.$error">
-                          {{ v$.tech.$errors[0].$message }}
+                        <span class="text-danger fw-bold" v-if="v$.DadNumber.$error">
+                          {{ v$.DadNumber.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-4 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label>تاريخ الميلاد : السنه</label>
@@ -226,12 +208,13 @@
                         />
                         <span
                           class="text-danger fw-bold"
-                          v-if="v$.price.$error"
+                          v-if="v$.year.$error"
                         >
-                          {{ v$.price.$errors[0].$message }}
+                          {{ v$.year.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-4 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label style="display: hidden">الشهر</label>
@@ -247,11 +230,12 @@
                             {{ number }}
                           </option>
                         </select>
-                        <span class="text-danger fw-bold" v-if="v$.max.$error">
-                          {{ v$.max.$errors[0].$message }}
+                        <span class="text-danger fw-bold" v-if="v$.month.$error">
+                          {{ v$.month.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-4 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label>اليوم</label>
@@ -265,11 +249,12 @@
                             {{ number }}
                           </option>
                         </select>
-                        <span class="text-danger fw-bold" v-if="v$.exam.$error">
-                          {{ v$.exam.$errors[0].$message }}
+                        <span class="text-danger fw-bold" v-if="v$.day.$error">
+                          {{ v$.day.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                     <div class="col-lg-12 col-md-6">
                       <div class="ui mt-30 focus box search">
                         <label>
@@ -287,18 +272,20 @@
                         />
                         <span
                           class="text-danger fw-bold"
-                          v-if="v$.min_selected.$error"
+                          v-if="v$.avatar.$error"
                         >
-                          {{ v$.min_selected.$errors[0].$message }}
+                          {{ v$.avatar.$errors[0].$message }}
                         </span>
                       </div>
                     </div>
+
                   </div>
                 </div>
                 <button
                   type="submit"
                   data-direction="finish"
                   class="btn btn-default steps_btn"
+                  @click="UpdateStudent()"
                 >
                   حفظ التعديل
                 </button>
@@ -310,6 +297,12 @@
     </div>
     <Footer />
   </div>
+    <SpinnerLoading :loading="state.loading" />
+    <teleport to="body">
+      <Toast :theme="toast.theme" :showNotification="toast.showNotification">
+        <p>{{ toast.notify }}</p>
+      </Toast>
+    </teleport>
 </template>
 
 <script>
@@ -368,6 +361,31 @@ export default {
       if (state.student == null) {
         router.push("/login");
       }
+      else {
+
+        // git student data
+
+        state.FirstName = state.student.f_name;
+        state.SecondName = state.student.m_name;
+        state.lastName = state.student.l_name;
+        state.email = state.student.email;
+        state.phone = state.student.phone_name;
+        state.Class = state.student.acedemic_year[0];
+        state.section = state.student.division[0];
+        state.Governorate = state.student.governorate_id[0];
+        state.DadNumber = state.student.guardian_number;
+
+
+
+        await axios
+          .get("/api/govenorate")
+          .then((res) => {
+            state.govenorate = res.data.data;
+          })
+          .catch((error) => {
+            notification("error",err.response.data.error);
+          });
+      }
     });
 
     //notification
@@ -394,67 +412,79 @@ export default {
     // validations
 
     const rules = computed(() => {
-      return {
-        name: { required },
-        course: { required },
-        tech: { required },
-        max: { required },
-        price: { required },
-        exam: { required },
-        start: { required },
-        end: { required },
-        min_selected: { required },
-        min_grade: { required },
+        return {
+        FirstName: { required },
+        SecondName: { required },
+        lastName: { required },
+        email: { email,required },
+        phone: {
+          required,
+          minLength: minLength(11),
+          maxLength: maxLength(11),
+
+        },
+        Class: { required },
+        section: { required },
+        Governorate: { required },
+        DadNumber: {
+          required,
+          minLength: minLength(11),
+          maxLength: maxLength(11),
+        },
+        year: {
+          required,
+        },
+        month: {
+          required,
+        },
+        day: { required },
+        avatar: { required },
       };
     });
 
     const v$ = useVuelidate(rules, state);
 
-    // add new class room
+    // Update Student
 
-    const addClassRoom = async () => {
+    const UpdateStudent = async () => {
+      
       v$.value.$validate();
-      if (!v$.value.$error) {
-        state.end = state.end.replace("T", " ");
-
-        state.start = state.start.replace("T", " ");
-
-        if (state.end.length != 19) {
-          state.end += ":00";
-        }
-        if (state.start.length != 19) {
-          state.start += ":00";
-        }
-
-        let data = {
-          name: state.name,
-          price: state.price,
-          prerequisite_exam: state.exam,
-          status: String(Number(state.status)),
-          registration_deadline: state.end,
-          start_date: state.start,
-          max_capacity: state.max,
-          branch_id: state.user.exter_info.branch_id,
-          subject_id: state.course,
-          teacher_id: state.tech,
-          min_grade: state.min_grade,
-          min_selected: state.min_selected,
-        };
+      if(!v$.value.$error) {
+        state.loading = true;
+        let data = new FormData();
+        data.append("f_name",state.FirstName);
+        data.append("m_name",state.SecondName);
+        data.append("l_name",state.lastName);
+        data.append("email",state.email);
+        data.append("phone_number",state.phone);
+        data.append("guardian_number",state.DadNumber);
+        data.append("year",state.year);
+        data.append("month",state.month);
+        data.append("day",state.day);
+        data.append("acedemic_year",state.Class);
+        data.append("division",state.section);
+        data.append("governorate_id",state.Governorate);
+        data.append("national_id_card",state.avatar);
         console.log(data);
+        try {
+          await await store.dispatch("studentUpdate",{data:data,id:state.student.id});
+          state.loading = false;
+          router.push("/profile");
+          notification("success","تم تعديل بياناتك بنجاح");
 
-        // Start Sending Request
-
-        let res = await axios.post("/api_dashboard/classRooms", data);
-
-        if (res.status == 200) {
-          state.save = true;
+        } catch(err) {
+          // notification("error",err.response.data.error);
+          console.log(err);
+          state.loading = false;
         }
-      } else {
-        notification("error", "Missing Data !");
+      }
+      else {
+        notification("error","User Data Is Not Valid .. ");
+        state.loading = false;
       }
     };
 
-    return { state, v$, addClassRoom, toast };
+    return { state, v$, UpdateStudent, toast };
   },
 };
 </script>
