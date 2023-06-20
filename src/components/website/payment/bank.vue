@@ -91,7 +91,7 @@
               class="prompt srch_explore"
               type="text"
               name="card[cvc]"
-              maxlength="3"
+              maxlength="4"
               placeholder="CVC"
               v-model="state.cvc"
             />
@@ -154,8 +154,8 @@ export default {
     const rules = computed(() => {
       return {
         name: { required },
-        cardNumber: { required, integer, minLength: minLength(16) },
-        cvc: { required, minLength: minLength(3) },
+        cardNumber: { required, integer, minLength: minLength(11) },
+        cvc: { required, minLength: minLength(4) },
         month: { required, integer },
         endYear: { required, integer },
       };
@@ -168,15 +168,15 @@ export default {
       if (!v$.value.$error) {
         state.loading = true;
         let data = {
-          name: state.name,
-          card: state.cardNumber,
-          month: state.month,
-          year: state.endYear,
+          name_on_card: state.name,
+          number_on_card: state.cardNumber,
+          expire_month: state.month,
+          expire_year: state.endYear,
           cvc: state.cvc,
         };
         try {
-          // let res = await axios.post("", data);
-          if (true) {
+          let res = await axios.post("/api/orders", data);
+          if (res.status == 200) {
             notification("success", "تم تنفيذ الطلب ");
             state.done = true;
           } else {
