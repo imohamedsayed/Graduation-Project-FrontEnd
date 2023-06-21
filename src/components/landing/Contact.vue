@@ -137,7 +137,7 @@ export default {
   float: left;
   display: block;
   border-radius: 30px 0px 0px 30px;
-  background: linear-gradient(144deg, #6061d7 0%, #3a3276d8 49%);
+  background: linear-gradient(144deg,var(--darker-blue), var(--blue-color));
   color: #fff;
 }
 .contact .info-title {
@@ -163,7 +163,7 @@ export default {
   color: #fff;
 }
 .contact .info-wrap .info-details li i {
-  background: #6061d7;
+  background: var(--blue-color);
   padding: 12px;
   border-radius: 50%;
   margin-left: 5px;
@@ -188,7 +188,7 @@ export default {
   margin: 5px auto 0px;
 }
 .contact .info-wrap .social-icons li i {
-  background: #6061d7;
+  background: var(--blue-color);
   color: #fff;
   padding: 15px;
   font-size: 20px;
@@ -199,7 +199,7 @@ export default {
 }
 .contact .info-wrap .social-icons li i:hover {
   background: #fff;
-  color: #3a3276d8;
+  color: var(--blue-color) !important;
 }
 .contact .box-wrapper .info-wrap li span iframe {
   display: block;
@@ -268,7 +268,7 @@ export default {
   transition: 0.5s;
 }
 .submit-button:hover {
-  background: #9296f0;
+  background: var(--blue-color);
 }
 
 @media (max-width: 420px) {
