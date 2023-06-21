@@ -404,7 +404,7 @@ export default {
 
 <style lang="scss">
 h4 {
-  color: white;
+  color: #333;
 }
 
 h4 span {
@@ -417,7 +417,7 @@ h4 span {
   width: 100%;
   top: 0;
   left: 0;
-  background: url("../../public/images/landing/1.png");
+  background: url("../../public/images/about/wave-haikei.png");
   background-size: cover;
 }
 
@@ -433,11 +433,9 @@ h4 span {
   transform: translate(50%);
   width: 900px;
   padding: 10px 10px;
-  background: transparent;
+  background: #ffffff80;
   border-radius: 15px;
-  border-width: 5px;
-  border-style: solid;
-  border-image: linear-gradient(to bottom, #aeabc7, white, #aeabc7) 1;
+
 }
 
 @media (max-width: 375px) {
@@ -501,14 +499,13 @@ h4 span {
   margin: 5px 0;
   height: 35px;
   border: none;
-  border-radius: 8px;
   padding-right: 15px;
   font-weight: 700;
   font-size: 1.3rem;
   transition: all 0.3s ease;
   border: 2px solid transparent;
   background: #eee;
-  color: var(--landing-blue);
+  color: #333;
 }
 
 .signup .signup-form form input[type="text"],
@@ -526,7 +523,7 @@ h4 span {
 .signup .signup-form form input[type="phone"],
 .signup .signup-form form input[type="password"],
 .signup .signup-form form input[type="date"]::placeholder {
-  color: var(--landing-blue);
+  color: #333;
 }
 
 .signup .signup-form form input[type="checkbox"] {
@@ -535,7 +532,7 @@ h4 span {
 }
 
 .signup .signup-form form label {
-  color: #eee;
+  color: #333;
   font-size: 1.3rem;
 }
 
@@ -583,18 +580,15 @@ h4 span {
   border: none;
   transform: translate(50%);
   border-radius: 15px;
-  background-image: linear-gradient(to right, #6061d7, #9296f0);
+  background: var(--darker-blue);
   color: #eee;
 }
 
-.signup .signup-form form .button:hover {
-  background: var(--blue-color);
-}
 
 .signup .signup-form small {
   text-align: center !important;
   font-weight: bold;
-  color: #eee;
+  color: #333;
 }
 
 .signup .signup-form .text small {

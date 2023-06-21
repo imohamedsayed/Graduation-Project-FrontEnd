@@ -169,7 +169,7 @@ export default {
   width: 100%;
   top: 0;
   left: 0;
-  background: url("../../public/images/landing/1.png");
+  background: url("../../public/images/about/wave-haikei.png");
   background-size: cover;
 
   .img-logo {
