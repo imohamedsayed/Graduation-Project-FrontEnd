@@ -6,7 +6,14 @@
     </td>
     <td style="width: 20%">{{ question.question }}</td>
     <td class="open">{{ Math.round(question.point) }}</td>
-    <td class="open">{{ question.image }}</td>
+    <td class="open">
+      <img
+        v-if="question.image"
+        :src="'http://127.0.0.1:8000/' + question.image"
+        style="width: 120px; height: 80px"
+      />
+      <p v-else>لا صورة</p>
+    </td>
     <td class="open">
       {{ question.explanation ? question.explanation : "لا يوجد" }}
     </td>

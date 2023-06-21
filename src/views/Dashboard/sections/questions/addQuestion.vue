@@ -180,7 +180,7 @@ export default {
       user: computed(() => store.state.user),
       question: "",
       point: "",
-      image: "",
+      image: null,
       explanation: "",
       type: "",
       save: false,

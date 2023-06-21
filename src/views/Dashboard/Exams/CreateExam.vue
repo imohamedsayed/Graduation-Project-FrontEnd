@@ -260,7 +260,7 @@ export default {
           start_at: state.start_at,
           end_at: state.end_at,
           status: state.status,
-          type: state.type,
+          type: String(state.type),
           class_room_id: props.id,
         };
         console.log(data);
@@ -283,7 +283,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" >
+<style lang="scss">
 .sa4d25 {
   direction: rtl;
   padding: 30px 20px;

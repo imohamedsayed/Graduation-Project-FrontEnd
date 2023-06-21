@@ -32,6 +32,7 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background: var(--darker-blue);
 }
+
 :root {
   --text-black: #212529;
   --blue-color: #312776d2;
@@ -44,11 +45,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 #app {
-  //font-family: Avenir, Helvetica, Arial, sans-serif;
-  //-webkit-font-smoothing: antialiased;
-  //-moz-osx-font-smoothing: grayscale;
-  //text-align: center;
-  //color: #2c3e50;
   main {
     direction: rtl;
 
