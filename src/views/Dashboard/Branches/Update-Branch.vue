@@ -106,23 +106,27 @@
                                   </span>
                                 </div>
                               </div>
-                                <div class="col-lg-12 col-md-12">
-                                  <div class="ui search focus mt-30 lbel25 map">
-                                    <label
-                                      ><i class="fas fa-pencil-alt"></i
-                                      >الخريطه</label
-                                    >
-                                    
-                                    <input type="text" v-model="state.map" @change="onInputChange" />
-                                    <br><br>
-                                    <span
-                                      class="text-danger fw-bold"
-                                      v-if="v$.map.$error"
-                                    >
-                                      {{ v$.map.$errors[0].$message }}
-                                    </span>
-                                  </div>
+                              <div class="col-lg-12 col-md-12">
+                                <div class="ui search focus mt-30 lbel25 map">
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i
+                                    >الخريطه</label
+                                  >
+
+                                  <input
+                                    type="text"
+                                    v-model="state.map"
+                                    @change="onInputChange"
+                                  />
+                                  <br /><br />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.map.$error"
+                                  >
+                                    {{ v$.map.$errors[0].$message }}
+                                  </span>
                                 </div>
+                              </div>
                             </div>
                           </div>
                           <button
@@ -196,7 +200,6 @@ export default {
           router.push("/dashboard");
         }
       }
-      
 
       let Branchs = await axios
         .get("api_dashboard/branches/" + props.id)
@@ -268,17 +271,15 @@ export default {
       }
     };
 
-
     const onInputChange = (e) => {
-      let map = document.querySelector(".map")
-      map.innerHTML += state.map
-      let frame = document.querySelector('iframe');
-      frame.width= `100%`
-      console.log(frame)
-    }
+      let map = document.querySelector(".map");
+      map.innerHTML += state.map;
+      let frame = document.querySelector("iframe");
+      frame.width = `100%`;
+      console.log(frame);
+    };
 
-
-    return { state, v$, toast, update_branch ,onInputChange };
+    return { state, v$, toast, update_branch, onInputChange };
   },
 };
 </script>
@@ -309,7 +310,7 @@ export default {
 }
 
 .course_tabs_1 {
-  background: #fff;
+  background: #f1f3f8;
   margin-top: 30px;
   padding: 0 30px;
   padding-bottom: 30px;

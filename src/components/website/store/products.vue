@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss">
 .box-product {
-  background-color: #fff;
+  background-color: #F1F3F8;
   width: 100%;
   float: left;
   padding: 10px;

@@ -21,7 +21,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12 question">
                     <p> {{ quest.content }}</p>
                   </div>
                   <div class="col-1"></div>
@@ -116,5 +116,13 @@ li{
 }
   img{
             border-radius: 50%;
+  }
+  h4{
+    color: var(--darker-blue);
+  }
+  .question p{
+    margin-right: 65px;
+    font-size: 22px;
+    color: var(--darker-blue);
   }
 </style>

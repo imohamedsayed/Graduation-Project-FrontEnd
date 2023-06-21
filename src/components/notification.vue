@@ -29,7 +29,7 @@ export default {
 <style lang="scss">
 .channel_my {
   padding: 15px !important;
-  border-bottom: 1px solid #efefef !important ;
+  border-bottom: 1px solid var(--darker-blue) !important ;
   min-width: 100%;
   max-width: 100%;
   white-space: normal;

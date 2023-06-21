@@ -70,7 +70,7 @@ export default {
 <style lang="scss">
 .teacher {
   h3 {
-    color: var(--darker-blue);
+    color: black;
   }
 }
 </style>

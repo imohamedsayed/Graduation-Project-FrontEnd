@@ -135,4 +135,8 @@ iframe {
   margin-right: 5px;
   width: 100000000000px;
 }
+button.btn{
+  background: #EBF0F6;
+  color: black;
+}
 </style>

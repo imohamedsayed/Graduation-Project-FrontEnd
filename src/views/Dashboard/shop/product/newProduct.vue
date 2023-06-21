@@ -12,16 +12,26 @@
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="state.save" class="alert alert-success" role="alert"> تم اضافه منتج جديد. <span style="
-                       {
-                        font-size: 18px;
-                        cursor: pointer;
-                        display: inline-block;
-                        transition: 0.5s a;
-                      }
-                    " @click="
-                      $router.push({ name: 'showProducts', params: { category_id: category_id } })
-                      "> عرض جميع المنتجات</span>
+              <div v-if="state.save" class="alert alert-success" role="alert">
+                تم اضافه منتج جديد.
+                <span
+                  style="
+                     {
+                      font-size: 18px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="
+                    $router.push({
+                      name: 'showProducts',
+                      params: { category_id: category_id },
+                    })
+                  "
+                >
+                  عرض جميع المنتجات</span
+                >
               </div>
             </div>
           </div>
@@ -30,81 +40,155 @@
               <div class="course_tabs_1">
                 <div id="add-course-tab" class="step-app">
                   <div class="step-content">
-                    <div class="step-tab-panel step-tab-info active create-course-tab" id="tab_step1">
+                    <div
+                      class="step-tab-panel step-tab-info active create-course-tab"
+                      id="tab_step1"
+                    >
                       <div class="tab-from-content">
                         <div class="course__form">
                           <div class="general_info10">
                             <div class="row">
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>الاسم </label>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>الاسم
+                                  </label>
                                   <input type="text" v-model="state.name" />
                                 </div>
-                                <span class="text-danger fw-bold" v-if="v$.name.$error"> {{ v$.name.$errors[0].$message }}
+                                <span
+                                  class="text-danger fw-bold"
+                                  v-if="v$.name.$error"
+                                >
+                                  {{ v$.name.$errors[0].$message }}
                                 </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui mt-30 focus lbel25 search">
                                   <label>
-                                    <i class="fas fa-pencil-alt"></i>اسم الدورة </label>
+                                    <i class="fas fa-pencil-alt"></i>اسم الدورة
+                                  </label>
                                   <select v-model="state.course" class="">
-                                    <option v-for="sub in state.subjects" :key="sub.id" :value="sub.id"> {{ sub.name }}
+                                    <option
+                                      v-for="sub in state.subjects"
+                                      :key="sub.id"
+                                      :value="sub.id"
+                                    >
+                                      {{ sub.name }}
                                     </option>
                                   </select>
-                                  <span class="text-danger fw-bold" v-if="v$.course.$error"> {{
-                                    v$.course.$errors[0].$message }} </span>
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.course.$error"
+                                  >
+                                    {{ v$.course.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui mt-30 focus lbel25 search">
                                   <label>
-                                    <i class="fa-solid fa-chalkboard-user"></i> اسم المدرس</label>
+                                    <i class="fa-solid fa-chalkboard-user"></i>
+                                    اسم المدرس</label
+                                  >
                                   <select v-model="state.tech" class="">
-                                    <option v-for="teacher in state.teachers" :key="teacher.id" :value="teacher.id"> {{
-                                      teacher.name }} - {{ teacher.id }} </option>
+                                    <option
+                                      v-for="teacher in state.teachers"
+                                      :key="teacher.id"
+                                      :value="teacher.id"
+                                    >
+                                      {{ teacher.name }} - {{ teacher.id }}
+                                    </option>
                                   </select>
-                                  <span class="text-danger fw-bold" v-if="v$.tech.$error"> {{ v$.tech.$errors[0].$message
-                                  }} </span>
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.tech.$error"
+                                  >
+                                    {{ v$.tech.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>السعر</label>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i
+                                    >السعر</label
+                                  >
                                   <input type="number" v-model="state.price" />
                                 </div>
-                                <span class="text-danger fw-bold" v-if="v$.price.$error"> {{ v$.price.$errors[0].$message
-                                }} </span>
+                                <span
+                                  class="text-danger fw-bold"
+                                  v-if="v$.price.$error"
+                                >
+                                  {{ v$.price.$errors[0].$message }}
+                                </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i>الكميه</label>
-                                  <input type="number" v-model="state.quentity" />
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i
+                                    >الكميه</label
+                                  >
+                                  <input
+                                    type="number"
+                                    v-model="state.quentity"
+                                  />
                                 </div>
-                                <span class="text-danger fw-bold" v-if="v$.quentity.$error"> {{
-                                  v$.quentity.$errors[0].$message }} </span>
+                                <span
+                                  class="text-danger fw-bold"
+                                  v-if="v$.quentity.$error"
+                                >
+                                  {{ v$.quentity.$errors[0].$message }}
+                                </span>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i> الوصف</label>
-                                  <input type="text" v-model="state.explanation" />
-                                  <span class="text-danger fw-bold" v-if="v$.explanation.$error"> {{
-                                    v$.explanation.$errors[0].$message }} </span>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i>
+                                    الوصف</label
+                                  >
+                                  <input
+                                    type="text"
+                                    v-model="state.explanation"
+                                  />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.explanation.$error"
+                                  >
+                                    {{ v$.explanation.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label><i class="fas fa-pencil-alt"></i> اضافه الصوره</label>
-                                  <input type="file" @change="(e) => {
-                                    state.image = e.target.files[0];
-                                  }
-                                    " />
-                                  <span class="text-danger fw-bold" v-if="v$.image.$error"> {{
-                                    v$.image.$errors[0].$message }} </span>
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i> اضافه
+                                    الصوره</label
+                                  >
+                                  <input
+                                    type="file"
+                                    @change="
+                                      (e) => {
+                                        state.image = e.target.files[0];
+                                      }
+                                    "
+                                  />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.image.$error"
+                                  >
+                                    {{ v$.image.$errors[0].$message }}
+                                  </span>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <button data-direction="finish" @click="Save" class="btn btn-default steps_btn"> حفظ </button>
+                          <button
+                            data-direction="finish"
+                            @click="Save"
+                            class="btn btn-default steps_btn"
+                          >
+                            حفظ
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -133,17 +217,17 @@ import { mapActions } from "vuex";
 import axios from "axios";
 
 import Toast from "@/components/Toast.vue";
-import { reactive,onMounted,computed } from "vue";
+import { reactive, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import { useVuelidate } from "@vuelidate/core";
-import { required,decimal } from "@vuelidate/validators";
+import { required, decimal } from "@vuelidate/validators";
 
 export default {
   props: {
     category_id: String,
   },
   name: "addProduct",
-  components: { Footer,AsideBar,Header,Toast },
+  components: { Footer, AsideBar, Header, Toast },
 
   setup(props) {
     const state = reactive({
@@ -167,13 +251,13 @@ export default {
       notify: "",
     });
 
-    const notification = (theme,message) => {
+    const notification = (theme, message) => {
       toast.theme = theme;
       toast.notify = message;
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      },2000);
+      }, 2000);
     };
 
     // Store and router
@@ -189,15 +273,15 @@ export default {
         course: { required },
         tech: { required },
         image: { required },
-        quentity: { required,decimal },
-        price: { required,decimal },
+        quentity: { required, decimal },
+        price: { required, decimal },
       };
     });
 
-    const v$ = useVuelidate(rules,state);
+    const v$ = useVuelidate(rules, state);
 
     onMounted(async () => {
-      if(state.user == null || state.user.role_id != 3) {
+      if (state.user == null || state.user.role_id != 3) {
         router.push("/dashboard/login");
       }
 
@@ -205,16 +289,19 @@ export default {
 
       let res = await axios.get("/api_dashboard/teachers");
 
-      if(res.status == 200) {
+      if (res.status == 200) {
         state.teachers = res.data.data;
       } else {
       }
 
       // get our subjects
 
-      let subject_res = await axios.get("/api_dashboard/subjects_get_by_branch_id/" + state.user.branch_id_assistant);
+      let subject_res = await axios.get(
+        "/api_dashboard/subjects_get_by_branch_id/" +
+          state.user.branch_id_assistant
+      );
 
-      if(subject_res.status == 200) {
+      if (subject_res.status == 200) {
         state.subjects = subject_res.data.data;
       } else {
       }
@@ -222,12 +309,12 @@ export default {
 
     const category_id = props.category_id;
 
-    // add new 
+    // add new
 
     const Save = async () => {
       v$.value.$validate();
 
-      if(!v$.value.$error) {
+      if (!v$.value.$error) {
         let data = {
           name: state.name,
           subject_id: state.course,
@@ -236,29 +323,29 @@ export default {
           quantity: state.quentity,
           image: state.image,
           description: state.explanation,
-          category_id: category_id
+          category_id: category_id,
         };
         try {
-          let res = await axios.post("api_dashboard/products",data,{
+          let res = await axios.post("api_dashboard/products", data, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
           });
-          if(res.status == 200) {
+          if (res.status == 200) {
             state.save = true;
           } else {
-            notification("error","حدث خطأ ما, عاود المحاولة لاحقا");
+            notification("error", "حدث خطأ ما, عاود المحاولة لاحقا");
           }
-        } catch(err) {
+        } catch (err) {
           console.log(err.response.data.errors);
-          notification("error",err.response.data.message);
+          notification("error", err.response.data.message);
         }
       } else {
-        notification("error","البيانات المدخلة ليست مكتملة");
+        notification("error", "البيانات المدخلة ليست مكتملة");
       }
     };
 
-    return { state,v$,Save,toast ,category_id };
+    return { state, v$, Save, toast, category_id };
   },
   methods: {
     ...mapActions(["redirectTo"]),
@@ -292,7 +379,7 @@ export default {
 }
 
 .course_tabs_1 {
-  background: #fff;
+  background: #f1f3f8;
   margin-top: 30px;
   padding: 0 30px;
   padding-bottom: 30px;
@@ -367,4 +454,3 @@ export default {
   background: var(--darker-blue) !important;
 }
 </style>
-  

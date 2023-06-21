@@ -106,49 +106,52 @@
                                   </span>
                                 </div>
                               </div>
-                                <div class="col-lg-6 col-md-12">
-                                  <div class="mt-30 box">
-                                    <label>
-                                      <i class="fas fa-list"></i> المدير
-                                    </label>
-                                    <select v-model="state.maneger" class="">
-                                      <option selected disabled value="">
-                                        اختيار من القائمة
-                                      </option>
-                                      <option
-                                        v-for="maneger in state.manegers_list"
-                                        :key="maneger.id"
-                                        :value="maneger.id"
-                                      >
-                                        {{ maneger.name }}
-                                      </option>
-                                    </select>
-                                    <span
-                                      class="text-danger fw-bold"
-                                      v-if="v$.maneger.$error"
-                                    >
-                                      {{ v$.maneger.$errors[0].$message }}
-                                    </span>
-                                  </div>
-                                </div>
                               <div class="col-lg-6 col-md-12">
-                                    <div class="ui search focus mt-30 lbel25 map">
-                                      <label
-                                        ><i class="fas fa-pencil-alt"></i
-                                        >الخريطه</label
-                                      >
-                                    
-                                      <input type="text" v-model="state.map" @change="onInputChange" />
-                                      <br><br>
-                                      <span
-                                        class="text-danger fw-bold"
-                                        v-if="v$.map.$error"
-                                      >
-                                        {{ v$.map.$errors[0].$message }}
-                                      </span>
-                                    </div>
-                                  </div>
+                                <div class="mt-30 box">
+                                  <label>
+                                    <i class="fas fa-list"></i> المدير
+                                  </label>
+                                  <select v-model="state.maneger" class="">
+                                    <option selected disabled value="">
+                                      اختيار من القائمة
+                                    </option>
+                                    <option
+                                      v-for="maneger in state.manegers_list"
+                                      :key="maneger.id"
+                                      :value="maneger.id"
+                                    >
+                                      {{ maneger.name }}
+                                    </option>
+                                  </select>
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.maneger.$error"
+                                  >
+                                    {{ v$.maneger.$errors[0].$message }}
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="col-lg-6 col-md-12">
+                                <div class="ui search focus mt-30 lbel25 map">
+                                  <label
+                                    ><i class="fas fa-pencil-alt"></i
+                                    >الخريطه</label
+                                  >
 
+                                  <input
+                                    type="text"
+                                    v-model="state.map"
+                                    @change="onInputChange"
+                                  />
+                                  <br /><br />
+                                  <span
+                                    class="text-danger fw-bold"
+                                    v-if="v$.map.$error"
+                                  >
+                                    {{ v$.map.$errors[0].$message }}
+                                  </span>
+                                </div>
+                              </div>
                             </div>
                           </div>
                           <button
@@ -291,14 +294,14 @@ export default {
       }
     };
     const onInputChange = (e) => {
-      let map = document.querySelector(".map")
+      let map = document.querySelector(".map");
 
-      map.innerHTML += state.map
-      let frame = document.querySelector('iframe');
-      frame.width = `100%`
-      console.log(frame)
-    }
-    return { state, v$, toast, add_Branch,onInputChange };
+      map.innerHTML += state.map;
+      let frame = document.querySelector("iframe");
+      frame.width = `100%`;
+      console.log(frame);
+    };
+    return { state, v$, toast, add_Branch, onInputChange };
   },
 };
 </script>
@@ -329,7 +332,7 @@ export default {
 }
 
 .course_tabs_1 {
-  background: #fff;
+  background: #f1f3f8;
   margin-top: 30px;
   padding: 0 30px;
   padding-bottom: 30px;
@@ -402,4 +405,3 @@ export default {
   background: var(--darker-blue) !important;
 }
 </style>
-
