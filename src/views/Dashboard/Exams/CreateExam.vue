@@ -260,7 +260,7 @@ export default {
           start_at: state.start_at,
           end_at: state.end_at,
           status: state.status,
-          type: state.type,
+          type: String(state.type),
           class_room_id: props.id,
         };
         console.log(data);

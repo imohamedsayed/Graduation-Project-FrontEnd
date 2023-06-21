@@ -204,7 +204,10 @@
                   السؤال
                 </p>
               </form>
-              <div class="submited text-center">
+              <div
+                class="submited text-center"
+                v-if="state.alreadySubmitBefore"
+              >
                 <img
                   src="../../../../public/images/exam.jpg"
                   class="img-fluid"
@@ -213,9 +216,6 @@
                 />
                 <h1 class="alert alert-info">
                   لقد تم ارسال اجاباتك
-                  <span class="spinner-grow spinner-grow-lg me-4 ms-2"></span>
-                  <span class="spinner-grow spinner-grow-lg ms-2"></span>
-                  <span class="spinner-grow spinner-grow-lg"></span>
                 </h1>
               </div>
             </div>
@@ -321,7 +321,8 @@ export default {
       }
       state.loading = true;
       let res = await axios.get("/api/view-exam/" + props.cid + "/" + props.id);
-      if (!res.data.status == 422) {
+      console.log(res.data.status);
+      if (!res.data.status) {
         if (res.status == 200) {
           console.log(res.data.data);
           state.exam = res.data.data.exam;
