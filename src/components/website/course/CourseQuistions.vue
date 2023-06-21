@@ -1,33 +1,34 @@
 <template>
   <div class="courseexam">
-    <div class="row">
+    <div class="row" >
       <div class="col-12 title">
-        <i class="fa fa-list"></i> اسئلة الدورة
+        <i class="fa fa-list"></i> {{ state.exams.length }} اختبار
       </div>
       <div class="col-12">
         <div class="ul">
-          <li v-for="quest in questions" :key="quest.id">
+          <li v-for="exam in state.exams" :key="exam.id">
             <div class="row">
-              <div class="col-9">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="row">
-                      <div class="col-3">
-                        <img src="../../../assets/course/Ellipse_46.png" alt="">
-                      </div>
-                      <div class="col-6">
-                        <h4> {{ quest.name}} </h4>
-                        <div>{{ quest.since }} </div>
+              <div class="col-8">
+                <div class="title">
+                  <i class="fa-regular fa-newspaper"></i>
+                  <span>
+                    <router-link :to="{ name: 'test', params: { cid: cid, id: exam.id } }"> {{ exam.name }} </router-link>
+                  </span>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="info">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="quist_num">
+                        <i class="fa fa-list"></i> {{ exam.count_questions }} سؤال
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12 question">
-                    <p> {{ quest.content }}</p>
-                  </div>
-                  <div class="col-1"></div>
-                  <div class="col-10">
-                    <h5>الاجابة</h5>
-                    <p>{{ quest.answer }}</p>
+                    <div class="col-6">
+                      <div class="time">
+                        <i class="fa fa-clock border"></i> {{ exam.period }} دقيقة
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -40,89 +41,91 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      questions: [
-        {
+import { computed,onMounted,reactive } from "vue";
+import { useStore } from "vuex";
+import axios from "axios";
 
-          id: 1,
-          name:'سيد فرج الله',
-          since:'منذ ساعتين',
-          content:'ما هي المادة ؟ ',
-          answer: "الخلية هي الوحدة الأساسية للحياة . وسواء كنا نتحدث عن كونها مكونة من خلية (وحيدة الخلية) أو مجموعة منها (متعددة الخلايا) ، فإن هذا العنصر موجود دائمًا. وبفضل تمايزها في الوظائف ، أفسح التطور المجال للكائنات الحية المعقدة بشكل متزايد.  ",
-        },
-        {
-          id: 2,
-          name: 'سيد فرج الله',
-          since:'منذ ساعتين',
-          content: 'ما هي المادة ؟ ',
-          answer: "الخلية هي الوحدة الأساسية للحياة . وسواء كنا نتحدث عن كونها مكونة من خلية (وحيدة الخلية) أو مجموعة منها (متعددة الخلايا) ، فإن هذا العنصر موجود دائمًا. وبفضل تمايزها في الوظائف ، أفسح التطور المجال للكائنات الحية المعقدة بشكل متزايد.  ",
-        },
-        {
-          id: 3,
-          name: 'سيد فرج الله',
-          since:'منذ ساعتين',
-          content: 'ما هي المادة ؟ ',
-          answer: "الخلية هي الوحدة الأساسية للحياة . وسواء كنا نتحدث عن كونها مكونة من خلية (وحيدة الخلية) أو مجموعة منها (متعددة الخلايا) ، فإن هذا العنصر موجود دائمًا. وبفضل تمايزها في الوظائف ، أفسح التطور المجال للكائنات الحية المعقدة بشكل متزايد.  ",
-        },
-        {
-          id: 4,
-          name: 'سيد فرج الله',
-          since:'منذ ساعتين',
-          content: 'ما هي المادة ؟ ',
-          answer: "الخلية هي الوحدة الأساسية للحياة . وسواء كنا نتحدث عن كونها مكونة من خلية (وحيدة الخلية) أو مجموعة منها (متعددة الخلايا) ، فإن هذا العنصر موجود دائمًا. وبفضل تمايزها في الوظائف ، أفسح التطور المجال للكائنات الحية المعقدة بشكل متزايد.  ",
-        },
-        {
-          id: 5,
-          name: 'سيد فرج الله',
-          since:'منذ ساعتين',
-          content: 'ما هي المادة ؟ ',
-          answer: "الخلية هي الوحدة الأساسية للحياة . وسواء كنا نتحدث عن كونها مكونة من خلية (وحيدة الخلية) أو مجموعة منها (متعددة الخلايا) ، فإن هذا العنصر موجود دائمًا. وبفضل تمايزها في الوظائف ، أفسح التطور المجال للكائنات الحية المعقدة بشكل متزايد.  ",
-        },
-        {
-          id: 6,
-          name: 'سيد فرج الله',
-          since:'منذ ساعتين',
-          content: 'ما هي المادة ؟ ',
-          answer: "الخلية هي الوحدة الأساسية للحياة . وسواء كنا نتحدث عن كونها مكونة من خلية (وحيدة الخلية) أو مجموعة منها (متعددة الخلايا) ، فإن هذا العنصر موجود دائمًا. وبفضل تمايزها في الوظائف ، أفسح التطور المجال للكائنات الحية المعقدة بشكل متزايد.  ",
-        },
-        {
-          id: 7,
-          name: 'سيد فرج الله',
-          since:'منذ ساعتين',
-          content: 'ما هي المادة ؟ ',
-          answer: "الخلية هي الوحدة الأساسية للحياة . وسواء كنا نتحدث عن كونها مكونة من خلية (وحيدة الخلية) أو مجموعة منها (متعددة الخلايا) ، فإن هذا العنصر موجود دائمًا. وبفضل تمايزها في الوظائف ، أفسح التطور المجال للكائنات الحية المعقدة بشكل متزايد.  ",
-        },
-        {
-          id: 8,
-          name: 'سيد فرج الله',
-          since:'منذ ساعتين',
-          content: 'ما هي المادة ؟ ',
-          answer: "الخلية هي الوحدة الأساسية للحياة . وسواء كنا نتحدث عن كونها مكونة من خلية (وحيدة الخلية) أو مجموعة منها (متعددة الخلايا) ، فإن هذا العنصر موجود دائمًا. وبفضل تمايزها في الوظائف ، أفسح التطور المجال للكائنات الحية المعقدة بشكل متزايد.  ",
-        },
-      ]
-    }
+export default {
+  props: {
+    id: String,
+    cid: String,
   },
-}
+  setup(props) {
+    const state = reactive({
+      loading: true,
+      accepted: false,
+      exams: [],
+      std_id: computed(() => useStore().state.student.id),
+    });
+    const cours_id = props.id;
+    onMounted(async () => {
+      await axios
+        .get("api/show-all-previous-exam/" + cours_id)
+        .then((res) => {
+          if(res.data.data) {
+            console.log(res.data.data);
+            // state.exams = res.data.data.allExam;
+            // state.accepted = true;
+          } else {
+            // console.log(res.data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.errors);
+        });
+      state.exams.forEach((el) => {
+        const start_at = new Date(el.start_at);
+        const end_at = new Date(el.end_at);
+        const period = end_at - start_at;
+        const periodMinutes = period / (1000 * 60);
+        el.period = periodMinutes;
+      });
+    });
+    return { state };
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-li{
-  &:hover
-  {
-    scale: 1 !important;
+<style lang="scss">
+.courseexam {
+  padding: 20px 30px;
+
+  .title {
+    color: var(--darker-blue);
+    font-size: 18px;
+
+    i {
+      margin-left: 10px;
+    }
+  }
+
+  .ul {
+    padding: 10px;
+
+    li {
+      list-style: none;
+      background-color: var(--gray-blue);
+      padding: 15px;
+      margin: 15px;
+      border-radius: 8px;
+      box-shadow: 4px 2px 8px #00000052;
+      transition: 0.5s;
+
+      &:hover {
+        scale: 1.1;
+      }
+
+      i {
+        color: var(--darker-blue);
+        margin-left: 10px;
+      }
+
+      .title a {
+        color: var(--darker-blue);
+        font-size: 19px;
+      }
+    }
   }
 }
-  img{
-            border-radius: 50%;
-  }
-  h4{
-    color: var(--darker-blue);
-  }
-  .question p{
-    margin-right: 65px;
-    font-size: 22px;
-    color: var(--darker-blue);
-  }
 </style>

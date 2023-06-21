@@ -1,6 +1,6 @@
 <template>
   <div class="courseexam">
-    <div class="row" v-if="state.accepted">
+    <div class="row" >
       <div class="col-12 title">
         <i class="fa fa-list"></i> {{ state.exams.length }} اختبار
       </div>
@@ -43,7 +43,6 @@
         </div>
       </div>
     </div>
-    <h3 class="mt-5" v-else>لم يتم قبول تسجيلك حتى الان</h3>
   </div>
 </template>
 

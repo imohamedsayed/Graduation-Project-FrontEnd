@@ -55,9 +55,14 @@ export default {
       teacher: {},
       notification: [],
       std_id: computed(() => useStore().state.student.id),
+      
     });
     const cours_id = props.id;
     onMounted(async () => {
+
+
+      // get lastFiveNotes
+
       await axios
         .get("api/lastFiveNotes/" + cours_id)
         .then((res) => {
@@ -71,11 +76,15 @@ export default {
           console.log(error);
           console.log(error.response.data.errors);
         });
+
+
+        // get classroom teacher
+
       await axios
         .get("api/get-teachers/" + cours_id)
         .then((res) => {
           state.teacher = res.data.data;
-          console.log(state.teacher);
+          // console.log(state.teacher);
         })
         .catch((error) => {
           console.log(error);
