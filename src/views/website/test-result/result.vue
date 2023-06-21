@@ -77,7 +77,7 @@ export default {
   }
 }
 .result-content {
-  background-color: #d9d9d9;
+  background-color: #f1f3f8;
   direction: rtl;
   padding: 30px 20px;
   width: 100%;

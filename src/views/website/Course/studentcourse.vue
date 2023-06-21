@@ -294,7 +294,7 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #776fb4b7;
+        background-color: #27374D;
       }
 
       .h_150 {

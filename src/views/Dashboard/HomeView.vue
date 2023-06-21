@@ -274,7 +274,7 @@ export default {
       .card_dash_left1 h1 {
         font-size: 22px;
         display: flex;
-        color: #4e54c8;
+        color: var(--blue-color);
         font-weight: 700;
         @media screen and (max-width: 767px) {
           flex-direction: column;

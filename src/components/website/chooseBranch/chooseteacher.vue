@@ -15,7 +15,7 @@
           <div class="teachera" @click="goToClasses(item.id)">
             <div class="img">
               <img
-                :src="'http://127.0.0.1:8000/Teacher_image/Franecki_2023-06-16.png'                 "
+                :src="'http://127.0.0.1:8000/Teacher_image/Franecki_2023-06-16.png'"
                 alt=""
                 srcset=""
               />
@@ -62,11 +62,11 @@ export default {
       teacherlist: [],
     });
 
-    const router = useRouter()
+    const router = useRouter();
 
     onMounted(async () => {
       await axios
-        .get("/api/classrooms-teacher/"+props.id + "/" + props.id)
+        .get("/api/classrooms-teacher/" + props.id + "/" + props.id)
         // .get("/api/teachers/" + props.id)
         .then((res) => {
           console.log(res.data.data);
@@ -107,7 +107,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .cartYear1 {
-  border: 2px solid #d9d9d9;
+  border: 2px solid #f1f3f8;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.144);
   border-radius: 8px;
   color: rgba(0, 0, 0, 0.6);

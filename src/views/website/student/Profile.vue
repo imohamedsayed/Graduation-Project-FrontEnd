@@ -5,7 +5,7 @@
     <div class="stu-profile">
       <div class="stu-pic">
         <div class="student-name">
-          <h1 class="text-center pt-2 text-light">
+          <h1 class="text-center pt-2">
             {{ state.student.full_name }}
           </h1>
         </div>

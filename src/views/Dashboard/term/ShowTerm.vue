@@ -57,7 +57,7 @@ export default {
   width: 100%;
 
   .bg {
-    background: #fff;
+    background: #F1F3F8;
     padding: 30px 30px;
     border-radius: 10px;
     border: 1px solid #efefef;

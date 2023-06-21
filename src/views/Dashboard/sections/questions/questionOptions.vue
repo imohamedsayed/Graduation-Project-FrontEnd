@@ -331,7 +331,7 @@ export default {
 }
 
 .course_tabs_1 {
-  background: #fff;
+  background: #f1f3f8;
   margin-top: 30px;
   padding: 0 30px;
   padding-bottom: 30px;

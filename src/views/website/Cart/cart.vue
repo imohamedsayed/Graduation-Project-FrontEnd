@@ -161,7 +161,7 @@ export default {
   width: 100%;
 }
 .content2 {
-  background-color: #fff;
+  background-color: #D8D8D8 !important;
   direction: rtl;
   padding: 30px 10px;
   width: 100%;

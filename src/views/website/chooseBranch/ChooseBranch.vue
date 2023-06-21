@@ -92,7 +92,7 @@ export default {
   margin-bottom: auto;
   font-size: 20px;
   font-weight: bold;
-  color: var(--light-blue);
+  color: black;
   line-height: 1.2;
 }
 

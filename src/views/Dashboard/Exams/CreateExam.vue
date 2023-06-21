@@ -283,7 +283,7 @@ export default {
   },
 };
 </script>
-<style lang="scss" >
+<style lang="scss">
 .sa4d25 {
   direction: rtl;
   padding: 30px 20px;
@@ -310,7 +310,7 @@ export default {
 }
 
 .course_tabs_1 {
-  background: #fff;
+  background: #f1f3f8;
   margin-top: 30px;
   padding: 0 30px;
   padding-bottom: 30px;
