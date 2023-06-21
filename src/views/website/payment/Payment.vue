@@ -203,8 +203,6 @@ export default {
       }
     });
 
-    
-
     return { state };
   },
 };
@@ -224,7 +222,7 @@ export default {
   width: 100%;
 }
 .content2 {
-  background-color: #d9d9d9;
+  background-color: #f1f3f8;
   direction: rtl;
   padding: 30px 10px;
   width: 100%;
@@ -575,7 +573,7 @@ export default {
   border-radius: 20px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  background: #4e54c8;
+  background: var(--darker-blue);
   display: block;
   transition: all 0.3s ease;
 }

@@ -10,7 +10,7 @@
         <h5 class="card-title">
           <a :href="`/course/${data.id}`">{{ data.name }}</a>
         </h5>
-        <p class="card-text text-primary">
+        <p class="card-text">
           {{ data.branch_name }}
         </p>
       </div>
@@ -123,4 +123,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.card-body , .list-group li{
+  background:#D5DEF5 ;
+} 
+.card-title a{
+color: black !important;
+font-size: 22px;
+font-weight: 500;
+}
+.card-text{
+  color: black !important;
+font-size: 20px;
+}
+</style>

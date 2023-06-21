@@ -241,7 +241,7 @@
     }
   
     .bg {
-      background: #fff;
+      background: #F1F3F8;
       margin-top: 30px;
       padding: 0 30px;
       padding-bottom: 30px;

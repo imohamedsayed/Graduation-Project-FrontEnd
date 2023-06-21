@@ -66,6 +66,6 @@ export default {
 }
 .all_msg_bg {
   margin: 0 20px 20px 0;
-  background: #fff;
+  background: #F1F3F8;
 }
 </style>

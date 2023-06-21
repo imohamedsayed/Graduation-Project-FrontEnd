@@ -240,7 +240,7 @@ export default {
   height: calc(100vh - 60px);
   width: 240px;
   overflow-y: auto;
-  background: #fff;
+  background: #F1F3F8;
   transition: all 0.4s ease-out;
   ul {
     padding: 0;

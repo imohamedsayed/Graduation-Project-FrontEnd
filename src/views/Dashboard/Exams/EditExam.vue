@@ -274,7 +274,7 @@ export default {
           status: state.status,
           type: state.type,
         };
-        
+
         try {
           let res = await axios.post("/api_dashboard/exams/" + props.id, data);
           if (res.status == 200) {
@@ -288,8 +288,6 @@ export default {
       } else {
         notification("error", "البيانات غير صحيحة");
       }
-
-
     };
 
     return { state, v$, EditExam, toast };
@@ -323,7 +321,7 @@ export default {
 }
 
 .course_tabs_1 {
-  background: #fff;
+  background: #f1f3f8;
   margin-top: 30px;
   padding: 0 30px;
   padding-bottom: 30px;

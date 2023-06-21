@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-    <div class="sideBar closed" ref="side">
+    <div class="sideBar colored closed" ref="side">
       <ul class="list-unstyled">
         <li class="active" @click="navTo('section1')" data-index="section1">
           <i class="fa-solid fa-house"></i>
@@ -129,11 +129,7 @@ export default {
   },
   setup() {
     window.addEventListener("scroll", () => {
-      if (scrollY >= 207) {
-        document.querySelector(".sideBar").classList.add("colored");
-      } else {
-        document.querySelector(".sideBar").classList.remove("colored");
-      }
+
       if (scrollY >= 500) {
         document.querySelector(".header").classList.add("colored");
       } else {
@@ -214,7 +210,7 @@ export default {
           }
         }
         .nav-toggler {
-          background: linear-gradient(to right, #6b5fbbd2, var(--landing-blue));
+          background: linear-gradient(to right, var(--darker-blue), var(--blue-color));
           color: #fff;
           width: 82px;
           height: 80px;
@@ -236,18 +232,18 @@ export default {
           margin: 0;
           li {
             padding: 10px 20px;
-            background: #fffefe70;
+            background: var(--darker-blue);
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.4s ease;
             border-radius: 10px;
             &:hover {
-              background: #3227768d;
+              background: var(--blue-color);
             }
             &.active {
               border-right: 4px solid var(--landing-blue);
-              background: linear-gradient(to left, #3422aa87, #3227765b);
+              background: linear-gradient(to left, var(--darker-blue), var(--blue-color));
             }
           }
         }
@@ -257,18 +253,20 @@ export default {
       .login {
         border: 1px solid #fff;
         color: #ffff;
+        background: var(--darker-blue);
         transition: all 0.3s ease;
         &:hover {
-          background: #fff;
-          color: #000;
+          background: var(--blue-color);
+          color: white;
         }
       }
       .sign {
-        background: var(--landing-blue);
+        border: 1px solid #fff;
+        background: var(--darker-blue);
         color: #fff;
         transition: all 0.3s ease;
         &:hover {
-          background: #242043;
+          background: var(--blue-color);
         }
       }
       .responsive-action {

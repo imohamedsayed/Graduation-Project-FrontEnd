@@ -177,7 +177,8 @@ export default {
     margin-block: 30px;
   }
   .app-data {
-    background: #fff;
+    background: #F1F3F8 !important;
+    border-radius: 15px;
     margin: 60px 0;
     padding: 30px 20px;
     button {

@@ -80,8 +80,7 @@ export default {};
       display: inline-block;
       background: linear-gradient(
         89.7deg,
-        #6061d7 3.74%,
-        rgba(146, 150, 240, 0.71) 99.74%
+        var(--darker-blue), var(--blue-color)
       );
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 12px;

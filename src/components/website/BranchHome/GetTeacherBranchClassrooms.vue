@@ -106,7 +106,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .cartYear1 {
-  border: 2px solid #d9d9d9;
+  border: 2px solid #f1f3f8;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.144);
   border-radius: 8px;
   color: rgba(0, 0, 0, 0.6);

@@ -48,8 +48,6 @@
       <button class="btn btn-success" v-else>
         تم التحديث<i class="fa-solid fa-check me-2"></i>
       </button>
-
-      
     </div>
   </div>
   <SpinnerLoading :loading="state.loading" />
@@ -127,8 +125,6 @@ export default {
       state.loading = false;
     };
 
-
-
     const removeFromCart = async () => {
       state.loading = true;
 
@@ -155,7 +151,7 @@ export default {
 
 <style lang="scss">
 .fcrse_1 {
-  background: #d9d9d9;
+  background: #f1f3f8;
   width: 100%;
   float: right;
   padding: 10px;

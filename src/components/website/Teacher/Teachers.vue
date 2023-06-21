@@ -48,7 +48,7 @@ export default {
   width: 100%;
   height: 300px;
   margin: 20px 0;
-  background-color: #cbc9da;
+  background-color: #D5DEF5;
   border-radius: 20px;
   padding: 10px;
   .img{

@@ -62,12 +62,12 @@
                         <router-link
                           :to="{ name: 'showExams', id: state.section.id }"
                         >
-                          <a class="btn"> عرض الامتحانات</a></router-link
+                          <a class="btn m-1"> عرض الامتحانات</a></router-link
                         >
                         <router-link
                           :to="{ name: 'new_Exam', id: state.section.id }"
                         >
-                          <a class="btn"> اضافه امتحان</a></router-link
+                          <a class="btn m-1"> اضافه امتحان</a></router-link
                         >
                       </div>
                     </div>
@@ -86,7 +86,7 @@
                         <router-link
                           :to="{ name: 'appointments', id: state.section.id }"
                         >
-                          <a class="btn"> عرض المواعيد</a></router-link
+                          <a class="btn m-1"> عرض المواعيد</a></router-link
                         >
                         <router-link
                           :to="{
@@ -94,7 +94,7 @@
                             id: state.section.id,
                           }"
                         >
-                          <a class="btn"> اضافه مواعيد</a></router-link
+                          <a class="btn m-1"> اضافه مواعيد</a></router-link
                         >
                       </div>
                     </div>
@@ -113,10 +113,10 @@
                         <router-link
                           :to="{ name: 'showStudent', id: state.section.id }"
                         >
-                          <a class="btn"> عرض الطلاب </a></router-link
+                          <a class="btn m-1"> عرض الطلاب </a></router-link
                         >
                         <router-link :to="{ name: 'applicant_students' }">
-                          <a class="btn"> قبول الطلاب</a></router-link
+                          <a class="btn m-1"> قبول الطلاب</a></router-link
                         >
                       </div>
                     </div>
@@ -138,12 +138,12 @@
                             id: state.section.id,
                           }"
                         >
-                          <a class="btn"> عرض الملاحظات</a></router-link
+                          <a class="btn m-1"> عرض الملاحظات</a></router-link
                         >
                         <router-link
                           :to="{ name: 'add_note', id: state.section.id }"
                         >
-                          <a class="btn">اضافه ملاحظات</a></router-link
+                          <a class="btn m-1">اضافه ملاحظات</a></router-link
                         >
                       </div>
                     </div>
@@ -165,12 +165,12 @@
                             id: state.section.id,
                           }"
                         >
-                          <a class="btn"> عرض الملحقات</a></router-link
+                          <a class="btn m-1"> عرض الملحقات</a></router-link
                         >
                         <router-link
                           :to="{ name: 'add_attachment', id: state.section.id }"
                         >
-                          <a class="btn"> اضافه ملحق</a></router-link
+                          <a class="btn m-1"> اضافه ملحق</a></router-link
                         >
                       </div>
                     </div>
@@ -192,7 +192,7 @@
                             id: state.section.id,
                           }"
                         >
-                          <a class="btn"> عرض الحضور والغياب</a></router-link
+                          <a class="btn m-1"> عرض الحضور والغياب</a></router-link
                         >
                         <router-link
                           :to="{
@@ -200,7 +200,7 @@
                             id: state.section.id,
                           }"
                         >
-                          <a class="btn"> تسجيل حضور</a></router-link
+                          <a class="btn m-1"> تسجيل حضور</a></router-link
                         >
                       </div>
                     </div>
@@ -311,15 +311,18 @@ export default {
 .btn {
   padding: 5px 10px !important;
   color: white !important;
-  background: var(--blue-color) !important;
-  margin-right: 5px;
+  background: var(--darker-blue) !important;
 
   &:hover {
-    background: var(--darker-blue) !important;
+    background: var(--blue-color) !important;
+
     color: #fff !important;
   }
 }
 .card {
   margin-top: 30px;
+}
+.card-body{
+  background: #F1F3F8;
 }
 </style>

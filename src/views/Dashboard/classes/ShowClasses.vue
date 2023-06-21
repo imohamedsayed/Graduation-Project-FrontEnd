@@ -67,7 +67,7 @@ export default {
   padding-top: 10px;
 
   .classes {
-    background: #fff;
+    background:#F1F3F8;
     margin: 60px 0;
     padding: 30px 20px;
 

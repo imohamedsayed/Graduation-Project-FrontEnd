@@ -98,7 +98,9 @@ export default {
     background-color: var(--gray-blue);
     border-radius: 8px;
     padding: 15px;
-
+h4{
+  color: #000;
+}
     .ul {
       li {
         list-style: none;
@@ -115,8 +117,11 @@ export default {
     padding: 15px;
 
     h4 {
+      color: #000;
+      
       i {
         color: var(--darker-blue);
+        margin-left:10px ;
       }
     }
 
@@ -136,7 +141,10 @@ export default {
 
     .info {
       margin: 10px 0;
-      color: rgb(14, 90, 116);
+      color: #000;
+    }
+    i{
+            color: rgb(14, 90, 116);
     }
   }
 
