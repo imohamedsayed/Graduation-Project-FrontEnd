@@ -106,13 +106,23 @@ const actions = {
   //Student Update
 
   async studentUpdate(context, data) {
-    // let std_id = getters.student.id;
-    let response = await axios.post("/api/students/" + data.id, data.data);
+    let response = await axios.post("/api/students/" + data.id,data.data,
+    {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            });
     console.log(response);
-    if (response.status == 200) {
-      // localStorage.setItem("Std_id", response.data.student.id);
-      // localStorage.setItem("Std_name", response.data.student.name);
-      // context.commit("setStudent", response.data.student);
+    if(response.status == 200) {
+      await axios.get("/api/students/refresh")
+        .then(res => {
+          localStorage.setItem("token", res.data.access_token);
+          localStorage.setItem("Std_id", response.data.user.id);
+          localStorage.setItem("Std_name", response.data.user.name);
+          context.commit("setStudent", response.data.user);
+            // console.log(res.data);
+      })
+      
       console.log(response.data);
       // localStorage.setItem("token", response.data.access_token);
     } else {

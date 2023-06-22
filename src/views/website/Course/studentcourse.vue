@@ -83,7 +83,7 @@
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="quest-tab" data-bs-toggle="tab" data-bs-target="#quest" type="button" role="tab"
               aria-controls="quest" aria-selected="false">
-              <i class="fa-solid fa-question"></i> الاسئلة </button>
+              <i class="fa-solid fa-question"></i> مراجعة الامتحانات </button>
           </li>
           <li class="nav-item" role="presentation">
             <button class="nav-link" id="signs-tab" data-bs-toggle="tab" data-bs-target="#signs" type="button" role="tab"
@@ -115,7 +115,7 @@
           <div class="tab-pane fade" id="quest" role="tabpanel" aria-labelledby="quest-tab">
             <div class="row">
               <div class="col-lg-7 col-xl-8 col-sm-12">
-                <CourseQuistions :id="cours_id" />
+                <CourseQuistions :cid="id" :id="cours_id"  />
               </div>
               <div class="col-lg-5 col-xl-4 col-md-12 col-sm-12">
                 <Lrftbar :id="cours_id" />
@@ -199,12 +199,12 @@ export default {
 
       // get remaining students
 
-      
+
       await axios
         .get("api/get-remaining-students/" + cours_id)
         .then((res) => {
           state.Registered = res.data.data.Registered
-          // console.log(res.data.data);
+          console.log(res.data.data);
         })
         .catch((error) => {
           console.log(error);

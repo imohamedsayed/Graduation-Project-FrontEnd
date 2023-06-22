@@ -1,32 +1,36 @@
+
 <template>
   <div class="courseexam">
-    <div class="row" >
+    <div class="row">
       <div class="col-12 title">
         <i class="fa fa-list"></i> {{ state.exams.length }} اختبار
       </div>
       <div class="col-12">
         <div class="ul">
-          <li v-for="exam in state.exams" :key="exam.id">
+          <li v-for="exam  ,index in state.exams"  :key="index">
             <div class="row">
-              <div class="col-8">
+              <div class="col-4">
                 <div class="title">
                   <i class="fa-regular fa-newspaper"></i>
                   <span>
-                    <router-link :to="{ name: 'test', params: { cid: cid, id: exam.id } }"> {{ exam.name }} </router-link>
+                    <router-link :to="{ name: 'testpreview', params: { cid: cid, id: exam.exam.id } }"> {{ exam.exam.name }} </router-link>
                   </span>
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-8">
                 <div class="info">
                   <div class="row">
                     <div class="col-6">
                       <div class="quist_num">
-                        <i class="fa fa-list"></i> {{ exam.count_questions }} سؤال
+                        <i class="fa fa-list"></i>
+                         {{ exam.total_score }} 
+                         درجات
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="time">
-                        <i class="fa fa-clock border"></i> {{ exam.period }} دقيقة
+                        <i class="fa fa-clock border"></i> 
+                        {{ exam.submit_at }} 
                       </div>
                     </div>
                   </div>
@@ -53,8 +57,10 @@ export default {
   setup(props) {
     const state = reactive({
       loading: true,
-      accepted: false,
-      exams: [],
+      exams: [
+        
+        
+      ],
       std_id: computed(() => useStore().state.student.id),
     });
     const cours_id = props.id;
@@ -63,9 +69,8 @@ export default {
         .get("api/show-all-previous-exam/" + cours_id)
         .then((res) => {
           if(res.data.data) {
-            console.log(res.data.data);
-            // state.exams = res.data.data.allExam;
-            // state.accepted = true;
+            // console.log(res.data.data.allExam);
+            state.exams = res.data.data.allExam;
           } else {
             // console.log(res.data);
           }
@@ -74,17 +79,11 @@ export default {
           console.log(error);
           console.log(error.response.data.errors);
         });
-      state.exams.forEach((el) => {
-        const start_at = new Date(el.start_at);
-        const end_at = new Date(el.end_at);
-        const period = end_at - start_at;
-        const periodMinutes = period / (1000 * 60);
-        el.period = periodMinutes;
-      });
     });
     return { state };
   },
-};
+}
+
 </script>
 
 <style lang="scss">

@@ -270,12 +270,7 @@
                             }
                           "
                         />
-                        <span
-                          class="text-danger fw-bold"
-                          v-if="v$.avatar.$error"
-                        >
-                          {{ v$.avatar.$errors[0].$message }}
-                        </span>
+
                       </div>
                     </div>
 
@@ -347,7 +342,7 @@ export default {
       year: "",
       month: "",
       day: "",
-      avatar: "",
+      avatar:null,
       years_list: [],
       govenorate: [],
       month_list: Array.from({ length: 12 }, (_, index) => index + 1),
@@ -438,7 +433,6 @@ export default {
           required,
         },
         day: { required },
-        avatar: { required },
       };
     });
 
@@ -469,7 +463,7 @@ export default {
         try {
           await await store.dispatch("studentUpdate",{data:data,id:state.student.id});
           state.loading = false;
-          router.push("/profile");
+          router.push("/login");
           notification("success","تم تعديل بياناتك بنجاح");
 
         } catch(err) {

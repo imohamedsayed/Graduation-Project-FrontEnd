@@ -18,9 +18,7 @@
                           </router-link>
                         </li>
                         <li class="breadcrumb-item">
-                          <router-link :to="{ name: 'course' }"
-                            >منهج الفيزياء للثانوية العامة</router-link
-                          >
+                          <router-link :to="{ name: 'course', params: { id: cid } }">الرجوع الى الوراء </router-link>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                           {{ state.exam.name }}

@@ -5,17 +5,17 @@
     <div class="stu-profile">
       <div class="stu-pic">
         <div class="student-name">
-          <h1 class="text-center pt-2">
+          <h1 class="text-center pt-5">
             {{ state.student.full_name }}
           </h1>
         </div>
-        <div class="profile-picture">
+        <!-- <div class="profile-picture">
           <img
             :src="'http://127.0.0.1:8000/' + state.student.national_id_card"
             alt="profile picture"
             class="img-fluid"
           />
-        </div>
+        </div> -->
       </div>
       <div class="container">
         <div class="details">
@@ -57,7 +57,7 @@
           </div>
           <!--3-->
           <!--4-->
-          <p>
+          <!-- <p>
             <button
               class="btn"
               type="button"
@@ -73,9 +73,9 @@
             <div class="card card-body">
               <reportsData />
             </div>
-          </div>
+          </div> -->
           <!--5-->
-          <p>
+          <!-- <p>
             <button
               class="btn"
               type="button"
@@ -91,7 +91,7 @@
             <div class="card card-body">
               <activityData />
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="last-visited">
           <h3>اخر المقررات التي قمت بزيارتها</h3>
