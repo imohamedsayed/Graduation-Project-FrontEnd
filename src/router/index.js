@@ -65,6 +65,7 @@ import superior from "../views/website/superiorStudent/superior.vue";
 import cart from "../views/website/Cart/cart.vue";
 import settings from "../views/website/settings/settings.vue";
 import video from "../views/website/Video/video.vue";
+import error from "../views/website/error.vue";
 import test from "../views/website/test/test.vue";
 import testpreview from "../views/website/test/testpreview.vue";
 import payment from "../views/website/payment/Payment.vue";
@@ -498,6 +499,11 @@ const routes = [
     path: "/Website/allTeacters",
     name: "allTeacters",
     component: allTeacters,
+  },
+  {
+    path: "/Website/Error404",
+    name: "error",
+    component: error,
   },
   {
     path: "/teacherProfile",
