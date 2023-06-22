@@ -58,10 +58,13 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped >
 .teacher {
   h3 {
-    color: var(--darker-blue);
+    color: var(--darker-blue) !important;
+    text-align: center;
+background-color: #F1F3F8;
+padding: 10px;
   }
 }
 </style>
