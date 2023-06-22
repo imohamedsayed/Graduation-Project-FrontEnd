@@ -121,7 +121,7 @@ export default {
           });
           router.push("/dashboard");
         } catch (err) {
-          notification("error", err.response.data.error);
+          notification("error", err);
           state.loading = false;
         }
       } else {

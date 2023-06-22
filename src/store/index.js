@@ -52,21 +52,25 @@ const actions = {
 
   // Login Admin
   async AdminLogin(context, { email, password }) {
-    let response = await axios.post("api_dashboard/auth/login", {
-      email: email,
-      password: password,
-    });
-    if (response.status == 200) {
-      localStorage.setItem("token", response.data.access_token);
-      if (response.data.user.role_id == 2) {
-        localStorage.setItem(
-          "branch_id",
-          response.data.user.branchHead_manager[0].id
-        );
+    try {
+      let response = await axios.post("api_dashboard/auth/login", {
+        email: email,
+        password: password,
+      });
+      if (response.status == 200) {
+        localStorage.setItem("token", response.data.access_token);
+        if (response.data.user.role_id == 2) {
+          localStorage.setItem(
+            "branch_id",
+            response.data.user.branchHead_manager[0].id
+          );
+        }
+        context.commit("setUser", response.data.user);
+      } else {
+        throw new Error("Could not Complete Admin Login ..");
       }
-      context.commit("setUser", response.data.user);
-    } else {
-      throw new Error("Could not Complete Admin Login ..");
+    } catch (err) {
+      throw new Error(err.response.data.error);
     }
   },
 
@@ -106,23 +110,21 @@ const actions = {
   //Student Update
 
   async studentUpdate(context, data) {
-    let response = await axios.post("/api/students/" + data.id,data.data,
-    {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            });
+    let response = await axios.post("/api/students/" + data.id, data.data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     console.log(response);
-    if(response.status == 200) {
-      await axios.get("/api/students/refresh")
-        .then(res => {
-          localStorage.setItem("token", res.data.access_token);
-          localStorage.setItem("Std_id", response.data.user.id);
-          localStorage.setItem("Std_name", response.data.user.name);
-          context.commit("setStudent", response.data.user);
-            // console.log(res.data);
-      })
-      
+    if (response.status == 200) {
+      await axios.get("/api/students/refresh").then((res) => {
+        localStorage.setItem("token", res.data.access_token);
+        localStorage.setItem("Std_id", response.data.user.id);
+        localStorage.setItem("Std_name", response.data.user.name);
+        context.commit("setStudent", response.data.user);
+        // console.log(res.data);
+      });
+
       console.log(response.data);
       // localStorage.setItem("token", response.data.access_token);
     } else {
@@ -138,20 +140,21 @@ const actions = {
 
   // Login Student
   async StudentLogin(context, { email, password }) {
-    let response = await axios
-      .post("api/login", {
+    try {
+      let response = await axios.post("api/login", {
         email: email,
         password: password,
-      })
-      .then()
-      .catch((err) => console.log(err.response.data.message));
-    if (response.status == 200) {
-      localStorage.setItem("Std_id", response.data.user.id);
-      localStorage.setItem("Std_name", response.data.user.name);
-      context.commit("setStudent", response.data.user);
-      localStorage.setItem("token", response.data.access_token);
-    } else {
-      throw new Error("Could not Complete Student Login ..");
+      });
+      if (response.status == 200) {
+        localStorage.setItem("Std_id", response.data.user.id);
+        localStorage.setItem("Std_name", response.data.user.name);
+        context.commit("setStudent", response.data.user);
+        localStorage.setItem("token", response.data.access_token);
+      } else {
+        throw new Error("Could not Complete Student Login ..");
+      }
+    } catch (err) {
+      throw new Error(err.message);
     }
   },
 
