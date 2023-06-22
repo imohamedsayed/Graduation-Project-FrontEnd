@@ -146,7 +146,7 @@ export default {
             password: state.password,
           });
           state.loading = false;
-          router.push("/Website/chooseBranch/");
+          router.push("/profile");
         } catch (err) {
           notification("error", err.response.data.error);
           state.loading = false;

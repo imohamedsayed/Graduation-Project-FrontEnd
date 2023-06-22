@@ -312,7 +312,7 @@ export default {
             state.govenorate = res.data.data;
           })
           .catch((error) => {
-            notification("error", err.response.data.error);
+            notification("error", error.response.data.error);
           });
       }
     });

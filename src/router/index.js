@@ -67,6 +67,7 @@ import settings from "../views/website/settings/settings.vue";
 import video from "../views/website/Video/video.vue";
 import error from "../views/website/error.vue";
 import test from "../views/website/test/test.vue";
+import testpreview from "../views/website/test/testpreview.vue";
 import payment from "../views/website/payment/Payment.vue";
 import testResult from "../views/website/test-result/result.vue";
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
@@ -551,6 +552,12 @@ const routes = [
     path: "/Website/test/:cid/:id",
     name: "test",
     component: test,
+    props: true,
+  },
+  {
+    path: "/Website/testpreview/:cid/:id",
+    name: "testpreview",
+    component: testpreview,
     props: true,
   },
   {
