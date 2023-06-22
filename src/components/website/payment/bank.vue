@@ -154,7 +154,7 @@ export default {
     const rules = computed(() => {
       return {
         name: { required },
-        cardNumber: { required, integer, minLength: minLength(11) },
+        cardNumber: { required, integer, minLength: minLength(16) },
         cvc: { required, minLength: minLength(4) },
         month: { required, integer },
         endYear: { required, integer },
