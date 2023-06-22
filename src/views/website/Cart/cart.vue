@@ -48,21 +48,29 @@
                 :product="product"
               />
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 mb-5">
               <div class="membership_chk_bg rght1528">
                 <div class="checkout_title">
                   <h4>الاجمالي</h4>
                 </div>
                 <div class="order_dt_section">
-                  <div class="order_title">
+                  <div class="order_title p-0">
                     <h4>السعر الأصلي</h4>
-                    <div class="order_price">{{ state.total }} جنيه</div>
+                    <div class="order_price">{{ state.sub_total }} جنيه</div>
                   </div>
-                  <div class="order_title">
+                  <div class="order_title p-0">
+                    <h6>الشحن</h6>
+                    <div class="order_price">{{ state.shipping }} جنيه</div>
+                  </div>
+                  <div class="order_title p-0">
+                    <h6>الضرائب</h6>
+                    <div class="order_price">{{ state.tax }} جنيه</div>
+                  </div>
+                  <div class="order_title p-0">
                     <h6>خصومات</h6>
-                    <div class="order_price">0 جنيه</div>
+                    <div class="order_price">{{ state.discount }} جنيه</div>
                   </div>
-                  <div class="order_title">
+                  <div class="order_title p-3">
                     <h2>الاجمالي</h2>
                     <div class="order_price5">{{ state.total }} جنيه</div>
                   </div>
@@ -107,7 +115,7 @@
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer class="mt-5" />
     </div>
   </div>
 </template>
@@ -131,6 +139,10 @@ export default {
       student: computed(() => store.state.student),
       products: [],
       total: "",
+      discount: "",
+      shipping: "",
+      sub_total: "",
+      tax: "",
     });
 
     onMounted(async () => {
@@ -138,6 +150,10 @@ export default {
 
       if (res.status == 200) {
         state.total = res.data.total;
+        state.sub_total = res.data.sub_total;
+        state.discount = res.data.discount;
+        state.shipping = res.data.shipping;
+        state.tax = res.data.tax;
         state.products = res.data.data;
       }
     });
@@ -161,7 +177,7 @@ export default {
   width: 100%;
 }
 .content2 {
-  background-color: #D8D8D8 !important;
+  background-color: #d8d8d8 !important;
   direction: rtl;
   padding: 30px 10px;
   width: 100%;
@@ -252,7 +268,6 @@ export default {
   color: black;
   text-align: right;
   line-height: 26px;
-  padding-bottom: 20px;
   border-bottom: 3px solid #f22424;
 }
 .order_dt_section {
@@ -263,7 +278,6 @@ export default {
 .order_title {
   float: right;
   width: 100%;
-  padding: 20px 0;
   border-bottom: 1px solid #efefef;
 }
 .order_title h4 {
@@ -319,7 +333,6 @@ export default {
 }
 .chck-btn22 {
   font-size: 15px;
-  margin-top: 30px;
   font-weight: 600;
   color: #fff !important;
   background-color: var(--blue-color) !important ;

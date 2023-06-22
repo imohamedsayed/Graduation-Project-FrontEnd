@@ -18,7 +18,10 @@
                           </router-link>
                         </li>
                         <li class="breadcrumb-item">
-                          <router-link :to="{ name: 'course', params: { id: cid } }">الرجوع الى الوراء </router-link>
+                          <router-link
+                            :to="{ name: 'course', params: { id: cid } }"
+                            >الرجوع الى الوراء
+                          </router-link>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                           {{ state.exam.name }}
@@ -73,12 +76,13 @@
                     </p>
                     <hr class="mb-2" />
 
-                    <img
-                      v-if="question.image"
-                      :src="'http://127.0.0.1:8000/' + question.image"
-                      alt=""
-                      style="width: 100%; height: 300px"
-                    />
+                    <div v-if="question.image">
+                      <img
+                        :src="'http://127.0.0.1:8000/' + question.image"
+                        alt=""
+                        style="width: 100%; height: 300px"
+                      />
+                    </div>
                     <p class="text-muted">توضيح : {{ question.explanation }}</p>
                     <div
                       class="choice me-2 fw-semibold mb-4"
@@ -113,12 +117,13 @@
                     </p>
                     <hr class="mb-2" />
 
-                    <img
-                      :src="'http://127.0.0.1:8000/' + question.image"
-                      alt=""
-                      style="width: 100%; height: 300px"
-                      v-if="question.image"
-                    />
+                    <div v-if="question.image">
+                      <img
+                        :src="'http://127.0.0.1:8000/' + question.image"
+                        alt=""
+                        style="width: 100%; height: 300px"
+                      />
+                    </div>
                     <p class="text-muted">توضيح : {{ question.explanation }}</p>
 
                     <div
@@ -153,12 +158,13 @@
                       >
                     </p>
                     <hr class="mb-2" />
-                    <img
-                      :src="'http://127.0.0.1:8000/' + question.image"
-                      alt=""
-                      style="width: 100%; height: 300px"
-                      v-if="question.image"
-                    />
+                    <div v-if="question.image">
+                      <img
+                        :src="'http://127.0.0.1:8000/' + question.image"
+                        alt=""
+                        style="width: 100%; height: 300px"
+                      />
+                    </div>
                     <p class="text-muted">توضيح : {{ question.explanation }}</p>
 
                     <div
@@ -212,9 +218,7 @@
                   style="width: 400px"
                   alt=""
                 />
-                <h1 class="alert alert-info">
-                  لقد تم ارسال اجاباتك
-                </h1>
+                <h1 class="alert alert-info">لقد تم ارسال اجاباتك</h1>
               </div>
             </div>
             <div class="col-lg-4" v-if="state.exam">

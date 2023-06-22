@@ -13,19 +13,29 @@
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                          <router-link :to="{ name: 'home' }">الرئيسية </router-link>
+                          <router-link :to="{ name: 'home' }"
+                            >الرئيسية
+                          </router-link>
                         </li>
                         <li class="breadcrumb-item">
-                          <router-link :to="{ name: 'course', params: { id: cid } }">الرجوع الى الوراء </router-link>
+                          <router-link
+                            :to="{ name: 'course', params: { id: cid } }"
+                            >الرجوع الى الوراء
+                          </router-link>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page"> {{ state.exam.name }} </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                          {{ state.exam.name }}
+                        </li>
                       </ol>
                     </nav>
                   </div>
                 </div>
               </div>
               <div class="title126">
-                <img src="../../../../public/images/categories/Right.png" alt="" />
+                <img
+                  src="../../../../public/images/categories/Right.png"
+                  alt=""
+                />
                 <h2>{{ state.exam.name }}</h2>
               </div>
             </div>
@@ -38,75 +48,209 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-8">
-              <div class="question my-5" v-for=" (question) in state.questions " :key="question.id">
-                <div class="single-choice-question" v-if="question.type.toLowerCase() == 'single choice'">
-                  <p class="fw-semibold fs-4 question-title d-flex justify-content-between">
-                    <span><i class="fa-solid fa-circle-question ms-2"></i>{{ question.question }}</span>
+              <div
+                class="question my-5"
+                v-for="question in state.questions"
+                :key="question.id"
+              >
+                <div
+                  class="single-choice-question"
+                  v-if="question.type.toLowerCase() == 'single choice'"
+                >
+                  <p
+                    class="fw-semibold fs-4 question-title d-flex justify-content-between"
+                  >
+                    <span
+                      ><i class="fa-solid fa-circle-question ms-2"></i
+                      >{{ question.question }}</span
+                    >
                     <span class="text-muted">({{ question.point }}) درجة</span>
                   </p>
                   <hr class="mb-2" />
-                  <img v-if="question.image" :src="'http://127.0.0.1:8000/' + question.image" alt=""
-                    style="width: 100%; height: 300px" />
+                  <img
+                    v-if="question.image"
+                    :src="'http://127.0.0.1:8000/' + question.image"
+                    alt=""
+                    style="width: 100%; height: 300px"
+                  />
                   <p class="text-muted">توضيح : {{ question.explanation }}</p>
-                  <div class="choice me-2 fw-semibold mb-4" v-for="option in question.options" :key="option.id"
-                    style="font-size: 1.4rem">
-                    <input type="radio" disabled :checked="state.my_options.includes(option.id) ? true : false
-                      " style="width: 25px; height: 25px" :name="question.id" :value="option.id" /> {{ option.option }}
-                    <span class="true_answer" v-if="state.my_options.includes(option.id) && option.is_correct"> اجابتك
-                      صحيحة </span>
-                    <span class="false_answer"
-                      v-else-if="state.my_options.includes(option.id) && !option.is_correct">اجابتك خاطئة</span>
-                      <span class="true_answer"
-                        v-else-if="!state.my_options.includes(option.id) && option.is_correct">الاجابة الصحيحة </span>
+                  <div
+                    class="choice me-2 fw-semibold mb-4"
+                    v-for="option in question.options"
+                    :key="option.id"
+                    style="font-size: 1.4rem"
+                  >
+                    <input
+                      type="radio"
+                      disabled
+                      :checked="
+                        state.my_options.includes(option.id) ? true : false
+                      "
+                      style="width: 25px; height: 25px"
+                      :name="question.id"
+                      :value="option.id"
+                    />
+                    {{ option.option }}
+                    <span
+                      class="true_answer"
+                      v-if="
+                        state.my_options.includes(option.id) &&
+                        option.is_correct
+                      "
+                    >
+                      اجابتك صحيحة
+                    </span>
+                    <span
+                      class="false_answer"
+                      v-else-if="
+                        state.my_options.includes(option.id) &&
+                        !option.is_correct
+                      "
+                      >اجابتك خاطئة</span
+                    >
+                    <span
+                      class="true_answer"
+                      v-else-if="
+                        !state.my_options.includes(option.id) &&
+                        option.is_correct
+                      "
+                      >الاجابة الصحيحة
+                    </span>
                   </div>
                 </div>
 
-
-                <div class="multi-choice-question" v-if="question.type.toLowerCase() == 'multiple choice'">
-                  <p class="fw-semibold fs-4 question-title d-flex justify-content-between">
-                    <span><i class="fa-solid fa-circle-question ms-2"></i>{{ question.question }}</span>
+                <div
+                  class="multi-choice-question"
+                  v-if="question.type.toLowerCase() == 'multiple choice'"
+                >
+                  <p
+                    class="fw-semibold fs-4 question-title d-flex justify-content-between"
+                  >
+                    <span
+                      ><i class="fa-solid fa-circle-question ms-2"></i
+                      >{{ question.question }}</span
+                    >
                     <span class="text-muted">({{ question.point }}) درجة</span>
                   </p>
                   <hr class="mb-2" />
-                  <img :src="'http://127.0.0.1:8000/' + question.image" alt="" style="width: 100%; height: 300px"
-                    v-if="question.image" />
+                  <img
+                    :src="'http://127.0.0.1:8000/' + question.image"
+                    alt=""
+                    style="width: 100%; height: 300px"
+                    v-if="question.image"
+                  />
                   <p class="text-muted">توضيح : {{ question.explanation }}</p>
-                  <div class="choice me-2 fw-semibold mb-4" v-for="option in question.options" :key="option.id"
-                    style="font-size: 1.4rem">
-                    <input type="checkbox" disabled :checked="state.my_options.includes(option.id) ? true : false
-                      " :name="question.id" :value="option.id" style="width: 25px; height: 25px" /> {{ option.option }}
-                    <span class="true_answer" v-if="state.my_options.includes(option.id) && option.is_correct"> اجابتك
-                      صحيحة </span>
-                    <span class="false_answer"
-                      v-else-if="state.my_options.includes(option.id) && !option.is_correct">اجابتك خاطئة</span>
-                      <span class="true_answer"
-                        v-else-if="!state.my_options.includes(option.id) && option.is_correct">الاجابة الصحيحة </span>
+                  <div
+                    class="choice me-2 fw-semibold mb-4"
+                    v-for="option in question.options"
+                    :key="option.id"
+                    style="font-size: 1.4rem"
+                  >
+                    <input
+                      type="checkbox"
+                      disabled
+                      :checked="
+                        state.my_options.includes(option.id) ? true : false
+                      "
+                      :name="question.id"
+                      :value="option.id"
+                      style="width: 25px; height: 25px"
+                    />
+                    {{ option.option }}
+                    <span
+                      class="true_answer"
+                      v-if="
+                        state.my_options.includes(option.id) &&
+                        option.is_correct
+                      "
+                    >
+                      اجابتك صحيحة
+                    </span>
+                    <span
+                      class="false_answer"
+                      v-else-if="
+                        state.my_options.includes(option.id) &&
+                        !option.is_correct
+                      "
+                      >اجابتك خاطئة</span
+                    >
+                    <span
+                      class="true_answer"
+                      v-else-if="
+                        !state.my_options.includes(option.id) &&
+                        option.is_correct
+                      "
+                      >الاجابة الصحيحة
+                    </span>
                   </div>
                 </div>
 
-
-
-                <div class="TF-choice-question" v-if="question.type.toLowerCase() == 't/f'">
-                  <p class="fw-semibold fs-4 question-title d-flex justify-content-between">
-                    <span><i class="fa-solid fa-circle-question ms-2"></i>{{ question.question }}</span>
+                <div
+                  class="TF-choice-question"
+                  v-if="question.type.toLowerCase() == 't/f'"
+                >
+                  <p
+                    class="fw-semibold fs-4 question-title d-flex justify-content-between"
+                  >
+                    <span
+                      ><i class="fa-solid fa-circle-question ms-2"></i
+                      >{{ question.question }}</span
+                    >
                     <span class="text-muted">({{ question.point }}) درجة</span>
                   </p>
                   <hr class="mb-2" />
-                  <img :src="'http://127.0.0.1:8000/' + question.image" alt="" style="width: 100%; height: 300px"
-                    v-if="question.image" />
+                  <div v-if="question.image">
+                    <img
+                      :src="'http://127.0.0.1:8000/' + question.image"
+                      alt=""
+                      style="width: 100%; height: 300px"
+                    />
+                  </div>
+
                   <p class="text-muted">توضيح : {{ question.explanation }}</p>
-                  <div class="choice me-2 fw-semibold mb-4" v-for="option   in question.options" :key="option.id"
-                    style="font-size: 1.4rem">
-                    <input type="radio" disabled :checked="state.my_options.includes(option.id) ? true : false" 
-                    style="width: 25px;  height: 25px" 
-                    class="ms-2" :name="question.id" :value="option.id" />
+                  <div
+                    class="choice me-2 fw-semibold mb-4"
+                    v-for="option in question.options"
+                    :key="option.id"
+                    style="font-size: 1.4rem"
+                  >
+                    <input
+                      type="radio"
+                      disabled
+                      :checked="
+                        state.my_options.includes(option.id) ? true : false
+                      "
+                      style="width: 25px; height: 25px"
+                      class="ms-2"
+                      :name="question.id"
+                      :value="option.id"
+                    />
                     <span>{{ option.option }}</span>
-                    <span class="true_answer" v-if="state.my_options.includes(option.id) && option.is_correct"> اجابتك
-                      صحيحة </span>
-                    <span class="false_answer"
-                      v-else-if="state.my_options.includes(option.id) && !option.is_correct">اجابتك خاطئة</span>
-                    <span class="true_answer"
-                      v-else-if="!state.my_options.includes(option.id) && option.is_correct">الاجابة الصحيحة </span>
+                    <span
+                      class="true_answer"
+                      v-if="
+                        state.my_options.includes(option.id) &&
+                        option.is_correct
+                      "
+                    >
+                      اجابتك صحيحة
+                    </span>
+                    <span
+                      class="false_answer"
+                      v-else-if="
+                        state.my_options.includes(option.id) &&
+                        !option.is_correct
+                      "
+                      >اجابتك خاطئة</span
+                    >
+                    <span
+                      class="true_answer"
+                      v-else-if="
+                        !state.my_options.includes(option.id) &&
+                        option.is_correct
+                      "
+                      >الاجابة الصحيحة
+                    </span>
                   </div>
                 </div>
               </div>
@@ -125,11 +269,13 @@
                             </div>
                           </li>
                           <li>
-                              <div class="timer_time">
-                                <h4 id="timer">{{ state.exam_result.total_score  }}</h4>
-                                <p>درجة</p>
-                              </div>
-                            </li>
+                            <div class="timer_time">
+                              <h4 id="timer">
+                                {{ state.exam_result.total_score }}
+                              </h4>
+                              <p>درجة</p>
+                            </div>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -160,7 +306,7 @@ import t_fOption from "../../../components/test/t_fOption.vue";
 import multiChoiceOption from "../../../components/test/multiChoiceOption.vue";
 import Toast from "@/components/Toast.vue";
 import SpinnerLoading from "@/components/SpinnerLoading.vue";
-import { reactive,onMounted,computed,ref } from "vue";
+import { reactive, onMounted, computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import axios from "axios";
@@ -188,13 +334,13 @@ export default {
       theme: "",
       notify: "",
     });
-    const notification = (theme,message) => {
+    const notification = (theme, message) => {
       toast.theme = theme;
       toast.notify = message;
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      },2000);
+      }, 2000);
     };
 
     const state = reactive({
@@ -204,26 +350,30 @@ export default {
       questions: [],
       loading: false,
       Choices: [],
-      my_options: []
+      my_options: [],
     });
     const examForm = ref(null);
 
     onMounted(async () => {
-      if(!state.student) {
+      if (!state.student) {
         router.push("/");
       }
 
-
       state.loading = true;
 
-      //  get exam result 
+      //  get exam result
       await axios
         .get("api/show-all-previous-exam/" + props.cid)
         .then((res) => {
-          if(res.data.data) {
-            state.exam_result = res.data.data.allExam.find(
+          if (res.data.data) {
+            let trueExams = res.data.data.allExam.filter((e) => {
+              if (e) {
+                return e;
+              }
+            });
+            state.exam_result = trueExams.find(
               (element) => element.exam.id === parseInt(props.id)
-          );
+            );
             // console.log(state.exam_result.total_score);
           } else {
             // console.log(res.data);
@@ -231,51 +381,37 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.response.data.errors);
+          // console.log(error.response.data.errors);
         });
 
+      //  get exam
 
-
-      //  get exam  
-
-
-      let res = await axios.get("/api/preview-exam/" + props.cid + "/" + props.id);
+      let res = await axios.get(
+        "/api/preview-exam/" + props.cid + "/" + props.id
+      );
       // console.log(res.data.data);
 
       state.exam = res.data.data.preview.exam;
       state.questions = res.data.data.preview.questions;
       state.Choices = res.data.data.preview.Choices;
 
-
-      
-
-
-
       // get my options
-      state.questions.forEach(question => {
-        state.Choices.forEach(choice => {
-          if(question.id === choice.question_id) {
-            question.options.forEach(option => {
-              if(option.id === choice.studnet_choice) {
-                state.my_options.push(option.id)
+      state.questions.forEach((question) => {
+        state.Choices.forEach((choice) => {
+          if (question.id === choice.question_id) {
+            question.options.forEach((option) => {
+              if (option.id === choice.studnet_choice) {
+                state.my_options.push(option.id);
               }
-            })
+            });
           }
-        })
-      })
-
-
-
-
+        });
+      });
 
       state.loading = false;
     });
 
-
-
-
-
-    return { state,examForm,toast,};
+    return { state, examForm, toast };
   },
 };
 </script>
@@ -338,11 +474,11 @@ export default {
   color: #6c757d;
 }
 
-.breadcrumb-item+.breadcrumb-item {
+.breadcrumb-item + .breadcrumb-item {
   padding-right: 0.5rem;
 }
 
-.breadcrumb-item+.breadcrumb-item::before {
+.breadcrumb-item + .breadcrumb-item::before {
   content: "/";
   display: inline-block;
   padding-left: 0.5em;
@@ -460,7 +596,6 @@ h4:last-child {
 }
 
 @media screen and (max-width: 767px) {
-
   .test_timer_bg,
   .certi_form {
     margin-bottom: 0;
@@ -516,4 +651,5 @@ button.btn {
 .false_answer {
   color: red;
   margin-right: 20px;
-}</style>
+}
+</style>

@@ -141,18 +141,29 @@
                   <h4>الاجمالي</h4>
                 </div>
                 <div class="order_dt_section">
-                  <div class="order_title">
+                  <div class="order_title p-0">
                     <h4>السعر الأصلي</h4>
-                    <div class="order_price">{{ state.total }} جنيه</div>
+                    <div class="order_price">{{ state.sub_total }} جنيه</div>
                   </div>
-                  <div class="order_title">
+                  <div class="order_title p-0">
+                    <h6>الشحن</h6>
+                    <div class="order_price">{{ state.shipping }} جنيه</div>
+                  </div>
+                  <div class="order_title p-0">
+                    <h6>الضرائب</h6>
+                    <div class="order_price">{{ state.tax }} جنيه</div>
+                  </div>
+                  <div class="order_title p-0">
                     <h6>خصومات</h6>
-                    <div class="order_price">0 جنيه</div>
+                    <div class="order_price">{{ state.discount }} جنيه</div>
                   </div>
-                  <div class="order_title">
+                  <div class="order_title p-3">
                     <h2>الاجمالي</h2>
                     <div class="order_price5">{{ state.total }} جنيه</div>
                   </div>
+                  <router-link :to="{ name: 'payment' }" class="chck-btn22"
+                    >المتابعة الي الشراء</router-link
+                  >
                 </div>
               </div>
             </div>
@@ -184,6 +195,10 @@ export default {
       student: computed(() => store.state.student),
       cart: null,
       total: "",
+      discount: "",
+      shipping: "",
+      sub_total: "",
+      tax: "",
     });
 
     onMounted(async () => {
@@ -196,6 +211,11 @@ export default {
       if (res.status == 200) {
         state.cart = res.data.data;
         state.total = res.data.total;
+        state.sub_total = res.data.sub_total;
+        state.discount = res.data.discount;
+        state.shipping = res.data.shipping;
+        state.tax = res.data.tax;
+        state.products = res.data.data;
       }
 
       if (state.cart.length == 0) {

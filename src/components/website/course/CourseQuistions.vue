@@ -1,4 +1,3 @@
-
 <template>
   <div class="courseexam">
     <div class="row">
@@ -7,7 +6,7 @@
       </div>
       <div class="col-12">
         <div class="ul">
-          <li v-for="exam  ,index in state.exams"  :key="index">
+          <li v-for="(exam, index) in state.exams" :key="index">
             <div class="row">
               <div class="col-4">
                 <div class="title">
@@ -23,13 +22,13 @@
                     <div class="col-6">
                       <div class="quist_num">
                         <i class="fa fa-list"></i>
-                         {{ exam.total_score }} 
-                         درجات
+                        {{ exam.total_score }} 
+                        درجات
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="time">
-                        <i class="fa fa-clock border"></i> 
+                        <i class="fa fa-clock border"></i>
                         {{ exam.submit_at }} 
                       </div>
                     </div>
@@ -45,7 +44,7 @@
 </template>
 
 <script>
-import { computed,onMounted,reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 
@@ -57,10 +56,7 @@ export default {
   setup(props) {
     const state = reactive({
       loading: true,
-      exams: [
-        
-        
-      ],
+      exams: [],
       std_id: computed(() => useStore().state.student.id),
     });
     const cours_id = props.id;
@@ -68,22 +64,24 @@ export default {
       await axios
         .get("api/show-all-previous-exam/" + cours_id)
         .then((res) => {
-          if(res.data.data) {
-            // console.log(res.data.data.allExam);
-            state.exams = res.data.data.allExam;
+          if (res.data.data) {
+            state.exams = res.data.data.allExam.filter((e) => {
+              if (e) {
+                return e;
+              }
+            });
+            console.log(state.exams);
           } else {
             // console.log(res.data);
           }
         })
         .catch((error) => {
           console.log(error);
-          console.log(error.response.data.errors);
         });
     });
     return { state };
   },
-}
-
+};
 </script>
 
 <style lang="scss">

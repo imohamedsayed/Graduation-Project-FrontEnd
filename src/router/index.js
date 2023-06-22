@@ -166,7 +166,7 @@ const routes = [
     path: "/dashboard/editCategory/:id",
     name: "editCategory",
     component: editCategory,
-    props:true
+    props: true,
   },
   {
     path: "/dashboard/showCategories/:shop_id",
@@ -501,11 +501,6 @@ const routes = [
     component: allTeacters,
   },
   {
-    path: "/Website/Error404",
-    name: "error",
-    component: error,
-  },
-  {
     path: "/teacherProfile",
     name: "teacherProfile",
     component: TeacherProfile,
@@ -600,6 +595,15 @@ const routes = [
     name: "course_classes",
     component: CourseClasses,
     props: true,
+  },
+  // 404
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: error,
+    meta: {
+      title: "404 Not Found",
+    },
   },
 ];
 
