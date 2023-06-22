@@ -108,7 +108,7 @@ export default {
       };
       console.log(data);
 
-      let res = await axios.delete("api/unsubscribe-classroom", data);
+      let res = await axios.delete("api/unsubscribe-classroom/" + cId);
 
       if (res.status == 200) {
         console.log(res);
@@ -124,16 +124,17 @@ export default {
 </script>
 
 <style scoped>
-.card-body , .list-group li{
-  background:#D5DEF5 ;
-} 
-.card-title a{
-color: black !important;
-font-size: 22px;
-font-weight: 500;
+.card-body,
+.list-group li {
+  background: #d5def5;
 }
-.card-text{
+.card-title a {
   color: black !important;
-font-size: 20px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.card-text {
+  color: black !important;
+  font-size: 20px;
 }
 </style>

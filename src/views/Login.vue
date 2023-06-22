@@ -87,7 +87,6 @@ import Toast from "@/components/Toast.vue";
 
 import SpinnerLoading from "../components/SpinnerLoading.vue";
 
-
 export default {
   setup() {
     // Declaring Variables
@@ -148,14 +147,15 @@ export default {
           state.loading = false;
           router.push("/profile");
         } catch (err) {
-          notification("error", err.response.data.error);
+          notification("error", "هذا الحساب غير موجود");
           state.loading = false;
         }
       } else {
         notification("error", "User Data Is Not Valid .. ");
-        state.loading = false;
       }
+      state.loading = false;
     };
+
     return { state, login, v$, toast };
   },
   components: { Toast, SpinnerLoading },
