@@ -271,7 +271,7 @@
                           <li>
                             <div class="timer_time">
                               <h4 id="timer">
-                                {{ state.exam_result.total_score }}
+                                {{ state.exam.Result.total_score }}
                               </h4>
                               <p>درجة</p>
                             </div>
@@ -371,12 +371,6 @@ export default {
                 return e;
               }
             });
-            state.exam_result = trueExams.find(
-              (element) => element.exam.id === parseInt(props.id)
-            );
-            // console.log(state.exam_result.total_score);
-          } else {
-            // console.log(res.data);
           }
         })
         .catch((error) => {

@@ -12,7 +12,7 @@
                 <div class="title">
                   <i class="fa-regular fa-newspaper"></i>
                   <span>
-                    <router-link :to="{ name: 'testpreview', params: { cid: cid, id: exam.exam.id } }"> {{ exam.exam.name }} </router-link>
+                    <router-link :to="{ name: 'testpreview', params: { cid: cid, id: exam.id } }"> {{ exam.name }} </router-link>
                   </span>
                 </div>
               </div>
@@ -22,14 +22,15 @@
                     <div class="col-6">
                       <div class="quist_num">
                         <i class="fa fa-list"></i>
-                        {{ exam.total_score }} 
-                        درجات
+                        درجتك :
+                        {{ exam.Result.total_score }} من {{ exam.questions_sum_point }}
+                        <br/>عدد الاسئلة : ({{ exam.count_questions }}) سؤال
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="time">
                         <i class="fa fa-clock border"></i>
-                        {{ exam.submit_at }} 
+                        {{ exam.Result.submit_at }} 
                       </div>
                     </div>
                   </div>
@@ -70,7 +71,7 @@ export default {
                 return e;
               }
             });
-            console.log(state.exams);
+            // console.log(state.exams);
           } else {
             // console.log(res.data);
           }
