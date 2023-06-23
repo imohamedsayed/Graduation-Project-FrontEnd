@@ -1,6 +1,6 @@
 <template>
   <div class="courseexam">
-    <div class="row" >
+    <div class="row">
       <div class="col-12 title">
         <i class="fa fa-list"></i> {{ state.exams.length }} اختبار
       </div>
@@ -68,8 +68,9 @@ export default {
       await axios
         .get("api/exams/" + cours_id)
         .then((res) => {
+          // console.log(res);
           if (res.data.data) {
-            // console.log(res.data.data.allExam);
+            console.log("Exams : ",res.data);
             state.exams = res.data.data.allExam;
             state.accepted = true;
           } else {
@@ -80,6 +81,7 @@ export default {
           console.log(error);
           console.log(error.response.data.errors);
         });
+
       state.exams.forEach((el) => {
         const start_at = new Date(el.start_at);
         const end_at = new Date(el.end_at);

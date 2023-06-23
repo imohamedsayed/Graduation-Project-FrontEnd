@@ -204,7 +204,7 @@ export default {
         .get("api/get-remaining-students/" + cours_id)
         .then((res) => {
           state.Registered = res.data.data.Registered
-          console.log(res.data.data);
+          // console.log(res.data.data);
         })
         .catch((error) => {
           console.log(error);

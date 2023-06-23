@@ -91,7 +91,7 @@
               class="prompt srch_explore"
               type="text"
               name="card[cvc]"
-              maxlength="4"
+              maxlength="3"
               placeholder="CVC"
               v-model="state.cvc"
             />
@@ -155,7 +155,7 @@ export default {
       return {
         name: { required },
         cardNumber: { required, integer, minLength: minLength(16) },
-        cvc: { required, minLength: minLength(4) },
+        cvc: { required, minLength: minLength(3) },
         month: { required, integer },
         endYear: { required, integer },
       };
