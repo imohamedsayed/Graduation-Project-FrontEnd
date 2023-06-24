@@ -2,7 +2,7 @@
   <tr class="class-item" dir="rtl">
     <td class="class-id">{{ year.id }}</td>
     <td class="class-name">{{ year.year_name }}</td>
-    
+
     <td class="class-actions">
       <div class="d-flex align-items-center gap-4">
         <button class="btn" @click="showEditForm = true">
@@ -19,7 +19,12 @@
       <form dir="rtl" @submit.prevent="upadte_class">
         <div class="row">
           <div class="col-lg-12">
-            <div v-if="save" class="alert alert-success" role="alert">
+            <div
+              v-if="save"
+              class="alert alert-success"
+              style="position: fixed; top: 100px; right: 10px; z-index: 1000"
+              role="alert"
+            >
               تم تعديل صف دراسى بنجاح .
             </div>
           </div>

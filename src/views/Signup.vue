@@ -2,7 +2,7 @@
   <div class="signup">
     <img src="../../public/images/logo/logo_01.png" class="signup-logo" />
     <div class="signup-form">
-      <div class="d-flex justify-content-center">
+      <div class="flex">
       <p class="text-center">مرحبا بك في موقع (Edu Center )</p>
       <h4 class="text-center">تنبيه : <span>*</span> مطلوب</h4></div>
       <form dir="rtl" @submit.prevent="register" class="col-lg-12 col-md-12">
@@ -406,7 +406,6 @@ export default {
 <style lang="scss">
 h4 {
   color: #333;
-  margin-right: 20% ;
 }
 
 h4 span {
@@ -475,8 +474,11 @@ h4 span {
   .signup {
     height: 100vh;
   }
-
-  .signup .signup-form {
+  .flex{
+    display: flex;
+    justify-content: space-between;
+  }
+   .signup .signup-form {
     width: 90%;
     top: 37%;
 

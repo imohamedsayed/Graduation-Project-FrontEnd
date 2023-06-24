@@ -1,6 +1,6 @@
 <template>
   <transition name="notification">
-    <div class="notify" v-show="showNotification">
+    <div class="notify" v-show="showNotification" style="position: fixed; top: 100px; right: 10px; z-index:1000;">
       <div
         class="alert d-flex gap-2"
         :class="{

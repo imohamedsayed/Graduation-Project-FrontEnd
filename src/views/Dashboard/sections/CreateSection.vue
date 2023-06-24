@@ -13,7 +13,12 @@
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="state.save" class="alert alert-success" role="alert">
+              <div
+                v-if="state.save"
+                class="alert alert-success"
+                style="position: fixed; top: 100px; right: 10px; z-index: 1000"
+                role="alert"
+              >
                 تم اضافه فصل بنجاح .
                 <span
                   style="
@@ -247,7 +252,13 @@
                             v-model="state.status"
                             style="width: 30px; height: 30px"
                           />
-                          <label for="status" style="font-size: 20px !important;" class="text-muted"> الحالة</label>
+                          <label
+                            for="status"
+                            style="font-size: 20px !important"
+                            class="text-muted"
+                          >
+                            الحالة</label
+                          >
                         </div>
                       </div>
                     </div>
@@ -333,7 +344,10 @@ export default {
 
       // get our subjects
 
-      let subject_res = await axios.get("/api_dashboard/subjects_get_by_branch_id/"+state.user.branch_id_assistant);
+      let subject_res = await axios.get(
+        "/api_dashboard/subjects_get_by_branch_id/" +
+          state.user.branch_id_assistant
+      );
 
       if (subject_res.status == 200) {
         state.subjects = subject_res.data.data;
@@ -457,7 +471,7 @@ export default {
   }
 
   .bg {
-    background: #F1F3F8;
+    background: #f1f3f8;
     margin-top: 30px;
     padding: 0 30px;
     padding-bottom: 30px;

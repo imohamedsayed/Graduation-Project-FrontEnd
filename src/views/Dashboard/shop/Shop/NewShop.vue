@@ -12,14 +12,26 @@
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="state.save" class="alert alert-success" role="alert"> تم اضافه فصل بنجاح . <span style="
-                       {
-                        font-size: 18px;
-                        cursor: pointer;
-                        display: inline-block;
-                        transition: 0.5s a;
-                      }
-                    " @click="$router.push({ name: 'showshops' })"> عرض جميع المتاجر </span>
+              <div
+                v-if="state.save"
+                class="alert alert-success"
+                style="position: fixed; top: 100px; right: 10px; z-index: 1000"
+                role="alert"
+              >
+                تم اضافه فصل بنجاح .
+                <span
+                  style="
+                     {
+                      font-size: 18px;
+                      cursor: pointer;
+                      display: inline-block;
+                      transition: 0.5s a;
+                    }
+                  "
+                  @click="$router.push({ name: 'showshops' })"
+                >
+                  عرض جميع المتاجر
+                </span>
               </div>
             </div>
           </div>
@@ -32,15 +44,30 @@
                       <div class="col-lg-9 col-md-6">
                         <div class="ui mt-30 focus box search">
                           <label> اسم المتجر</label>
-                          <input type="text" v-model="state.name" name="" id="" />
-                          <span class="text-danger fw-bold" v-if="v$.name.$error"> {{ v$.name.$errors[0].$message }}
+                          <input
+                            type="text"
+                            v-model="state.name"
+                            name=""
+                            id=""
+                          />
+                          <span
+                            class="text-danger fw-bold"
+                            v-if="v$.name.$error"
+                          >
+                            {{ v$.name.$errors[0].$message }}
                           </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" data-direction="finish" class="btn btn-default steps_btn" @click="addShop()">
-                    حفظ </button>
+                  <button
+                    type="submit"
+                    data-direction="finish"
+                    class="btn btn-default steps_btn"
+                    @click="addShop()"
+                  >
+                    حفظ
+                  </button>
                 </form>
               </div>
             </div>
@@ -56,7 +83,7 @@
     </Toast>
   </teleport>
 </template>
-  
+
 <script>
 import Footer from "../../../../components/Footer.vue";
 import Header from "../../../../components/Header.vue";
@@ -65,7 +92,7 @@ import Toast from "@/components/Toast.vue";
 
 import axios from "axios";
 
-import { reactive,onMounted,computed } from "vue";
+import { reactive, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
@@ -74,7 +101,7 @@ import { required } from "@vuelidate/validators";
 
 export default {
   name: "Create_section",
-  components: { Footer,AsideBar,Header,Toast },
+  components: { Footer, AsideBar, Header, Toast },
   setup() {
     const state = reactive({
       user: computed(() => store.state.user),
@@ -84,14 +111,13 @@ export default {
     });
 
     onMounted(async () => {
-      if(state.user == null) {
+      if (state.user == null) {
         router.push("/dashboard/login");
       } else {
-        if(state.user.role_id != 3) {
+        if (state.user.role_id != 3) {
           router.push("/dashboard");
         }
       }
-
     });
 
     //notification
@@ -101,13 +127,13 @@ export default {
       notify: "",
     });
 
-    const notification = (theme,message) => {
+    const notification = (theme, message) => {
       toast.theme = theme;
       toast.notify = message;
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      },2000);
+      }, 2000);
     };
 
     // Store and router
@@ -123,34 +149,33 @@ export default {
       };
     });
 
-    const v$ = useVuelidate(rules,state);
+    const v$ = useVuelidate(rules, state);
 
     // add new Category
 
     const addShop = async () => {
       v$.value.$validate();
-      if(!v$.value.$error) {
+      if (!v$.value.$error) {
         let data = {
           name: state.name,
-          branche_id: state.user.exter_info.branch_id
+          branche_id: state.user.exter_info.branch_id,
         };
 
         // Start Sending Request
-        let res = await axios.post("api_dashboard/shops",data);
-        if(res.status == 200) {
-
+        let res = await axios.post("api_dashboard/shops", data);
+        if (res.status == 200) {
           state.save = true;
         }
       } else {
-        notification("error","Missing Data !");
+        notification("error", "Missing Data !");
       }
     };
 
-    return { state,v$,addShop,toast };
+    return { state, v$, addShop, toast };
   },
 };
 </script>
-  
+
 <style lang="scss">
 .newCategory {
   margin-right: 14rem;
@@ -176,7 +201,7 @@ export default {
   }
 
   .bg {
-    background: #F1F3F8;
+    background: #f1f3f8;
     margin-top: 30px;
     padding: 0 30px;
     padding-bottom: 30px;
@@ -283,7 +308,7 @@ export default {
   }
 
   .price {
-    >span {
+    > span {
       width: 100%;
       display: block;
       text-align: center;
@@ -322,4 +347,3 @@ export default {
   }
 }
 </style>
-  
