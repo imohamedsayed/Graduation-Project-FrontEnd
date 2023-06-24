@@ -174,9 +174,9 @@ export default {
 
   .img-logo {
     position: fixed;
-    top: 15%;
+    top: 8%;
     left: 50%;
-    width: 320px;
+    width: 150px;
     transform: translate(-50%, -50%);
 
     @media (max-width: 375px) {
@@ -187,7 +187,7 @@ export default {
 
   .login-form {
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 720px;
@@ -239,7 +239,7 @@ export default {
       input[type="text"],
       input[type="password"] {
         width: 100%;
-        margin: 10px 0;
+        margin: 5px 0;
         height: 45px;
         border: none;
         border-bottom-left-radius: 8px;
@@ -266,7 +266,7 @@ export default {
         text-align: center;
         background: var(--landing-blue);
         font-size: 1.3rem;
-        margin-top: 20px;
+        margin-top: 10px;
         transition: all 0.3s ease;
 
         &:hover {
@@ -290,7 +290,7 @@ export default {
 
   .copyrights {
     position: fixed;
-    bottom: 3%;
+    bottom: 2%;
     width: 100%;
     justify-content: center;
     gap: 10px;

@@ -2,8 +2,9 @@
   <div class="signup">
     <img src="../../public/images/logo/logo_01.png" class="signup-logo" />
     <div class="signup-form">
+      <div class="d-flex justify-content-center">
       <p class="text-center">مرحبا بك في موقع (Edu Center )</p>
-      <h4 class="text-center">تنبيه : <span>*</span> مطلوب</h4>
+      <h4 class="text-center">تنبيه : <span>*</span> مطلوب</h4></div>
       <form dir="rtl" @submit.prevent="register" class="col-lg-12 col-md-12">
         <div class="row">
           <div class="col-lg-4 col-md-6">
@@ -219,7 +220,7 @@
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
-            <div class="ui search focus mt-30 lbel25">
+            <div class="ui search focus mt-30 lbel25 d-flex">
               <input type="checkbox" id="accept" name="vehicle1" value="Bike" />
               <label for="accept">اوافق علي الشروط والاحكام</label><br />
             </div>
@@ -405,6 +406,7 @@ export default {
 <style lang="scss">
 h4 {
   color: #333;
+  margin-right: 20% ;
 }
 
 h4 span {
@@ -413,7 +415,7 @@ h4 span {
 
 .signup {
   height: 100vh;
-  position: absolute;
+  position:fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -422,15 +424,24 @@ h4 span {
 }
 
 .signup .signup-logo {
-  margin: 40px 50% 10px;
-  width: 100px;
-  transform: translateX(50%);
+  position: fixed;
+    top: 7%;
+    left: 50%;
+    width: 150px;
+    transform: translate(-50%, -50%);
+    
+    @media (max-width: 375px) {
+      top: 4%;
+      width: 120px;
+    }
 }
 
 .signup .signup-form {
   position: absolute;
-  margin: 0px 50%;
-  transform: translate(50%);
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 100px auto;
   width: 900px;
   padding: 10px 10px;
   background: #ffffff80;
@@ -462,14 +473,13 @@ h4 span {
 
 @media (min-width: 768px) and (max-width: 991px) {
   .signup {
-    height: 115vh;
+    height: 100vh;
   }
 
   .signup .signup-form {
-    width: 100%;
-  }
-  .signup .signup-logo {
-    margin: 0px 50% 0px;
+    width: 90%;
+    top: 37%;
+
   }
 }
 @media (max-width: 768px) {
@@ -496,7 +506,7 @@ h4 span {
 .signup .signup-form form select,
 .signup .signup-form form input[type="date"] {
   width: 100%;
-  margin: 5px 0;
+  margin: 3px 0;
   height: 35px;
   border: none;
   padding-right: 15px;
@@ -527,13 +537,16 @@ h4 span {
 }
 
 .signup .signup-form form input[type="checkbox"] {
-  margin: 15px 5px;
+  margin: 0px 5px;
   padding: 80px;
+  width: 30px;
+  height: 30px;
 }
 
 .signup .signup-form form label {
   color: #333;
   font-size: 1.3rem;
+  font-weight: 500;
 }
 
 .signup .signup-form form label:after {
@@ -552,7 +565,7 @@ h4 span {
 }
 
 .signup .signup-form form #file {
-  margin: 10px 0;
+  margin: 5px 0;
   display: block;
   position: relative;
   width: 100%;
