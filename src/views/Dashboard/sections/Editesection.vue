@@ -13,7 +13,12 @@
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="state.save" class="alert alert-success" role="alert">
+              <div
+                v-if="state.save"
+                class="alert alert-success"
+                style="position: fixed; top: 100px; right: 10px; z-index: 1000"
+                role="alert"
+              >
                 تم تعديل فصل بنجاح .
                 <span
                   style="
@@ -167,7 +172,6 @@
                             id=""
                             :disabled="state.exam != 1"
                           />
-                         
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
@@ -183,7 +187,6 @@
                             id=""
                             :disabled="state.exam != 1"
                           />
-                         
                         </div>
                       </div>
 

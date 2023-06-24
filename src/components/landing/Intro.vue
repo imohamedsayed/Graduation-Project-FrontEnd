@@ -56,14 +56,15 @@ export default {};
       width: 520px;
       border-radius: 10px;
       padding: 20px;
-      flex: 1;
+      margin: 0 80px 0 0;
+      flex: 1.1;
       h1 {
         text-align: center;
         font-size: 2.8rem;
         color: #fff;
       }
       .paragraph {
-        margin: 40px 0;
+        margin: 20px 0;
         p {
           font-size: 1.6rem;
           font-weight: 600;
@@ -138,4 +139,47 @@ export default {};
     }
   }
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .intro{
+  background: #002233 !important;
+  }
+
+}
+@media (max-width: 768px) {
+  .intro{
+  background: #002233 !important;
+  }
+  .content{
+    position: absolute;
+    top: 80px;
+    .txt {
+      width: 100% !important;
+      border-radius: 10px;
+      padding: 0px;
+      margin: 0 0 0 0 !important;
+      flex: 1.1;
+      h1 {
+        text-align: center !important;
+        font-size: 2rem !important;
+        color: #fff;
+      }
+      .paragraph {
+        margin: 0 0 !important;
+        p {
+          font-size: 1.3rem !important;
+          font-weight: 600;
+          color: #fff;
+        }
+      }
+      .actions {
+        > button {
+          &.read {
+            margin-bottom: 20px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
 </style>

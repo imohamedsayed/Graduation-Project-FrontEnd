@@ -181,7 +181,7 @@ export default {
 .landing-page {
   background: #fff;
   .header {
-    height: 80px;
+    height: 60px;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
@@ -204,7 +204,7 @@ export default {
       align-items: center;
       .logo {
         .img {
-          width: 140px;
+          width: 100px;
           img {
             width: 90% !important ;
           }
@@ -213,7 +213,7 @@ export default {
           background: linear-gradient(to right, var(--darker-blue), var(--blue-color));
           color: #fff;
           width: 82px;
-          height: 80px;
+          height: 60px;
           font-size: 2rem;
           display: grid;
           place-content: center;
@@ -311,9 +311,9 @@ export default {
   .sideBar {
     position: fixed;
     z-index: 100;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 60px);
     width: 80px;
-    top: 80px;
+    top: 60px;
     box-shadow: -3px 1px 4px 1px rgba($color: #fff, $alpha: 0.2);
     display: flex;
     justify-content: center;

@@ -233,15 +233,20 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .vertical-nav {
   z-index: 999;
   position: fixed;
   height: calc(100vh - 60px);
-  width: 240px;
+  width: 220px;
   overflow-y: auto;
-  background: #F1F3F8;
+  background: #fff;
   transition: all 0.4s ease-out;
+  box-shadow:
+  1px 0px 28.6px rgba(0, 0, 0, 0.052),
+  3.4px 0px 50.5px rgba(0, 0, 0, 0.081),
+  15px 0px 123px rgba(0, 0, 0, 0.14)
+;
   ul {
     padding: 0;
     a {

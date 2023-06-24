@@ -269,45 +269,7 @@
           </div>
         </div>
         <!--End Courses-->
-        <!--Students' subscribes-->
-        <li class="d-flex justify-content-between align-items-center" data-bs-target="#subscribes-sections"
-          aria-expanded="false" data-bs-toggle="collapse">
-          <div class="section-name">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <span>اشتراكات الطلاب</span>
-          </div>
-          <i class="fa-solid fa-sort-down"></i>
-        </li>
-        <div class="collapse" id="subscribes-sections">
-          <ul class="list-unstyled">
-            <a href="#">
-              <li class="d-flex justify-content-between align-items-center second-li px-4">
-                <div class="section-name">
-                  <i class="fa-solid fa-check-double"></i>
-                  <span> المفعلة</span>
-                </div>
-              </li>
-            </a>
-            <a href="#">
-              <li class="d-flex justify-content-between align-items-center second-li px-4">
-                <div class="section-name">
-                  <i class="fa-regular fa-clock"></i>
-                  <span> الغير مفعلة </span>
-                </div>
-              </li>
-            </a>
-          </ul>
-        </div>
-        <!--End Students' subscribes-->
         <!--Start Users-->
-        <a href="#">
-          <li class="d-flex justify-content-between align-items-center">
-            <div class="section-name">
-              <i class="fa-solid fa-user"></i>
-              <span> المستخدمين</span>
-            </div>
-          </li>
-        </a>
         <!--End Users-->
         <!--Start Exams -->
         <!-- <div v-if="user_role == 3">
@@ -359,16 +321,6 @@
           </li>
         </router-link>
         <!--Notification-->
-        <!--Vouchers-->
-        <a href="#">
-          <li class="d-flex justify-content-between align-items-center">
-            <div class="section-name">
-              <i class="fa-solid fa-ticket"></i>
-              <span> الخصومات</span>
-            </div>
-          </li>
-        </a>
-        <!--End Voucher-->
         <!--Client's Support-->
         <a href="#">
           <li class="d-flex justify-content-between align-items-center">
@@ -379,39 +331,7 @@
           </li>
         </a>
         <!--Client's Support-->
-        <hr class="my-4" />
-        <!--Start Pages-->
-        <li class="d-flex justify-content-between align-items-center" data-bs-target="#pages-sections"
-          aria-expanded="false" data-bs-toggle="collapse">
-          <div class="section-name">
-            <i class="fa-regular fa-file-lines"></i>
-            <span>الصفحات </span>
-          </div>
-          <i class="fa-solid fa-sort-down"></i>
-        </li>
-        <div class="collapse" id="pages-sections">
-          <ul class="list-unstyled">
-            <a href="#">
-              <a href="#">
-                <li class="d-flex justify-content-between align-items-center second-li px-4">
-                  <div class="section-name">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>اضافة صفحة</span>
-                  </div>
-                </li>
-              </a>
-            </a>
-            <a href="#">
-              <li class="d-flex justify-content-between align-items-center second-li px-4">
-                <div class="section-name">
-                  <i class="fa-regular fa-eye"></i>
-                  <span> عرض الصفحات </span>
-                </div>
-              </li>
-            </a>
-          </ul>
-        </div>
-        <!--End Pages-->
+
         <!--Start managers-->
         <div v-if="user_role == 1">
           <li class="d-flex justify-content-between align-items-center" data-bs-target="#managers-sections"
@@ -495,16 +415,20 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .vertical-nav {
   z-index: 999;
   position: fixed;
   height: calc(100vh - 60px);
-  width: 240px;
+  width: 220px;
   overflow-y: auto;
   background: #fff;
   transition: all 0.4s ease-out;
-
+box-shadow:
+  1px 0px 28.6px rgba(0, 0, 0, 0.052),
+  3.4px 0px 50.5px rgba(0, 0, 0, 0.081),
+  15px 0px 123px rgba(0, 0, 0, 0.14)
+;
   ul {
     padding: 0;
 

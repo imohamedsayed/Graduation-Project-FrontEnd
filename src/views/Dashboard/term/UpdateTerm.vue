@@ -12,7 +12,12 @@
               </h2>
             </div>
             <div class="col-lg-6">
-              <div v-if="state.save" class="alert alert-success" role="alert">
+              <div
+                v-if="state.save"
+                class="alert alert-success"
+                style="position: fixed; top: 100px; right: 10px; z-index: 1000"
+                role="alert"
+              >
                 تم اضافه ترم دراسى بنجاح .
                 <span
                   style="
@@ -100,16 +105,24 @@
                                 </span>
                               </div>
                               <div class="col-lg-1 col-md-3">
-                                  <div
+                                <div
                                   class="ui mt-3 focus box search d-flex align-items-center just gap-2"
+                                >
+                                  <input
+                                    type="checkbox"
+                                    id="status"
+                                    class="mb-3"
+                                    style="width: 30px; height: 30px"
+                                    name=""
+                                    v-model="state.status"
+                                  />
+                                  <label
+                                    for="status"
+                                    class="text-muted"
+                                    style="font-size: 22px"
                                   >
-                                    <input
-                                      type="checkbox"
-                                      id="status" class="mb-3" style="width: 30px; height: 30px;"
-                                      name=""
-                                      v-model="state.status"
-                                    />
-                                    <label for="status" class="text-muted" style="font-size: 22px;"> متاح </label>
+                                    متاح
+                                  </label>
                                 </div>
                               </div>
                             </div>

@@ -19,7 +19,12 @@
               </h6>
             </div>
             <div class="col-lg-6">
-              <div v-if="state.save" class="alert alert-success" role="alert">
+              <div
+                v-if="state.save"
+                class="alert alert-success"
+                style="position: fixed; top: 100px; right: 10px; z-index: 1000"
+                role="alert"
+              >
                 تم اضافه الاختيارات للسوال بنجاح<span
                   style="
                      {
