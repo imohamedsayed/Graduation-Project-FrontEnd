@@ -26,7 +26,7 @@
       <div class="action">
         <button
           class="btn btn ms-3 login d-md-inline-block d-none"
-          @click="$router.push({ name: 'login' })"
+          @click="$router.push({ name: 'chooseLogin' })"
         >
           تسجيل الدخول
         </button>
