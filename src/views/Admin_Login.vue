@@ -1,7 +1,7 @@
 <template>
   <div class="login-user-page">
     <img src="../../public/images/logo/logo_01.png" class="img-logo" alt="" />
-    <div class="login-form">0
+    <div class="login-form">
       <h1 class="text-center">مرحبا بعودتك</h1>
       <form dir="rtl" @submit.prevent="login" class="mt-5 mb-5">
         <div class="input-container d-flex align-items-center">

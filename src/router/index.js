@@ -72,6 +72,7 @@ import payment from "../views/website/payment/Payment.vue";
 import testResult from "../views/website/test-result/result.vue";
 import WebsiteNotificationPage from "../views/website/Websitenotification/WebsiteNotificationPage.vue";
 import Admin_Login from "../views/Admin_Login.vue";
+import chooseLogin from "../views/chooseLogin.vue";
 import allTeacters from "@/views/website/Profile teacher/allTeacters.vue";
 import ChooseBranch from "@/views/website/chooseBranch/ChooseBranch.vue";
 import ShowNotes from "@/views/Dashboard/sections/notes/ShowNotes.vue";
@@ -93,6 +94,11 @@ const routes = [
     path: "/dashboard/login",
     name: "Admin_Login",
     component: Admin_Login,
+  },
+  {
+    path: "/chooseLogin",
+    name: "chooseLogin",
+    component: chooseLogin,
   },
   {
     path: "/",
