@@ -200,12 +200,17 @@
 
                     <div class="col-lg-4 col-md-6">
                       <div class="ui mt-30 focus box search">
-                        <label>تاريخ الميلاد : السنه</label>
-                        <input
-                          type="number"
-                          placeholder="السنه"
-                          v-model="state.year"
-                        />
+                        <label>تاريخ الميلاد : السنة </label>
+                        <select name="" v-model="state.year" id="">
+                            <option selected disabled value="">السنة</option>
+                            <option
+                              v-for="(number, index) in state.years"
+                              :key="index"
+                              :value="number"
+                            >
+                              {{ number }}
+                            </option>
+                          </select>
                         <span
                           class="text-danger fw-bold"
                           v-if="v$.year.$error"
@@ -347,6 +352,7 @@ export default {
       govenorate: [],
       month_list: Array.from({ length: 12 }, (_, index) => index + 1),
       day_list: Array.from({ length: 31 }, (_, index) => index + 1),
+      years: Array.from({ length: 100 },(_,index) => index + 1990),
       equalpass: false,
       equalphone: false,
       loading: false,
@@ -463,7 +469,7 @@ export default {
         try {
           await await store.dispatch("studentUpdate",{data:data,id:state.student.id});
           state.loading = false;
-          router.push("/login");
+          // router.push("/login");
           notification("success","تم تعديل بياناتك بنجاح");
 
         } catch(err) {
@@ -607,6 +613,43 @@ select {
 
 textarea {
   height: 150px;
+}
+select
+{
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #555;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  cursor: pointer;
+    overflow-y: auto; /* Add scroll */
+  // height: 5rem;
+}
+select:focus {
+  outline: none;
+}
+
+select option {
+  color: #555;
+  background-color: #fff;
+  font-size: 1rem;
+  height: 2rem;
+}
+select::-webkit-scrollbar {
+  width: 8px;
+}
+
+select::-webkit-scrollbar-thumb {
+  background-color: #19A7CE;
+  border-radius: 4px;
+}
+
+select::-webkit-scrollbar-track {
+  background-color: #fff;
 }
 
 .form_content {

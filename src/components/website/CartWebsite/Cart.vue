@@ -29,7 +29,7 @@
       <input
         type="number"
         min="1"
-        style="width: 40px; height: 34px"
+        style="width: 70px; height: 34px"
         class="text-center py-3"
         @change="() => (changed = true)"
         v-model="state.quantity"
