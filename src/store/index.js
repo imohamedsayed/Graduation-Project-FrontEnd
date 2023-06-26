@@ -119,9 +119,9 @@ const actions = {
     if (response.status == 200) {
       await axios.get("/api/students/refresh").then((res) => {
         localStorage.setItem("token", res.data.access_token);
-        localStorage.setItem("Std_id", response.data.user.id);
-        localStorage.setItem("Std_name", response.data.user.name);
-        context.commit("setStudent", response.data.user);
+        localStorage.setItem("Std_id", res.data.user.id);
+        localStorage.setItem("Std_name", res.data.user.name);
+        context.commit("setStudent", res.data.user);
         // console.log(res.data);
       });
 

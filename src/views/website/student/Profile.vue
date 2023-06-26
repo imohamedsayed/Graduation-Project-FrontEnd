@@ -6,7 +6,7 @@
       <div class="stu-pic">
         <div class="student-name">
           <h1 class="text-center pt-5">
-            {{ state.student.full_name }}
+            {{ state.student.f_name }}  {{ state.student.m_name }} {{ state.student.l_name }}
           </h1>
         </div>
         <!-- <div class="profile-picture">

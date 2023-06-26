@@ -32,7 +32,7 @@
                 </li>
               </ul>
             </div>
-            <div class="help">
+            <!-- <div class="help">
               <div class="row">
                 <div class="overlay"></div>
                 <div class="col-12">
@@ -45,7 +45,7 @@
                   <router-link :to="{}">الدعم الفني</router-link>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
