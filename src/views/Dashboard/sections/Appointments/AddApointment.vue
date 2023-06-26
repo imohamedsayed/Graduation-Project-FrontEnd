@@ -146,9 +146,9 @@ export default {
           let res = await axios.post("api_dashboard/appointment", data);
 
           if (res.status == 200) {
-            notification("success", "Appointment Added successfully");
+            notification("success", "تم اضافة معاد بنجاح");
           } else {
-            notification("error", "Appointment cannot be added successfully");
+            notification("error", "حدث خطأ اثناء اضافة المعاد");
           }
         } catch (err) {
           console.log(err);
