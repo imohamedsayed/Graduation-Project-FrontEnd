@@ -10,6 +10,7 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6">
                   <div class="mt-30">
+                    <label class="CRName"> اسم الفصل : </label>
                     <label class="name">{{ state.section.subject_name }} </label>
                     <!-- <label class="date">2021 / 2022</label> -->
                     <!-- <label class="number-st"><span> عدد الطلاب :</span>30 </label> -->
@@ -206,12 +207,16 @@ export default {
 .class-room .cover .bg .number-st {
   color: white !important;
 }
-
+.class-room .cover .bg .CRName{
+  color: white;
+  margin-bottom: 30px !important;
+}
 .class-room .cover .bg .name {
   font-size: 3rem !important;
   line-height: 20px;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   margin-top: 10px !important;
+  margin-right: 50px;
 }
 
 .class-room .cover .bg .date {
