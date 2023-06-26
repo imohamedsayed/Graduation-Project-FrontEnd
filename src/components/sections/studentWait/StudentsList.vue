@@ -78,7 +78,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .students-list {
   h4 {
     color: var(--landing-blue);
@@ -96,19 +96,30 @@ export default {
       transform: scale(1.01);
     }
   }
+  .list , .app-stu-data{
+    @media (max-width: 767px) {
+    margin-right: -30px !important;
+  }
+  }
   .stu-list {
     width: 100%;
     margin-top: 30px;
+    @media (max-width: 991px) {
+    margin-right: 0 !important;
+  }
     td,
     th {
       &:first-of-type {
-        width: 15%;
+        width: 10%;
       }
       &:nth-of-type(2) {
-        width: 40%;
+        width: 30%;
+      }
+      &:nth-of-type(3) {
+        width: 30%;
       }
       &:last-of-type {
-        width: 10%;
+        width: 30%;
       }
       padding: 10px 8px;
       border: 1px solid rgba(119, 119, 119, 0.239);

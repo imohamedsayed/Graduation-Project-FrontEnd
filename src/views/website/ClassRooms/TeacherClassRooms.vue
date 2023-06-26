@@ -3,14 +3,12 @@
   <div class="main-view">
     <AsideBar />
     <div class="teacher">
-      <div class="bg">
-        <div class="row">
-          <div class="col-12 p-2"></div>
-        </div>
+      <div class="bg1">
+
         <div class="year1">
-          <h1><i class="fa fa-list"></i> الفصول</h1>
+          <h3><i class="fa fa-list"></i> الفصول الدراسيه</h3>
           <Suspense>
-            <div class="row mt-5" v-if="state.classRooms.length">
+            <div class="row mt-3" v-if="state.classRooms.length">
               <classRoom
                 v-for="classRoom in state.classRooms"
                 :key="classRoom.id"
@@ -77,6 +75,7 @@ export default {
 .teacher {
   h3 {
     color: var(--darker-blue);
+    text-align: center;
   }
 }
 .skelton {

@@ -61,7 +61,83 @@
       </button>
     </td>
   </tr>
+  <tr class="close" v-if="!opened">
+    <td colspan="9">
+      <ul>
+        <li>
+          الدرجه:
+          
+          <div>{{ Math.round(question.point) }}</div>
+        </li>
+        <li>
+          الصوره:
+          <div>
+            <img
+        v-if="question.image"
+        :src="'http://127.0.0.1:8000/' + question.image"
+        style="width: 120px; height: 80px"
+      />
+      <p v-else>لا صورة</p>
+          </div>
+        </li>
+        <li>
+          التفسير:
+         <div> {{ question.explanation ? question.explanation : "لا يوجد" }}</div>
+        </li>
+        <li>
+          النوع:
+         <div> {{ question.type }}</div>
+        </li>
+        <li>
+          اضافه:
+          <div v-if="type == 0">
+            <button
+        class="btn"
+        :disabled="question.options.length > 0"
+        @click="
+          $router.push({
+            name: 'questionMCQ',
+            params: { eid: examId, id: question.id },
+          })
+        "
+      >
+        اضافه اختيارات
+      </button>
+          </div>
+          <div v-if="type == 1">
+            <button
+        class="btn"
+        :disabled="question.options.length > 0"
+        @click="
+          $router.push({
+            name: 'question_Multi_MCQ',
+            params: { eid: examId, id: question.id },
+          })
+        "
+      >
+        اضافه اختيارات
+      </button>
+          </div>
+          <div v-if="type == 2">
+            <button
+        class="btn"
+        :disabled="question.options.length > 0"
+        @click="
+          $router.push({
+            name: 'questionT_F',
+            params: { eid: examId, id: question.id },
+          })
+        "
+      >
+        اضافه اختيارات
+      </button>
+          </div>
+        </li>
 
+
+      </ul>
+    </td>
+  </tr>
   <tr v-if="!opened && dell">
     <td colspan="7">
       <div class="close">

@@ -61,6 +61,7 @@ export default {
     padding: 30px 30px;
     border-radius: 10px;
     border: 1px solid #efefef;
+    padding: 30px !important;
     label {
       font-weight: 500;
       // font-size: 22px;

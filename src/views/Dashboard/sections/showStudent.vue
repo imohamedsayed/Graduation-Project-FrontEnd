@@ -32,11 +32,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .app-students {
   margin-right: 14rem;
   @media (max-width: 991px) {
-    margin-right: 0;
+    margin-right: 0 !important;
   }
   padding-top: 10px;
   .header {

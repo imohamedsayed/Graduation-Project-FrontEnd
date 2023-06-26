@@ -43,7 +43,7 @@ export default {
 .app-students {
   margin-right: 16rem !important;
   @media (max-width: 991px) {
-    margin-right: 0;
+    margin-right: 0 !important;
   }
   padding-top: 10px;
   .header {
