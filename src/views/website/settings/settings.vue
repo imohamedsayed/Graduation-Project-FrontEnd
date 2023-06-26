@@ -503,6 +503,14 @@ export default {
   padding: 30px 20px;
   width: 100%;
 }
+@media (max-width : 767px) {
+  .content{
+    display: contents;
+  }
+  .title125 {
+  padding: 10px 0px !important;
+}
+}
 .content2 {
   background-color: #fff;
   direction: rtl;

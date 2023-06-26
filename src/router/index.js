@@ -63,6 +63,7 @@ import categories from "../views/website/store/categories.vue";
 import Favourite from "../views/website/Favourite/FavoritePage.vue";
 import superior from "../views/website/superiorStudent/superior.vue";
 import cart from "../views/website/Cart/cart.vue";
+import whoAreWE from "../views/website/help/whoAreWE.vue";
 import settings from "../views/website/settings/settings.vue";
 import video from "../views/website/Video/video.vue";
 import error from "../views/website/error.vue";
@@ -538,6 +539,11 @@ const routes = [
     path: "/Website/cart",
     name: "cart",
     component: cart,
+  },
+  {
+    path: "/Website/whoAreWE",
+    name: "whoAreWE",
+    component: whoAreWE,
   },
   {
     path: "/Website/settings",
