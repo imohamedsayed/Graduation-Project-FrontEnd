@@ -3,25 +3,23 @@
     <img src="../../public/images/logo/logo_01.png" class="signup-logo" />
     <div class="signup-form">
       <div class="flex">
-      <p class="text-center">مرحبا بك في موقع (Edu Center )</p>
-      <h4 class="text-center">تنبيه : <span>*</span> مطلوب</h4></div>
+        <p class="text-center">مرحبا بك في موقع (Edu Center )</p>
+        <h4 class="text-center">تنبيه : <span>*</span> مطلوب</h4>
+      </div>
       <form dir="rtl" @submit.prevent="register" class="col-lg-12 col-md-12">
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>الاسم الاول</label>
               <input type="text" v-model="state.FirstName" />
-              <span class="text-danger fw-bold" v-if="v$.FirstName.$error">
-                {{ v$.FirstName.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.FirstName.$error"> {{ v$.FirstName.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label> اسم الثاني</label>
               <input type="text" v-model="state.SecondName" />
-              <span class="text-danger fw-bold" v-if="v$.SecondName.$error">
-                {{ v$.SecondName.$errors[0].$message }}
+              <span class="text-danger fw-bold" v-if="v$.SecondName.$error"> {{ v$.SecondName.$errors[0].$message }}
               </span>
             </div>
           </div>
@@ -29,58 +27,41 @@
             <div class="ui search focus mt-30 lbel25">
               <label> الاسم الاخير</label>
               <input type="text" v-model="state.lastName" />
-              <span class="text-danger fw-bold" v-if="v$.lastName.$error">
-                {{ v$.lastName.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.lastName.$error"> {{ v$.lastName.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>البريد الالكتروني</label>
               <input type="email" v-model="state.email" />
-              <span class="text-danger fw-bold" v-if="v$.email.$error">
-                {{ v$.email.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.email.$error"> {{ v$.email.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>رقم الهاتف المحمول</label>
               <input type="phone" v-model="state.phone" />
-              <span class="text-danger fw-bold" v-if="v$.phone.$error">
-                {{ v$.phone.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.phone.$error"> {{ v$.phone.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>كلمه المرور</label>
               <input type="password" v-model="state.pass" />
-              <span class="text-danger fw-bold" v-if="v$.pass.$error">
-                {{ v$.pass.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.pass.$error"> {{ v$.pass.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>تاكيد كلمه المرور</label>
-              <input
-                type="password"
-                v-model="state.pass2"
-                @input="
-                  (e) => {
-                    e.target.value != state.pass
-                      ? (state.equalpass = true)
-                      : (state.equalpass = false);
-                  }
-                "
-              />
-              <span class="text-danger fw-bold" v-if="v$.pass2.$error">
-                {{ v$.pass2.$errors[0].$message }}
-              </span>
-              <span class="text-danger fw-bold" v-if="state.equalpass"
-                >Password doesn't match</span
-              >
+              <input type="password" v-model="state.pass2" @input="(e) => {
+                  e.target.value != state.pass
+                    ? (state.equalpass = true)
+                    : (state.equalpass = false);
+                }
+                " />
+              <span class="text-danger fw-bold" v-if="v$.pass2.$error"> {{ v$.pass2.$errors[0].$message }} </span>
+              <span class="text-danger fw-bold" v-if="state.equalpass">Password doesn't match</span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -92,9 +73,7 @@
                 <option value="2">الصف الثاني الثانوى</option>
                 <option value="3">الصف الثالث الثانوى</option>
               </select>
-              <span class="text-danger fw-bold" v-if="v$.Class.$error">
-                {{ v$.Class.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.Class.$error"> {{ v$.Class.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -108,9 +87,7 @@
                 <option value="4">علمى رياضة</option>
                 <option value="5">علمى علوم</option>
               </select>
-              <span class="text-danger fw-bold" v-if="v$.section.$error">
-                {{ v$.section.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.section.$error"> {{ v$.section.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
@@ -118,66 +95,35 @@
               <label>المحافظه</label>
               <select class=" " v-model="state.Governorate">
                 <option selected disabled value="">اختيار من القائمة</option>
-                <option
-                  v-for="govr in state.govenorate"
-                  :key="govr.id"
-                  :value="govr.id"
-                >
-                  {{ govr.name }}
-                </option>
+                <option v-for="govr in state.govenorate" :key="govr.id" :value="govr.id"> {{ govr.name }} </option>
               </select>
-              <span class="text-danger fw-bold" v-if="v$.Governorate.$error">
-                {{ v$.Governorate.$errors[0].$message }}
+              <span class="text-danger fw-bold" v-if="v$.Governorate.$error"> {{ v$.Governorate.$errors[0].$message }}
               </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>رقم ولي الامر</label>
-
-              <input
-                type="phone"
-                v-model="state.DadNumber"
-                @input="
-                  (e) => {
-                    e.target.value == state.phone
-                      ? (state.equalphone = true)
-                      : (state.equalphone = false);
-                  }
-                "
-              />
-              <span class="text-danger fw-bold" v-if="v$.DadNumber.$error">
-                {{ v$.DadNumber.$errors[0].$message }}
-              </span>
-              <span class="text-danger fw-bold" v-if="state.equalphone"
-                >Guardian number mustn't match your phone number
+              <input type="phone" v-model="state.DadNumber" @input="(e) => {
+                  e.target.value == state.phone
+                    ? (state.equalphone = true)
+                    : (state.equalphone = false);
+                }
+                " />
+              <span class="text-danger fw-bold" v-if="v$.DadNumber.$error"> {{ v$.DadNumber.$errors[0].$message }} </span>
+              <span class="text-danger fw-bold" v-if="state.equalphone">Guardian number mustn't match your phone number
               </span>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>تاريخ الميلاد : السنه</label>
-              <div class="col-lg-4 col-md-6">
-                        <div class="ui mt-30 focus box search">
-                          <label>اليوم</label>
-                          <select name="" v-model="state.year" id="">
-                            <option selected disabled value="">السنة</option>
-                            <option
-                              v-for="(number, index) in state.years"
-                              :key="index"
-                              :value="number"
-                            >
-                              {{ number }}
-                            </option>
-                          </select>
-                          <span class="text-danger fw-bold" v-if="v$.day.$error">
-                            {{ v$.day.$errors[0].$message }}
-                          </span>
-                        </div>
-                      </div>
-              <span class="text-danger fw-bold" v-if="v$.year.$error">
-                {{ v$.year.$errors[0].$message }}
-              </span>
+              <select name="" v-model="state.year" id="">
+                <option selected disabled value="">السنة</option>
+                <option v-for="(number, index) in state.years" :key="index" :value="number"> {{ number }} </option>
+              </select>
+              <span class="text-danger fw-bold" v-if="v$.day.$error"> {{ v$.day.$errors[0].$message }} </span>
+              <span class="text-danger fw-bold" v-if="v$.year.$error"> {{ v$.year.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
@@ -185,17 +131,9 @@
               <label style="display: hidden">الشهر</label>
               <select name="" v-model="state.month" id="">
                 <option selected disabled value="">اختيار الشهر</option>
-                <option
-                  v-for="(number, index) in state.month_list"
-                  :key="index"
-                  :value="number"
-                >
-                  {{ number }}
-                </option>
+                <option v-for="(number, index) in state.month_list" :key="index" :value="number"> {{ number }} </option>
               </select>
-              <span class="text-danger fw-bold" v-if="v$.month.$error">
-                {{ v$.month.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.month.$error"> {{ v$.month.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-2 col-md-6">
@@ -203,37 +141,20 @@
               <label>اليوم</label>
               <select name="" v-model="state.day" id="">
                 <option selected disabled value="">اليوم</option>
-                <option
-                  v-for="(number, index) in state.day_list"
-                  :key="index"
-                  :value="number"
-                >
-                  {{ number }}
-                </option>
+                <option v-for="(number, index) in state.day_list" :key="index" :value="number"> {{ number }} </option>
               </select>
-              <span class="text-danger fw-bold" v-if="v$.day.$error">
-                {{ v$.day.$errors[0].$message }}
-              </span>
+              <span class="text-danger fw-bold" v-if="v$.day.$error"> {{ v$.day.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
             <div class="ui search focus mt-30 lbel25">
-              <input
-                type="file"
-                class="file"
-                @change="
-                  (e) => {
-                    state.avatar = e.target.files[0];
-                  }
-                "
-              />
-              <label id="file" for="file"
-                >صوره البطاقه او شهاده الميلاد
-                <i class="fa-solid fa-cloud-arrow-down"></i
-              ></label>
-              <span class="text-danger fw-bold" v-if="v$.avatar.$error">
-                {{ v$.avatar.$errors[0].$message }}
-              </span>
+              <input type="file" class="file" @change="(e) => {
+                  state.avatar = e.target.files[0];
+                }
+                " />
+              <label id="file" for="file">صوره البطاقه او شهاده الميلاد <i
+                  class="fa-solid fa-cloud-arrow-down"></i></label>
+              <span class="text-danger fw-bold" v-if="v$.avatar.$error"> {{ v$.avatar.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
@@ -262,7 +183,7 @@
 
 <script>
 import axios from "axios";
-import { computed, onMounted, reactive } from "vue";
+import { computed,onMounted,reactive } from "vue";
 
 //import router and vuex
 
@@ -286,7 +207,7 @@ import Toast from "@/components/Toast.vue";
 import SpinnerLoading from "../components/SpinnerLoading.vue";
 
 export default {
-  components: { Toast, SpinnerLoading },
+  components: { Toast,SpinnerLoading },
   setup() {
     const state = reactive({
       FirstName: "",
@@ -306,8 +227,8 @@ export default {
       avatar: "",
       years_list: [],
       govenorate: [],
-      month_list: Array.from({ length: 12 }, (_, index) => index + 1),
-      day_list: Array.from({ length: 31 }, (_, index) => index + 1),
+      month_list: Array.from({ length: 12 },(_,index) => index + 1),
+      day_list: Array.from({ length: 31 },(_,index) => index + 1),
       years: Array.from({ length: 100 },(_,index) => index + 1990),
       equalpass: false,
       equalphone: false,
@@ -322,7 +243,7 @@ export default {
     const store = useStore();
 
     onMounted(async () => {
-      if (store.state.student != null) {
+      if(store.state.student != null) {
         router.push("/Website/chooseBranch");
       } else {
         await axios
@@ -331,7 +252,7 @@ export default {
             state.govenorate = res.data.data;
           })
           .catch((error) => {
-            notification("error", error.response.data.error);
+            notification("error",error.response.data.error);
           });
       }
     });
@@ -343,13 +264,13 @@ export default {
         FirstName: { required },
         SecondName: { required },
         lastName: { required },
-        email: { email, required },
+        email: { email,required },
         phone: {
           required,
           minLength: minLength(11),
           maxLength: maxLength(11),
         },
-        pass: { required, minLength: minLength(6) },
+        pass: { required,minLength: minLength(6) },
         pass2: {
           required,
           minLength: minLength(6),
@@ -372,51 +293,51 @@ export default {
         avatar: { required },
       };
     });
-    const v$ = useVuelidate(rules, state);
+    const v$ = useVuelidate(rules,state);
 
-    const notification = (theme, message) => {
+    const notification = (theme,message) => {
       toast.theme = theme;
       toast.notify = message;
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      }, 2000);
+      },2000);
     };
 
     const register = async () => {
       v$.value.$validate();
-      if (!v$.value.$error) {
+      if(!v$.value.$error) {
         state.loading = true;
         let data = new FormData();
-        data.append("f_name", state.FirstName);
-        data.append("m_name", state.SecondName);
-        data.append("l_name", state.lastName);
-        data.append("email", state.email);
-        data.append("password", state.pass);
-        data.append("password_confirmation", state.pass2);
-        data.append("phone_number", state.phone);
-        data.append("guardian_number", state.DadNumber);
-        data.append("year", state.year);
-        data.append("month", state.month);
-        data.append("day", state.day);
-        data.append("acedemic_year", state.Class);
-        data.append("division", state.section);
-        data.append("governorate_id", state.Governorate);
-        data.append("national_id_card", state.avatar);
+        data.append("f_name",state.FirstName);
+        data.append("m_name",state.SecondName);
+        data.append("l_name",state.lastName);
+        data.append("email",state.email);
+        data.append("password",state.pass);
+        data.append("password_confirmation",state.pass2);
+        data.append("phone_number",state.phone);
+        data.append("guardian_number",state.DadNumber);
+        data.append("year",state.year);
+        data.append("month",state.month);
+        data.append("day",state.day);
+        data.append("acedemic_year",state.Class);
+        data.append("division",state.section);
+        data.append("governorate_id",state.Governorate);
+        data.append("national_id_card",state.avatar);
         try {
-          await store.dispatch("studentSignup", data);
+          await store.dispatch("studentSignup",data);
           router.push("/Website/chooseBranch");
-        } catch (err) {
-          notification("error", err);
+        } catch(err) {
+          notification("error",err);
           state.loading = false;
         }
       } else {
-        notification("error", "User Data Is Not Valid .. ");
+        notification("error","User Data Is Not Valid .. ");
         state.loading = false;
       }
     };
 
-    return { state, register, v$, toast };
+    return { state,register,v$,toast };
   },
 };
 </script>
@@ -432,7 +353,7 @@ h4 span {
 
 .signup {
   height: 100vh;
-  position:fixed;
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -442,23 +363,23 @@ h4 span {
 
 .signup .signup-logo {
   position: fixed;
-    top: 7%;
-    left: 50%;
-    width: 150px;
-    transform: translate(-50%, -50%);
-    
-    @media (max-width: 375px) {
-      top: 4%;
-      width: 120px;
-    }
+  top: 7%;
+  left: 50%;
+  width: 150px;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 375px) {
+    top: 4%;
+    width: 120px;
+  }
 }
 
 .signup .signup-form {
   position: absolute;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 100px auto;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 100px auto;
   width: 900px;
   padding: 10px 10px;
   background: #ffffff80;
@@ -483,6 +404,7 @@ h4 span {
     width: 100%;
     position: absolute;
   }
+
   .signup {
     position: absolute;
   }
@@ -492,16 +414,19 @@ h4 span {
   .signup {
     height: 100vh;
   }
-  .flex{
+
+  .flex {
     display: flex;
     justify-content: space-between;
   }
-   .signup .signup-form {
+
+  .signup .signup-form {
     width: 90%;
     top: 37%;
 
   }
 }
+
 @media (max-width: 768px) {
   .signup {
     height: 230vh;
@@ -635,7 +560,7 @@ select
   border: 1px solid #ddd;
   border-radius: 4px;
   color: #555;
-  padding: 0.5rem 1rem;
+  // padding: 0.5rem 1rem;
   font-size: 1rem;
   width: 100%;
   max-width: 300px;
