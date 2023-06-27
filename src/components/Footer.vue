@@ -4,19 +4,19 @@
       <div class="row ">
         <div class="col-lg-3 col-md-3 col-sm-6">
         <ul>
-          <li><a href="">من نحن</a></li>
-          <li><a href="">سياسة الخصوصية</a></li>
-          <li><a href="">شروظ الاستخدام</a> </li>
-          <li><a href="">الدعم الفنى</a></li>
+          <li><router-link :to="{ name: 'whoAreWE' }">من نحن</router-link></li>
+          <li><router-link :to="{ name: 'whoAreWE' }">سياسة الخصوصية</router-link></li>
+          <li><router-link :to="{ name: 'whoAreWE' }">شروظ الاستخدام</router-link> </li>
+          <li><router-link :to="{ name: 'whoAreWE' }">الدعم الفنى</router-link></li>
         </ul>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6">
+        <!-- <div class="col-lg-3 col-md-3 col-sm-6">
           <ul>
             <li><a href="">المدربين</a> </li>
             <li><a href="">الدورات</a></li>
             <li><a href="">العروض المباشرة </a></li>
           </ul>
-        </div>
+        </div> -->
         <div class="col-lg-3 col-md-3 col-sm-6">
           <ul>
             <li><a href="">تسجيل الدخول</a></li>

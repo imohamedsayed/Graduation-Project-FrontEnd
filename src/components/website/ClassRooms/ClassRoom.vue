@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-3 col-md-6 col-1">
+  <div class="col-lg-4 col-md-6 col-12 mb-3">
     <div class="card">
       <img
         src="../../../../public/images/intro_background.png"

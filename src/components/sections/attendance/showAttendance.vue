@@ -242,6 +242,9 @@ export default {
   color: white !important;
   margin: 5px 0;
   border-radius: 15px;
+    @media (max-width: 767px) {
+    margin-right: -30px !important;
+  }
 }
 
 .search2 {

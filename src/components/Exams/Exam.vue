@@ -21,6 +21,51 @@
       </a>
     </td>
   </tr>
+  <tr class="close" v-if="!opened">
+    <td colspan="9">
+      <ul>
+        <li>
+          الاسم:
+          
+          <div>{{ exam.name }}</div>
+        </li>
+        <li>
+          الوصف:
+          <div>{{ exam.description }}</div>
+        </li>
+        <li>
+          تاريخ البدء:
+          <br/>
+          {{ exam.start_at }}
+        </li>
+        <li>
+          تاريخ الانتهاء:
+          <br>
+          {{ exam.end_at }}
+        </li>
+        <li>
+          الحاله:
+          {{ exam.status }}
+        </li>
+        <li>
+          النوع:
+          {{ exam.type }}
+        </li>
+        <li>
+          عرض:
+          <a
+            class="btn"
+            @click="
+              $router.push({ name: 'showQuestions', params: { id: exam.id } })
+            "
+          >
+            عرض الاسئله
+          </a>
+        </li>
+
+      </ul>
+    </td>
+  </tr>
   <tr v-if="!opened && dell">
     <td colspan="7">
       <div class="close">
