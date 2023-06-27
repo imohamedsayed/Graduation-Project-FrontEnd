@@ -115,17 +115,17 @@ const actions = {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response);
+    console.log(localStorage.getItem("token"));
+
     if (response.status == 200) {
       await axios.get("/api/students/refresh").then((res) => {
         localStorage.setItem("token", res.data.access_token);
         localStorage.setItem("Std_id", res.data.user.id);
         localStorage.setItem("Std_name", res.data.user.name);
         context.commit("setStudent", res.data.user);
-        // console.log(res.data);
       });
+      console.log(localStorage.getItem("token"));
 
-      console.log(response.data);
       // localStorage.setItem("token", response.data.access_token);
     } else {
       throw new Error("Could not Complete Student update ..");
