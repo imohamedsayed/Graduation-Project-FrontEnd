@@ -280,7 +280,9 @@ export default {
               "Content-Type": "multipart/form-data",
             },
           })
-          .then()
+          .then(() => {
+            state.save = true;
+          })
           .catch((err) => {
             console.log(err.response.data.message);
           });

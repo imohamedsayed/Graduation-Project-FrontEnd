@@ -21,6 +21,23 @@
         </a>
       </td>
     </tr>
+    <tr class="close" v-if="!opened">
+    <td colspan="9">
+      <ul>
+        <li>
+          عرض:
+          <a
+            class="btn"
+            @click="
+              $router.push({ name: 'showProducts', params: { category_id: category.id } })
+            "
+          >
+            عرض المنتجات
+          </a>
+        </li>
+      </ul>
+    </td>
+  </tr>
     <tr v-if="!opened && dell">
       <td colspan="7">
         <div class="close">

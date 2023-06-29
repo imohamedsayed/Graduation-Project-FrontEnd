@@ -59,7 +59,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .students-list {
   h4 {
     color: var(--landing-blue);
@@ -76,6 +76,11 @@ export default {
       outline: none;
       transform: scale(1.01);
     }
+  }
+  .list , .app-stu-data{
+    @media (max-width: 767px) {
+    margin-right: -30px !important;
+  }
   }
   .stu-list {
     width: 100%;

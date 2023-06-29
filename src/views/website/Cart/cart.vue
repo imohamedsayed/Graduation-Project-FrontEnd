@@ -163,7 +163,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .cartShopping,
 .cart {
   margin-right: 14rem;
@@ -175,6 +175,14 @@ export default {
   direction: rtl;
   padding: 30px 20px;
   width: 100%;
+}
+@media (max-width : 767px) {
+  .content{
+    display: contents;
+  }
+  .title125 {
+  padding: 20px 0px !important;
+}
 }
 .content2 {
   background-color: #d8d8d8 !important;

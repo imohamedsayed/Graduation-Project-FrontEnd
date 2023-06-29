@@ -124,9 +124,9 @@ export default {
           let res = await axios.post("api_dashboard/notes", data);
 
           if (res.status == 200) {
-            notification("success", "Note Added successfully");
+            notification("success", "تم اضافة ملاحظة جديدة");
           } else {
-            notification("error", "Note cannot be added successfully");
+            notification("error", "حذث خطأ اثناء اضافة الملاحظة");
           }
         } catch (err) {
           console.log(err);

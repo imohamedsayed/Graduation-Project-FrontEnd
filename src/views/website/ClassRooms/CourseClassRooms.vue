@@ -3,14 +3,11 @@
   <div class="main-view">
     <AsideBar />
     <div class="teacher">
-      <div class="bg">
-        <div class="row">
-          <div class="col-12 p-2"></div>
-        </div>
+      <div class="bg1">
         <div class="year1">
-          <h1><i class="fa fa-list"></i> الفصول</h1>
+          <h3 class="mt-5"><i class="fa fa-list"></i> الفصول الدراسيه</h3>
 
-          <div class="row mt-5" v-if="state.classRooms.length">
+          <div class="row mt-4" v-if="state.classRooms.length">
             <classRoom
               v-for="classRoom in state.classRooms"
               :key="classRoom.id"
@@ -67,10 +64,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .teacher {
   h3 {
-    color: black;
+    color: var(--darker-blue);
+   text-align: center;
+   margin-top: 10px !important;
   }
 }
 </style>

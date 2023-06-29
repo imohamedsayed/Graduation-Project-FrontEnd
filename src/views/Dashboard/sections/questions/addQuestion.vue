@@ -120,7 +120,7 @@
                                     </option>
                                     <option value="0">الاختيار الواحد</option>
                                     <option value="1">متعدد الاختيارات</option>
-                                    <option value="2">صح وغلط</option>
+                                    <option value="2">صح ام خطأ</option>
                                   </select>
                                 </div>
                                 <span

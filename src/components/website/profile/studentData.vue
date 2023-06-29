@@ -4,7 +4,7 @@
       <div class="col-lg-6 col-sm-12">
         <div class="box d-flex ">
           <div class="lable">الاسم : </div>
-          <div class="data"> {{ state.student.f_name }} {{ state.student.l_name }} {{ state.student.m_name }} </div>
+          <div class="data"> {{ state.student.f_name }}  {{ state.student.m_name }} {{ state.student.l_name }}</div>
         </div>
       </div>
       <div class="col-lg-6 col-sm-12">

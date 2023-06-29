@@ -27,16 +27,29 @@
         </li>
       </router-link>
 
+
+
+
+
+
       <!--Start Notifications-->
-      <router-link :to="{ name: 'WebsiteNotificationPage' }">
+
+
+      <!-- <router-link :to="{ name: 'WebsiteNotificationPage' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-regular fa-bell"></i>
             <span>الاشعارات</span>
           </div>
         </li>
-      </router-link>
+      </router-link> -->
+      
+      
       <!--End Notifications-->
+
+
+
+
       <!--Start cart-->
       <router-link :to="{ name: 'cart' }">
         <li class="d-flex justify-content-between align-items-center">
@@ -48,8 +61,14 @@
       </router-link>
       <!--End cart-->
 
+
+
+
+
+
+
       <!--Start Sections-->
-      <li
+      <!-- <li
         class="d-flex justify-content-between align-items-center"
         data-bs-target="#sections"
         aria-expanded="false"
@@ -60,8 +79,9 @@
           <span> الاقسام </span>
         </div>
         <i class="fa-solid fa-sort-down"></i>
-      </li>
-      <div class="collapse" id="sections">
+      </li> -->
+
+      <!-- <div class="collapse" id="sections">
         <ul class="list-unstyled">
           <a href="#">
             <li
@@ -104,7 +124,7 @@
             </li>
           </a>
         </ul>
-      </div>
+      </div> -->
       <!--End Sections-->
       <!--Start My Courses-->
       <router-link :to="{ name: 'matrial' }">
@@ -129,17 +149,23 @@
       <!--Start store-->
 
       <!--End store-->
+
+
+
       <!--Start genuses-->
-      <router-link :to="{ name: 'superior' }">
+      <!-- <router-link :to="{ name: 'superior' }">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-solid fa-trophy text-warning"></i>
             <span>المتفوقين</span>
           </div>
         </li>
-      </router-link>
+      </router-link> -->
       <!--End genuses-->
 
+
+
+      
       <!--start my account-->
 
       <!-- <li
@@ -194,14 +220,14 @@
       <hr class="my-4" />
 
       <!--Start support-->
-      <a href="#">
+      <!-- <a href="#">
         <li class="d-flex justify-content-between align-items-center">
           <div class="section-name">
             <i class="fa-regular fa-circle-question"></i>
             <span> الدعم الفني </span>
           </div>
         </li>
-      </a>
+      </a> -->
       <!--End support-->
 
       <!--Settings-->

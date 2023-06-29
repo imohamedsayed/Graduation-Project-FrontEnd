@@ -149,8 +149,8 @@
                             مسبق</label
                           >
                           <select v-model="state.exam" class="">
-                            <option value="1" selected>yes</option>
-                            <option value="0">No</option>
+                            <option value="1" selected>يوجد</option>
+                            <option value="0">لا يوجد</option>
                           </select>
                           <span
                             class="text-danger fw-bold"
