@@ -59,6 +59,8 @@ const actions = {
       });
       if (response.status == 200) {
         localStorage.setItem("token", response.data.access_token);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + localStorage.getItem("token");
         if (response.data.user.role_id == 2) {
           localStorage.setItem(
             "branch_id",
@@ -71,6 +73,16 @@ const actions = {
       }
     } catch (err) {
       throw new Error(err.response.data.error);
+    }
+  },
+
+  adminLogout(context) {
+    try {
+      context.commit("setUser", null);
+      localStorage.clear();
+      router.push("/dashboard/login");
+    } catch (err) {
+      throw new Error("حدث خطأ ما, حاول مجددا");
     }
   },
 
@@ -91,6 +103,8 @@ const actions = {
         localStorage.setItem("Std_name", resData.user.f_name);
         context.commit("setStudent", resData.user);
         localStorage.setItem("token", resData.access_token);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + localStorage.getItem("token");
         console.log(localStorage.getItem("token"));
       } else {
         throw new Error("Could not Complete Student Signup ..");
@@ -120,6 +134,8 @@ const actions = {
     if (response.status == 200) {
       await axios.get("/api/students/refresh").then((res) => {
         localStorage.setItem("token", res.data.access_token);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + localStorage.getItem("token");
         localStorage.setItem("Std_id", res.data.user.id);
         localStorage.setItem("Std_name", res.data.user.name);
         context.commit("setStudent", res.data.user);
@@ -150,11 +166,24 @@ const actions = {
         localStorage.setItem("Std_name", response.data.user.name);
         context.commit("setStudent", response.data.user);
         localStorage.setItem("token", response.data.access_token);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + localStorage.getItem("token");
       } else {
         throw new Error("Could not Complete Student Login ..");
       }
     } catch (err) {
       throw new Error(err.message);
+    }
+  },
+
+  async studentLogout(context) {
+    try {
+      let res = await axios.post("/api/logout");
+      context.commit("setStudent", null);
+      localStorage.clear();
+      router.push("/login");
+    } catch (err) {
+      throw new Error("حدث خطأ ما, حاول مجددا");
     }
   },
 
