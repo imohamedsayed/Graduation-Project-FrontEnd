@@ -34,7 +34,6 @@
         </div>
       </div>
     </div>
-  
   </header>
 </template>
 
@@ -52,9 +51,11 @@ export default {
     const store = useStore();
     const router = useRouter();
     const logout = () => {
-      store.commit("setUser", null);
-      localStorage.clear();
-      router.push("/dashboard/login");
+      try {
+        store.dispatch("adminLogout");
+      } catch (err) {
+        console.log(err);
+      }
     };
     return {
       user: computed(() => store.state.user),

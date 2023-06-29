@@ -145,9 +145,9 @@ export default {
           });
 
           if (res.status == 200) {
-            notification("success", "Note Added successfully");
+            notification("success", "تم ارفاق الملف بنجاح");
           } else {
-            notification("error", "Note cannot be added successfully");
+            notification("error", "حدث خطأ ما ,حاول مجددا لاحقا");
           }
         } catch (err) {
           console.log(err);

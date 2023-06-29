@@ -110,7 +110,7 @@ export default {
             state.to = state.appointment.to;
             state.from = state.appointment.from;
           } else {
-            notification("error", "Something went wrong. Please try again");
+            notification("error", "هناك خطأ ما , عاود المحاولة لاحقا");
           }
         } catch (error) {
           notification("error", err.response.data.message);
@@ -159,9 +159,9 @@ export default {
           );
 
           if (res.status == 200) {
-            notification("success", "Appointment Updated successfully");
+            notification("success", "تم تعديل المعاد");
           } else {
-            notification("error", "Something went wrong, please try again");
+            notification("error", "هناك خطأ ما , عاود المحاولة لاحقا");
           }
         } catch (err) {
           console.log(err);

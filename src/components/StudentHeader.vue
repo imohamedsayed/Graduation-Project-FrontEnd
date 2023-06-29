@@ -68,12 +68,8 @@ export default {
     const router = useRouter();
     const logout = async () => {
       try {
-        let res = await axios.post("/api/logout");
+        await store.dispatch("studentLogout");
       } catch (err) {}
-
-      store.commit("setStudent", null);
-      localStorage.clear();
-      router.push("/login");
     };
     return {
       user: computed(() => store.state.student),

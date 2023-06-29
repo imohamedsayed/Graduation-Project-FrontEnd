@@ -11,7 +11,25 @@ import AsideBar from "./components/AsideBar.vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 
-export default { components: { Header, AsideBar, Footer } };
+export default {
+  components: { Header, AsideBar, Footer },
+  created() {
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.watchLogging();
+        if (true) {
+          console.log("Changed");
+        }
+      }
+    );
+  },
+  methods: {
+    watchLogging() {
+      // check valid token
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -24,7 +42,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: linear-gradient(#146C94, #19A7CE);
+  background: linear-gradient(#146c94, #19a7ce);
   border: 3px solid#fff;
   border-radius: 10px;
 }
@@ -35,12 +53,12 @@ body::-webkit-scrollbar-thumb:hover {
 
 :root {
   --text-black: #212529;
-  --blue-color: #19A7CE;
-  --darker-blue: #146C94;
-  --landing-blue: #526D82;
+  --blue-color: #19a7ce;
+  --darker-blue: #146c94;
+  --landing-blue: #526d82;
   --white-color: #ffffff;
-  --light-blue: #009EFF;
-  --gray-blue: #D5DEF5;
+  --light-blue: #009eff;
+  --gray-blue: #d5def5;
   --border: 1px solid #ced4da;
 }
 
@@ -48,7 +66,7 @@ body::-webkit-scrollbar-thumb:hover {
   main {
     direction: rtl;
 
-    background: #FFF;
+    background: #fff;
     .view {
       min-height: calc(100vh - 60px);
     }
