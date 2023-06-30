@@ -572,9 +572,10 @@ const routes = [
     component: settings,
   },
   {
-    path: "/Website/video",
-    name: "video",
+    path: "/classroom/:cid/lesson/:id",
+    name: "lesson",
     component: video,
+    props: true,
   },
   {
     path: "/Website/test/:cid/:id",

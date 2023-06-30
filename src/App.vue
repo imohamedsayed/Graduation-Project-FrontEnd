@@ -13,22 +13,7 @@ import Footer from "./components/Footer.vue";
 
 export default {
   components: { Header, AsideBar, Footer },
-  created() {
-    this.$watch(
-      () => this.$route.params,
-      () => {
-        this.watchLogging();
-        if (true) {
-          console.log("Changed");
-        }
-      }
-    );
-  },
-  methods: {
-    watchLogging() {
-      // check valid token
-    },
-  },
+  
 };
 </script>
 

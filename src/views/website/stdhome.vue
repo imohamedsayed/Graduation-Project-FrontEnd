@@ -6,7 +6,7 @@
       <div class="bg">
         <div class="row">
           <div class="col-12 p-2">
-            <h3> فرع {{ state.bName }}</h3>
+            <h3>فرع {{ state.bName }}</h3>
           </div>
         </div>
         <div class="year1">
@@ -34,6 +34,7 @@ import { reactive, computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import Chooseteacher from "@/components/website/BranchHome/GetTeacherBranchClassrooms.vue";
 import Choosecourse from "@/components/website/BranchHome/GetSubjectBranchClassrooms.vue";
+import { useRouter } from "vue-router";
 export default {
   components: {
     Footer,
@@ -48,8 +49,13 @@ export default {
       bName: "",
     });
     // console.log(props);
-
+    const router = useRouter();
     onMounted(() => {
+      console.log(state.bName);
+      if (!state.id) {
+        router.push("/Website/chooseBranch");
+      }
+
       state.bName = localStorage.branch_name;
     });
 
@@ -58,13 +64,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .teacher {
   h3 {
     color: var(--darker-blue) !important;
     text-align: center;
-background-color: #F1F3F8;
-padding: 10px;
+    background-color: #f1f3f8;
+    padding: 10px;
   }
 }
 </style>
