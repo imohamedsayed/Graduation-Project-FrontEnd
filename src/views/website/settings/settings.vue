@@ -294,8 +294,8 @@
           </div>
         </div>
       </div>
-    </div>
     <Footer />
+      </div>
   </div>
     <SpinnerLoading :loading="state.loading" />
     <teleport to="body">
