@@ -107,17 +107,21 @@ const actions = {
           "Bearer " + localStorage.getItem("token");
         console.log(localStorage.getItem("token"));
       } else {
-        throw new Error("Could not Complete Student Signup ..");
+        const errors = response.response.data;
+        // console.log(errors);
+        var err_str = "";
+        for (var prop in errors) {
+          err_str += errors[prop][0] + "\n";
+        }
+        // console.log(err_str);
+        throw new Error(err_str);
       }
     } catch (err) {
-      const errors = err.response.data;
-      console.log(errors);
-      let err_str = "";
-      for (var prop in errors) {
-        err_str += errors[prop][0] + "\n";
+      if (err_str) {
+        throw new Error(err_str);
+      } else {
+        throw new Error("حدث خطأ ما , عاود المحاولة في وقت اخر");
       }
-      console.log(err_str);
-      throw new Error(err_str);
     }
   },
 
