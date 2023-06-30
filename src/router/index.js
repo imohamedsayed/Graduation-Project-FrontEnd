@@ -443,7 +443,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/dashboard/classRoom/:id/showStudentAttendance",
+    path: "/dashboard/classRoom/:id/showStudentAttendance/:AId",
     name: "showStudentAttendance",
     component: showStudentAttendance,
     props: true,

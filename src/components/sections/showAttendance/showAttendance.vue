@@ -4,8 +4,8 @@
     <input
       type="text"
       placeholder="ابحث عن طالب معين"
-      v-model="search"
-      @keyup="searchStudent(search)"
+      v-model="state.search"
+      @keyup="searchStudent(state.search)"
     />
     <div class="list">
       <table class="stu-list">
@@ -14,15 +14,15 @@
           <th>الاسم</th>
           <th>تاريخ الانضمام</th>
           <th>الحاله</th>
-          <th>الخصائص</th>
+          <!-- <th>الخصائص</th> -->
         </tr>
         <showAttendabceList
-          v-for="student in displayItems"
+          v-for="student in state.displayItems"
           :key="student.id"
           :student="student"
         />
       </table>
-      <div class="alert alert-info mt-2" v-if="!displayItems.length">
+      <div class="alert alert-info mt-2" v-if="!state.displayItems.length">
         لا توجد نتائج لعرضها !
       </div>
     </div>
@@ -31,30 +31,76 @@
 
 <script>
 import axios from "axios";
+import Toast from "@/components/Toast.vue";
+
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import { reactive,computed,onMounted,ref } from "vue";
 import showAttendabceList from "./showAttendabceList.vue";
 export default {
-  components: { showAttendabceList },
-  props: ["id"],
-
-  data() {
-    return {
+  components: { showAttendabceList,Toast },
+  props: {
+    appointment_id: String,
+    room_id: String,
+  },
+  setup(props) {
+    const store = useStore();
+    const router = useRouter();
+    const state = reactive({
+      user: computed(() => store.state.user),
       search: "",
       items: [],
       displayItems: [],
+      attendances: {},
+    });
+    const room_id = props.room_id;
+    const appointment_id = props.appointment_id;
+    onMounted(async () => {
+      if(state.user == null || state.user.role_id != 3) {
+        router.push("/dashboard/login");
+      } else {
+        let res = await axios.get(
+          "api_dashboard/all-students-classroom/" +
+          room_id +
+          "/" +
+          appointment_id
+        );
+        if(res.status == 200) {
+          // console.log(res.data.data.allStudent);
+          state.displayItems = res.data.data.allStudent;
+          state.items = state.displayItems;
+
+        }
+      }
+    });
+
+    //notification
+    const toast = reactive({
+      showNotification: false,
+      theme: "",
+      notify: "",
+    });
+
+    const notification = (theme,message) => {
+      toast.theme = theme;
+      toast.notify = message;
+      toast.showNotification = true;
+      setTimeout(() => {
+        toast.showNotification = false;
+      },2000);
     };
-  },
-  async mounted() {
-    this.items = [
-      { id: 162019133, name: "محمد سيد", date: "20/7/2022" },
-      { id: 162019134, name: " محمود خيري", date: "20/7/2022" },
-      { id: 162019135, name: " محمود احمد", date: "20/7/2022" },
-    ];
-    this.displayItems = this.items;
-  },
-  methods: {
-    searchStudent(key) {
-      this.displayItems = this.items.filter((item) => item.name.includes(key));
-    },
+
+  
+
+
+
+    const searchStudent = (key) => {
+      state.displayItems = state.items.filter((item) =>
+        item.full_name.includes(key)
+      );
+    };
+
+    return { state,toast,searchStudent };
   },
 };
 </script>
