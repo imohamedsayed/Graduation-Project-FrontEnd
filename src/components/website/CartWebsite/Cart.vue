@@ -31,7 +31,7 @@
         min="1"
         style="width: 70px; height: 34px"
         class="text-center py-3"
-        @change="() => (changed = true)"
+        @change="() => (state.changed = true)"
         v-model="state.quantity"
       />
       <span class="btn btn-outline-dark me-2 mb-2" @click="decrease()">-</span>
