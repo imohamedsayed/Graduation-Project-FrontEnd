@@ -10,7 +10,7 @@
         </div>
             <div class="user" @click="$router.push({ name: 'login' })">
           <img src="../../public/images/landing/admin-icon-12.jpg" alt="">
-          <p>طالب</p>
+          <p id="studentlogin">طالب</p>
         </div>
           </div>
       </div>
