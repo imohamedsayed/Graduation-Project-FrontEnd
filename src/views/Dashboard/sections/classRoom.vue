@@ -79,6 +79,26 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <div class="mt-30">
+                      <div class="card h-100">
+                        <img src="../../../../public/images/categories/img_read.jpg" class="card-img-top" alt="..." />
+                        <div class="card-body">
+                          <h5 class="card-title">الدروس</h5>
+                          <router-link :to="{
+                            name: 'classroom_lesson',
+                            id: state.section.id,
+                          }">
+                            <a class="btn m-1"> عرض الدروس</a></router-link>
+                          <router-link :to="{ name: 'add_lesson', id: state.section.id }">
+                            <a class="btn m-1">اضافه درس</a></router-link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
                 <div class="col-lg-4 col-md-4">
                   <div class="mt-30">
                     <div class="card h-100">

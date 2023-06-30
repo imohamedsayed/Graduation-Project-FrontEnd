@@ -12,14 +12,8 @@
               </h2>
             </div>
             <div class="col-lg-6">
-              <div
-                v-if="state.save"
-                class="alert alert-success"
-                style="position: fixed; top: 100px; right: 10px; z-index: 1000"
-                role="alert"
-              >
-                تم اضافه فرع بنجاح .
-                <span
+              <div v-if="state.save" class="alert alert-success"
+                style="position: fixed; top: 100px; right: 10px; z-index: 1000" role="alert"> تم اضافه فرع بنجاح . <span
                   style="
                      {
                       font-size: 18px;
@@ -27,11 +21,7 @@
                       display: inline-block;
                       transition: 0.5s a;
                     }
-                  "
-                  @click="$router.push({ name: 'ShowBranches' })"
-                >
-                  عرض جميع الفروع
-                </span>
+                  " @click="$router.push({ name: 'ShowBranches' })"> عرض جميع الفروع </span>
               </div>
             </div>
           </div>
@@ -40,131 +30,80 @@
               <div class="course_tabs_1">
                 <div id="add-course-tab" class="step-app">
                   <div class="step-content">
-                    <div
-                      class="step-tab-panel step-tab-info active create-course-tab"
-                      id="tab_step1"
-                    >
+                    <div class="step-tab-panel step-tab-info active create-course-tab" id="tab_step1">
                       <div class="tab-from-content">
                         <div class="course__form">
                           <div class="general_info10">
                             <div class="row">
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label
-                                    ><i class="fas fa-pencil-alt"></i> اسم
-                                    الفرع</label
-                                  >
+                                  <label><i class="fas fa-pencil-alt"></i> اسم الفرع</label>
                                   <input type="text" v-model="state.name" />
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.name.$error"
-                                  >
-                                    {{ v$.name.$errors[0].$message }}
-                                  </span>
+                                  <span class="text-danger fw-bold" v-if="v$.name.$error"> {{ v$.name.$errors[0].$message
+                                  }} </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label
-                                    ><i class="fas fa-pencil-alt"></i> العنوان
-                                    بالتفصيل</label
-                                  >
+                                  <label><i class="fas fa-pencil-alt"></i> العنوان بالتفصيل</label>
                                   <input type="text" v-model="state.address" />
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.address.$error"
-                                  >
-                                    {{ v$.address.$errors[0].$message }}
-                                  </span>
+                                  <span class="text-danger fw-bold" v-if="v$.address.$error"> {{
+                                    v$.address.$errors[0].$message }} </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label
-                                    ><i class="fas fa-pencil-alt"></i> رقم
-                                    التلفون</label
-                                  >
+                                  <label><i class="fas fa-pencil-alt"></i> رقم التلفون</label>
                                   <input type="text" v-model="state.phone" />
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.phone.$error"
-                                  >
-                                    {{ v$.phone.$errors[0].$message }}
-                                  </span>
+                                  <span class="text-danger fw-bold" v-if="v$.phone.$error"> {{
+                                    v$.phone.$errors[0].$message }} </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25">
-                                  <label
-                                    ><i class="fas fa-pencil-alt"></i> الخط
-                                    الساخن</label
-                                  >
-                                  <input
-                                    type="number"
-                                    v-model="state.hotline"
-                                  />
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.hotline.$error"
-                                  >
-                                    {{ v$.hotline.$errors[0].$message }}
-                                  </span>
+                                  <label><i class="fas fa-pencil-alt"></i> الخط الساخن</label>
+                                  <input type="number" v-model="state.hotline" />
+                                  <span class="text-danger fw-bold" v-if="v$.hotline.$error"> {{
+                                    v$.hotline.$errors[0].$message }} </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="mt-30 box">
                                   <label>
-                                    <i class="fas fa-list"></i> المدير
-                                  </label>
+                                    <i class="fas fa-list"></i> المدير </label>
                                   <select v-model="state.maneger" class="">
-                                    <option selected disabled value="">
-                                      اختيار من القائمة
-                                    </option>
-                                    <option
-                                      v-for="maneger in state.manegers_list"
-                                      :key="maneger.id"
-                                      :value="maneger.id"
-                                    >
-                                      {{ maneger.name }}
-                                    </option>
+                                    <option selected disabled value=""> اختيار من القائمة </option>
+                                    <option v-for="maneger in state.manegers_list" :key="maneger.id" :value="maneger.id">
+                                      {{ maneger.name }} </option>
                                   </select>
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.maneger.$error"
-                                  >
-                                    {{ v$.maneger.$errors[0].$message }}
-                                  </span>
+                                  <span class="text-danger fw-bold" v-if="v$.maneger.$error"> {{
+                                    v$.maneger.$errors[0].$message }} </span>
                                 </div>
                               </div>
                               <div class="col-lg-6 col-md-12">
                                 <div class="ui search focus mt-30 lbel25 map">
-                                  <label
-                                    ><i class="fas fa-pencil-alt"></i
-                                    >الخريطه</label
-                                  >
-
-                                  <input
-                                    type="text"
-                                    v-model="state.map"
-                                    @change="onInputChange"
-                                  />
+                                  <label><i class="fas fa-pencil-alt"></i>الخريطه</label>
+                                  <input type="text" v-model="state.map" @change="onInputChange" />
                                   <br /><br />
-                                  <span
-                                    class="text-danger fw-bold"
-                                    v-if="v$.map.$error"
-                                  >
-                                    {{ v$.map.$errors[0].$message }}
+                                  <span class="text-danger fw-bold" v-if="v$.map.$error"> {{ v$.map.$errors[0].$message }}
                                   </span>
                                 </div>
                               </div>
+                              <div class="col-lg-6 col-md-12 mb-2">
+                                <div class="ui search focus mt-30 lbel25">
+                                  <label>
+                                    <i class="fas fa-list"></i>الحالة</label>
+                                  <select v-model="state.status">
+                                    <option value="1"> متاح</option>
+                                    <option value="0"> غير متاح </option>
+                                  </select>
+                                </div>
+                                <span class="text-danger fw-bold" v-if="v$.status.$error"> {{
+                                  v$.status.$errors[0].$message }} </span>
+                              </div>
                             </div>
                           </div>
-                          <button
-                            @click="add_Branch"
-                            data-direction="finish"
-                            class="btn btn-default steps_btn"
-                          >
-                            حفظ
+                          <button @click="add_Branch" data-direction="finish" class="btn btn-default steps_btn"> حفظ
                           </button>
                         </div>
                       </div>
@@ -193,18 +132,18 @@ import Header from "../../../components/Header.vue";
 import AsideBar from "../../../components/AsideBar.vue";
 import axios from "axios";
 
-import { reactive, computed, onMounted } from "vue";
+import { reactive,computed,onMounted } from "vue";
 
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
 import { useVuelidate } from "@vuelidate/core";
-import { required, email, sameAs } from "@vuelidate/validators";
+import { required,email,sameAs } from "@vuelidate/validators";
 import Toast from "@/components/Toast.vue";
 
 export default {
   name: "Create-Branch",
-  components: { Footer, AsideBar, Header, Toast },
+  components: { Footer,AsideBar,Header,Toast },
   setup() {
     const store = useStore();
     const router = useRouter();
@@ -216,15 +155,16 @@ export default {
       hotline: "",
       map: "",
       maneger: "",
+      status: 0,
       manegers_list: {},
       save: false,
     });
 
     onMounted(async () => {
-      if (state.user == null) {
+      if(state.user == null) {
         router.push("/dashboard/login");
       } else {
-        if (state.user.role_id != 1) {
+        if(state.user.role_id != 1) {
           router.push("/dashboard");
         }
       }
@@ -247,13 +187,13 @@ export default {
       notify: "",
     });
 
-    const notification = (theme, message) => {
+    const notification = (theme,message) => {
       toast.theme = theme;
       toast.notify = message;
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      }, 2000);
+      },2000);
     };
 
     // Validations
@@ -265,16 +205,17 @@ export default {
         hotline: { required },
         map: { required },
         maneger: { required },
-      };
+        status: { required },
+      }; 
     });
 
-    const v$ = useVuelidate(rules, state);
+    const v$ = useVuelidate(rules,state);
 
     // Add Branch
 
     const add_Branch = async () => {
       v$.value.$validate();
-      if (!v$.value.$error) {
+      if(!v$.value.$error) {
         let data = {
           name: state.name,
           address: state.address,
@@ -282,20 +223,26 @@ export default {
           hot_line: state.hotline,
           map_location: state.map,
           user_id: state.maneger,
-          status: 1,
+          status: state.status,
         };
 
         let Branch = await axios
-          .post("api_dashboard/branches", data)
+          .post("api_dashboard/branches",data)
           .then((res) => {
-            console.log(res.data);
+            if(res.status == 200) {
             state.save = true;
+            } else if(res.status === undefined) {
+
+              notification("error",res.response.data.message);
+            }
+            console.log(res);
           })
           .catch((error) => {
-            notification("error", error.response.statusText);
+            console.log(error);
+            notification("error",error.response.statusText);
           });
       } else {
-        notification("error", "Missing Data !");
+        notification("error","Missing Data !");
       }
     };
     const onInputChange = (e) => {
@@ -306,7 +253,7 @@ export default {
       frame.width = `100%`;
       console.log(frame);
     };
-    return { state, v$, toast, add_Branch, onInputChange };
+    return { state,v$,toast,add_Branch,onInputChange };
   },
 };
 </script>
@@ -357,6 +304,7 @@ export default {
 .course_tabs_1 label i {
   margin-left: 10px;
 }
+
 .course_tabs_1 select {
   padding: 15px 15px;
   height: auto;
@@ -371,6 +319,7 @@ export default {
 .course_tabs_1 select:focus {
   outline: none;
 }
+
 .course_tabs_1 input {
   padding: 15px 15px;
   height: auto;

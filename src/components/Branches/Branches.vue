@@ -7,12 +7,12 @@
     <td class="open">{{ branch.address }}</td>
     <td class="open">{{ branch.phone_number }}</td>
     <td class="open">{{ branch.hot_line }}</td>
-    <td class="open">
+    <!-- <td class="open">
       <div class="thumb_img">
-        <!-- {{ branch.map_location }} -->
-        <!-- <img :src="require(`../../../public/images/about/${branch.src}`)" /> -->
+        {{ branch.map_location }}
+        <img :src="require(`../../../public/images/about/${branch.src}`)" />
       </div>
-    </td>
+    </td> -->
   </tr>
   <tr class="close" v-if="!opened & exists">
     <td colspan="7">
