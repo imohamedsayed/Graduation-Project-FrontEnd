@@ -375,7 +375,9 @@ export default {
         state.section = state.student.division[0];
         state.Governorate = state.student.governorate_id[0];
         state.DadNumber = state.student.guardian_number;
-
+        state.year = state.student.brith_day.split("-")[0];
+        state.month = state.student.brith_day.split("-")[2];
+        state.day = state.student.brith_day.split("-")[1];
 
 
         await axios
