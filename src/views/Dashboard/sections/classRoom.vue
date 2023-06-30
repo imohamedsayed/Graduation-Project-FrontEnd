@@ -140,7 +140,7 @@
                       <div class="card-body">
                         <h5 class="card-title">حضور و غياب</h5>
                         <router-link :to="{
-                          name: 'showStudentAttendance',
+                          name: 'showAppointmentsForAttendance',
                           id: state.section.id,
                         }">
                           <a class="btn m-1"> عرض الحضور والغياب</a></router-link>

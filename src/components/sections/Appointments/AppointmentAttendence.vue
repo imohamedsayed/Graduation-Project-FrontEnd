@@ -3,7 +3,7 @@
     <td>{{ state.appointment.id }}</td>
     <td>{{ state.appointment.day }}</td>
     <td>{{ state.appointment.from }} : {{ state.appointment.to }}</td>
-    <td class="d-flex justify-content-center w-100">
+    <td class="d-flex justify-content-center  gap-5 w-100">
       <button
         @click="
           $router.push({
@@ -12,8 +12,18 @@
           })
         "
       >
-        عرض الطلاب
+        تسجيل الحضور 
       </button>
+      <button
+          @click="
+            $router.push({
+              name: 'showStudentAttendance',
+              params: { id: state.appointment.cid, AId: state.appointment.id },
+            })
+            "
+        >
+          عرض الطلاب
+        </button>
     </td>
   </tr>
 </template>

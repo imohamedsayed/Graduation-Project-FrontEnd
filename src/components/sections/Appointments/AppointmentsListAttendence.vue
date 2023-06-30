@@ -10,10 +10,10 @@
     <div class="list">
       <table class="ap-list">
         <tr dir="rtl">
-          <th>#</th>
-          <th>اليوم</th>
-          <th>الموعد</th>
-          <th style="width: 20%">خيارات</th>
+          <th style="width: 1%">#</th>
+          <th style="width: 20%">اليوم</th>
+          <th style="width: 20%">الموعد</th>
+          <th style="width: 50%">خيارات</th>
         </tr>
         <Appointment
           v-for="appointment in state.displayItems"

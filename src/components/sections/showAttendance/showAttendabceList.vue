@@ -1,14 +1,13 @@
 <template>
   <tr class="app-stu" v-if="exists">
     <td>{{ student.id }}</td>
-    <td>{{ student.name }}</td>
-    <td>{{ student.date }}</td>
-    <td>
-    حضر و دفع
-    </td>
-    <td class="d-flex justify-content-center w-100">
+    <td>{{ student.f_name }}  {{ student.m_name }} {{ student.l_name }}</td>
+    <td>{{ student.created_at }}</td>
+      <td>{{ student.attendances.status[1] }}</td>
+
+    <!-- <td class="d-flex justify-content-center w-100">
       <button class="btn btn-danger reject" @click="Delete()">حذف</button>
-    </td>
+    </td> -->
   </tr>
 </template>
 
@@ -35,7 +34,7 @@ export default {
         if (result.isConfirmed) {
           try {
             let res = await axios.delete(
-              "api_dashboard/appointment/" + this.appointment.id
+              // "api_dashboard/appointment/" + this.appointment.id
             );
             //console.log(res);
             Swal.fire("تم !", "تم حذف الموعد ", "نجاح");

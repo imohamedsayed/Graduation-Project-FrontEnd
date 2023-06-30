@@ -29,7 +29,7 @@
           :key="student.id"
         >
           <td>{{ student.id }}</td>
-          <td>{{ student.full_name }}</td>
+          <td> {{ student.f_name }}  {{ student.m_name }} {{ student.l_name }}</td>
           <td>{{ student.created_at }}</td>
           <td v-if="student.attendances">
             <select
@@ -38,7 +38,7 @@
               v-model="state.attendances[student.id]"
               @change="attendance(student.id, state.attendances[student.id])"
             >
-              <option value="5" disabled>اختر من القائمة</option>
+              <option value="5" disabled >اختر من القائمة</option>
               <option
                 value="2"
                 :selected="student.attendances.status[0] == '2'"
