@@ -2,9 +2,8 @@
   <Header />
   <div class="main-view">
     <AsideBar />
-    <div class="teacher">
+    <div class="teacher pt-5">
       <div class="bg1">
-
         <div class="year1">
           <h3><i class="fa fa-list"></i> الفصول الدراسيه</h3>
           <Suspense>

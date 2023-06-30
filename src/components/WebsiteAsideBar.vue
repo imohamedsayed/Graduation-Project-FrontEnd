@@ -27,13 +27,7 @@
         </li>
       </router-link>
 
-
-
-
-
-
       <!--Start Notifications-->
-
 
       <!-- <router-link :to="{ name: 'WebsiteNotificationPage' }">
         <li class="d-flex justify-content-between align-items-center">
@@ -43,12 +37,8 @@
           </div>
         </li>
       </router-link> -->
-      
-      
+
       <!--End Notifications-->
-
-
-
 
       <!--Start cart-->
       <router-link :to="{ name: 'cart' }">
@@ -60,12 +50,6 @@
         </li>
       </router-link>
       <!--End cart-->
-
-
-
-
-
-
 
       <!--Start Sections-->
       <!-- <li
@@ -150,8 +134,6 @@
 
       <!--End store-->
 
-
-
       <!--Start genuses-->
       <!-- <router-link :to="{ name: 'superior' }">
         <li class="d-flex justify-content-between align-items-center">
@@ -163,9 +145,6 @@
       </router-link> -->
       <!--End genuses-->
 
-
-
-      
       <!--start my account-->
 
       <!-- <li
@@ -268,11 +247,8 @@ export default {
   overflow-y: auto;
   background: #fff;
   transition: all 0.4s ease-out;
-  box-shadow:
-  1px 0px 28.6px rgba(0, 0, 0, 0.052),
-  3.4px 0px 50.5px rgba(0, 0, 0, 0.081),
-  15px 0px 123px rgba(0, 0, 0, 0.14)
-;
+  box-shadow: 1px 0px 28.6px rgba(0, 0, 0, 0.052),
+    3.4px 0px 50.5px rgba(0, 0, 0, 0.081), 15px 0px 123px rgba(0, 0, 0, 0.14);
   ul {
     padding: 0;
     a {
@@ -286,6 +262,9 @@ export default {
       transition: all 0.4s ease-out;
       cursor: pointer;
       margin: 5px 0;
+      i {
+        color: var(--darker-blue);
+      }
       &.second-li {
         span {
           font-size: 0.9rem;
@@ -322,6 +301,7 @@ export default {
     border: 1px solid #fff;
     border-radius: 20px;
   }
+
   @media (max-width: 991px) {
     position: fixed;
     right: 0;

@@ -9,7 +9,10 @@
           <div class="row">
             <div class="col-lg-3 h_150">
               <div class="image">
-                <img src="../../../../public/images/intro_background.png" alt="" />
+                <img
+                  src="../../../../public/images/intro_background.png"
+                  alt=""
+                />
               </div>
             </div>
             <div class="col-lg-7">
@@ -34,9 +37,13 @@
                 </div>
                 <div class="row">
                   <div class="col-10">
-                    <div class="time" v-for="app in state.appointments" :key="app.id">
-                      <i class="fa-regular fa-clock border"></i> معاد الدورة : {{ app.day }} من : {{ app.from }} : الى {{
-                        app.to }}
+                    <div
+                      class="time"
+                      v-for="app in state.appointments"
+                      :key="app.id"
+                    >
+                      <i class="fa-regular fa-clock border"></i> معاد الدورة :
+                      {{ app.day }} من : {{ app.from }} : الى {{ app.to }}
                     </div>
                   </div>
                   <div class="col-2">
@@ -55,7 +62,10 @@
           <div class="row">
             <div class="col-lg-2 col-sm-12">
               <div class="img">
-                <img :src="'http://127.0.0.1:8000/' + state.teacher_avatar" alt="" />
+                <img
+                  :src="'http://127.0.0.1:8000/' + state.teacher_avatar"
+                  alt=""
+                />
               </div>
             </div>
             <div class="col-6">
@@ -71,28 +81,98 @@
       <div class="sec3">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="course-tab" data-bs-toggle="tab" data-bs-target="#course" type="button"
-              role="tab" aria-controls="course" aria-selected="true">
-              <i class="fa fa-list"></i> محتوى الدورة </button>
+            <button
+              class="nav-link active"
+              id="lesson-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#lesson"
+              type="button"
+              role="tab"
+              aria-controls="lesson"
+              aria-selected="true"
+            >
+              <i class="fa-solid fa-person-chalkboard"></i>محتوى الدورة
+            </button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="exam-tab" data-bs-toggle="tab" data-bs-target="#exam" type="button" role="tab"
-              aria-controls="exam" aria-selected="true">
-              <i class="fa-sharp fa-solid fa-medal"></i> الاختبارات </button>
+            <button
+              class="nav-link"
+              id="course-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#course"
+              type="button"
+              role="tab"
+              aria-controls="course"
+              aria-selected="true"
+            >
+              <i class="fa-solid fa-file"></i> الملفات
+            </button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="quest-tab" data-bs-toggle="tab" data-bs-target="#quest" type="button" role="tab"
-              aria-controls="quest" aria-selected="false">
-              <i class="fa-solid fa-question"></i> مراجعة الامتحانات </button>
+            <button
+              class="nav-link"
+              id="exam-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#exam"
+              type="button"
+              role="tab"
+              aria-controls="exam"
+              aria-selected="true"
+            >
+              <i class="fa-sharp fa-solid fa-medal"></i> الاختبارات
+            </button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="signs-tab" data-bs-toggle="tab" data-bs-target="#signs" type="button" role="tab"
-              aria-controls="signs" aria-selected="false">
-              <i class="fa-solid fa-bell"></i>علامات الدورة </button>
+            <button
+              class="nav-link"
+              id="quest-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#quest"
+              type="button"
+              role="tab"
+              aria-controls="quest"
+              aria-selected="false"
+            >
+              <i class="fa-solid fa-question"></i> مراجعة الامتحانات
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="signs-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#signs"
+              type="button"
+              role="tab"
+              aria-controls="signs"
+              aria-selected="false"
+            >
+              <i class="fa-solid fa-bell"></i>علامات الدورة
+            </button>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="course" role="tabpanel" aria-labelledby="course-tab">
+          <div
+            class="tab-pane fade show active"
+            id="lesson"
+            role="tabpanel"
+            aria-labelledby="lesson-tab"
+          >
+            <div class="row">
+              <div class="col-lg-7 col-xl-8 col-sm-12">
+                <Lessons :id="cours_id" />
+              </div>
+              <div class="col-lg-5 col-xl-4 col-md-12 col-sm-12">
+                <Lrftbar :id="cours_id" />
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade show"
+            id="course"
+            role="tabpanel"
+            aria-labelledby="course-tab"
+          >
             <div class="row">
               <div class="col-lg-7 col-xl-8 col-sm-12">
                 <CourseContent :id="cours_id" />
@@ -102,7 +182,12 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane fade show" id="exam" role="tabpanel" aria-labelledby="exam-tab">
+          <div
+            class="tab-pane fade show"
+            id="exam"
+            role="tabpanel"
+            aria-labelledby="exam-tab"
+          >
             <div class="row">
               <div class="col-lg-7 col-xl-8 col-sm-12">
                 <CourseExame :cid="id" :id="cours_id" />
@@ -112,17 +197,27 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="quest" role="tabpanel" aria-labelledby="quest-tab">
+          <div
+            class="tab-pane fade"
+            id="quest"
+            role="tabpanel"
+            aria-labelledby="quest-tab"
+          >
             <div class="row">
               <div class="col-lg-7 col-xl-8 col-sm-12">
-                <CourseQuistions :cid="id" :id="cours_id"  />
+                <CourseQuistions :cid="id" :id="cours_id" />
               </div>
               <div class="col-lg-5 col-xl-4 col-md-12 col-sm-12">
                 <Lrftbar :id="cours_id" />
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="signs" role="tabpanel" aria-labelledby="signs-tab">
+          <div
+            class="tab-pane fade"
+            id="signs"
+            role="tabpanel"
+            aria-labelledby="signs-tab"
+          >
             <div class="row">
               <div class="col-lg-7 col-xl-8 col-sm-12">
                 <CourseNotifcations :id="cours_id" />
@@ -150,9 +245,10 @@ import CourseContent from "../../../components/website/course/CourseContent.vue"
 import CourseQuistions from "../../../components/website/course/CourseQuistions.vue";
 import CourseNotifcations from "../../../components/website/course/CourseNotifcations.vue";
 import SpinnerLoading from "@/components/SpinnerLoading.vue";
-import { computed,onMounted,reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
+import Lessons from "@/components/website/course/Lessons.vue";
 export default {
   name: "course",
   components: {
@@ -165,6 +261,7 @@ export default {
     CourseQuistions,
     CourseNotifcations,
     SpinnerLoading,
+    Lessons,
   },
   props: {
     id: String,
@@ -176,11 +273,10 @@ export default {
       appointments: [],
       std_id: computed(() => useStore().state.student.id),
       Registered: 0,
-      teacher_avatar: ''
+      teacher_avatar: "",
     });
     const cours_id = props.id;
     onMounted(async () => {
-
       // get classroom
 
       await axios
@@ -196,14 +292,12 @@ export default {
           console.log(error.response.data.errors);
         });
 
-
       // get remaining students
-
 
       await axios
         .get("api/get-remaining-students/" + cours_id)
         .then((res) => {
-          state.Registered = res.data.data.Registered
+          state.Registered = res.data.data.Registered;
           // console.log(res.data.data);
         })
         .catch((error) => {
@@ -211,9 +305,7 @@ export default {
           console.log(error.response.data.errors);
         });
 
-
       // get classroom teacher
-
 
       await axios
         .get("api/get-teachers/" + cours_id)
@@ -226,9 +318,7 @@ export default {
           console.log(error.response.data.errors);
         });
 
-
       // get appointments
-
 
       await axios
         .get("api/appointments/" + cours_id)
@@ -240,10 +330,8 @@ export default {
           console.log(error);
           console.log(error.response.data.errors);
         });
-
-
     });
-    return { state,cours_id };
+    return { state, cours_id };
   },
 };
 </script>
@@ -257,7 +345,6 @@ export default {
   }
 
   .sec1 {
-
     // height: 320px ;
     .backgrund {
       padding: 30px;

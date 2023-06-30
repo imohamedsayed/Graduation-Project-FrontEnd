@@ -59,6 +59,9 @@ export default {
           console.log(error);
           console.log(error.response.data.errors);
         });
+
+
+        
     });
     return { state };
   },

@@ -2,7 +2,7 @@
   <Header />
   <div class="main-view">
     <AsideBar />
-    <div class="teacher">
+    <div class="teacher pt-5">
       <div class="bg1">
         <div class="year1">
           <h3 class="mt-5"><i class="fa fa-list"></i> الفصول الدراسيه</h3>
@@ -68,8 +68,8 @@ export default {
 .teacher {
   h3 {
     color: var(--darker-blue);
-   text-align: center;
-   margin-top: 10px !important;
+    text-align: center;
+    margin-top: 10px !important;
   }
 }
 </style>
