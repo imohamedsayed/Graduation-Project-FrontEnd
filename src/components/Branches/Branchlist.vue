@@ -28,7 +28,6 @@
               <th class="open cell-ta" scope="col">العنوان</th>
               <th class="open cell-ta" scope="col">التلفون</th>
               <th class="open text-center" scope="col">الخط الساخن</th>
-              <th class="open text-center" scope="col">الخريطه</th>
             </tr>
           </thead>
           <tbody>

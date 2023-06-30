@@ -1,7 +1,7 @@
 <template>
   <tr class="app-stu" v-if="exists">
     <td>{{ student.id }}</td>
-    <td>{{ student.full_name }}</td>
+    <td> {{ student.f_name }}  {{ student.m_name }} {{ student.l_name }}</td>
     <td>{{ student.created_at }}</td>
     <td class="d-flex justify-content-center w-100">
       <button class="btn btn-success ms-lg-5 ms-2 approve" @click="approve()">
@@ -21,7 +21,9 @@ export default {
       exists: true,
     };
   },
-  mounted() {},
+  mounted() {
+    console.log(this.student);
+  },
   methods: {
     approve() {
       Swal.fire({

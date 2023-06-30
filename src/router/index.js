@@ -78,6 +78,9 @@ import allTeacters from "@/views/website/Profile teacher/allTeacters.vue";
 import ChooseBranch from "@/views/website/chooseBranch/ChooseBranch.vue";
 import ShowNotes from "@/views/Dashboard/sections/notes/ShowNotes.vue";
 import AddNote from "@/views/Dashboard/sections/notes/AddNote.vue";
+import AddLesson from "@/views/Dashboard/sections/lessons/AddLesson.vue";
+import EditLesson from "@/views/Dashboard/sections/lessons/EditLesson.vue";
+import ShowLesson from "@/views/Dashboard/sections/lessons/ShowLesson.vue";
 import EditNote from "@/views/Dashboard/sections/notes/EditNote.vue";
 import AddAttachment from "@/views/Dashboard/sections/attachment/AddAttachment.vue";
 import ShowAttachments from "@/views/Dashboard/sections/attachment/ShowAttachments.vue";
@@ -461,6 +464,24 @@ const routes = [
     path: "/dashboard/edit_note/:id",
     name: "edit_note",
     component: EditNote,
+    props: true,
+  },
+  {
+    path: "/dashboard/classRoom/:id/classroom_lesson",
+    name: "classroom_lesson",
+    component: ShowLesson,
+    props: true,
+  },
+  {
+    path: "/dashboard/classRoom/:id/add_lesson",
+    name: "add_lesson",
+    component: AddLesson,
+    props: true,
+  },
+  {
+    path: "/dashboard/edit_lesson/:cid/:id",
+    name: "edit_lesson",
+    component: EditLesson,
     props: true,
   },
   {
