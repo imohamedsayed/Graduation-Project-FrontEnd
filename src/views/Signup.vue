@@ -11,14 +11,14 @@
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>الاسم الاول</label>
-              <input type="text" v-model="state.FirstName" />
+              <input name="f_name" type="text" v-model="state.FirstName" />
               <span class="text-danger fw-bold" v-if="v$.FirstName.$error"> {{ v$.FirstName.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label> اسم الثاني</label>
-              <input type="text" v-model="state.SecondName" />
+              <input name="s_name" type="text" v-model="state.SecondName" />
               <span class="text-danger fw-bold" v-if="v$.SecondName.$error"> {{ v$.SecondName.$errors[0].$message }}
               </span>
             </div>
@@ -26,35 +26,35 @@
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label> الاسم الاخير</label>
-              <input type="text" v-model="state.lastName" />
+              <input name="l_name" type="text" v-model="state.lastName" />
               <span class="text-danger fw-bold" v-if="v$.lastName.$error"> {{ v$.lastName.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>البريد الالكتروني</label>
-              <input type="email" v-model="state.email" />
+              <input name="email" type="email" v-model="state.email" />
               <span class="text-danger fw-bold" v-if="v$.email.$error"> {{ v$.email.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>رقم الهاتف المحمول</label>
-              <input type="phone" v-model="state.phone" />
+              <input name="phone" type="phone" v-model="state.phone" />
               <span class="text-danger fw-bold" v-if="v$.phone.$error"> {{ v$.phone.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>كلمه المرور</label>
-              <input type="password" v-model="state.pass" />
+              <input name="pass" type="password" v-model="state.pass" />
               <span class="text-danger fw-bold" v-if="v$.pass.$error"> {{ v$.pass.$errors[0].$message }} </span>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>تاكيد كلمه المرور</label>
-              <input type="password" v-model="state.pass2" @input="(e) => {
+              <input name="pass2" type="password" v-model="state.pass2" @input="(e) => {
                   e.target.value != state.pass
                     ? (state.equalpass = true)
                     : (state.equalpass = false);
@@ -67,7 +67,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="    ">
               <label>الصف الدراسي</label>
-              <select class=" " v-model="state.Class">
+              <select name="class" class=" " v-model="state.Class">
                 <option selected disabled value="">اختيار من القائمة</option>
                 <option value="1">الصف الاول الثانوى</option>
                 <option value="2">الصف الثاني الثانوى</option>
@@ -79,7 +79,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="    ">
               <label>الشعبه</label>
-              <select class=" " v-model="state.section">
+              <select name="section" class=" " v-model="state.section">
                 <option selected disabled value="">اختيار من القائمة</option>
                 <option value="1">عام</option>
                 <option value="2">علمى</option>
@@ -93,7 +93,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="">
               <label>المحافظه</label>
-              <select class=" " v-model="state.Governorate">
+              <select name="governorate" class=" " v-model="state.Governorate">
                 <option selected disabled value="">اختيار من القائمة</option>
                 <option v-for="govr in state.govenorate" :key="govr.id" :value="govr.id"> {{ govr.name }} </option>
               </select>
@@ -104,7 +104,7 @@
           <div class="col-lg-4 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>رقم ولي الامر</label>
-              <input type="phone" v-model="state.DadNumber" @input="(e) => {
+              <input name="DadNumber" type="phone" v-model="state.DadNumber" @input="(e) => {
                   e.target.value == state.phone
                     ? (state.equalphone = true)
                     : (state.equalphone = false);
@@ -118,7 +118,7 @@
           <div class="col-lg-3 col-md-6">
             <div class="ui search focus mt-30 lbel25">
               <label>تاريخ الميلاد : السنه</label>
-              <select name="" v-model="state.year" id="">
+              <select name="year" v-model="state.year" id="">
                 <option selected disabled value="">السنة</option>
                 <option v-for="(number, index) in state.years" :key="index" :value="number"> {{ number }} </option>
               </select>
@@ -129,7 +129,7 @@
           <div class="col-lg-3 col-md-6">
             <div class="">
               <label style="display: hidden">الشهر</label>
-              <select name="" v-model="state.month" id="">
+              <select name="month" v-model="state.month" id="">
                 <option selected disabled value="">اختيار الشهر</option>
                 <option v-for="(number, index) in state.month_list" :key="index" :value="number"> {{ number }} </option>
               </select>
@@ -139,7 +139,7 @@
           <div class="col-lg-2 col-md-6">
             <div class="">
               <label>اليوم</label>
-              <select name="" v-model="state.day" id="">
+              <select name="day" v-model="state.day" id="">
                 <option selected disabled value="">اليوم</option>
                 <option v-for="(number, index) in state.day_list" :key="index" :value="number"> {{ number }} </option>
               </select>
@@ -148,7 +148,7 @@
           </div>
           <div class="col-lg-12 col-md-12">
             <div class="ui search focus mt-30 lbel25">
-              <input type="file" class="file" @change="(e) => {
+              <input name="avatar" type="file" class="file" @change="(e) => {
                   state.avatar = e.target.files[0];
                 }
                 " />
