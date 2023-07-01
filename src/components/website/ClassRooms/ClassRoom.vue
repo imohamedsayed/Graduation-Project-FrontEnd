@@ -32,10 +32,13 @@
           class="btn btn-success"
           @click="apply(data.id)"
           v-if="!state.alreadySubscribed"
+          :id="'Subscribedincource'+data.id"
         >
           التقديم
         </button>
-        <button class="btn btn-danger" v-else @click="revoke(data.id)">
+        <button class="btn btn-danger" 
+          :id="'Subscribedincource' + data.id"
+        v-else @click="revoke(data.id)">
           الغاء الاشتراك
         </button>
       </div>
@@ -85,7 +88,7 @@ export default {
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      }, 2000);
+      }, 4000);
     };
 
     const apply = async (cId) => {
