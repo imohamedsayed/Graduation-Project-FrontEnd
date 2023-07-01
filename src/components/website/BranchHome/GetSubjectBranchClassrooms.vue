@@ -14,6 +14,7 @@
         <swiper-slide
           v-for="cours in state.courseList"
           :key="cours.id"
+          :id="'branchcourses'+cours.id"
           @click="classRoom(cours.id)"
         >
           <div class="box-product mb-20">
