@@ -20,6 +20,7 @@
           </p>
           <button
             type="button"
+            :name="'chooseBranch'+branch.id"
             class="btn btn-light"
             @click="choseBrach(branch.id, branch.name)"
           >
