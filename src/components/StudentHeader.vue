@@ -7,6 +7,7 @@
             src="../../public/images/hd_dp.jpg"
             class="img-fluid admin-img"
             alt=""
+            name="personalPhoto"
           />
           <div
             class="admin-options position-absolute"
@@ -22,6 +23,7 @@
                   src="../../public/images/hd_dp.jpg"
                   class="img-fluid admin-img"
                   alt=""
+                  name="personalPhoto1"
                 />
               </div>
               <h5 class="admin-name text-muted">
