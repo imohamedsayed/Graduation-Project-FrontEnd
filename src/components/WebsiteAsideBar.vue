@@ -219,6 +219,16 @@
         </li>
       </router-link>
       <!--End Settings-->
+      <!--Logout-->
+      <div @click="logout()">
+        <li class="d-flex justify-content-between align-items-center">
+          <div class="section-name text-danger">
+            <i class="fa-solid fa-right-from-bracket text-danger"></i>
+            <span> تسجيل الخروج </span>
+          </div>
+        </li>
+      </div>
+      <!--End Logout-->
     </ul>
   </aside>
   <teleport to="body">
@@ -233,6 +243,13 @@ export default {
   methods: {
     openAside() {
       this.$refs.aside.classList.toggle("open");
+    },
+    async logout() {
+      try {
+        await this.$store.dispatch("studentLogout");
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };
