@@ -62,7 +62,7 @@ export default {
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      }, 2000);
+      }, 60000);
     };
 
     const addToCart = async (id) => {
