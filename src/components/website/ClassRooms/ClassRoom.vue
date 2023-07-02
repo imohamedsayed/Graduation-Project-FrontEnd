@@ -32,13 +32,16 @@
           class="btn btn-success"
           @click="apply(data.id)"
           v-if="!state.alreadySubscribed"
-          :id="'Subscribedincource'+data.id"
+          :id="'Subscribedincource' + data.id"
         >
           التقديم
         </button>
-        <button class="btn btn-danger" 
+        <button
+          class="btn btn-danger"
           :id="'Subscribedincource' + data.id"
-        v-else @click="revoke(data.id)">
+          v-else
+          @click="revoke(data.id)"
+        >
           الغاء الاشتراك
         </button>
       </div>
@@ -88,7 +91,7 @@ export default {
       toast.showNotification = true;
       setTimeout(() => {
         toast.showNotification = false;
-      }, 4000);
+      }, 60000);
     };
 
     const apply = async (cId) => {
@@ -100,7 +103,7 @@ export default {
       if (res.status == 200) {
         console.log(res);
         state.alreadySubscribed = true;
-        notification("success", res.data.message);
+        notification("success", "لقد تم ارسال طلبك للاشتراك");
       } else {
         notification("error", err.response.data.message);
       }
@@ -116,9 +119,9 @@ export default {
       if (res.status == 200) {
         console.log(res);
         state.alreadySubscribed = false;
-        notification("success", res.data.message);
+        notification("success", "لقد تم الغاء الاشتراك");
       } else {
-        notification("error", err.response.data.message);
+        notification("error", "حدث خطأ ما حاول مجددا لاحقا");
       }
     };
     return { state, apply, toast, revoke };
