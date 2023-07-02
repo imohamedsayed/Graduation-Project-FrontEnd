@@ -7,6 +7,7 @@
             src="../../public/images/hd_dp.jpg"
             class="img-fluid admin-img"
             alt=""
+            name="personalPhoto"
           />
           <div
             class="admin-options position-absolute"
@@ -22,13 +23,14 @@
                   src="../../public/images/hd_dp.jpg"
                   class="img-fluid admin-img"
                   alt=""
+                  name="personalPhoto1"
                 />
               </div>
-              <h5 class="admin-name text-muted">{{ user.name }}</h5>
+              <h5 class="admin-name text-muted" name="name">{{ user.name }}</h5>
             </div>
             <ul class="list-unstyled">
-              <li dir="rtl">اعدادات الحساب</li>
-              <li dir="rtl" @click="logout">تسجيل خروج</li>
+              <li dir="rtl" name="settings">اعدادات الحساب</li>
+              <li dir="rtl" @click="logout" name="logout">تسجيل خروج</li>
             </ul>
           </div>
         </div>
