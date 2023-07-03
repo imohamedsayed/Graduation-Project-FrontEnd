@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="right d-flex">
-      <input type="search" placeholder="ماذا تريد أن تتعلم" />
+      <!-- <input type="search" placeholder="ماذا تريد أن تتعلم" /> -->
 
       <div class="logo" style="width: 140px">
         <img
